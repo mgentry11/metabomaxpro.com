@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetaboMax Pro - Report Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <span class="product-logo metabolic">MMP</span>
+                    <span class="brand-name">MetaboMax Pro</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="metabomaxpro.html">← Back to Product</a>
+                <a href="#generator">Generator</a>
+                <a href="#preview">Preview</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Generator Section -->
+    <section id="generator" class="generator-section">
+        <div class="container">
+            <h1>Metabolic Report Generator</h1>
+            <p class="section-intro">Upload your metabolic testing data and generate a professional report in seconds</p>
+
+            <!-- Step 1: Upload Data -->
+            <div class="generator-card">
+                <div class="generator-step-header">
+                    <div class="step-badge">Step 1</div>
+                    <h2>Upload Metabolic Data</h2>
+                </div>
+                <p>Upload CSV file from PNOE, COSMED, Parvo, VO2 Master, or any metabolic testing system</p>
+
+                <div class="file-upload-area" id="fileUploadArea">
+                    <div class="file-upload-icon">📄</div>
+                    <p><strong>Drop CSV file here</strong> or click to browse</p>
+                    <input type="file" id="csvFile" accept=".csv" style="display: none;">
+                    <button class="btn btn-secondary" onclick="document.getElementById('csvFile').click()">
+                        Choose File
+                    </button>
+                </div>
+                <div id="fileInfo" class="file-info"></div>
+            </div>
+
+            <!-- Step 2: Patient Information -->
+            <div class="generator-card" id="patientInfoCard" style="display: none;">
+                <div class="generator-step-header">
+                    <div class="step-badge">Step 2</div>
+                    <h2>Patient Information</h2>
+                </div>
+
+                <div class="patient-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientName">Patient Name</label>
+                            <input type="text" id="patientName" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientAge">Age (years)</label>
+                            <input type="number" id="patientAge" placeholder="45" min="1" max="120" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientWeight">Weight (lbs)</label>
+                            <input type="number" id="patientWeight" placeholder="175" min="1" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientHeight">Height (inches)</label>
+                            <input type="number" id="patientHeight" placeholder="70" min="1" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="patientSex">Sex</label>
+                            <select id="patientSex" required>
+                                <option value="">Select...</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="testDate">Test Date</label>
+                            <input type="date" id="testDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="testNotes">Test Notes (optional)</label>
+                        <textarea id="testNotes" rows="3" placeholder="Resting metabolic rate test, fasted state, morning..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Generate Report -->
+            <div class="generator-card" id="generateCard" style="display: none;">
+                <div class="generator-step-header">
+                    <div class="step-badge">Step 3</div>
+                    <h2>Generate Report</h2>
+                </div>
+
+                <div class="generate-actions">
+                    <button class="btn btn-primary btn-large" id="generateBtn" onclick="generateReport()">
+                        🚀 Generate Professional Report
+                    </button>
+                    <div id="processingStatus" class="processing-status"></div>
+                </div>
+            </div>
+
+            <!-- Report Preview -->
+            <div class="generator-card" id="reportPreview" style="display: none;">
+                <div class="generator-step-header">
+                    <div class="step-badge">✓ Complete</div>
+                    <h2>Report Generated</h2>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn btn-primary btn-large" onclick="downloadReport()">
+                        📥 Download HTML Report
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetGenerator()">
+                        ↻ Generate Another Report
+                    </button>
+                </div>
+
+                <!-- Report Preview Area -->
+                <div class="report-preview-area" id="reportPreviewArea">
+                    <!-- Generated report will be shown here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="product-logo metabolic">MMP</span>
+                    <span class="brand-name">MetaboMax Pro</span>
+                    <p>Professional metabolic report generator</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MetaboMax Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="report-generator.js"></script>
+</body>
+</html>

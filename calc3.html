@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Study Guide: Double Integrals, Change of Variables & Line Integrals</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 17px;
+            line-height: 1.9;
+            color: #1a365d;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .main-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .main-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 40px 0 25px 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.6em;
+            margin: 0;
+        }
+
+        /* Blue Concept Boxes */
+        .concept-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6f3ff 100%);
+            border-left: 6px solid #3182ce;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .concept-box h3 {
+            color: #2c5282;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .concept-box p, .concept-box ul {
+            color: #2c5282;
+        }
+
+        /* Green Step-by-Step Sections */
+        .solution-steps {
+            border: 3px solid #38a169;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
+        }
+
+        .solution-steps h3 {
+            color: #276749;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #48bb78;
+            padding-bottom: 10px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 0.95em;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 5px;
+        }
+
+        /* Yellow Why Boxes */
+        .why-box {
+            background: linear-gradient(135deg, #fefcbf 0%, #fef3c7 100%);
+            border-left: 6px solid #d69e2e;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .why-box h4 {
+            color: #975a16;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .why-box p {
+            color: #744210;
+        }
+
+        /* Pink/Red Formula Boxes */
+        .formula-box {
+            background: linear-gradient(135deg, #fed7e2 0%, #fbb6ce 100%);
+            border: 3px solid #d53f8c;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .formula-box h4 {
+            color: #97266d;
+            margin-bottom: 15px;
+            font-size: 1.15em;
+        }
+
+        .formula-box .formula {
+            font-size: 1.2em;
+            color: #702459;
+        }
+
+        /* Problem Cards */
+        .problem-card {
+            background: white;
+            border-left: 6px solid #3182ce;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .problem-card h3 {
+            color: #2c5282;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .problem-statement {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .problem-statement h4 {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        /* Final Answer Box */
+        .final-answer {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            border: 3px solid #38a169;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .final-answer h4 {
+            color: #276749;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .final-answer .answer {
+            font-size: 1.4em;
+            color: #22543d;
+            font-weight: bold;
+        }
+
+        /* Prerequisite Box */
+        .prereq-box {
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            border-left: 6px solid #805ad5;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .prereq-box h4 {
+            color: #553c9a;
+            margin-bottom: 10px;
+        }
+
+        .prereq-box ul {
+            color: #44337a;
+            margin-left: 20px;
+        }
+
+        .prereq-box li {
+            margin-bottom: 5px;
+        }
+
+        /* Practice Tips Box */
+        .tips-box {
+            background: linear-gradient(135deg, #feebc8 0%, #fbd38d 100%);
+            border: 2px dashed #dd6b20;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tips-box h4 {
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+
+        .tips-box ul {
+            color: #7b341e;
+            margin-left: 20px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            color: #2c5282;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .toc li:last-child {
+            border-bottom: none;
+        }
+
+        .toc a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #805ad5;
+            text-decoration: underline;
+        }
+
+        /* Dividers */
+        hr {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            margin: 50px 0;
+            border-radius: 2px;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .summary-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .summary-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            .main-header h1 {
+                font-size: 1.8em;
+            }
+
+            .problem-card {
+                padding: 20px 15px;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .step-number {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Math display adjustments */
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+        }
+
+        .math-block {
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        /* Introduction box */
+        .intro-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .intro-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .intro-box ul {
+            margin-left: 20px;
+        }
+
+        .intro-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Video Resource Styles */
+        .video-resources {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+
+        .video-resources h3 {
+            color: #c53030;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 8px 8px 8px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .video-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
+        }
+
+        .video-link svg {
+            margin-right: 10px;
+        }
+
+        .video-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .video-section h4 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+
+        .video-section p {
+            color: #718096;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <h1>Calculus Study Guide</h1>
+            <p>Double Integrals, Change of Variables, Line Integrals & Centroids</p>
+        </header>
+
+        <!-- Introduction -->
+        <div class="intro-box">
+            <h3>How to Use This Study Guide</h3>
+            <ul>
+                <li><strong>Read Prerequisites First:</strong> Each problem lists the concepts you should understand before attempting it.</li>
+                <li><strong>Follow Step-by-Step:</strong> Work through each step carefully, understanding the reasoning before moving on.</li>
+                <li><strong>Study the "Why" Boxes:</strong> These explain the intuition behind key steps.</li>
+                <li><strong>Memorize Key Formulas:</strong> The pink formula boxes contain essential formulas you'll use repeatedly.</li>
+                <li><strong>Practice Actively:</strong> After studying each solution, try similar problems without looking at the guide.</li>
+            </ul>
+        </div>
+
+        <!-- Top Video Resources -->
+        <div class="video-resources">
+            <h3>Top Video Resources (by popularity)</h3>
+            <div class="video-section">
+                <h4>Change of Variables & Jacobians (Problems 1 & 2)</h4>
+                <p>Professor Leonard's comprehensive 1hr 40min lecture on using the Jacobian for variable substitutions</p>
+                <a href="https://www.youtube.com/watch?v=wUF-lyyWpUc" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Professor Leonard: Change of Variables (Jacobian)
+                </a>
+            </div>
+            <div class="video-section">
+                <h4>Double Integrals (Problem 3)</h4>
+                <p>The Organic Chemistry Tutor explains double integral evaluation with clear examples</p>
+                <a href="https://www.youtube.com/watch?v=85zGYB-34jQ" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Organic Chemistry Tutor: Double Integrals
+                </a>
+            </div>
+            <div class="video-section">
+                <h4>Triple Integrals & Center of Mass (Problem 4)</h4>
+                <p>Professor Leonard's in-depth guide to triple integrals, volume, and center of mass calculations</p>
+                <a href="https://www.youtube.com/watch?v=XZRQhkii0h0" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Professor Leonard: Triple Integrals & Center of Mass
+                </a>
+            </div>
+            <div class="video-section">
+                <h4>Line Integrals - Vector Fields (Problem 5)</h4>
+                <p>Khan Academy's introduction to line integrals with vector fields and Green's Theorem</p>
+                <a href="https://www.khanacademy.org/math/multivariable-calculus/integrating-multivariable-functions/line-integrals-vectors/v/using-a-line-integral-to-find-the-work-done-by-a-vector-field-example" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Khan Academy: Line Integrals & Vector Fields
+                </a>
+            </div>
+            <div class="video-section">
+                <h4>Line Integrals - Scalar Functions (Problem 6)</h4>
+                <p>Khan Academy's foundational video on scalar line integrals and arc length</p>
+                <a href="https://www.khanacademy.org/math/multivariable-calculus/integrating-multivariable-functions/line-integrals/v/introduction-to-the-line-integral" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Khan Academy: Introduction to Line Integrals
+                </a>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#key-concepts">Key Concepts Review</a></li>
+                <li><a href="#problem1">Problem 1: Change of Variables (Double Integral over Parallelogram)</a></li>
+                <li><a href="#problem2">Problem 2: Ellipse Area via Change of Variables</a></li>
+                <li><a href="#problem3">Problem 3: Double Integral with Singularity</a></li>
+                <li><a href="#problem4">Problem 4: Centroid of 3D Region</a></li>
+                <li><a href="#problem5">Problem 5: Line Integral (Vector Field)</a></li>
+                <li><a href="#problem6">Problem 6: Line Integral (Scalar Function)</a></li>
+                <li><a href="#summary">Summary of Key Techniques</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <!-- Key Concepts Section -->
+        <section id="key-concepts">
+            <div class="section-header">
+                <h2>Key Concepts Review</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3>Change of Variables in Double Integrals</h3>
+                <p>When integrating over complex regions, we can transform to simpler coordinates using a mapping $G: D_0 \to D$. The key is computing the <strong>Jacobian</strong>, which measures how area changes under the transformation.</p>
+            </div>
+
+            <div class="formula-box">
+                <h4>Change of Variables Formula</h4>
+                <div class="formula">
+                    $$\iint_D f(x,y)\, dA = \iint_{D_0} f(G(u,v)) \left| \frac{\partial(x,y)}{\partial(u,v)} \right| du\, dv$$
+                </div>
+            </div>
+
+            <div class="concept-box">
+                <h3>The Jacobian Determinant</h3>
+                <p>For a transformation $G(u,v) = (x(u,v), y(u,v))$, the Jacobian is:</p>
+                <div class="math-block">
+                    $$\frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} = \frac{\partial x}{\partial u}\frac{\partial y}{\partial v} - \frac{\partial x}{\partial v}\frac{\partial y}{\partial u}$$
+                </div>
+            </div>
+
+            <div class="why-box">
+                <h4>Why Use Change of Variables?</h4>
+                <p>Complex regions (parallelograms, ellipses, etc.) become simple rectangles or circles under the right transformation. This makes setting up integral bounds much easier!</p>
+            </div>
+
+            <div class="concept-box">
+                <h3>Line Integrals</h3>
+                <p>There are two types of line integrals:</p>
+                <ul>
+                    <li><strong>Scalar Line Integrals:</strong> $\int_C f\, ds$ - integrate a function along a curve with respect to arc length</li>
+                    <li><strong>Vector Line Integrals:</strong> $\int_C \mathbf{F} \cdot d\mathbf{r}$ - measure work done by a force field along a path</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <h4>Line Integral Formulas</h4>
+                <div class="formula">
+                    $$\int_C f\, ds = \int_a^b f(\mathbf{r}(t)) \|\mathbf{r}'(t)\|\, dt$$
+                    $$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t)\, dt$$
+                </div>
+            </div>
+
+            <div class="concept-box">
+                <h3>Centroid of a 3D Region</h3>
+                <p>For a region $W$ with uniform density $\delta = 1$, the centroid $(\bar{x}, \bar{y}, \bar{z})$ is found by:</p>
+                <div class="math-block">
+                    $$\bar{x} = \frac{1}{V}\iiint_W x\, dV, \quad \bar{y} = \frac{1}{V}\iiint_W y\, dV, \quad \bar{z} = \frac{1}{V}\iiint_W z\, dV$$
+                </div>
+                <p>where $V = \iiint_W dV$ is the volume of the region.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 1 -->
+        <section id="problem1">
+            <div class="section-header">
+                <h2>Problem 1: Change of Variables (Double Integral)</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Let $D$ be the parallelogram in the xy-plane spanned by the vectors $\langle 9, 8 \rangle$ and $\langle 3, 4 \rangle$.</p>
+                    <p>Apply the Change of Variables Formula to the map $G(u,v) = (3u + 9v, 4u + 8v)$ to evaluate $\displaystyle\iint_D xy\, dA$ as an integral over $D_0 = [0,1] \times [0,1]$.</p>
+                    <p><em>(Give answer as a whole number)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Computing Jacobian determinants</li>
+                        <li>Change of Variables formula for double integrals</li>
+                        <li>Basic double integral evaluation</li>
+                        <li>Understanding how linear maps transform parallelograms</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Verify the mapping transforms $D_0$ to $D$</strong>
+                            <p>The map $G(u,v) = (3u + 9v, 4u + 8v)$ is linear. Let's check that it maps the unit square to our parallelogram:</p>
+                            <ul>
+                                <li>$G(0,0) = (0, 0)$ - origin maps to origin</li>
+                                <li>$G(1,0) = (3, 4)$ - corresponds to vector $\langle 3, 4 \rangle$</li>
+                                <li>$G(0,1) = (9, 8)$ - corresponds to vector $\langle 9, 8 \rangle$</li>
+                                <li>$G(1,1) = (12, 12)$ - the opposite corner</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Compute the Jacobian determinant</strong>
+                            <p>With $x = 3u + 9v$ and $y = 4u + 8v$:</p>
+                            <div class="math-block">
+                                $$\frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} 3 & 9 \\ 4 & 8 \end{vmatrix}$$
+                            </div>
+                            <p>Computing the determinant:</p>
+                            $$= (3)(8) - (9)(4) = 24 - 36 = -12$$
+                            <p>The absolute value is $|J| = 12$.</p>
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why is the Jacobian Negative?</h4>
+                        <p>A negative Jacobian indicates the mapping reverses orientation (like a reflection). Since we only care about area scaling, we use the absolute value $|J| = 12$. This tells us that infinitesimal areas are scaled by a factor of 12.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Set up the transformed integral</strong>
+                            <p>Using the Change of Variables formula:</p>
+                            $$\iint_D xy\, dA = \iint_{D_0} (3u + 9v)(4u + 8v) \cdot 12\, du\, dv$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Expand the integrand</strong>
+                            <p>First, multiply $(3u + 9v)(4u + 8v)$:</p>
+                            $$= 12u^2 + 24uv + 36uv + 72v^2 = 12u^2 + 60uv + 72v^2$$
+                            <p>Multiply by the Jacobian factor 12:</p>
+                            $$= 144u^2 + 720uv + 864v^2$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Evaluate the integral</strong>
+                            $$\int_0^1 \int_0^1 (144u^2 + 720uv + 864v^2)\, du\, dv$$
+
+                            <p>First, integrate with respect to $u$:</p>
+                            $$\int_0^1 \left[ 48u^3 + 360u^2v + 864v^2u \right]_0^1 dv = \int_0^1 (48 + 360v + 864v^2)\, dv$$
+
+                            <p>Now integrate with respect to $v$:</p>
+                            $$= \left[ 48v + 180v^2 + 288v^3 \right]_0^1 = 48 + 180 + 288 = 516$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{516}$$</div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Always verify that your transformation maps the simple region to the complex region correctly</li>
+                        <li>Double-check your Jacobian calculation - errors here propagate through the entire problem</li>
+                        <li>Remember: $|J|$ for area, but sign matters for orientation questions</li>
+                        <li>For linear transformations, the Jacobian is constant, making integration easier</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 2 -->
+        <section id="problem2">
+            <div class="section-header">
+                <h2>Problem 2: Ellipse Area via Change of Variables</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Compute the area of the region enclosed by the ellipse $x^2 + 2xy + 2y^2 - 4y = 45$ as an integral in the variables $u = x + y$, $v = y - 2$.</p>
+                    <p><em>(Use symbolic notation and fractions where needed.)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Completing the square for quadratic forms</li>
+                        <li>Inverse transformations and Jacobians</li>
+                        <li>Standard ellipse equation: $\frac{u^2}{a^2} + \frac{v^2}{b^2} = 1$</li>
+                        <li>Area formula for ellipses</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Express $x$ and $y$ in terms of $u$ and $v$</strong>
+                            <p>Given: $u = x + y$ and $v = y - 2$</p>
+                            <p>From the second equation: $y = v + 2$</p>
+                            <p>Substituting into the first: $u = x + (v + 2)$, so $x = u - v - 2$</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Substitute into the ellipse equation</strong>
+                            <p>We have $x = u - v - 2$ and $y = v + 2$. Substitute into $x^2 + 2xy + 2y^2 - 4y = 45$:</p>
+
+                            <p><strong>Calculate $x^2$:</strong></p>
+                            $$x^2 = (u - v - 2)^2 = u^2 - 2uv - 4u + v^2 + 4v + 4$$
+
+                            <p><strong>Calculate $2xy$:</strong></p>
+                            $$2xy = 2(u - v - 2)(v + 2) = 2(uv + 2u - v^2 - 2v - 2v - 4)$$
+                            $$= 2(uv + 2u - v^2 - 4v - 4) = 2uv + 4u - 2v^2 - 8v - 8$$
+
+                            <p><strong>Calculate $2y^2$:</strong></p>
+                            $$2y^2 = 2(v + 2)^2 = 2(v^2 + 4v + 4) = 2v^2 + 8v + 8$$
+
+                            <p><strong>Calculate $-4y$:</strong></p>
+                            $$-4y = -4(v + 2) = -4v - 8$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Combine all terms</strong>
+                            <p>Adding everything:</p>
+                            $$x^2 + 2xy + 2y^2 - 4y = (u^2 - 2uv - 4u + v^2 + 4v + 4)$$
+                            $$+ (2uv + 4u - 2v^2 - 8v - 8) + (2v^2 + 8v + 8) + (-4v - 8)$$
+
+                            <p>Collecting like terms:</p>
+                            <ul>
+                                <li>$u^2$ terms: $u^2$</li>
+                                <li>$uv$ terms: $-2uv + 2uv = 0$</li>
+                                <li>$u$ terms: $-4u + 4u = 0$</li>
+                                <li>$v^2$ terms: $v^2 - 2v^2 + 2v^2 = v^2$</li>
+                                <li>$v$ terms: $4v - 8v + 8v - 4v = 0$</li>
+                                <li>Constants: $4 - 8 + 8 - 8 = -4$</li>
+                            </ul>
+
+                            <p>The equation simplifies to:</p>
+                            $$u^2 + v^2 - 4 = 45$$
+                            $$u^2 + v^2 = 49$$
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why This Simplification is Remarkable!</h4>
+                        <p>The cross terms ($xy$) in the original equation made it a "rotated" ellipse. Our change of variables has "un-rotated" it! The result $u^2 + v^2 = 49$ is actually a <strong>circle</strong> of radius 7, which is a special case of an ellipse where both semi-axes are equal.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Compute the Jacobian</strong>
+                            <p>We need to find $\left|\frac{\partial(x,y)}{\partial(u,v)}\right|$. With $x = u - v - 2$ and $y = v + 2$:</p>
+                            $$\frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix} = \begin{vmatrix} 1 & -1 \\ 0 & 1 \end{vmatrix} = (1)(1) - (-1)(0) = 1$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Calculate the area</strong>
+                            <p>Since the Jacobian is 1, area is preserved under this transformation. The region in the $uv$-plane is a circle of radius 7.</p>
+                            $$\text{Area} = \iint_{u^2 + v^2 \leq 49} 1 \cdot |1|\, du\, dv = \pi r^2 = \pi(7)^2 = 49\pi$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{49\pi}$$</div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>When given a specific substitution, trust it - it's designed to simplify the problem!</li>
+                        <li>Always expand carefully and track all cross terms</li>
+                        <li>A Jacobian of 1 means area is preserved - the transformation is just a rotation/translation</li>
+                        <li>Recognize standard forms: circles ($x^2 + y^2 = r^2$) and ellipses ($\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 3 -->
+        <section id="problem3">
+            <div class="section-header">
+                <h2>Problem 3: Double Integral with Singularity</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Evaluate the integral $\displaystyle\iint_D \frac{1}{\sqrt{3 \cdot xy}}\, dA$, where $D = [0,8] \times [0,8]$</p>
+                    <p><em>(Enter DNE if the integral does not converge or does not exist. Use symbolic notation and fractions where needed.)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Improper integrals and convergence tests</li>
+                        <li>Separable functions in double integrals</li>
+                        <li>Recognizing singularities in integrands</li>
+                        <li>Evaluating integrals with $x^{-1/2}$ terms</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Identify the singularity</strong>
+                            <p>The integrand $\frac{1}{\sqrt{3xy}} = \frac{1}{\sqrt{3}} \cdot \frac{1}{\sqrt{x}} \cdot \frac{1}{\sqrt{y}}$ has singularities along $x = 0$ and $y = 0$.</p>
+                            <p>This is an <strong>improper integral</strong> that requires careful analysis.</p>
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why Might This Integral Converge?</h4>
+                        <p>Even though the integrand goes to infinity at the boundary, the singularity might be "weak" enough that the integral converges. For $\int_0^a \frac{1}{x^p} dx$, the integral converges if $p < 1$. Here, $p = 1/2 < 1$, so we expect convergence!</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Separate the integral</strong>
+                            <p>Since the integrand factors as a product of functions of $x$ and $y$ only:</p>
+                            $$\iint_D \frac{1}{\sqrt{3xy}}\, dA = \frac{1}{\sqrt{3}} \int_0^8 \frac{1}{\sqrt{x}}\, dx \cdot \int_0^8 \frac{1}{\sqrt{y}}\, dy$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Evaluate each single integral</strong>
+                            <p>Both integrals are identical. Consider $\int_0^8 \frac{1}{\sqrt{x}}\, dx = \int_0^8 x^{-1/2}\, dx$:</p>
+                            $$\int_0^8 x^{-1/2}\, dx = \left[ \frac{x^{1/2}}{1/2} \right]_0^8 = \left[ 2\sqrt{x} \right]_0^8 = 2\sqrt{8} - 2\sqrt{0} = 2 \cdot 2\sqrt{2} = 4\sqrt{2}$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Combine the results</strong>
+                            $$\frac{1}{\sqrt{3}} \cdot (4\sqrt{2}) \cdot (4\sqrt{2}) = \frac{1}{\sqrt{3}} \cdot 16 \cdot 2 = \frac{32}{\sqrt{3}}$$
+
+                            <p>Rationalizing the denominator:</p>
+                            $$= \frac{32}{\sqrt{3}} \cdot \frac{\sqrt{3}}{\sqrt{3}} = \frac{32\sqrt{3}}{3}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{\frac{32\sqrt{3}}{3}}$$</div>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Key Integral Formula</h4>
+                    <div class="formula">
+                        $$\int x^{-1/2}\, dx = 2x^{1/2} + C = 2\sqrt{x} + C$$
+                        <p style="margin-top: 10px; font-size: 0.9em;">More generally: $\int x^n\, dx = \frac{x^{n+1}}{n+1} + C$ for $n \neq -1$</p>
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Always check for singularities in the integrand before integrating</li>
+                        <li>Remember: $\int_0^a x^{-p} dx$ converges if and only if $p < 1$</li>
+                        <li>Separable integrands make double integrals into products of single integrals</li>
+                        <li>Rationalize denominators when presenting final answers</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 4 -->
+        <section id="problem4">
+            <div class="section-header">
+                <h2>Problem 4: Centroid of 3D Region</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Find the centroid of the region $W$ lying above the sphere $x^2 + y^2 + z^2 = 6$ and below the paraboloid $z = 4 - x^2 - y^2$. Assume the density $\delta(x,y,z) = 1$.</p>
+                    <p><em>(Give your answer as point coordinates in the form (*,*,*).)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Cylindrical coordinates $(r, \theta, z)$</li>
+                        <li>Setting up triple integrals for volume and moments</li>
+                        <li>Finding intersections of surfaces</li>
+                        <li>Symmetry arguments for centroids</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Use symmetry to simplify</strong>
+                            <p>Both the sphere $x^2 + y^2 + z^2 = 6$ and the paraboloid $z = 4 - x^2 - y^2$ are symmetric about the $z$-axis. The region $W$ inherits this symmetry.</p>
+                            <p>Therefore: $\bar{x} = 0$ and $\bar{y} = 0$</p>
+                            <p>We only need to find $\bar{z}$.</p>
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why Does Symmetry Work?</h4>
+                        <p>When a region is symmetric about the $z$-axis and has uniform density, every contribution to $\bar{x}$ from a point $(x,y,z)$ is cancelled by the point $(-x,-y,z)$. The same applies for $\bar{y}$.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Find where the surfaces intersect</strong>
+                            <p>The sphere: $x^2 + y^2 + z^2 = 6$, so $x^2 + y^2 = 6 - z^2$</p>
+                            <p>The paraboloid: $z = 4 - x^2 - y^2$, so $x^2 + y^2 = 4 - z$</p>
+
+                            <p>Setting these equal:</p>
+                            $$6 - z^2 = 4 - z$$
+                            $$z^2 - z - 2 = 0$$
+                            $$(z-2)(z+1) = 0$$
+                            <p>So $z = 2$ or $z = -1$</p>
+
+                            <p>Since we're in the region <em>above</em> the sphere and <em>below</em> the paraboloid (which opens downward), the intersection occurs at $z = 2$ where $r^2 = x^2 + y^2 = 4 - 2 = 2$.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Set up cylindrical coordinates</strong>
+                            <p>Using $x = r\cos\theta$, $y = r\sin\theta$, $z = z$ with $dV = r\, dr\, d\theta\, dz$</p>
+                            <p>The paraboloid: $z = 4 - r^2$</p>
+                            <p>The sphere: $r^2 + z^2 = 6$, so $z = \sqrt{6 - r^2}$ (upper hemisphere)</p>
+
+                            <p>For the region $W$: $z$ ranges from $\sqrt{6 - r^2}$ (sphere) to $4 - r^2$ (paraboloid)</p>
+                            <p>The radial bound: $r$ ranges from $0$ to $\sqrt{2}$ (intersection circle)</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Set up the volume integral</strong>
+                            $$V = \int_0^{2\pi} \int_0^{\sqrt{2}} \int_{\sqrt{6-r^2}}^{4-r^2} r\, dz\, dr\, d\theta$$
+
+                            <p>Integrating with respect to $z$:</p>
+                            $$V = \int_0^{2\pi} \int_0^{\sqrt{2}} r\left[(4-r^2) - \sqrt{6-r^2}\right] dr\, d\theta$$
+                            $$= 2\pi \int_0^{\sqrt{2}} \left[4r - r^3 - r\sqrt{6-r^2}\right] dr$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Evaluate the volume integral</strong>
+                            <p>Breaking into parts:</p>
+                            $$\int_0^{\sqrt{2}} 4r\, dr = \left[2r^2\right]_0^{\sqrt{2}} = 4$$
+                            $$\int_0^{\sqrt{2}} r^3\, dr = \left[\frac{r^4}{4}\right]_0^{\sqrt{2}} = 1$$
+
+                            <p>For $\int_0^{\sqrt{2}} r\sqrt{6-r^2}\, dr$, use substitution $u = 6 - r^2$, $du = -2r\, dr$:</p>
+                            $$= -\frac{1}{2}\int_6^{4} \sqrt{u}\, du = \frac{1}{2}\int_4^{6} u^{1/2}\, du = \frac{1}{2} \cdot \frac{2}{3}\left[u^{3/2}\right]_4^6 = \frac{1}{3}\left(6\sqrt{6} - 8\right)$$
+
+                            <p>Therefore:</p>
+                            $$V = 2\pi\left[4 - 1 - \frac{1}{3}(6\sqrt{6} - 8)\right] = 2\pi\left[3 - 2\sqrt{6} + \frac{8}{3}\right] = 2\pi\left[\frac{17}{3} - 2\sqrt{6}\right]$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <strong>Set up and evaluate the moment integral $M_{xy}$</strong>
+                            $$M_{xy} = \iiint_W z\, dV = \int_0^{2\pi} \int_0^{\sqrt{2}} \int_{\sqrt{6-r^2}}^{4-r^2} zr\, dz\, dr\, d\theta$$
+
+                            <p>Integrating with respect to $z$:</p>
+                            $$= 2\pi \int_0^{\sqrt{2}} r \cdot \frac{1}{2}\left[(4-r^2)^2 - (6-r^2)\right] dr$$
+                            $$= \pi \int_0^{\sqrt{2}} r\left[(4-r^2)^2 - (6-r^2)\right] dr$$
+
+                            <p>Expanding $(4-r^2)^2 = 16 - 8r^2 + r^4$:</p>
+                            $$= \pi \int_0^{\sqrt{2}} r\left[16 - 8r^2 + r^4 - 6 + r^2\right] dr$$
+                            $$= \pi \int_0^{\sqrt{2}} r\left[10 - 7r^2 + r^4\right] dr$$
+                            $$= \pi \int_0^{\sqrt{2}} \left[10r - 7r^3 + r^5\right] dr$$
+
+                            <p>Evaluating:</p>
+                            $$= \pi\left[5r^2 - \frac{7r^4}{4} + \frac{r^6}{6}\right]_0^{\sqrt{2}}$$
+                            $$= \pi\left[10 - 7 + \frac{8}{6}\right] = \pi\left[3 + \frac{4}{3}\right] = \frac{13\pi}{3}$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <strong>Calculate $\bar{z}$</strong>
+                            $$\bar{z} = \frac{M_{xy}}{V} = \frac{\frac{13\pi}{3}}{2\pi\left(\frac{17}{3} - 2\sqrt{6}\right)} = \frac{13}{6\left(\frac{17}{3} - 2\sqrt{6}\right)} = \frac{13}{34 - 12\sqrt{6}} \cdot \frac{34 + 12\sqrt{6}}{34 + 12\sqrt{6}}$$
+
+                            <p>After rationalization:</p>
+                            $$= \frac{13(34 + 12\sqrt{6})}{1156 - 864} = \frac{13(34 + 12\sqrt{6})}{292} = \frac{442 + 156\sqrt{6}}{292} = \frac{221 + 78\sqrt{6}}{146}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{\left(0, 0, \frac{221 + 78\sqrt{6}}{146}\right)}$$</div>
+                    <p style="margin-top: 10px; color: #276749;">Numerically: approximately $(0, 0, 2.82)$</p>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Centroid Formulas (Uniform Density)</h4>
+                    <div class="formula">
+                        $$\bar{x} = \frac{1}{V}\iiint_W x\, dV, \quad \bar{y} = \frac{1}{V}\iiint_W y\, dV, \quad \bar{z} = \frac{1}{V}\iiint_W z\, dV$$
+                    </div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Always check for symmetry first - it can eliminate entire integrals!</li>
+                        <li>Carefully determine which surface is "above" and which is "below"</li>
+                        <li>Use cylindrical coordinates for problems with axial symmetry</li>
+                        <li>Verify your bounds by checking intersection points</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 5 -->
+        <section id="problem5">
+            <div class="section-header">
+                <h2>Problem 5: Line Integral (Vector Field)</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Compute $\displaystyle\int_C \mathbf{F} \cdot d\mathbf{r}$, where $\mathbf{F}(x,y) = \left\langle \frac{-2y}{(x^2+y^2)^2}, \frac{2x}{(x^2+y^2)^2} \right\rangle$ and $C$ is a circle of radius 4 with center at the origin oriented counterclockwise.</p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Parametrization of circles</li>
+                        <li>Computing line integrals of vector fields</li>
+                        <li>Recognizing exact/conservative vector fields</li>
+                        <li>Green's Theorem and its limitations</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Parametrize the circle</strong>
+                            <p>A circle of radius 4 centered at origin, counterclockwise:</p>
+                            $$\mathbf{r}(t) = \langle 4\cos t, 4\sin t \rangle, \quad 0 \leq t \leq 2\pi$$
+
+                            <p>The derivative:</p>
+                            $$\mathbf{r}'(t) = \langle -4\sin t, 4\cos t \rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Evaluate $\mathbf{F}$ on the curve</strong>
+                            <p>On the circle, $x^2 + y^2 = 16$, so $(x^2 + y^2)^2 = 256$.</p>
+                            <p>With $x = 4\cos t$ and $y = 4\sin t$:</p>
+                            $$\mathbf{F}(\mathbf{r}(t)) = \left\langle \frac{-2(4\sin t)}{256}, \frac{2(4\cos t)}{256} \right\rangle = \left\langle \frac{-\sin t}{32}, \frac{\cos t}{32} \right\rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Compute the dot product $\mathbf{F} \cdot \mathbf{r}'(t)$</strong>
+                            $$\mathbf{F} \cdot \mathbf{r}'(t) = \left\langle \frac{-\sin t}{32}, \frac{\cos t}{32} \right\rangle \cdot \langle -4\sin t, 4\cos t \rangle$$
+                            $$= \frac{-\sin t}{32} \cdot (-4\sin t) + \frac{\cos t}{32} \cdot (4\cos t)$$
+                            $$= \frac{4\sin^2 t}{32} + \frac{4\cos^2 t}{32} = \frac{4(\sin^2 t + \cos^2 t)}{32} = \frac{4}{32} = \frac{1}{8}$$
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why is the Dot Product Constant?</h4>
+                        <p>This is a beautiful result! The vector field $\mathbf{F}$ is related to the inverse-square law (like gravity or electrostatics). On circles centered at the singularity, the tangential component has constant magnitude. This is a deep property of such "radial" vector fields.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Evaluate the line integral</strong>
+                            $$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_0^{2\pi} \frac{1}{8}\, dt = \frac{1}{8} \cdot 2\pi = \frac{\pi}{4}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{\frac{\pi}{4}}$$</div>
+                </div>
+
+                <div class="why-box">
+                    <h4>Why Can't We Use Green's Theorem?</h4>
+                    <p>Green's Theorem requires the vector field to be defined and have continuous partial derivatives on the <em>entire</em> region enclosed by the curve. Here, $\mathbf{F}$ is undefined at the origin (where $(x^2+y^2)^2 = 0$). Since the circle encloses the origin, Green's Theorem doesn't apply directly. We must use the parametric definition.</p>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Always check if the vector field has singularities inside the curve</li>
+                        <li>Simplify $(x^2 + y^2)$ terms immediately when working on circles centered at origin</li>
+                        <li>When the dot product is constant, the integral becomes trivial</li>
+                        <li>Non-zero line integrals around closed curves indicate the field is not conservative</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 6 -->
+        <section id="problem6">
+            <div class="section-header">
+                <h2>Problem 6: Line Integral (Scalar Function)</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Let $f(x,y,z) = 72xz - 8y^2$ and let $C$ be the curve given by $\mathbf{r}(t) = \left\langle t, \frac{t^2}{\sqrt{2}}, \frac{t^3}{3} \right\rangle$ for $0 \leq t \leq 2$.</p>
+                    <p>Compute $\displaystyle\int_C f\, ds$.</p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Arc length parametrization: $ds = \|\mathbf{r}'(t)\|\, dt$</li>
+                        <li>Computing derivatives of vector functions</li>
+                        <li>Scalar line integrals vs. vector line integrals</li>
+                        <li>Polynomial integration</li>
+                    </ul>
+                </div>
+
+                <div class="formula-box">
+                    <h4>Scalar Line Integral Formula</h4>
+                    <div class="formula">
+                        $$\int_C f\, ds = \int_a^b f(\mathbf{r}(t)) \cdot \|\mathbf{r}'(t)\|\, dt$$
+                    </div>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Compute $\mathbf{r}'(t)$</strong>
+                            <p>Given $\mathbf{r}(t) = \left\langle t, \frac{t^2}{\sqrt{2}}, \frac{t^3}{3} \right\rangle$:</p>
+                            $$\mathbf{r}'(t) = \left\langle 1, \frac{2t}{\sqrt{2}}, t^2 \right\rangle = \left\langle 1, \sqrt{2}t, t^2 \right\rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Compute $\|\mathbf{r}'(t)\|$</strong>
+                            $$\|\mathbf{r}'(t)\| = \sqrt{1^2 + (\sqrt{2}t)^2 + (t^2)^2} = \sqrt{1 + 2t^2 + t^4}$$
+
+                            <p>Notice that $1 + 2t^2 + t^4 = (1 + t^2)^2$, so:</p>
+                            $$\|\mathbf{r}'(t)\| = \sqrt{(1 + t^2)^2} = 1 + t^2$$
+                            <p>(since $1 + t^2 > 0$ for all $t$)</p>
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why This Simplification Matters</h4>
+                        <p>The curve was cleverly constructed so that $\|\mathbf{r}'(t)\|$ becomes a perfect square. This is common in textbook problems and makes the integral tractable. In real applications, such simplifications are rare!</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Evaluate $f(\mathbf{r}(t))$</strong>
+                            <p>Substitute $x = t$, $y = \frac{t^2}{\sqrt{2}}$, $z = \frac{t^3}{3}$ into $f(x,y,z) = 72xz - 8y^2$:</p>
+                            $$f(\mathbf{r}(t)) = 72 \cdot t \cdot \frac{t^3}{3} - 8\left(\frac{t^2}{\sqrt{2}}\right)^2$$
+                            $$= 24t^4 - 8 \cdot \frac{t^4}{2} = 24t^4 - 4t^4 = 20t^4$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Set up and evaluate the integral</strong>
+                            $$\int_C f\, ds = \int_0^2 f(\mathbf{r}(t)) \cdot \|\mathbf{r}'(t)\|\, dt = \int_0^2 20t^4 \cdot (1 + t^2)\, dt$$
+
+                            <p>Expanding:</p>
+                            $$= \int_0^2 (20t^4 + 20t^6)\, dt = 20\int_0^2 (t^4 + t^6)\, dt$$
+
+                            <p>Integrating:</p>
+                            $$= 20\left[\frac{t^5}{5} + \frac{t^7}{7}\right]_0^2 = 20\left[\frac{32}{5} + \frac{128}{7}\right]$$
+                            $$= 20 \cdot \frac{32 \cdot 7 + 128 \cdot 5}{35} = 20 \cdot \frac{224 + 640}{35} = 20 \cdot \frac{864}{35}$$
+                            $$= \frac{17280}{35} = \frac{3456}{7}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{\frac{3456}{7}}$$</div>
+                    <p style="margin-top: 10px; color: #276749;">Numerically: approximately $493.71$</p>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Always look for perfect squares in $\|\mathbf{r}'(t)\|^2$ - factor before taking the square root</li>
+                        <li>Simplify $f(\mathbf{r}(t))$ as much as possible before multiplying by $\|\mathbf{r}'(t)\|$</li>
+                        <li>Keep fractions throughout - don't convert to decimals until the very end</li>
+                        <li>Double-check your power rule applications: $\int t^n\, dt = \frac{t^{n+1}}{n+1}$</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Summary Section -->
+        <section id="summary">
+            <div class="section-header">
+                <h2>Summary of Key Techniques</h2>
+            </div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Problem Type</th>
+                        <th>Key Technique</th>
+                        <th>Critical Formula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Change of Variables (Double Integral)</strong></td>
+                        <td>Compute Jacobian, transform bounds and integrand</td>
+                        <td>$\iint_D f\, dA = \iint_{D_0} f(G(u,v))|J|\, du\, dv$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ellipse Area</strong></td>
+                        <td>Transform to circle, use $\pi r^2$</td>
+                        <td>Area of ellipse: $\pi ab$; Circle: $\pi r^2$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Improper Double Integrals</strong></td>
+                        <td>Check convergence ($p < 1$), separate if possible</td>
+                        <td>$\int_0^a x^{-p}dx$ converges iff $p < 1$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Centroid (3D)</strong></td>
+                        <td>Use symmetry, cylindrical coordinates</td>
+                        <td>$\bar{z} = \frac{1}{V}\iiint z\, dV$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vector Line Integral</strong></td>
+                        <td>Parametrize, compute $\mathbf{F} \cdot \mathbf{r}'(t)$</td>
+                        <td>$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t)\, dt$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Scalar Line Integral</strong></td>
+                        <td>Compute $\|\mathbf{r}'(t)\|$, look for perfect squares</td>
+                        <td>$\int_C f\, ds = \int_a^b f(\mathbf{r}(t))\|\mathbf{r}'(t)\|\, dt$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="concept-box">
+                <h3>General Problem-Solving Strategy</h3>
+                <ol>
+                    <li><strong>Identify the integral type:</strong> Double, triple, line (scalar or vector)?</li>
+                    <li><strong>Check for symmetry:</strong> Can you immediately conclude some components are zero?</li>
+                    <li><strong>Choose coordinates wisely:</strong> Cartesian, polar, cylindrical, or spherical?</li>
+                    <li><strong>Look for simplifications:</strong> Perfect squares, separable integrands, constant values on curves</li>
+                    <li><strong>Set up bounds carefully:</strong> Sketch the region, find intersections</li>
+                    <li><strong>Verify your answer:</strong> Does the sign make sense? Is the magnitude reasonable?</li>
+                </ol>
+            </div>
+
+            <div class="formula-box">
+                <h4>Essential Jacobians to Memorize</h4>
+                <div class="formula">
+                    <p><strong>Polar:</strong> $(x,y) = (r\cos\theta, r\sin\theta)$ $\Rightarrow$ $|J| = r$</p>
+                    <p><strong>Cylindrical:</strong> $(x,y,z) = (r\cos\theta, r\sin\theta, z)$ $\Rightarrow$ $|J| = r$</p>
+                    <p><strong>Spherical:</strong> $(x,y,z) = (\rho\sin\phi\cos\theta, \rho\sin\phi\sin\theta, \rho\cos\phi)$ $\Rightarrow$ $|J| = \rho^2\sin\phi$</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <footer style="text-align: center; padding: 30px; color: #718096; font-size: 0.95em;">
+            <p><strong>Study Guide created for Calculus III / Multivariable Calculus</strong></p>
+            <p>Topics: Change of Variables, Jacobians, Double Integrals, Triple Integrals, Centroids, Line Integrals</p>
+            <p style="margin-top: 15px;">&copy; 2024 MetaboMax Pro | Calculus Study Resources</p>
+        </footer>
+    </div>
+</body>
+</html>

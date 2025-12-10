@@ -1,9 +1,11 @@
-// HIT Coach Pro - Service Worker
-const CACHE_NAME = 'hit-coach-pro-v1.0.0';
+// MetaboMax Pro - Service Worker
+// Updated: December 2025 - Modernized design with HIPAA compliance messaging
+const CACHE_NAME = 'metabomaxpro-v2.0.0';
 const urlsToCache = [
-  '/hitcoach-app.html',
-  '/hitcoach-app.css',
-  '/hitcoach-app.js',
+  '/',
+  '/index.html',
+  '/hitcoachpro.html',
+  '/report-generator.html',
   '/styles.css',
   '/manifest.json'
 ];
@@ -67,7 +69,7 @@ self.addEventListener('fetch', (event) => {
           return response;
         }).catch(() => {
           // Network request failed, return offline page if available
-          return caches.match('/hitcoach-app.html');
+          return caches.match('/index.html');
         });
       })
   );
@@ -105,7 +107,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('HIT Coach Pro', options)
+    self.registration.showNotification('MetaboMax Pro', options)
   );
 });
 
@@ -115,7 +117,7 @@ self.addEventListener('notificationclick', (event) => {
 
   if (event.action === 'start-workout') {
     event.waitUntil(
-      clients.openWindow('/hitcoach-app.html')
+      clients.openWindow('https://hitcoachpro.com/app.html')
     );
   }
 });

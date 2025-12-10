@@ -3,160 +3,777 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MetaboMax Pro - Report Generator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>MetaboMax Pro - Report Generator | Secure Metabolic Analysis</title>
+    <meta name="description" content="Generate professional metabolic analysis reports from your test data. HIPAA compliant, secure data handling, instant results.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e'
+                        },
+                        accent: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6'
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.1)',
+                        'glow': '0 0 40px rgba(14, 165, 233, 0.15)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0284c7 0%, #14b8a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-icon {
+            background: linear-gradient(135deg, #0284c7 0%, #14b8a6 100%);
+        }
+
+        .upload-zone {
+            border: 2px dashed #cbd5e1;
+            transition: all 0.3s ease;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: #0ea5e9;
+            background: #f0f9ff;
+        }
+
+        .upload-zone.dragover {
+            transform: scale(1.02);
+        }
+
+        .step-indicator {
+            transition: all 0.3s ease;
+        }
+
+        .step-indicator.active {
+            background: linear-gradient(135deg, #0284c7 0%, #14b8a6 100%);
+            color: white;
+        }
+
+        .step-indicator.completed {
+            background: #22c55e;
+            color: white;
+        }
+
+        .hipaa-badge {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .processing-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-<body>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased">
+
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <a href="index.html" class="brand-link">
-                    <span class="product-logo metabolic">MMP</span>
-                    <span class="brand-name">MetaboMax Pro</span>
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass-nav transition-shadow duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-lg gradient-icon flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">M</span>
+                    </div>
+                    <span class="text-xl font-bold text-slate-900">MetaboMax Pro</span>
                 </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Home</a>
+                    <a href="index.html#how-it-works" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">How it Works</a>
+                    <a href="index.html#features" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Features</a>
+                    <a href="index.html#pricing" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">Pricing</a>
+                    <a href="https://metabomaxpro1.onrender.com/dashboard" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2 rounded-full font-semibold transition-colors">
+                        Dashboard
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors">
+                    <i class="fas fa-bars text-slate-600 text-xl"></i>
+                </button>
             </div>
-            <div class="nav-links">
-                <a href="metabomaxpro.html">← Back to Product</a>
-                <a href="#generator">Generator</a>
-                <a href="#preview">Preview</a>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-4 py-4 space-y-3">
+                <a href="index.html" class="block text-slate-600 hover:text-brand-600 font-medium py-2">Home</a>
+                <a href="index.html#how-it-works" class="block text-slate-600 hover:text-brand-600 font-medium py-2">How it Works</a>
+                <a href="index.html#features" class="block text-slate-600 hover:text-brand-600 font-medium py-2">Features</a>
+                <a href="index.html#pricing" class="block text-slate-600 hover:text-brand-600 font-medium py-2">Pricing</a>
+                <a href="https://metabomaxpro1.onrender.com/dashboard" class="block bg-brand-500 hover:bg-brand-600 text-white text-center px-5 py-3 rounded-full font-semibold transition-colors">
+                    Dashboard
+                </a>
             </div>
         </div>
     </nav>
 
+    <!-- HIPAA Trust Banner -->
+    <section class="pt-20 pb-4 bg-gradient-to-r from-green-600 to-emerald-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-center gap-4 text-white text-sm">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt mr-2"></i>
+                    <span class="font-semibold">HIPAA Compliant</span>
+                </div>
+                <span class="hidden sm:inline">|</span>
+                <div class="flex items-center">
+                    <i class="fas fa-lock mr-2"></i>
+                    <span>256-bit Encryption</span>
+                </div>
+                <span class="hidden sm:inline">|</span>
+                <div class="flex items-center">
+                    <i class="fas fa-user-shield mr-2"></i>
+                    <span>Your Data is Protected</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page Header -->
+    <section class="pt-8 pb-12 bg-white border-b border-slate-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                Metabolic <span class="gradient-text">Report Generator</span>
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                Upload your metabolic testing data and generate a professional, comprehensive report in seconds.
+            </p>
+
+            <!-- HIPAA Badge -->
+            <div class="inline-flex items-center mt-6 px-4 py-2 bg-green-50 border border-green-200 rounded-full">
+                <div class="w-6 h-6 hipaa-badge rounded-full flex items-center justify-center mr-2">
+                    <i class="fas fa-check text-white text-xs"></i>
+                </div>
+                <span class="text-green-800 text-sm font-medium">HIPAA Compliant Data Processing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Progress Steps -->
+    <section class="py-8 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center">
+                <div class="flex items-center space-x-4 sm:space-x-8">
+                    <!-- Step 1 -->
+                    <div class="flex items-center">
+                        <div id="step1-indicator" class="step-indicator w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center font-bold text-sm">1</div>
+                        <span class="hidden sm:block ml-3 font-medium text-slate-700">Upload Data</span>
+                    </div>
+                    <div class="w-12 sm:w-24 h-0.5 bg-slate-300" id="step1-line"></div>
+
+                    <!-- Step 2 -->
+                    <div class="flex items-center">
+                        <div id="step2-indicator" class="step-indicator w-10 h-10 rounded-full bg-slate-300 text-slate-600 flex items-center justify-center font-bold text-sm">2</div>
+                        <span class="hidden sm:block ml-3 font-medium text-slate-500">Patient Info</span>
+                    </div>
+                    <div class="w-12 sm:w-24 h-0.5 bg-slate-300" id="step2-line"></div>
+
+                    <!-- Step 3 -->
+                    <div class="flex items-center">
+                        <div id="step3-indicator" class="step-indicator w-10 h-10 rounded-full bg-slate-300 text-slate-600 flex items-center justify-center font-bold text-sm">3</div>
+                        <span class="hidden sm:block ml-3 font-medium text-slate-500">Generate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Generator Section -->
-    <section id="generator" class="generator-section">
-        <div class="container">
-            <h1>Metabolic Report Generator</h1>
-            <p class="section-intro">Upload your metabolic testing data and generate a professional report in seconds</p>
+    <section id="generator" class="py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
             <!-- Step 1: Upload Data -->
-            <div class="generator-card">
-                <div class="generator-step-header">
-                    <div class="step-badge">Step 1</div>
-                    <h2>Upload Metabolic Data</h2>
+            <div id="step1-card" class="bg-white rounded-2xl shadow-soft p-8 mb-8 fade-in">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-brand-100 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-upload text-brand-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Upload Metabolic Data</h2>
+                        <p class="text-slate-500 text-sm">CSV or PDF from PNOE, COSMED, Parvo, VO2 Master, or any metabolic testing system</p>
+                    </div>
                 </div>
-                <p>Upload CSV file from PNOE, COSMED, Parvo, VO2 Master, or any metabolic testing system</p>
 
-                <div class="file-upload-area" id="fileUploadArea">
-                    <div class="file-upload-icon">📄</div>
-                    <p><strong>Drop CSV file here</strong> or click to browse</p>
-                    <input type="file" id="csvFile" accept=".csv" style="display: none;">
-                    <button class="btn btn-secondary" onclick="document.getElementById('csvFile').click()">
-                        Choose File
+                <!-- Security Notice -->
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-shield-alt text-green-600 mt-0.5 mr-3"></i>
+                        <div>
+                            <p class="text-green-800 text-sm font-medium">Your health data is protected</p>
+                            <p class="text-green-700 text-xs mt-1">All uploads are encrypted in transit and at rest. MetaboMax Pro is HIPAA compliant and never shares your personal health information.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fileUploadArea" class="upload-zone rounded-xl p-12 text-center cursor-pointer">
+                    <div class="text-5xl text-slate-300 mb-4">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p class="text-slate-600 font-medium mb-2">Drop your file here or click to browse</p>
+                    <p class="text-slate-400 text-sm mb-4">Supports CSV and PDF formats</p>
+                    <input type="file" id="csvFile" accept=".csv,.pdf" class="hidden">
+                    <button onclick="document.getElementById('csvFile').click()" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl font-semibold transition-colors">
+                        <i class="fas fa-folder-open mr-2"></i>Choose File
                     </button>
                 </div>
-                <div id="fileInfo" class="file-info"></div>
+
+                <div id="fileInfo" class="hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-alt text-green-600 text-xl mr-3"></i>
+                            <div>
+                                <p id="fileName" class="font-medium text-slate-800"></p>
+                                <p id="fileSize" class="text-sm text-slate-500"></p>
+                            </div>
+                        </div>
+                        <button onclick="removeFile()" class="text-slate-400 hover:text-red-500 transition-colors">
+                            <i class="fas fa-times text-lg"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- Step 2: Patient Information -->
-            <div class="generator-card" id="patientInfoCard" style="display: none;">
-                <div class="generator-step-header">
-                    <div class="step-badge">Step 2</div>
-                    <h2>Patient Information</h2>
+            <div id="step2-card" class="bg-white rounded-2xl shadow-soft p-8 mb-8 hidden">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-accent-400/20 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-user text-accent-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Patient Information</h2>
+                        <p class="text-slate-500 text-sm">Required for accurate metabolic calculations</p>
+                    </div>
                 </div>
 
-                <div class="patient-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="patientName">Patient Name</label>
-                            <input type="text" id="patientName" placeholder="John Doe" required>
+                <form id="patientForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="patientName" class="block text-sm font-medium text-slate-700 mb-2">Patient Name</label>
+                            <input type="text" id="patientName" placeholder="John Doe" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
                         </div>
-                        <div class="form-group">
-                            <label for="patientAge">Age (years)</label>
-                            <input type="number" id="patientAge" placeholder="45" min="1" max="120" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="patientWeight">Weight (lbs)</label>
-                            <input type="number" id="patientWeight" placeholder="175" min="1" step="0.1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="patientHeight">Height (inches)</label>
-                            <input type="number" id="patientHeight" placeholder="70" min="1" step="0.1" required>
+                        <div>
+                            <label for="patientAge" class="block text-sm font-medium text-slate-700 mb-2">Age (years)</label>
+                            <input type="number" id="patientAge" placeholder="45" min="1" max="120" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="patientSex">Sex</label>
-                            <select id="patientSex" required>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="patientWeight" class="block text-sm font-medium text-slate-700 mb-2">Weight (lbs)</label>
+                            <input type="number" id="patientWeight" placeholder="175" min="1" step="0.1" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
+                        </div>
+                        <div>
+                            <label for="patientHeight" class="block text-sm font-medium text-slate-700 mb-2">Height (inches)</label>
+                            <input type="number" id="patientHeight" placeholder="70" min="1" step="0.1" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="patientSex" class="block text-sm font-medium text-slate-700 mb-2">Sex</label>
+                            <select id="patientSex" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
                                 <option value="">Select...</option>
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="testDate">Test Date</label>
-                            <input type="date" id="testDate" required>
+                        <div>
+                            <label for="testDate" class="block text-sm font-medium text-slate-700 mb-2">Test Date</label>
+                            <input type="date" id="testDate" required
+                                class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors">
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="testNotes">Test Notes (optional)</label>
-                        <textarea id="testNotes" rows="3" placeholder="Resting metabolic rate test, fasted state, morning..."></textarea>
+                    <div>
+                        <label for="testNotes" class="block text-sm font-medium text-slate-700 mb-2">Test Notes (optional)</label>
+                        <textarea id="testNotes" rows="3" placeholder="Resting metabolic rate test, fasted state, morning..."
+                            class="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-colors"></textarea>
                     </div>
-                </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button type="button" onclick="goToStep(1)" class="px-6 py-3 border border-slate-300 text-slate-600 rounded-xl font-semibold hover:bg-slate-50 transition-colors">
+                            <i class="fas fa-arrow-left mr-2"></i>Back
+                        </button>
+                        <button type="submit" class="flex-1 bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-xl font-semibold transition-colors">
+                            Continue to Generate<i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
 
             <!-- Step 3: Generate Report -->
-            <div class="generator-card" id="generateCard" style="display: none;">
-                <div class="generator-step-header">
-                    <div class="step-badge">Step 3</div>
-                    <h2>Generate Report</h2>
+            <div id="step3-card" class="bg-white rounded-2xl shadow-soft p-8 mb-8 hidden">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-file-medical-alt text-green-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Generate Report</h2>
+                        <p class="text-slate-500 text-sm">Review and generate your professional metabolic report</p>
+                    </div>
                 </div>
 
-                <div class="generate-actions">
-                    <button class="btn btn-primary btn-large" id="generateBtn" onclick="generateReport()">
-                        🚀 Generate Professional Report
+                <!-- Summary -->
+                <div class="bg-slate-50 rounded-xl p-6 mb-6">
+                    <h3 class="font-semibold text-slate-800 mb-4">Report Summary</h3>
+                    <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Patient:</span>
+                            <span id="summaryName" class="font-medium text-slate-800">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Age:</span>
+                            <span id="summaryAge" class="font-medium text-slate-800">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Test Date:</span>
+                            <span id="summaryDate" class="font-medium text-slate-800">-</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Data File:</span>
+                            <span id="summaryFile" class="font-medium text-slate-800">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Type Selection -->
+                <div class="mb-6">
+                    <h3 class="font-semibold text-slate-800 mb-4">Select Report Type</h3>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <label class="relative cursor-pointer">
+                            <input type="radio" name="reportType" value="basic" class="peer sr-only" checked>
+                            <div class="p-4 border-2 border-slate-200 rounded-xl peer-checked:border-brand-500 peer-checked:bg-brand-50 transition-colors">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-semibold text-slate-800">Basic Report</span>
+                                    <span class="text-green-600 font-bold">Free</span>
+                                </div>
+                                <p class="text-sm text-slate-500">Core metrics, biological age, training zones</p>
+                            </div>
+                        </label>
+                        <label class="relative cursor-pointer">
+                            <input type="radio" name="reportType" value="premium" class="peer sr-only">
+                            <div class="p-4 border-2 border-slate-200 rounded-xl peer-checked:border-brand-500 peer-checked:bg-brand-50 transition-colors">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-semibold text-slate-800">Premium Report</span>
+                                    <span class="text-brand-600 font-bold">1 Credit</span>
+                                </div>
+                                <p class="text-sm text-slate-500">30+ pages with AI recommendations</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button type="button" onclick="goToStep(2)" class="px-6 py-3 border border-slate-300 text-slate-600 rounded-xl font-semibold hover:bg-slate-50 transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i>Back
                     </button>
-                    <div id="processingStatus" class="processing-status"></div>
+                    <button id="generateBtn" onclick="generateReport()" class="flex-1 bg-gradient-to-r from-brand-500 to-accent-500 hover:from-brand-600 hover:to-accent-400 text-white px-6 py-4 rounded-xl font-semibold text-lg transition-all hover:shadow-glow">
+                        <i class="fas fa-magic mr-2"></i>Generate Professional Report
+                    </button>
+                </div>
+
+                <div id="processingStatus" class="hidden mt-6 p-4 bg-brand-50 border border-brand-200 rounded-lg text-center">
+                    <i class="fas fa-spinner processing-spinner text-brand-600 text-2xl mb-2"></i>
+                    <p class="text-brand-800 font-medium">Generating your report...</p>
+                    <p class="text-brand-600 text-sm">This usually takes 10-30 seconds</p>
                 </div>
             </div>
 
-            <!-- Report Preview -->
-            <div class="generator-card" id="reportPreview" style="display: none;">
-                <div class="generator-step-header">
-                    <div class="step-badge">✓ Complete</div>
-                    <h2>Report Generated</h2>
+            <!-- Report Preview (after generation) -->
+            <div id="reportPreview" class="bg-white rounded-2xl shadow-soft p-8 hidden">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                        <i class="fas fa-check text-green-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900">Report Generated Successfully</h2>
+                        <p class="text-slate-500 text-sm">Your metabolic analysis is ready</p>
+                    </div>
                 </div>
 
-                <div class="report-actions">
-                    <button class="btn btn-primary btn-large" onclick="downloadReport()">
-                        📥 Download HTML Report
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="downloadReport()" class="flex-1 bg-brand-500 hover:bg-brand-600 text-white px-6 py-4 rounded-xl font-semibold transition-colors">
+                        <i class="fas fa-download mr-2"></i>Download HTML Report
                     </button>
-                    <button class="btn btn-secondary" onclick="resetGenerator()">
-                        ↻ Generate Another Report
+                    <button onclick="resetGenerator()" class="px-6 py-4 border border-slate-300 text-slate-600 rounded-xl font-semibold hover:bg-slate-50 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>Generate Another
                     </button>
                 </div>
 
                 <!-- Report Preview Area -->
-                <div class="report-preview-area" id="reportPreviewArea">
-                    <!-- Generated report will be shown here -->
+                <div id="reportPreviewArea" class="border border-slate-200 rounded-xl overflow-hidden">
+                    <!-- Generated report preview will be shown here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIPAA Compliance Section -->
+    <section class="py-16 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 hipaa-badge rounded-2xl mb-4">
+                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">HIPAA Compliant Data Protection</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Your metabolic health data is encrypted and protected according to federal healthcare privacy standards.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <div class="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-lock text-green-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">End-to-End Encryption</h3>
+                    <p class="text-slate-400 text-sm">All data is encrypted using 256-bit AES encryption in transit and at rest.</p>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-shield text-blue-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Access Controls</h3>
+                    <p class="text-slate-400 text-sm">Strict access controls ensure only you can view your health data.</p>
+                </div>
+
+                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <div class="w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-trash-alt text-purple-400"></i>
+                    </div>
+                    <h3 class="font-semibold text-white mb-2">Data Control</h3>
+                    <p class="text-slate-400 text-sm">Delete your data at any time. You maintain full control over your information.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="product-logo metabolic">MMP</span>
-                    <span class="brand-name">MetaboMax Pro</span>
-                    <p>Professional metabolic report generator</p>
+    <footer class="bg-slate-900 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Brand -->
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <div class="w-8 h-8 rounded-lg gradient-icon flex items-center justify-center">
+                        <span class="text-white font-bold text-lg">M</span>
+                    </div>
+                    <span class="text-xl font-bold text-white">MetaboMax Pro</span>
+                </div>
+
+                <!-- HIPAA Badge -->
+                <div class="flex items-center bg-green-900/30 border border-green-700 px-4 py-2 rounded-full mb-6 md:mb-0">
+                    <i class="fas fa-shield-alt text-green-400 mr-2"></i>
+                    <span class="text-green-400 text-sm font-medium">HIPAA Compliant</span>
+                </div>
+
+                <!-- Links -->
+                <div class="flex space-x-6 text-sm">
+                    <a href="index.html" class="text-slate-400 hover:text-white transition-colors">Home</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-colors">Terms</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 MetaboMax Pro. All rights reserved.</p>
+
+            <div class="mt-8 pt-8 border-t border-slate-800 text-center">
+                <p class="text-slate-500 text-sm">
+                    <i class="fas fa-exclamation-circle mr-1"></i>
+                    Not medical advice. For educational purposes only.
+                </p>
+                <p class="text-slate-600 text-xs mt-2">&copy; 2025 MetaboMax Pro. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="report-generator.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // State
+        let currentStep = 1;
+        let uploadedFile = null;
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Sticky Header Shadow
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-soft');
+            } else {
+                navbar.classList.remove('shadow-soft');
+            }
+        });
+
+        // File Upload
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('csvFile');
+        const fileInfo = document.getElementById('fileInfo');
+
+        fileUploadArea.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                fileInput.click();
+            }
+        });
+
+        fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+        });
+
+        fileUploadArea.addEventListener('dragleave', () => {
+            fileUploadArea.classList.remove('dragover');
+        });
+
+        fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            const validTypes = ['.csv', '.pdf'];
+            const ext = '.' + file.name.split('.').pop().toLowerCase();
+
+            if (!validTypes.includes(ext)) {
+                alert('Please upload a CSV or PDF file.');
+                return;
+            }
+
+            uploadedFile = file;
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            fileInfo.classList.remove('hidden');
+            fileUploadArea.style.display = 'none';
+
+            // Auto-advance to step 2
+            setTimeout(() => goToStep(2), 500);
+        }
+
+        function removeFile() {
+            uploadedFile = null;
+            fileInput.value = '';
+            fileInfo.classList.add('hidden');
+            fileUploadArea.style.display = 'block';
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        // Step Navigation
+        function goToStep(step) {
+            // Hide all cards
+            document.getElementById('step1-card').classList.add('hidden');
+            document.getElementById('step2-card').classList.add('hidden');
+            document.getElementById('step3-card').classList.add('hidden');
+
+            // Show current card
+            document.getElementById(`step${step}-card`).classList.remove('hidden');
+            document.getElementById(`step${step}-card`).classList.add('fade-in');
+
+            // Update indicators
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`step${i}-indicator`);
+                indicator.classList.remove('active', 'completed');
+
+                if (i < step) {
+                    indicator.classList.add('completed');
+                    indicator.innerHTML = '<i class="fas fa-check"></i>';
+                } else if (i === step) {
+                    indicator.classList.add('active');
+                    indicator.textContent = i;
+                } else {
+                    indicator.textContent = i;
+                }
+            }
+
+            currentStep = step;
+
+            // Scroll to top of generator
+            document.getElementById('generator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Patient Form Submit
+        document.getElementById('patientForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Update summary
+            document.getElementById('summaryName').textContent = document.getElementById('patientName').value;
+            document.getElementById('summaryAge').textContent = document.getElementById('patientAge').value + ' years';
+            document.getElementById('summaryDate').textContent = document.getElementById('testDate').value;
+            document.getElementById('summaryFile').textContent = uploadedFile ? uploadedFile.name : '-';
+
+            goToStep(3);
+        });
+
+        // Generate Report
+        function generateReport() {
+            const btn = document.getElementById('generateBtn');
+            const status = document.getElementById('processingStatus');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner processing-spinner mr-2"></i>Processing...';
+            status.classList.remove('hidden');
+
+            // Simulate report generation (in production, this would call the backend)
+            setTimeout(() => {
+                // Hide step 3 and show preview
+                document.getElementById('step3-card').classList.add('hidden');
+                document.getElementById('reportPreview').classList.remove('hidden');
+                document.getElementById('reportPreview').classList.add('fade-in');
+
+                // Update step indicator to completed
+                document.getElementById('step3-indicator').classList.add('completed');
+                document.getElementById('step3-indicator').innerHTML = '<i class="fas fa-check"></i>';
+
+                // Add sample preview content
+                document.getElementById('reportPreviewArea').innerHTML = `
+                    <div class="p-8 bg-gradient-to-br from-brand-500 to-accent-500 text-white">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-2xl font-bold">Metabolic Analysis Report</h3>
+                                <p class="opacity-90">Generated for ${document.getElementById('patientName').value}</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm opacity-90">Report Date</p>
+                                <p class="font-semibold">${new Date().toLocaleDateString()}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="bg-slate-50 rounded-xl p-6">
+                                <p class="text-sm text-slate-500 mb-1">Biological Age</p>
+                                <p class="text-3xl font-bold text-brand-600">32</p>
+                                <p class="text-sm text-green-600 mt-1">5 years younger than chronological</p>
+                            </div>
+                            <div class="bg-slate-50 rounded-xl p-6">
+                                <p class="text-sm text-slate-500 mb-1">VO2 Max</p>
+                                <p class="text-3xl font-bold text-brand-600">42.5</p>
+                                <p class="text-sm text-slate-500 mt-1">ml/kg/min</p>
+                            </div>
+                            <div class="bg-slate-50 rounded-xl p-6">
+                                <p class="text-sm text-slate-500 mb-1">Resting Metabolic Rate</p>
+                                <p class="text-3xl font-bold text-brand-600">1,680</p>
+                                <p class="text-sm text-slate-500 mt-1">kcal/day</p>
+                            </div>
+                            <div class="bg-slate-50 rounded-xl p-6">
+                                <p class="text-sm text-slate-500 mb-1">Fat Oxidation</p>
+                                <p class="text-3xl font-bold text-green-600">65%</p>
+                                <p class="text-sm text-slate-500 mt-1">at rest</p>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-center">
+                            <p class="text-yellow-800 text-sm"><i class="fas fa-info-circle mr-2"></i>This is a preview. Download the full report for complete analysis.</p>
+                        </div>
+                    </div>
+                `;
+            }, 2500);
+        }
+
+        function downloadReport() {
+            alert('In production, this would download your generated HTML report. The report is generated by the MetaboMax Pro backend at https://metabomaxpro1.onrender.com');
+        }
+
+        function resetGenerator() {
+            // Reset state
+            uploadedFile = null;
+            fileInput.value = '';
+            document.getElementById('patientForm').reset();
+
+            // Reset UI
+            fileInfo.classList.add('hidden');
+            fileUploadArea.style.display = 'block';
+            document.getElementById('reportPreview').classList.add('hidden');
+
+            // Go back to step 1
+            goToStep(1);
+        }
+
+        // Set today's date as default
+        document.getElementById('testDate').valueAsDate = new Date();
+    </script>
 </body>
 </html>

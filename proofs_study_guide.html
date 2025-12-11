@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Exam Study Guide: Complete</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
@@ -15,11 +14,17 @@
             --text-color: #333;
             --card-bg: #fff;
             --border-radius: 8px;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
         }
-        
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-color);
             background-color: var(--bg-color);
             margin: 0;
@@ -27,18 +32,56 @@
         }
 
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
             padding: 2.5rem 0;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        h1 { margin: 0; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; }
-        h2 { color: var(--primary-color); border-bottom: 3px solid var(--accent-color); padding-bottom: 0.5rem; margin-top: 2.5rem; }
-        h3 { color: var(--secondary-color); margin-top: 1.5rem; font-weight: 600; }
+        h1 { margin: 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; }
+        header p { margin: 0.5rem 0 0; opacity: 0.9; }
+        h2 { color: var(--primary-color); border-bottom: 3px solid var(--accent-color); padding-bottom: 0.5rem; margin-top: 2.5rem; font-size: 1.8rem; }
+        h3 { color: var(--secondary-color); margin-top: 1.5rem; font-weight: 600; font-size: 1.3rem; }
         h4 { color: #555; font-style: italic; margin-bottom: 0.5rem; }
+
+        /* Navigation */
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-btn {
+            background: var(--bg-color);
+            border: 2px solid #e0e0e0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
 
         .container {
             max-width: 960px;
@@ -56,17 +99,82 @@
         }
 
         /* Definitions & Axioms */
-        .definition-list dt {
+        .definition-block {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .definition-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1rem 1.5rem;
             font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .definition-body {
+            padding: 1.5rem;
+        }
+
+        .definition-formal {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
             font-size: 1.05rem;
         }
-        .definition-list dd {
-            margin-left: 0;
-            padding-left: 1rem;
-            border-left: 3px solid #eee;
-            margin-bottom: 0.5rem;
+
+        .definition-explanation {
+            margin-top: 1rem;
+            color: #555;
+        }
+
+        .definition-example {
+            background: #e8f6e8;
+            border-left: 4px solid var(--success-color);
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .definition-example strong {
+            color: var(--success-color);
+        }
+
+        .definition-nonexample {
+            background: #fdf2e9;
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .definition-nonexample strong {
+            color: #e67e22;
+        }
+
+        /* Axioms */
+        .axiom-block {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .axiom-header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .axiom-body {
+            padding: 1.5rem;
         }
 
         /* Theorems */
@@ -77,16 +185,15 @@
             margin-bottom: 2rem;
             overflow: hidden;
         }
-        
+
         .theorem-header {
-            background-color: #fdf2e9; /* Light orange tint */
+            background: linear-gradient(135deg, #e67e22, #d35400);
             padding: 1rem 1.5rem;
-            border-bottom: 1px solid #fae5d3;
+            color: white;
         }
 
         .theorem-title {
             font-weight: bold;
-            color: #d35400;
             font-size: 1.1rem;
             display: block;
         }
@@ -95,14 +202,32 @@
             padding: 1.5rem;
         }
 
+        .theorem-statement {
+            background: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .theorem-intuition {
+            background: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .theorem-intuition strong {
+            color: #2980b9;
+        }
+
         .proof-box {
             background-color: #f8f9fa;
             border-left: 4px solid #95a5a6;
             padding: 1rem 1.5rem;
             margin-top: 1rem;
-            font-size: 0.95rem;
         }
-        
+
         .proof-label {
             display: block;
             text-transform: uppercase;
@@ -112,32 +237,138 @@
             margin-bottom: 0.5rem;
         }
 
+        .proof-step {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .proof-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
         /* Strategies */
-        .strategy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-        
-        .strategy-item {
+        .strategy-block {
             background: #fff;
-            border: 1px solid #eee;
-            padding: 1rem;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: 500;
-            color: var(--secondary-color);
-            transition: transform 0.2s;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
         }
-        
-        .strategy-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-color: var(--accent-color);
+
+        .strategy-header {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .strategy-body {
+            padding: 1.5rem;
+        }
+
+        .strategy-template {
+            background: #f0f9f7;
+            border: 2px dashed #1abc9c;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        .strategy-template strong {
+            color: #16a085;
+        }
+
+        .strategy-when {
+            background: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s, opacity 0.3s;
+            opacity: 0;
+            pointer-events: none;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Collapsible sections */
+        .collapse-btn {
+            background: none;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 0.3rem 0.8rem;
+            margin-left: 1rem;
+            border-radius: 15px;
+            transition: background 0.3s;
+        }
+
+        .collapse-btn:hover {
+            background: rgba(41, 128, 185, 0.1);
+        }
+
+        .collapsible {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .collapsible.collapsed {
+            max-height: 0;
         }
 
         /* Lists */
-        ul.simple-list li { margin-bottom: 0.5rem; }
+        ul.check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.check-list li {
+            padding-left: 1.8rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        ul.check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
 
         footer {
             text-align: center;
@@ -147,61 +378,339 @@
             border-top: 1px solid #eee;
             margin-top: 3rem;
         }
+
+        /* Progress indicator */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--success-color);
+            z-index: 101;
+            transition: width 0.1s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                padding: 0.8rem 1rem;
+            }
+            .nav-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            h1 { font-size: 1.6rem; }
+            .card { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
+
+<div class="progress-bar" id="progressBar"></div>
 
 <header>
     <h1>Final Exam Study Guide</h1>
     <p>Comprehensive Review: Definitions, Theorems, Proofs & Strategies</p>
 </header>
 
+<nav class="nav-bar">
+    <a href="#definitions" class="nav-btn">Definitions</a>
+    <a href="#axioms" class="nav-btn">Axioms</a>
+    <a href="#theorems" class="nav-btn">Theorems</a>
+    <a href="#strategies" class="nav-btn">Strategies</a>
+    <a href="#problems" class="nav-btn">Review</a>
+</nav>
+
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
 <div class="container">
 
-    <!-- Definitions -->
+    <!-- ==================== DEFINITIONS ==================== -->
     <section id="definitions" class="card">
         <h2>Definitions</h2>
-        <dl class="definition-list">
-            <dt>Set Equality</dt>
-            <dd>\(A = B \iff A \subseteq B \text{ and } B \subseteq A\).</dd>
+        <p>Understanding precise definitions is crucial for constructing valid proofs. Each definition below includes the formal statement, intuitive explanation, and examples.</p>
 
-            <dt>Partition</dt>
-            <dd>A collection of disjoint, non-empty subsets of \(S\) whose union is \(S\).</dd>
+        <!-- Set Equality -->
+        <div class="definition-block">
+            <div class="definition-header">Set Equality</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    \(A = B \iff A \subseteq B \text{ and } B \subseteq A\)
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> Two sets are equal if and only if they contain exactly the same elements. To prove two sets are equal, you must show that every element in \(A\) is also in \(B\) (this proves \(A \subseteq B\)), AND every element in \(B\) is also in \(A\) (this proves \(B \subseteq A\)).</p>
+                    <p><strong>Why both directions?</strong> Just because \(A \subseteq B\) doesn't mean \(A = B\). For example, \(\{1\} \subseteq \{1, 2\}\), but \(\{1\} \neq \{1, 2\}\). You need both containments to ensure the sets have no "extra" elements.</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove \(\{x : x^2 = 4, x \in \mathbb{Z}\} = \{-2, 2\}\)
+                    <p><em>(\(\subseteq\)):</em> If \(x^2 = 4\) and \(x \in \mathbb{Z}\), then \(x = 2\) or \(x = -2\). So every element of the left set is in \(\{-2, 2\}\).</p>
+                    <p><em>(\(\supseteq\)):</em> Check: \(2^2 = 4\) ✓ and \((-2)^2 = 4\) ✓. So \(\{-2, 2\}\) is contained in the left set.</p>
+                </div>
+            </div>
+        </div>
 
-            <dt>Equivalence Relation</dt>
-            <dd>Reflexive, Symmetric, and Transitive.</dd>
+        <!-- Partition -->
+        <div class="definition-block">
+            <div class="definition-header">Partition</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    A <strong>partition</strong> of a set \(S\) is a collection of subsets \(\{A_i\}_{i \in I}\) such that:
+                    <ol>
+                        <li>Each \(A_i \neq \emptyset\) (non-empty)</li>
+                        <li>\(A_i \cap A_j = \emptyset\) for \(i \neq j\) (pairwise disjoint)</li>
+                        <li>\(\bigcup_{i \in I} A_i = S\) (union covers all of \(S\))</li>
+                    </ol>
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> A partition "cuts up" a set into non-overlapping pieces that together make up the whole set. Think of it like cutting a pizza into slices—each slice is non-empty, no two slices overlap, and together they form the whole pizza.</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Let \(S = \{1, 2, 3, 4, 5, 6\}\). Then \(\{\{1, 2\}, \{3, 4\}, \{5, 6\}\}\) is a partition.
+                    <p>Also: \(\{\text{evens}, \text{odds}\} = \{\{2, 4, 6\}, \{1, 3, 5\}\}\) is a partition of \(S\).</p>
+                </div>
+                <div class="definition-nonexample">
+                    <strong>Non-Example:</strong> \(\{\{1, 2\}, \{2, 3\}, \{4, 5, 6\}\}\) is NOT a partition because \(\{1,2\}\) and \(\{2,3\}\) both contain 2 (not disjoint).
+                </div>
+            </div>
+        </div>
 
-            <dt>Partial Order</dt>
-            <dd>Reflexive, Antisymmetric, and Transitive.</dd>
+        <!-- Equivalence Relation -->
+        <div class="definition-block">
+            <div class="definition-header">Equivalence Relation</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    A relation \(\sim\) on a set \(S\) is an <strong>equivalence relation</strong> if it satisfies:
+                    <ol>
+                        <li><strong>Reflexive:</strong> \(a \sim a\) for all \(a \in S\)</li>
+                        <li><strong>Symmetric:</strong> If \(a \sim b\), then \(b \sim a\)</li>
+                        <li><strong>Transitive:</strong> If \(a \sim b\) and \(b \sim c\), then \(a \sim c\)</li>
+                    </ol>
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> An equivalence relation is a way of saying certain elements are "essentially the same" for some purpose. It generalizes the notion of equality.</p>
+                    <p><strong>Key insight:</strong> Every equivalence relation on \(S\) creates a partition of \(S\) into equivalence classes, and vice versa!</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> "Has the same remainder when divided by 3" on \(\mathbb{Z}\).
+                    <ul>
+                        <li><em>Reflexive:</em> \(n\) has the same remainder as \(n\) ✓</li>
+                        <li><em>Symmetric:</em> If \(n\) and \(m\) have the same remainder, so do \(m\) and \(n\) ✓</li>
+                        <li><em>Transitive:</em> If \(n \sim m\) and \(m \sim k\), all three have the same remainder ✓</li>
+                    </ul>
+                    <p>This creates 3 equivalence classes: \([0] = \{\ldots, -3, 0, 3, 6, \ldots\}\), \([1] = \{\ldots, -2, 1, 4, 7, \ldots\}\), \([2] = \{\ldots, -1, 2, 5, 8, \ldots\}\)</p>
+                </div>
+            </div>
+        </div>
 
-            <dt>Quotient Set (\(S/\sim\))</dt>
-            <dd>The set of all equivalence classes formed by relation \(\sim\) on \(S\).</dd>
+        <!-- Partial Order -->
+        <div class="definition-block">
+            <div class="definition-header">Partial Order</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    A relation \(\leq\) on a set \(S\) is a <strong>partial order</strong> if it satisfies:
+                    <ol>
+                        <li><strong>Reflexive:</strong> \(a \leq a\) for all \(a \in S\)</li>
+                        <li><strong>Antisymmetric:</strong> If \(a \leq b\) and \(b \leq a\), then \(a = b\)</li>
+                        <li><strong>Transitive:</strong> If \(a \leq b\) and \(b \leq c\), then \(a \leq c\)</li>
+                    </ol>
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> A partial order gives a way to compare elements, but not every pair needs to be comparable. It's called "partial" because some elements may be incomparable.</p>
+                    <p><strong>Key difference from equivalence:</strong> Antisymmetric vs Symmetric! Equivalence: \(a \sim b \Rightarrow b \sim a\). Partial order: \(a \leq b\) and \(b \leq a \Rightarrow a = b\).</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Subset relation \(\subseteq\) on \(\mathcal{P}(S)\).
+                    <ul>
+                        <li><em>Reflexive:</em> \(A \subseteq A\) ✓</li>
+                        <li><em>Antisymmetric:</em> \(A \subseteq B\) and \(B \subseteq A \Rightarrow A = B\) ✓</li>
+                        <li><em>Transitive:</em> \(A \subseteq B\) and \(B \subseteq C \Rightarrow A \subseteq C\) ✓</li>
+                    </ul>
+                    <p>Note: \(\{1\}\) and \(\{2\}\) are incomparable—neither is a subset of the other.</p>
+                </div>
+            </div>
+        </div>
 
-            <dt>Continuity</dt>
-            <dd>Function \(f\) is continuous at \(c\) if \(\lim_{x \to c} f(x) = f(c)\). (Epsilon-delta def required).</dd>
+        <!-- Quotient Set -->
+        <div class="definition-block">
+            <div class="definition-header">Quotient Set</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    Given an equivalence relation \(\sim\) on \(S\), the <strong>quotient set</strong> is:
+                    \[S/\!\sim \;= \{[a] : a \in S\}\]
+                    where \([a] = \{x \in S : x \sim a\}\) is the equivalence class of \(a\).
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> The quotient set is the set of all equivalence classes. It "collapses" equivalent elements into single representatives.</p>
+                    <p><strong>Key property:</strong> The quotient set forms a partition of \(S\).</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> \(\mathbb{Z}/\!\equiv_3\) (integers mod 3).
+                    <p>The quotient set is \(\{[0], [1], [2]\}\), which we often write as \(\mathbb{Z}_3 = \{0, 1, 2\}\).</p>
+                    <p>This has only 3 elements, even though \(\mathbb{Z}\) is infinite!</p>
+                </div>
+            </div>
+        </div>
 
-            <dt>Isomorphism</dt>
-            <dd>A structure-preserving bijection between two algebraic structures.</dd>
+        <!-- Continuity -->
+        <div class="definition-block">
+            <div class="definition-header">Continuity</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    A function \(f\) is <strong>continuous at \(c\)</strong> if:
+                    \[\lim_{x \to c} f(x) = f(c)\]
+                    <p>Equivalently (epsilon-delta): For every \(\varepsilon > 0\), there exists \(\delta > 0\) such that:</p>
+                    \[|x - c| < \delta \Rightarrow |f(x) - f(c)| < \varepsilon\]
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> A function is continuous at \(c\) if you can make \(f(x)\) as close to \(f(c)\) as you want by choosing \(x\) sufficiently close to \(c\). Intuitively: no "jumps" or "holes" at \(c\).</p>
+                    <p><strong>For proofs:</strong> The epsilon-delta definition is required. Given any \(\varepsilon > 0\), you must find a \(\delta\) (which may depend on \(\varepsilon\) and \(c\)) that works.</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove \(f(x) = 2x + 1\) is continuous at \(c = 3\).
+                    <p>We need \(|f(x) - f(3)| < \varepsilon\), i.e., \(|2x + 1 - 7| = |2x - 6| = 2|x - 3| < \varepsilon\).</p>
+                    <p>Choose \(\delta = \varepsilon/2\). Then \(|x - 3| < \delta \Rightarrow 2|x-3| < 2\delta = \varepsilon\). ✓</p>
+                </div>
+            </div>
+        </div>
 
-            <dt>Injective / Surjective / Bijective</dt>
-            <dd>One-to-one / Onto / Both.</dd>
-        </dl>
+        <!-- Isomorphism -->
+        <div class="definition-block">
+            <div class="definition-header">Isomorphism</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    An <strong>isomorphism</strong> is a bijective function \(f: A \to B\) that preserves structure:
+                    \[f(a \star b) = f(a) \star' f(b)\]
+                    where \(\star\) is the operation on \(A\) and \(\star'\) is the operation on \(B\).
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> Two structures are isomorphic if they are "essentially the same"—they have the same algebraic properties, just with different labels on the elements.</p>
+                    <p><strong>Requirements:</strong> (1) Bijection (one-to-one and onto), (2) Preserves the operation(s).</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> \((\mathbb{R}, +)\) is isomorphic to \((\mathbb{R}^+, \cdot)\) via \(f(x) = e^x\).
+                    <ul>
+                        <li><em>Bijection:</em> \(e^x\) maps \(\mathbb{R}\) onto \(\mathbb{R}^+\) one-to-one ✓</li>
+                        <li><em>Preserves structure:</em> \(f(a + b) = e^{a+b} = e^a \cdot e^b = f(a) \cdot f(b)\) ✓</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Injective/Surjective/Bijective -->
+        <div class="definition-block">
+            <div class="definition-header">Injective / Surjective / Bijective</div>
+            <div class="definition-body">
+                <div class="definition-formal">
+                    Let \(f: A \to B\) be a function.
+                    <ul>
+                        <li><strong>Injective (one-to-one):</strong> \(f(a_1) = f(a_2) \Rightarrow a_1 = a_2\)</li>
+                        <li><strong>Surjective (onto):</strong> For every \(b \in B\), there exists \(a \in A\) with \(f(a) = b\)</li>
+                        <li><strong>Bijective:</strong> Both injective and surjective</li>
+                    </ul>
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>Injective:</strong> No two inputs give the same output. "Horizontal line test"—each \(y\)-value hit at most once.</p>
+                    <p><strong>Surjective:</strong> Every element of the codomain is hit. The range equals the codomain.</p>
+                    <p><strong>Bijective:</strong> Perfect one-to-one correspondence. Has an inverse function.</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Examples:</strong>
+                    <ul>
+                        <li>\(f: \mathbb{R} \to \mathbb{R}\), \(f(x) = x^2\): Neither (not injective: \(f(-2) = f(2)\); not surjective: -1 not hit)</li>
+                        <li>\(f: \mathbb{R} \to \mathbb{R}^+\), \(f(x) = e^x\): Bijective</li>
+                        <li>\(f: \mathbb{Z} \to \mathbb{Z}\), \(f(n) = 2n\): Injective but not surjective (odd numbers not hit)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- Axioms -->
+    <!-- ==================== AXIOMS ==================== -->
     <section id="axioms" class="card">
         <h2>Axioms & Principles</h2>
-        <ul class="simple-list">
-            <li><strong>Induction Principle:</strong> Basis for proving statements for all natural numbers.</li>
-            <li><strong>Zorn's Lemma:</strong> Useful for finding maximal elements in partially ordered sets (implies Axiom of Choice).</li>
-            <li><strong>Axiom of Choice:</strong> You can select one element from each set in a collection.</li>
-            <li><strong>Axiom of Excluded Middle:</strong> \(P \lor \neg P\) is always true.</li>
-        </ul>
+        <p>Axioms are fundamental truths we accept without proof. These form the foundation of mathematical reasoning.</p>
+
+        <!-- Induction Principle -->
+        <div class="axiom-block">
+            <div class="axiom-header">Principle of Mathematical Induction</div>
+            <div class="axiom-body">
+                <div class="definition-formal">
+                    Let \(P(n)\) be a statement about natural numbers. If:
+                    <ol>
+                        <li><strong>Base Case:</strong> \(P(1)\) is true</li>
+                        <li><strong>Inductive Step:</strong> For all \(k \geq 1\), \(P(k) \Rightarrow P(k+1)\)</li>
+                    </ol>
+                    Then \(P(n)\) is true for all \(n \in \mathbb{N}\).
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>Intuition:</strong> Think of dominoes. If the first domino falls (base case), and each domino knocks over the next (inductive step), then all dominoes fall.</p>
+                    <p><strong>Why it works:</strong> This is an axiom about natural numbers. It captures the idea that \(\mathbb{N}\) has no "gaps"—you can reach any natural number by starting at 1 and adding 1 repeatedly.</p>
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove \(\sum_{i=1}^{n} i = \frac{n(n+1)}{2}\).
+                    <p><em>Base:</em> \(n=1\): \(1 = \frac{1 \cdot 2}{2} = 1\) ✓</p>
+                    <p><em>Inductive step:</em> Assume true for \(k\). Then:</p>
+                    <p>\(\sum_{i=1}^{k+1} i = \sum_{i=1}^{k} i + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}\) ✓</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zorn's Lemma -->
+        <div class="axiom-block">
+            <div class="axiom-header">Zorn's Lemma</div>
+            <div class="axiom-body">
+                <div class="definition-formal">
+                    If \(S\) is a non-empty partially ordered set in which every chain has an upper bound, then \(S\) has a maximal element.
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>Key terms:</strong></p>
+                    <ul>
+                        <li><strong>Chain:</strong> A totally ordered subset (every two elements are comparable)</li>
+                        <li><strong>Upper bound:</strong> An element \(\geq\) every element in the chain</li>
+                        <li><strong>Maximal element:</strong> An element with nothing strictly greater</li>
+                    </ul>
+                    <p><strong>Equivalence:</strong> Zorn's Lemma is equivalent to the Axiom of Choice and the Well-Ordering Theorem.</p>
+                    <p><strong>Usage:</strong> Proving existence of maximal ideals, bases for vector spaces, etc.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Axiom of Choice -->
+        <div class="axiom-block">
+            <div class="axiom-header">Axiom of Choice</div>
+            <div class="axiom-body">
+                <div class="definition-formal">
+                    Given any collection of non-empty sets \(\{A_i\}_{i \in I}\), there exists a function \(f\) (a "choice function") such that \(f(i) \in A_i\) for all \(i \in I\).
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> You can always "choose" one element from each set in a collection, even if the collection is infinite.</p>
+                    <p><strong>Why it's controversial:</strong> For infinite collections, there's no constructive way to specify which element to pick. The axiom just asserts that a choice function exists.</p>
+                    <p><strong>Consequences:</strong> Every vector space has a basis, every set can be well-ordered, Banach-Tarski paradox.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Axiom of Excluded Middle -->
+        <div class="axiom-block">
+            <div class="axiom-header">Law of Excluded Middle</div>
+            <div class="axiom-body">
+                <div class="definition-formal">
+                    For any proposition \(P\): \(P \lor \neg P\) is true.
+                </div>
+                <div class="definition-explanation">
+                    <p><strong>What this means:</strong> Every statement is either true or false—there's no middle ground.</p>
+                    <p><strong>Why it matters:</strong> This justifies proof by contradiction. If assuming \(\neg P\) leads to a contradiction, then \(P\) must be true (since one of \(P\) or \(\neg P\) must hold).</p>
+                    <p><strong>Note:</strong> Constructive/intuitionistic mathematics rejects this axiom and requires explicit constructions.</p>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- Theorems with Proofs -->
+    <!-- ==================== THEOREMS ==================== -->
     <section id="theorems" class="card">
         <h2>Theorems (Statements & Proofs)</h2>
+        <p>These are the key results you should know, along with their proofs.</p>
 
         <!-- Cantor's Theorem -->
         <div class="theorem">
@@ -209,18 +718,25 @@
                 <span class="theorem-title">Cantor's Theorem</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> For any set \(A\), \(|A| < |\mathcal{P}(A)|\). (The cardinality of the power set is strictly greater).</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> For any set \(A\), \(|A| < |\mathcal{P}(A)|\).
+                    <p>The power set is always strictly larger than the original set.</p>
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> Even for infinite sets, there are "more" subsets than elements. This shows there are different "sizes" of infinity! \(|\mathbb{N}| < |\mathcal{P}(\mathbb{N})| = |\mathbb{R}|\).
+                </div>
                 <div class="proof-box">
                     <span class="proof-label">Proof (Diagonalization)</span>
-                    <p>Assume for contradiction there exists a surjection \(f: A \to \mathcal{P}(A)\).</p>
-                    <p>Consider the set \(D = \{ x \in A \mid x \notin f(x) \}\). Since \(D \subseteq A\), \(D \in \mathcal{P}(A)\).</p>
-                    <p>Because \(f\) is surjective, there must exist some \(d \in A\) such that \(f(d) = D\).</p>
-                    <p>Ask: Is \(d \in D\)?</p>
-                    <ul>
-                        <li>If \(d \in D\), then by definition of \(D\), \(d \notin f(d)\). Since \(f(d) = D\), this means \(d \notin D\). Contradiction.</li>
-                        <li>If \(d \notin D\), then by definition of \(D\), \(d \in f(d)\). Since \(f(d) = D\), this means \(d \in D\). Contradiction.</li>
+                    <div class="proof-step" data-step="1.">First, \(|A| \leq |\mathcal{P}(A)|\) via the injection \(a \mapsto \{a\}\).</div>
+                    <div class="proof-step" data-step="2.">We show there's no surjection \(f: A \to \mathcal{P}(A)\). Suppose for contradiction such an \(f\) exists.</div>
+                    <div class="proof-step" data-step="3.">Define the "diagonal" set: \(D = \{x \in A : x \notin f(x)\}\).</div>
+                    <div class="proof-step" data-step="4.">Since \(D \subseteq A\), we have \(D \in \mathcal{P}(A)\). Since \(f\) is surjective, there exists \(d \in A\) with \(f(d) = D\).</div>
+                    <div class="proof-step" data-step="5.">Is \(d \in D\)?</div>
+                    <ul style="margin-left: 2rem;">
+                        <li>If \(d \in D\): By definition of \(D\), \(d \notin f(d) = D\). Contradiction!</li>
+                        <li>If \(d \notin D\): By definition of \(D\), \(d \in f(d) = D\). Contradiction!</li>
                     </ul>
-                    <p>Thus, no such function \(f\) can exist.</p>
+                    <div class="proof-step" data-step="6.">Both cases lead to contradiction, so no such \(f\) exists. Therefore \(|A| < |\mathcal{P}(A)|\). \(\square\)</div>
                 </div>
             </div>
         </div>
@@ -231,26 +747,40 @@
                 <span class="theorem-title">Schröder-Bernstein Theorem</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> If \(|A| \le |B|\) and \(|B| \le |A|\), then \(|A| = |B|\).<br>
-                (i.e., if there exist injections \(f: A \to B\) and \(g: B \to A\), there exists a bijection \(h: A \to B\)).</p>
-                <p><em>(Proof not required per list)</em></p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> If \(|A| \leq |B|\) and \(|B| \leq |A|\), then \(|A| = |B|\).
+                    <p>Equivalently: If there exist injections \(f: A \to B\) and \(g: B \to A\), then there exists a bijection \(h: A \to B\).</p>
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> If \(A\) "fits inside" \(B\) and \(B\) "fits inside" \(A\), they must be the same size. This is surprisingly non-trivial for infinite sets!
+                </div>
+                <p><em>(Proof not required per list, but the theorem is crucial for comparing cardinalities.)</em></p>
             </div>
         </div>
 
-        <!-- Fermat's Theorem -->
+        <!-- Fermat's Little Theorem -->
         <div class="theorem">
             <div class="theorem-header">
                 <span class="theorem-title">Fermat's Little Theorem</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> If \(p\) is prime and \(a\) is an integer, then \(a^p \equiv a \pmod p\).</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> If \(p\) is prime and \(a\) is any integer, then \(a^p \equiv a \pmod{p}\).
+                    <p>Equivalently, if \(\gcd(a, p) = 1\), then \(a^{p-1} \equiv 1 \pmod{p}\).</p>
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> In modular arithmetic mod \(p\), raising to the \(p\)-th power "wraps around" to give you back the original number. The non-zero elements form a group of order \(p-1\).
+                </div>
                 <div class="proof-box">
-                    <span class="proof-label">Proof (Induction on \(a \ge 0\))</span>
-                    <p><strong>Base Case:</strong> If \(a=0\), \(0^p = 0 \equiv 0 \pmod p\). True.</p>
-                    <p><strong>Inductive Step:</strong> Assume \(k^p \equiv k \pmod p\). We show \((k+1)^p \equiv k+1 \pmod p\).</p>
-                    <p>By the Binomial Theorem: \((k+1)^p = k^p + \binom{p}{1}k^{p-1} + \dots + \binom{p}{p-1}k + 1\).</p>
-                    <p>Since \(p\) is prime, \(p\) divides \(\binom{p}{i}\) for all \(1 \le i \le p-1\). Thus all middle terms are \(\equiv 0 \pmod p\).</p>
-                    <p>\((k+1)^p \equiv k^p + 1 \pmod p\). By hypothesis \(k^p \equiv k\), so \((k+1)^p \equiv k + 1 \pmod p\).</p>
+                    <span class="proof-label">Proof (by Induction on \(a \geq 0\))</span>
+                    <div class="proof-step" data-step="Base:">When \(a = 0\): \(0^p = 0 \equiv 0 \pmod{p}\). ✓</div>
+                    <div class="proof-step" data-step="IH:">Assume \(k^p \equiv k \pmod{p}\) for some \(k \geq 0\).</div>
+                    <div class="proof-step" data-step="IS:">We prove \((k+1)^p \equiv k+1 \pmod{p}\).</div>
+                    <p style="margin-left: 1.5rem;">By the Binomial Theorem:</p>
+                    <p style="margin-left: 1.5rem;">\((k+1)^p = \sum_{i=0}^{p} \binom{p}{i} k^{p-i} = k^p + \binom{p}{1}k^{p-1} + \cdots + \binom{p}{p-1}k + 1\)</p>
+                    <div class="proof-step" data-step="Key:">For \(1 \leq i \leq p-1\), \(\binom{p}{i} = \frac{p!}{i!(p-i)!}\). Since \(p\) is prime and \(p\) divides the numerator but not the denominator, \(p \mid \binom{p}{i}\).</div>
+                    <p style="margin-left: 1.5rem;">Thus all middle terms are \(\equiv 0 \pmod{p}\), so:</p>
+                    <p style="margin-left: 1.5rem;">\((k+1)^p \equiv k^p + 1 \equiv k + 1 \pmod{p}\) (by IH). ✓ \(\square\)</p>
                 </div>
             </div>
         </div>
@@ -261,34 +791,47 @@
                 <span class="theorem-title">Russell's Paradox</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> There is no set of all sets.</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> There is no "set of all sets."
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> Unrestricted set formation leads to contradictions. This paradox motivated axiomatic set theory (ZFC), which restricts how sets can be formed.
+                </div>
                 <div class="proof-box">
                     <span class="proof-label">Proof</span>
-                    <p>Suppose \(U\) is the set of all sets. Define \(R = \{ A \in U \mid A \notin A \}\).</p>
-                    <p>Ask: Is \(R \in R\)?</p>
-                    <ul>
-                        <li>If \(R \in R\), then by definition of \(R\), \(R \notin R\). Contradiction.</li>
-                        <li>If \(R \notin R\), then by definition of \(R\), \(R \in R\). Contradiction.</li>
+                    <div class="proof-step" data-step="1.">Suppose for contradiction that \(U\), the set of all sets, exists.</div>
+                    <div class="proof-step" data-step="2.">Define \(R = \{A \in U : A \notin A\}\) (sets that don't contain themselves).</div>
+                    <div class="proof-step" data-step="3.">Since \(R\) is a set and \(U\) contains all sets, \(R \in U\). Ask: Is \(R \in R\)?</div>
+                    <ul style="margin-left: 2rem;">
+                        <li>If \(R \in R\): By definition of \(R\), \(R \notin R\). Contradiction!</li>
+                        <li>If \(R \notin R\): By definition of \(R\), \(R \in R\). Contradiction!</li>
                     </ul>
-                    <p>Thus, the definition of such a set \(U\) leads to a logical inconsistency.</p>
+                    <div class="proof-step" data-step="4.">Both cases contradict, so \(U\) cannot exist. \(\square\)</div>
                 </div>
             </div>
         </div>
 
-        <!-- Well-Ordering -->
+        <!-- Well-Ordering Principle -->
         <div class="theorem">
             <div class="theorem-header">
                 <span class="theorem-title">Well-Ordering Principle</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> Every non-empty subset of \(\mathbb{N}\) has a least element.</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> Every non-empty subset of \(\mathbb{N}\) has a least element.
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> You can't go "infinitely downward" in the natural numbers. This is equivalent to the Principle of Induction!
+                </div>
                 <div class="proof-box">
-                    <span class="proof-label">Proof (Using Strong Induction)</span>
-                    <p>Let \(S \subseteq \mathbb{N}\). We prove the contrapositive: If \(S\) has no least element, then \(S\) is empty.</p>
-                    <p>Let \(P(n)\) be the statement "\(1, 2, \dots, n \notin S\)".</p>
-                    <p><strong>Base Case:</strong> \(1 \notin S\) (otherwise 1 would be the least element). Thus \(P(1)\) is true.</p>
-                    <p><strong>Inductive Step:</strong> Assume \(P(k)\) is true (i.e., \(1, \dots, k \notin S\)). Consider \(k+1\). If \(k+1 \in S\), since no smaller integer is in \(S\), \(k+1\) would be the least element. Since \(S\) has no least element, \(k+1 \notin S\). Thus \(P(k+1)\) is true.</p>
-                    <p>By induction, \(\forall n \in \mathbb{N}, n \notin S\). Therefore \(S = \emptyset\).</p>
+                    <span class="proof-label">Proof (Using Strong Induction - Contrapositive)</span>
+                    <p>We prove: If \(S \subseteq \mathbb{N}\) has no least element, then \(S = \emptyset\).</p>
+                    <div class="proof-step" data-step="Setup:">Let \(P(n)\) be the statement "\(1, 2, \ldots, n \notin S\)".</div>
+                    <div class="proof-step" data-step="Base:">Is \(1 \in S\)? If so, 1 would be the least element of \(S\) (since it's the smallest natural number). Since \(S\) has no least element, \(1 \notin S\). So \(P(1)\) is true.</div>
+                    <div class="proof-step" data-step="IS:">Assume \(P(k)\) is true, meaning \(1, 2, \ldots, k \notin S\).</div>
+                    <p style="margin-left: 1.5rem;">Is \(k+1 \in S\)? If so, since no smaller number is in \(S\), \(k+1\) would be the least element. But \(S\) has no least element, so \(k+1 \notin S\).</p>
+                    <p style="margin-left: 1.5rem;">Thus \(P(k+1)\) is true.</p>
+                    <div class="proof-step" data-step="Conclude:">By strong induction, \(P(n)\) holds for all \(n\). So \(\forall n \in \mathbb{N}, n \notin S\), meaning \(S = \emptyset\). \(\square\)</div>
                 </div>
             </div>
         </div>
@@ -299,74 +842,330 @@
                 <span class="theorem-title">Infinitude of Primes</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> There are infinitely many prime numbers.</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> There are infinitely many prime numbers.
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> No matter how many primes you list, you can always find another. The primes never "run out."
+                </div>
                 <div class="proof-box">
-                    <span class="proof-label">Proof (Euclid)</span>
-                    <p>Assume there are finitely many primes: \(p_1, p_2, \dots, p_n\).</p>
-                    <p>Consider the integer \(Q = p_1 p_2 \dots p_n + 1\).</p>
-                    <p>For any \(p_i\), \(Q \equiv 1 \pmod{p_i}\), so no \(p_i\) divides \(Q\).</p>
-                    <p>Since \(Q > 1\), by the Fundamental Theorem of Arithmetic, \(Q\) must have a prime factor. But this factor cannot be any of our list \(p_1, \dots, p_n\). This contradicts the assumption that the list contained <em>all</em> primes.</p>
+                    <span class="proof-label">Proof (Euclid, ~300 BCE)</span>
+                    <div class="proof-step" data-step="1.">Suppose for contradiction there are only finitely many primes: \(p_1, p_2, \ldots, p_n\).</div>
+                    <div class="proof-step" data-step="2.">Construct \(Q = p_1 \cdot p_2 \cdots p_n + 1\).</div>
+                    <div class="proof-step" data-step="3.">For each \(p_i\): When we divide \(Q\) by \(p_i\), the remainder is 1 (since \(p_i \mid p_1 p_2 \cdots p_n\)). So \(p_i \nmid Q\).</div>
+                    <div class="proof-step" data-step="4.">Since \(Q > 1\), by the Fundamental Theorem of Arithmetic, \(Q\) has at least one prime factor.</div>
+                    <div class="proof-step" data-step="5.">But this prime factor cannot be any of \(p_1, \ldots, p_n\) (we just showed none of them divide \(Q\)).</div>
+                    <div class="proof-step" data-step="6.">This contradicts our assumption that \(p_1, \ldots, p_n\) were ALL the primes. \(\square\)</div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Triangle Inequality -->
         <div class="theorem">
             <div class="theorem-header">
                 <span class="theorem-title">Triangle Inequality</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> \(|x + y| \le |x| + |y|\) for any \(x, y \in \mathbb{R}\).</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> For any \(x, y \in \mathbb{R}\): \(|x + y| \leq |x| + |y|\)
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> The "direct path" is never longer than going via a detour. In a triangle, any side is at most the sum of the other two sides.
+                </div>
+                <div class="proof-box">
+                    <span class="proof-label">Proof</span>
+                    <p>We know \(-|x| \leq x \leq |x|\) and \(-|y| \leq y \leq |y|\).</p>
+                    <p>Adding: \(-(|x| + |y|) \leq x + y \leq |x| + |y|\).</p>
+                    <p>This means \(|x + y| \leq |x| + |y|\). \(\square\)</p>
+                </div>
             </div>
         </div>
 
         <!-- Isomorphism for Vector Spaces -->
         <div class="theorem">
             <div class="theorem-header">
-                <span class="theorem-title">Isomorphism for Finite Dim. Vector Spaces</span>
+                <span class="theorem-title">Isomorphism for Finite-Dimensional Vector Spaces</span>
             </div>
             <div class="theorem-body">
-                <p><strong>Statement:</strong> Two finite-dimensional vector spaces \(V\) and \(W\) over the same field \(F\) are isomorphic if and only if \(\dim(V) = \dim(W)\).</p>
+                <div class="theorem-statement">
+                    <strong>Statement:</strong> Two finite-dimensional vector spaces \(V\) and \(W\) over the same field \(F\) are isomorphic if and only if \(\dim(V) = \dim(W)\).
+                </div>
+                <div class="theorem-intuition">
+                    <strong>Intuition:</strong> For finite-dimensional spaces, dimension completely determines the structure. \(\mathbb{R}^3\) is "the same as" any other 3-dimensional real vector space.
+                </div>
                 <div class="proof-box">
-                    <span class="proof-label">Proof Sketch</span>
-                    <p>\((\implies)\) If \(V \cong W\), an isomorphism maps a basis of \(V\) to a basis of \(W\), preserving the size (dimension).</p>
-                    <p>\((\impliedby)\) Let \(\dim(V) = \dim(W) = n\). Let \(B_V = \{v_1, \dots, v_n\}\) be a basis for \(V\) and \(B_W = \{w_1, \dots, w_n\}\) be a basis for \(W\).</p>
-                    <p>Define a linear transformation \(T: V \to W\) by \(T(v_i) = w_i\) and extending linearly. Since \(T\) maps a basis to a basis bijectively, \(T\) is an isomorphism.</p>
+                    <span class="proof-label">Proof</span>
+                    <p><strong>(\(\Rightarrow\))</strong> Suppose \(T: V \to W\) is an isomorphism. Let \(\{v_1, \ldots, v_n\}\) be a basis for \(V\).</p>
+                    <p>Then \(\{T(v_1), \ldots, T(v_n)\}\) is a basis for \(W\) (isomorphisms preserve linear independence and spanning). So \(\dim(V) = \dim(W) = n\).</p>
+                    <p><strong>(\(\Leftarrow\))</strong> Suppose \(\dim(V) = \dim(W) = n\).</p>
+                    <p>Let \(\{v_1, \ldots, v_n\}\) be a basis for \(V\) and \(\{w_1, \ldots, w_n\}\) be a basis for \(W\).</p>
+                    <p>Define \(T: V \to W\) by \(T(v_i) = w_i\) and extend linearly.</p>
+                    <p>\(T\) is bijective (maps basis to basis) and linear, so it's an isomorphism. \(\square\)</p>
                 </div>
             </div>
         </div>
 
     </section>
 
-    <!-- Proof Strategies -->
+    <!-- ==================== STRATEGIES ==================== -->
     <section id="strategies" class="card">
         <h2>Proof Strategies</h2>
-        <div class="strategy-grid">
-            <div class="strategy-item">Direct Proof</div>
-            <div class="strategy-item">Proof by Cases</div>
-            <div class="strategy-item">Proof by Definition</div>
-            <div class="strategy-item">Mathematical Induction</div>
-            <div class="strategy-item">Strong Induction</div>
-            <div class="strategy-item">Proof by Contradiction</div>
-            <div class="strategy-item">Contrapositive</div>
+        <p>Knowing which technique to use is half the battle. Here are the main strategies with templates and when to use them.</p>
+
+        <!-- Direct Proof -->
+        <div class="strategy-block">
+            <div class="strategy-header">Direct Proof</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove \(P \Rightarrow Q\)</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li>Assume \(P\) is true.</li>
+                        <li>Use definitions, axioms, and known theorems...</li>
+                        <li>Conclude that \(Q\) is true.</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> When there's a clear logical path from hypothesis to conclusion. Often the first approach to try.
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove "If \(n\) is even, then \(n^2\) is even."
+                    <p>Assume \(n\) is even, so \(n = 2k\) for some integer \(k\).</p>
+                    <p>Then \(n^2 = (2k)^2 = 4k^2 = 2(2k^2)\), which is even. \(\square\)</p>
+                </div>
+            </div>
         </div>
+
+        <!-- Proof by Contradiction -->
+        <div class="strategy-block">
+            <div class="strategy-header">Proof by Contradiction</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove statement \(P\)</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li>Assume \(\neg P\) (the negation of what you want to prove).</li>
+                        <li>Derive a logical contradiction.</li>
+                        <li>Conclude \(P\) must be true.</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> When proving something doesn't exist, when the statement involves "infinite," or when direct proof seems blocked. Look for phrases like "there is no..." or "infinitely many."
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove \(\sqrt{2}\) is irrational.
+                    <p>Assume \(\sqrt{2} = a/b\) in lowest terms. Then \(2b^2 = a^2\), so \(a^2\) is even, so \(a\) is even.</p>
+                    <p>Write \(a = 2k\). Then \(2b^2 = 4k^2\), so \(b^2 = 2k^2\), so \(b\) is even.</p>
+                    <p>Both \(a\) and \(b\) are even—contradicts "lowest terms." \(\square\)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contrapositive -->
+        <div class="strategy-block">
+            <div class="strategy-header">Proof by Contrapositive</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove \(P \Rightarrow Q\)</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li>Instead, prove \(\neg Q \Rightarrow \neg P\) (logically equivalent!)</li>
+                        <li>Assume \(\neg Q\).</li>
+                        <li>Derive \(\neg P\).</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> When the conclusion \(Q\) is hard to work with directly, but \(\neg Q\) gives useful information. Often used when \(Q\) involves existence and \(\neg Q\) gives you something concrete.
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove "If \(n^2\) is even, then \(n\) is even."
+                    <p><em>Contrapositive:</em> "If \(n\) is odd, then \(n^2\) is odd."</p>
+                    <p>Assume \(n\) is odd: \(n = 2k+1\). Then \(n^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1\), which is odd. \(\square\)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mathematical Induction -->
+        <div class="strategy-block">
+            <div class="strategy-header">Mathematical Induction</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove \(P(n)\) for all \(n \in \mathbb{N}\)</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li><strong>Base Case:</strong> Prove \(P(1)\) (or \(P(0)\), depending on domain).</li>
+                        <li><strong>Inductive Hypothesis:</strong> Assume \(P(k)\) is true for some arbitrary \(k\).</li>
+                        <li><strong>Inductive Step:</strong> Prove \(P(k+1)\) using the hypothesis.</li>
+                        <li><strong>Conclusion:</strong> By induction, \(P(n)\) holds for all \(n\).</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> Proving statements about all natural numbers, recursive definitions, summation formulas, divisibility results.
+                </div>
+            </div>
+        </div>
+
+        <!-- Strong Induction -->
+        <div class="strategy-block">
+            <div class="strategy-header">Strong Induction</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove \(P(n)\) for all \(n \in \mathbb{N}\)</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li><strong>Base Case(s):</strong> Prove \(P(1)\) (and possibly \(P(2), \ldots\)).</li>
+                        <li><strong>Strong Hypothesis:</strong> Assume \(P(1), P(2), \ldots, P(k)\) are ALL true.</li>
+                        <li><strong>Inductive Step:</strong> Prove \(P(k+1)\) using any/all of the previous cases.</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> When \(P(k+1)\) depends on cases before \(P(k)\), such as \(P(k-1)\) or \(P(k/2)\). Common in number theory and recursive algorithms.
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Every integer \(n \geq 2\) can be written as a product of primes.
+                    <p><em>Strong induction:</em> Assume all integers from 2 to \(k\) have prime factorizations.</p>
+                    <p>For \(k+1\): If prime, done. If composite, \(k+1 = ab\) where \(2 \leq a, b \leq k\).</p>
+                    <p>By hypothesis, \(a\) and \(b\) have prime factorizations. Multiply them together. \(\square\)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proof by Cases -->
+        <div class="strategy-block">
+            <div class="strategy-header">Proof by Cases</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove a statement by dividing into exhaustive cases</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li>Identify cases that cover all possibilities.</li>
+                        <li>Prove the statement in each case separately.</li>
+                        <li>Since cases are exhaustive, the statement holds universally.</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> When the situation naturally splits (even/odd, positive/negative/zero, etc.), or when different cases require different arguments.
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove \(n^2 + n\) is even for all integers \(n\).
+                    <p><em>Case 1:</em> \(n\) is even. Then \(n^2\) is even and \(n\) is even, so sum is even.</p>
+                    <p><em>Case 2:</em> \(n\) is odd. Then \(n^2\) is odd and \(n\) is odd, so sum is even. \(\square\)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proof by Definition -->
+        <div class="strategy-block">
+            <div class="strategy-header">Proof by Definition</div>
+            <div class="strategy-body">
+                <p><strong>Goal:</strong> Prove something satisfies a definition</p>
+                <div class="strategy-template">
+                    <strong>Template:</strong>
+                    <ol>
+                        <li>State the precise definition of the concept.</li>
+                        <li>Verify each condition of the definition.</li>
+                        <li>Conclude the object satisfies the definition.</li>
+                    </ol>
+                </div>
+                <div class="strategy-when">
+                    <strong>When to use:</strong> Proving something is an equivalence relation, a partition, continuous, a group, etc. Always start by unpacking the definition!
+                </div>
+                <div class="definition-example">
+                    <strong>Example:</strong> Prove \(\sim\) defined by \(a \sim b \iff a - b \in \mathbb{Z}\) is an equivalence relation on \(\mathbb{R}\).
+                    <p><em>Reflexive:</em> \(a - a = 0 \in \mathbb{Z}\) ✓</p>
+                    <p><em>Symmetric:</em> If \(a - b \in \mathbb{Z}\), then \(b - a = -(a-b) \in \mathbb{Z}\) ✓</p>
+                    <p><em>Transitive:</em> If \(a - b \in \mathbb{Z}\) and \(b - c \in \mathbb{Z}\), then \(a - c = (a-b) + (b-c) \in \mathbb{Z}\) ✓ \(\square\)</p>
+                </div>
+            </div>
+        </div>
+
     </section>
 
-    <!-- Problems -->
+    <!-- ==================== REVIEW ==================== -->
     <section id="problems" class="card">
         <h2>Review Materials</h2>
-        <ul>
-            <li><strong>Homework Problems:</strong> Focus especially on graded problems.</li>
-            <li><strong>In-class Worksheets:</strong> Review all completed worksheets.</li>
+        <p>To prepare effectively, review these materials:</p>
+        <ul class="check-list">
+            <li><strong>Homework Problems:</strong> Focus especially on graded problems and ones you got wrong.</li>
+            <li><strong>In-class Worksheets:</strong> Review all completed worksheets—these often preview exam questions.</li>
             <li><strong>Section Worksheets:</strong> Practice these for variations on core concepts.</li>
+            <li><strong>This Study Guide:</strong> Make sure you can reproduce each proof from memory!</li>
         </ul>
+
+        <h3>Quick Self-Test</h3>
+        <p>Can you answer these without looking?</p>
+        <ol>
+            <li>What are the three properties of an equivalence relation?</li>
+            <li>How does a partial order differ from an equivalence relation?</li>
+            <li>Prove Cantor's Theorem using diagonalization.</li>
+            <li>What is the key step in proving Fermat's Little Theorem by induction?</li>
+            <li>When would you use contradiction vs. contrapositive?</li>
+        </ol>
     </section>
 
 </div>
 
 <footer>
-    Generated by Gemini CLI | Good luck on the exam!
+    Study Guide | Good luck on the exam!
 </footer>
+
+<script>
+// Smooth scroll for navigation
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        // Update active state
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// Back to top button
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+    } else {
+        backToTop.classList.remove('visible');
+    }
+});
+
+backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Progress bar
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+});
+
+// Update active nav on scroll
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+        }
+    });
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('href') === '#' + current) {
+            btn.classList.add('active');
+        }
+    });
+});
+</script>
 
 </body>
 </html>

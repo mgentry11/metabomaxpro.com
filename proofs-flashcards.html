@@ -419,8 +419,10 @@ const categoryName = document.getElementById('categoryName');
 
 // Flip card
 function flipCard() {
+    console.log('flipCard called, was:', isFlipped);
     isFlipped = !isFlipped;
     flashcard.classList.toggle('flipped', isFlipped);
+    console.log('flipCard now:', isFlipped, 'class:', flashcard.className);
     if (window.MathJax) {
         MathJax.typesetPromise();
     }
@@ -512,7 +514,11 @@ function loadProgress() {
 }
 
 // Event listeners
-flashcard.addEventListener('click', flipCard);
+console.log('Attaching click listener to flashcard:', flashcard);
+flashcard.addEventListener('click', function(e) {
+    console.log('Click detected on:', e.target);
+    flipCard();
+});
 
 prevBtn.addEventListener('click', prevCard);
 nextBtn.addEventListener('click', nextCard);

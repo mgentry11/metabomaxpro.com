@@ -9,46 +9,25 @@
     <meta name="theme-color" content="#667eea">
     <title>Proofs Flashcards</title>
 
-    <!-- PWA Manifest -->
     <link rel="manifest" href="proofs-manifest.json">
-
-    <!-- iOS Icons -->
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%23667eea' width='180' height='180' rx='40'/><text x='90' y='115' font-size='80' text-anchor='middle' fill='white'>∀</text></svg>">
 
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #2980b9;
-            --bg-color: #f4f6f7;
-            --card-bg: #fff;
-            --success-color: #27ae60;
-            --warning-color: #f39c12;
-            --safe-top: env(safe-area-inset-top);
-            --safe-bottom: env(safe-area-inset-bottom);
-        }
-
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            min-height: -webkit-fill-available;
-            margin: 0;
             padding: 20px;
-            padding-top: calc(20px + var(--safe-top));
-            padding-bottom: calc(20px + var(--safe-bottom));
-            overflow-x: hidden;
-        }
-
-        html {
-            height: -webkit-fill-available;
+            padding-top: max(20px, env(safe-area-inset-top));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
         }
 
         .container {
@@ -63,13 +42,11 @@
         }
 
         header h1 {
-            margin: 0 0 5px 0;
             font-size: 1.8rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
         }
 
         header p {
-            margin: 0;
             font-size: 0.85rem;
             opacity: 0.9;
         }
@@ -83,9 +60,9 @@
         }
 
         .progress-fill {
-            background: var(--success-color);
+            background: #27ae60;
             height: 100%;
-            transition: width 0.3s ease;
+            transition: width 0.3s;
             border-radius: 20px;
         }
 
@@ -93,7 +70,6 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            color: white;
             font-size: 0.85rem;
         }
 
@@ -112,61 +88,42 @@
             padding: 8px 14px;
             border-radius: 20px;
             cursor: pointer;
-            transition: all 0.3s;
             font-size: 0.85rem;
             font-weight: 500;
+            transition: background 0.3s, color 0.3s;
         }
 
-        .tab-btn:hover, .tab-btn.active {
+        .tab-btn.active {
             background: white;
-            color: var(--primary-color);
+            color: #2c3e50;
         }
 
-        .flashcard-container {
-            perspective: 1000px;
-            margin: 15px 0;
-            touch-action: pan-y;
-        }
-
+        /* Simple flip card - no 3D transforms */
         .flashcard {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            -webkit-transform-style: preserve-3d;
-            transition: transform 0.5s;
-        }
-
-        .flashcard.flipped {
-            transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg);
-        }
-
-        .flashcard-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
+            background: white;
             border-radius: 20px;
+            min-height: 380px;
             padding: 25px;
+            margin: 15px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            cursor: pointer;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+            user-select: none;
+            -webkit-user-select: none;
+            transition: transform 0.15s, background 0.3s;
         }
 
-        .flashcard-front {
-            background: white;
+        .flashcard:active {
+            transform: scale(0.98);
         }
 
-        .flashcard-back {
+        .flashcard.flipped {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            transform: rotateY(180deg);
-            -webkit-transform: rotateY(180deg);
         }
 
         .card-category {
@@ -190,7 +147,7 @@
 
         .card-title {
             font-size: 1.5rem;
-            color: var(--primary-color);
+            color: #2c3e50;
             margin-bottom: 15px;
             font-weight: 700;
         }
@@ -199,6 +156,7 @@
             font-size: 1.05rem;
             color: #333;
             max-width: 95%;
+            line-height: 1.6;
         }
 
         .card-hint {
@@ -208,21 +166,33 @@
             color: #bdc3c7;
         }
 
+        .card-side-label {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #667eea;
+            font-weight: 700;
+        }
+
         .proof-section {
             background: #fff;
-            border-left: 4px solid var(--accent-color);
+            border-left: 4px solid #2980b9;
             padding: 12px;
             margin-top: 10px;
             text-align: left;
             border-radius: 0 8px 8px 0;
             font-size: 0.9rem;
-            max-height: 180px;
+            max-height: 200px;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
 
         .proof-section strong {
-            color: var(--accent-color);
+            color: #2980b9;
         }
 
         .controls {
@@ -238,35 +208,29 @@
             border-radius: 25px;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s;
             font-weight: 600;
-            touch-action: manipulation;
+            transition: transform 0.15s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
         }
 
         .btn-prev, .btn-next {
             background: white;
-            color: var(--primary-color);
+            color: #2c3e50;
             flex: 1;
             max-width: 120px;
         }
 
-        .btn-prev:active, .btn-next:active {
-            transform: scale(0.95);
-        }
-
         .btn-shuffle {
-            background: var(--warning-color);
+            background: #f39c12;
             color: white;
             padding: 14px 20px;
         }
 
-        .btn-shuffle:active {
-            transform: scale(0.95);
-        }
-
         .btn:disabled {
             opacity: 0.4;
-            cursor: not-allowed;
         }
 
         .swipe-hint {
@@ -276,10 +240,9 @@
             margin-top: 15px;
         }
 
-        /* Install prompt banner */
         .install-banner {
             background: rgba(255,255,255,0.95);
-            color: var(--primary-color);
+            color: #2c3e50;
             padding: 15px 20px;
             border-radius: 12px;
             margin-bottom: 15px;
@@ -308,10 +271,9 @@
             padding: 0 0 0 15px;
         }
 
-        /* Offline indicator */
         .offline-indicator {
             position: fixed;
-            top: var(--safe-top);
+            top: 0;
             left: 0;
             right: 0;
             background: #e74c3c;
@@ -327,40 +289,21 @@
             display: block;
         }
 
-        @media (max-width: 400px) {
-            .flashcard-face {
-                min-height: 350px;
-                padding: 20px;
-            }
-            .card-title {
-                font-size: 1.3rem;
-            }
-            .card-content {
-                font-size: 0.95rem;
-            }
-            .btn {
-                padding: 12px 20px;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Prevent text selection on cards */
-        .flashcard {
-            user-select: none;
-            -webkit-user-select: none;
-        }
+        /* Hide back content by default, show when flipped */
+        .back-content { display: none; }
+        .front-content { display: block; }
+        .flashcard.flipped .back-content { display: block; }
+        .flashcard.flipped .front-content { display: none; }
     </style>
 </head>
 <body>
 
-<div class="offline-indicator" id="offlineIndicator">
-    You're offline - cards still work!
-</div>
+<div class="offline-indicator" id="offlineIndicator">You're offline - cards still work!</div>
 
 <div class="container">
     <div class="install-banner" id="installBanner">
-        <p><strong>Add to Home Screen</strong><br>Tap <span style="font-size:1.2em">⎙</span> then "Add to Home Screen"</p>
-        <button class="close-btn" onclick="dismissInstall()">&times;</button>
+        <p><strong>Add to Home Screen</strong><br>Tap Share then "Add to Home Screen"</p>
+        <button class="close-btn" id="closeBanner">×</button>
     </div>
 
     <header>
@@ -375,7 +318,7 @@
         </div>
     </header>
 
-    <div class="category-tabs">
+    <div class="category-tabs" id="categoryTabs">
         <button class="tab-btn active" data-category="all">All</button>
         <button class="tab-btn" data-category="definition">Definitions</button>
         <button class="tab-btn" data-category="axiom">Axioms</button>
@@ -383,334 +326,135 @@
         <button class="tab-btn" data-category="strategy">Strategies</button>
     </div>
 
-    <div class="flashcard-container" id="flashcardContainer">
-        <div class="flashcard" id="flashcard" onclick="flipCard()">
-            <div class="flashcard-face flashcard-front">
-                <span class="card-category" id="cardCategory">Definition</span>
-                <span class="card-number" id="cardNumber">1/20</span>
-                <div class="card-title" id="cardTitle">Loading...</div>
-                <div class="card-content" id="cardFront"></div>
-                <span class="card-hint">Tap to flip</span>
-            </div>
-            <div class="flashcard-face flashcard-back">
-                <span class="card-category" id="cardCategoryBack">Definition</span>
-                <span class="card-number" id="cardNumberBack">1/20</span>
-                <div class="card-title" id="cardTitleBack">Answer</div>
-                <div class="card-content" id="cardBack"></div>
-            </div>
+    <div class="flashcard" id="flashcard">
+        <span class="card-category" id="cardCategory">Definition</span>
+        <span class="card-number" id="cardNumber">1/33</span>
+
+        <div class="front-content">
+            <span class="card-side-label">Question</span>
+            <div class="card-title" id="cardTitle">Loading...</div>
+            <div class="card-content" id="cardFront"></div>
+            <span class="card-hint">Tap to reveal answer</span>
+        </div>
+
+        <div class="back-content">
+            <span class="card-side-label">Answer</span>
+            <div class="card-title" id="cardTitleBack">Answer</div>
+            <div class="card-content" id="cardBack"></div>
+            <span class="card-hint">Tap to see question</span>
         </div>
     </div>
 
     <div class="controls">
-        <button class="btn btn-prev" id="prevBtn" onclick="prevCard()">← Prev</button>
-        <button class="btn btn-shuffle" onclick="shuffleCards()">⟳</button>
-        <button class="btn btn-next" id="nextBtn" onclick="nextCard()">Next →</button>
+        <button class="btn btn-prev" id="prevBtn">← Prev</button>
+        <button class="btn btn-shuffle" id="shuffleBtn">⟳</button>
+        <button class="btn btn-next" id="nextBtn">Next →</button>
     </div>
 
-    <div class="swipe-hint">
-        Swipe left/right to navigate
-    </div>
+    <div class="swipe-hint">Swipe left/right to navigate</div>
 </div>
 
 <script>
 const allCards = [
     // Definitions
-    {
-        category: "definition",
-        title: "Set Equality",
-        front: "When are two sets A and B equal?",
-        back: "\\(A = B \\iff A \\subseteq B \\text{ and } B \\subseteq A\\)"
-    },
-    {
-        category: "definition",
-        title: "Partition",
-        front: "What is a partition of a set S?",
-        back: "A collection of disjoint, non-empty subsets of \\(S\\) whose union is \\(S\\)."
-    },
-    {
-        category: "definition",
-        title: "Equivalence Relation",
-        front: "What three properties define an equivalence relation?",
-        back: "<strong>Reflexive</strong>, <strong>Symmetric</strong>, and <strong>Transitive</strong>"
-    },
-    {
-        category: "definition",
-        title: "Partial Order",
-        front: "What three properties define a partial order?",
-        back: "<strong>Reflexive</strong>, <strong>Antisymmetric</strong>, and <strong>Transitive</strong>"
-    },
-    {
-        category: "definition",
-        title: "Quotient Set",
-        front: "What is the quotient set \\(S/\\sim\\)?",
-        back: "The set of all equivalence classes formed by the relation \\(\\sim\\) on \\(S\\)."
-    },
-    {
-        category: "definition",
-        title: "Continuity",
-        front: "When is a function f continuous at point c?",
-        back: "\\(f\\) is continuous at \\(c\\) if \\(\\displaystyle\\lim_{x \\to c} f(x) = f(c)\\)<br><br>(Epsilon-delta definition required for proofs)"
-    },
-    {
-        category: "definition",
-        title: "Isomorphism",
-        front: "What is an isomorphism?",
-        back: "A <strong>structure-preserving bijection</strong> between two algebraic structures."
-    },
-    {
-        category: "definition",
-        title: "Injective / Surjective / Bijective",
-        front: "Define: Injective, Surjective, Bijective",
-        back: "<strong>Injective:</strong> One-to-one<br><strong>Surjective:</strong> Onto<br><strong>Bijective:</strong> Both (one-to-one and onto)"
-    },
+    { category: "definition", title: "Set Equality", front: "When are two sets A and B equal?", back: "\\(A = B \\iff A \\subseteq B \\text{ and } B \\subseteq A\\)" },
+    { category: "definition", title: "Partition", front: "What is a partition of a set S?", back: "A collection of disjoint, non-empty subsets of \\(S\\) whose union is \\(S\\)." },
+    { category: "definition", title: "Equivalence Relation", front: "What three properties define an equivalence relation?", back: "<strong>Reflexive</strong>, <strong>Symmetric</strong>, and <strong>Transitive</strong>" },
+    { category: "definition", title: "Partial Order", front: "What three properties define a partial order?", back: "<strong>Reflexive</strong>, <strong>Antisymmetric</strong>, and <strong>Transitive</strong>" },
+    { category: "definition", title: "Quotient Set", front: "What is the quotient set \\(S/\\sim\\)?", back: "The set of all equivalence classes formed by the relation \\(\\sim\\) on \\(S\\)." },
+    { category: "definition", title: "Continuity", front: "When is a function f continuous at point c?", back: "\\(f\\) is continuous at \\(c\\) if \\(\\displaystyle\\lim_{x \\to c} f(x) = f(c)\\)<br><br>(Epsilon-delta definition required for proofs)" },
+    { category: "definition", title: "Isomorphism", front: "What is an isomorphism?", back: "A <strong>structure-preserving bijection</strong> between two algebraic structures." },
+    { category: "definition", title: "Injective / Surjective / Bijective", front: "Define: Injective, Surjective, Bijective", back: "<strong>Injective:</strong> One-to-one<br><strong>Surjective:</strong> Onto<br><strong>Bijective:</strong> Both (one-to-one and onto)" },
 
     // Axioms
-    {
-        category: "axiom",
-        title: "Induction Principle",
-        front: "What is the Principle of Mathematical Induction?",
-        back: "The basis for proving statements for all natural numbers.<br><br>If \\(P(1)\\) is true and \\(P(k) \\Rightarrow P(k+1)\\), then \\(P(n)\\) is true for all \\(n \\in \\mathbb{N}\\)."
-    },
-    {
-        category: "axiom",
-        title: "Zorn's Lemma",
-        front: "What is Zorn's Lemma used for?",
-        back: "Finding <strong>maximal elements</strong> in partially ordered sets.<br><br>It is equivalent to (implies) the Axiom of Choice."
-    },
-    {
-        category: "axiom",
-        title: "Axiom of Choice",
-        front: "State the Axiom of Choice",
-        back: "Given any collection of non-empty sets, you can select exactly one element from each set in the collection."
-    },
-    {
-        category: "axiom",
-        title: "Axiom of Excluded Middle",
-        front: "State the Axiom of Excluded Middle",
-        back: "\\(P \\lor \\neg P\\) is always true.<br><br>Every proposition is either true or false."
-    },
+    { category: "axiom", title: "Induction Principle", front: "What is the Principle of Mathematical Induction?", back: "The basis for proving statements for all natural numbers.<br><br>If \\(P(1)\\) is true and \\(P(k) \\Rightarrow P(k+1)\\), then \\(P(n)\\) is true for all \\(n \\in \\mathbb{N}\\)." },
+    { category: "axiom", title: "Zorn's Lemma", front: "What is Zorn's Lemma used for?", back: "Finding <strong>maximal elements</strong> in partially ordered sets.<br><br>It is equivalent to (implies) the Axiom of Choice." },
+    { category: "axiom", title: "Axiom of Choice", front: "State the Axiom of Choice", back: "Given any collection of non-empty sets, you can select exactly one element from each set in the collection." },
+    { category: "axiom", title: "Axiom of Excluded Middle", front: "State the Axiom of Excluded Middle", back: "\\(P \\lor \\neg P\\) is always true.<br><br>Every proposition is either true or false." },
 
     // Theorems
-    {
-        category: "theorem",
-        title: "Cantor's Theorem",
-        front: "State Cantor's Theorem",
-        back: "For any set \\(A\\):<br><br>\\(|A| < |\\mathcal{P}(A)|\\)<br><br>The cardinality of the power set is strictly greater than the cardinality of the set."
-    },
-    {
-        category: "theorem",
-        title: "Cantor's Theorem (Proof)",
-        front: "How do you prove Cantor's Theorem?",
-        back: "<div class='proof-section'><strong>Diagonalization:</strong><br>1. Assume surjection \\(f: A \\to \\mathcal{P}(A)\\) exists<br>2. Define \\(D = \\{x \\in A \\mid x \\notin f(x)\\}\\)<br>3. Since \\(f\\) is surjective, \\(\\exists d\\) with \\(f(d) = D\\)<br>4. Ask: Is \\(d \\in D\\)?<br>• If \\(d \\in D \\Rightarrow d \\notin f(d) = D\\). Contradiction!<br>• If \\(d \\notin D \\Rightarrow d \\in f(d) = D\\). Contradiction!<br>5. No such \\(f\\) exists. \\(\\square\\)</div>"
-    },
-    {
-        category: "theorem",
-        title: "Schröder-Bernstein",
-        front: "State the Schröder-Bernstein Theorem",
-        back: "If \\(|A| \\le |B|\\) and \\(|B| \\le |A|\\), then \\(|A| = |B|\\).<br><br>If injections \\(f: A \\to B\\) and \\(g: B \\to A\\) exist, then a bijection \\(h: A \\to B\\) exists."
-    },
-    {
-        category: "theorem",
-        title: "Fermat's Little Theorem",
-        front: "State Fermat's Little Theorem",
-        back: "If \\(p\\) is prime and \\(a\\) is an integer, then:<br><br>\\(a^p \\equiv a \\pmod{p}\\)"
-    },
-    {
-        category: "theorem",
-        title: "Fermat's Little Theorem (Proof)",
-        front: "Prove Fermat's Little Theorem by induction",
-        back: "<div class='proof-section'><strong>Induction on \\(a \\ge 0\\):</strong><br><strong>Base:</strong> \\(0^p = 0 \\equiv 0 \\pmod{p}\\) ✓<br><br><strong>Inductive Step:</strong> Assume \\(k^p \\equiv k\\).<br>By Binomial Theorem:<br>\\((k+1)^p = k^p + \\binom{p}{1}k^{p-1} + \\cdots + 1\\)<br><br>Since \\(p\\) is prime, \\(p \\mid \\binom{p}{i}\\) for \\(1 \\le i \\le p-1\\).<br>So \\((k+1)^p \\equiv k^p + 1 \\equiv k + 1 \\pmod{p}\\) \\(\\square\\)</div>"
-    },
-    {
-        category: "theorem",
-        title: "Russell's Paradox",
-        front: "State Russell's Paradox",
-        back: "There is no set of all sets."
-    },
-    {
-        category: "theorem",
-        title: "Russell's Paradox (Proof)",
-        front: "Prove Russell's Paradox",
-        back: "<div class='proof-section'>1. Suppose \\(U\\) = set of all sets exists<br>2. Define \\(R = \\{A \\in U \\mid A \\notin A\\}\\)<br>3. Ask: Is \\(R \\in R\\)?<br>• If \\(R \\in R \\Rightarrow R \\notin R\\). Contradiction!<br>• If \\(R \\notin R \\Rightarrow R \\in R\\). Contradiction!<br>4. Such \\(U\\) cannot exist. \\(\\square\\)</div>"
-    },
-    {
-        category: "theorem",
-        title: "Well-Ordering Principle",
-        front: "State the Well-Ordering Principle",
-        back: "Every non-empty subset of \\(\\mathbb{N}\\) has a <strong>least element</strong>."
-    },
-    {
-        category: "theorem",
-        title: "Well-Ordering (Proof)",
-        front: "Prove the Well-Ordering Principle",
-        back: "<div class='proof-section'><strong>Contrapositive via Strong Induction:</strong><br>Prove: If \\(S\\) has no least element, then \\(S = \\emptyset\\).<br><br>Let \\(P(n)\\) = \"\\(1, 2, \\ldots, n \\notin S\\)\"<br><br><strong>Base:</strong> \\(1 \\notin S\\) (else 1 is least). ✓<br><br><strong>Inductive:</strong> Assume \\(P(k)\\). If \\(k+1 \\in S\\), it would be least. So \\(k+1 \\notin S\\).<br><br>By induction, \\(\\forall n, n \\notin S\\), so \\(S = \\emptyset\\). \\(\\square\\)</div>"
-    },
-    {
-        category: "theorem",
-        title: "Infinitude of Primes",
-        front: "Prove there are infinitely many primes",
-        back: "<div class='proof-section'><strong>Euclid's Proof:</strong><br>1. Assume finitely many primes: \\(p_1, p_2, \\ldots, p_n\\)<br>2. Let \\(Q = p_1 p_2 \\cdots p_n + 1\\)<br>3. For each \\(p_i\\): \\(Q \\equiv 1 \\pmod{p_i}\\)<br>4. So no \\(p_i\\) divides \\(Q\\)<br>5. But \\(Q > 1\\) must have a prime factor<br>6. This prime isn't in our list. Contradiction! \\(\\square\\)</div>"
-    },
-    {
-        category: "theorem",
-        title: "Triangle Inequality",
-        front: "State the Triangle Inequality",
-        back: "For any \\(x, y \\in \\mathbb{R}\\):<br><br>\\(|x + y| \\le |x| + |y|\\)"
-    },
-    {
-        category: "theorem",
-        title: "Isomorphism Theorem",
-        front: "When are two finite-dimensional vector spaces isomorphic?",
-        back: "Two finite-dimensional vector spaces \\(V\\) and \\(W\\) over the same field \\(F\\) are isomorphic if and only if:<br><br>\\(\\dim(V) = \\dim(W)\\)"
-    },
+    { category: "theorem", title: "Cantor's Theorem", front: "State Cantor's Theorem", back: "For any set \\(A\\):<br><br>\\(|A| < |\\mathcal{P}(A)|\\)<br><br>The cardinality of the power set is strictly greater than the cardinality of the set." },
+    { category: "theorem", title: "Cantor's Theorem (Proof)", front: "How do you prove Cantor's Theorem?", back: "<div class='proof-section'><strong>Diagonalization:</strong><br>1. Assume surjection \\(f: A \\to \\mathcal{P}(A)\\) exists<br>2. Define \\(D = \\{x \\in A \\mid x \\notin f(x)\\}\\)<br>3. Since \\(f\\) is surjective, \\(\\exists d\\) with \\(f(d) = D\\)<br>4. Ask: Is \\(d \\in D\\)?<br>• If \\(d \\in D \\Rightarrow d \\notin f(d) = D\\). Contradiction!<br>• If \\(d \\notin D \\Rightarrow d \\in f(d) = D\\). Contradiction!<br>5. No such \\(f\\) exists. \\(\\square\\)</div>" },
+    { category: "theorem", title: "Schröder-Bernstein", front: "State the Schröder-Bernstein Theorem", back: "If \\(|A| \\le |B|\\) and \\(|B| \\le |A|\\), then \\(|A| = |B|\\).<br><br>If injections \\(f: A \\to B\\) and \\(g: B \\to A\\) exist, then a bijection \\(h: A \\to B\\) exists." },
+    { category: "theorem", title: "Fermat's Little Theorem", front: "State Fermat's Little Theorem", back: "If \\(p\\) is prime and \\(a\\) is an integer, then:<br><br>\\(a^p \\equiv a \\pmod{p}\\)" },
+    { category: "theorem", title: "Fermat's Little Theorem (Proof)", front: "Prove Fermat's Little Theorem by induction", back: "<div class='proof-section'><strong>Induction on \\(a \\ge 0\\):</strong><br><strong>Base:</strong> \\(0^p = 0 \\equiv 0 \\pmod{p}\\) ✓<br><br><strong>Inductive Step:</strong> Assume \\(k^p \\equiv k\\).<br>By Binomial Theorem:<br>\\((k+1)^p = k^p + \\binom{p}{1}k^{p-1} + \\cdots + 1\\)<br><br>Since \\(p\\) is prime, \\(p \\mid \\binom{p}{i}\\) for \\(1 \\le i \\le p-1\\).<br>So \\((k+1)^p \\equiv k^p + 1 \\equiv k + 1 \\pmod{p}\\) \\(\\square\\)</div>" },
+    { category: "theorem", title: "Russell's Paradox", front: "State Russell's Paradox", back: "There is no set of all sets." },
+    { category: "theorem", title: "Russell's Paradox (Proof)", front: "Prove Russell's Paradox", back: "<div class='proof-section'>1. Suppose \\(U\\) = set of all sets exists<br>2. Define \\(R = \\{A \\in U \\mid A \\notin A\\}\\)<br>3. Ask: Is \\(R \\in R\\)?<br>• If \\(R \\in R \\Rightarrow R \\notin R\\). Contradiction!<br>• If \\(R \\notin R \\Rightarrow R \\in R\\). Contradiction!<br>4. Such \\(U\\) cannot exist. \\(\\square\\)</div>" },
+    { category: "theorem", title: "Well-Ordering Principle", front: "State the Well-Ordering Principle", back: "Every non-empty subset of \\(\\mathbb{N}\\) has a <strong>least element</strong>." },
+    { category: "theorem", title: "Well-Ordering (Proof)", front: "Prove the Well-Ordering Principle", back: "<div class='proof-section'><strong>Contrapositive via Strong Induction:</strong><br>Prove: If \\(S\\) has no least element, then \\(S = \\emptyset\\).<br><br>Let \\(P(n)\\) = \"\\(1, 2, \\ldots, n \\notin S\\)\"<br><br><strong>Base:</strong> \\(1 \\notin S\\) (else 1 is least). ✓<br><br><strong>Inductive:</strong> Assume \\(P(k)\\). If \\(k+1 \\in S\\), it would be least. So \\(k+1 \\notin S\\).<br><br>By induction, \\(\\forall n, n \\notin S\\), so \\(S = \\emptyset\\). \\(\\square\\)</div>" },
+    { category: "theorem", title: "Infinitude of Primes", front: "Prove there are infinitely many primes", back: "<div class='proof-section'><strong>Euclid's Proof:</strong><br>1. Assume finitely many primes: \\(p_1, p_2, \\ldots, p_n\\)<br>2. Let \\(Q = p_1 p_2 \\cdots p_n + 1\\)<br>3. For each \\(p_i\\): \\(Q \\equiv 1 \\pmod{p_i}\\)<br>4. So no \\(p_i\\) divides \\(Q\\)<br>5. But \\(Q > 1\\) must have a prime factor<br>6. This prime isn't in our list. Contradiction! \\(\\square\\)</div>" },
+    { category: "theorem", title: "Triangle Inequality", front: "State the Triangle Inequality", back: "For any \\(x, y \\in \\mathbb{R}\\):<br><br>\\(|x + y| \\le |x| + |y|\\)" },
+    { category: "theorem", title: "Isomorphism Theorem", front: "When are two finite-dimensional vector spaces isomorphic?", back: "Two finite-dimensional vector spaces \\(V\\) and \\(W\\) over the same field \\(F\\) are isomorphic if and only if:<br><br>\\(\\dim(V) = \\dim(W)\\)" },
 
     // Strategies
-    {
-        category: "strategy",
-        title: "Direct Proof",
-        front: "What is a Direct Proof?",
-        back: "Assume the hypothesis is true, then use logical steps to show the conclusion must be true.<br><br>To prove \\(P \\Rightarrow Q\\): Assume \\(P\\), derive \\(Q\\)."
-    },
-    {
-        category: "strategy",
-        title: "Proof by Contradiction",
-        front: "What is Proof by Contradiction?",
-        back: "Assume the statement is <strong>false</strong>, then derive a logical contradiction.<br><br>To prove \\(P\\): Assume \\(\\neg P\\), derive a contradiction, conclude \\(P\\)."
-    },
-    {
-        category: "strategy",
-        title: "Contrapositive",
-        front: "What is Proof by Contrapositive?",
-        back: "Prove \\(\\neg Q \\Rightarrow \\neg P\\) instead of \\(P \\Rightarrow Q\\).<br><br>These are logically equivalent."
-    },
-    {
-        category: "strategy",
-        title: "Mathematical Induction",
-        front: "What are the steps for Mathematical Induction?",
-        back: "<strong>1. Base Case:</strong> Prove \\(P(1)\\) is true<br><br><strong>2. Inductive Step:</strong> Assume \\(P(k)\\) is true (inductive hypothesis), prove \\(P(k+1)\\) is true<br><br><strong>3. Conclude:</strong> \\(P(n)\\) is true \\(\\forall n \\in \\mathbb{N}\\)"
-    },
-    {
-        category: "strategy",
-        title: "Strong Induction",
-        front: "How does Strong Induction differ from regular induction?",
-        back: "In the inductive step, you assume \\(P(1), P(2), \\ldots, P(k)\\) are <strong>all</strong> true to prove \\(P(k+1)\\).<br><br>Useful when \\(P(k+1)\\) depends on multiple previous cases."
-    },
-    {
-        category: "strategy",
-        title: "Proof by Cases",
-        front: "What is Proof by Cases?",
-        back: "Divide the problem into exhaustive cases and prove each one separately.<br><br>Ensure all possible cases are covered (no gaps)."
-    },
-    {
-        category: "strategy",
-        title: "Proof by Definition",
-        front: "What is Proof by Definition?",
-        back: "Apply the precise definition of a concept directly to prove the result.<br><br>Often the first step: unpack what the statement <em>means</em> by definition."
-    }
+    { category: "strategy", title: "Direct Proof", front: "What is a Direct Proof?", back: "Assume the hypothesis is true, then use logical steps to show the conclusion must be true.<br><br>To prove \\(P \\Rightarrow Q\\): Assume \\(P\\), derive \\(Q\\)." },
+    { category: "strategy", title: "Proof by Contradiction", front: "What is Proof by Contradiction?", back: "Assume the statement is <strong>false</strong>, then derive a logical contradiction.<br><br>To prove \\(P\\): Assume \\(\\neg P\\), derive a contradiction, conclude \\(P\\)." },
+    { category: "strategy", title: "Contrapositive", front: "What is Proof by Contrapositive?", back: "Prove \\(\\neg Q \\Rightarrow \\neg P\\) instead of \\(P \\Rightarrow Q\\).<br><br>These are logically equivalent." },
+    { category: "strategy", title: "Mathematical Induction", front: "What are the steps for Mathematical Induction?", back: "<strong>1. Base Case:</strong> Prove \\(P(1)\\) is true<br><br><strong>2. Inductive Step:</strong> Assume \\(P(k)\\) is true (inductive hypothesis), prove \\(P(k+1)\\) is true<br><br><strong>3. Conclude:</strong> \\(P(n)\\) is true \\(\\forall n \\in \\mathbb{N}\\)" },
+    { category: "strategy", title: "Strong Induction", front: "How does Strong Induction differ from regular induction?", back: "In the inductive step, you assume \\(P(1), P(2), \\ldots, P(k)\\) are <strong>all</strong> true to prove \\(P(k+1)\\).<br><br>Useful when \\(P(k+1)\\) depends on multiple previous cases." },
+    { category: "strategy", title: "Proof by Cases", front: "What is Proof by Cases?", back: "Divide the problem into exhaustive cases and prove each one separately.<br><br>Ensure all possible cases are covered (no gaps)." },
+    { category: "strategy", title: "Proof by Definition", front: "What is Proof by Definition?", back: "Apply the precise definition of a concept directly to prove the result.<br><br>Often the first step: unpack what the statement <em>means</em> by definition." }
 ];
 
 let cards = [...allCards];
 let currentIndex = 0;
 let currentCategory = 'all';
+let isFlipped = false;
 
-// Load saved progress
-function loadProgress() {
-    const saved = localStorage.getItem('proofsFlashcardsProgress');
-    if (saved) {
-        const data = JSON.parse(saved);
-        currentIndex = data.currentIndex || 0;
-        currentCategory = data.currentCategory || 'all';
-        filterCards(currentCategory, false);
+// DOM elements
+const flashcard = document.getElementById('flashcard');
+const cardCategory = document.getElementById('cardCategory');
+const cardNumber = document.getElementById('cardNumber');
+const cardTitle = document.getElementById('cardTitle');
+const cardTitleBack = document.getElementById('cardTitleBack');
+const cardFront = document.getElementById('cardFront');
+const cardBack = document.getElementById('cardBack');
+const currentNum = document.getElementById('currentNum');
+const totalNum = document.getElementById('totalNum');
+const progressFill = document.getElementById('progressFill');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const shuffleBtn = document.getElementById('shuffleBtn');
+const categoryName = document.getElementById('categoryName');
+
+// Flip card
+function flipCard() {
+    isFlipped = !isFlipped;
+    flashcard.classList.toggle('flipped', isFlipped);
+    if (window.MathJax) {
+        MathJax.typesetPromise();
     }
 }
 
-// Save progress
-function saveProgress() {
-    localStorage.setItem('proofsFlashcardsProgress', JSON.stringify({
-        currentIndex,
-        currentCategory
-    }));
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function filterCards(category, resetIndex = true) {
-    currentCategory = category;
-    if (category === 'all') {
-        cards = [...allCards];
-    } else {
-        cards = allCards.filter(c => c.category === category);
-    }
-    if (resetIndex) currentIndex = 0;
-    if (currentIndex >= cards.length) currentIndex = 0;
-    updateCard();
-    updateCategoryName();
-    saveProgress();
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.category === category);
-    });
-}
-
-function updateCategoryName() {
-    const names = {
-        'all': 'All Cards',
-        'definition': 'Definitions',
-        'axiom': 'Axioms',
-        'theorem': 'Theorems',
-        'strategy': 'Strategies'
-    };
-    document.getElementById('categoryName').textContent = names[currentCategory];
-}
-
+// Update card display
 function updateCard() {
     if (cards.length === 0) return;
 
     const card = cards[currentIndex];
-    const flashcard = document.getElementById('flashcard');
-
-    // Remove flip
+    isFlipped = false;
     flashcard.classList.remove('flipped');
 
-    // Update content
-    document.getElementById('cardCategory').textContent = card.category;
-    document.getElementById('cardCategoryBack').textContent = card.category;
-    document.getElementById('cardTitle').textContent = card.title;
-    document.getElementById('cardTitleBack').textContent = card.title;
-    document.getElementById('cardFront').innerHTML = card.front;
-    document.getElementById('cardBack').innerHTML = card.back;
+    cardCategory.textContent = card.category;
+    cardTitle.textContent = card.title;
+    cardTitleBack.textContent = card.title;
+    cardFront.innerHTML = card.front;
+    cardBack.innerHTML = card.back;
 
-    // Update numbers
     const numText = `${currentIndex + 1}/${cards.length}`;
-    document.getElementById('cardNumber').textContent = numText;
-    document.getElementById('cardNumberBack').textContent = numText;
-    document.getElementById('currentNum').textContent = currentIndex + 1;
-    document.getElementById('totalNum').textContent = cards.length;
+    cardNumber.textContent = numText;
+    currentNum.textContent = currentIndex + 1;
+    totalNum.textContent = cards.length;
 
-    // Update progress bar
-    const progress = ((currentIndex + 1) / cards.length) * 100;
-    document.getElementById('progressFill').style.width = progress + '%';
+    progressFill.style.width = ((currentIndex + 1) / cards.length * 100) + '%';
 
-    // Update buttons
-    document.getElementById('prevBtn').disabled = currentIndex === 0;
-    document.getElementById('nextBtn').disabled = currentIndex === cards.length - 1;
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex === cards.length - 1;
 
-    // Re-render MathJax
     if (window.MathJax) {
         MathJax.typesetPromise();
     }
 
     saveProgress();
-}
-
-function flipCard() {
-    document.getElementById('flashcard').classList.toggle('flipped');
 }
 
 function nextCard() {
@@ -728,110 +472,110 @@ function prevCard() {
 }
 
 function shuffleCards() {
-    cards = shuffleArray([...cards]);
+    for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+    }
     currentIndex = 0;
     updateCard();
 }
 
-// Event listeners for category tabs
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => filterCards(btn.dataset.category));
-});
+function filterCards(category) {
+    currentCategory = category;
+    cards = category === 'all' ? [...allCards] : allCards.filter(c => c.category === category);
+    currentIndex = 0;
+    updateCard();
 
-// Keyboard controls
-document.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') {
-        e.preventDefault();
-        flipCard();
-    } else if (e.code === 'ArrowRight') {
-        nextCard();
-    } else if (e.code === 'ArrowLeft') {
-        prevCard();
-    } else if (e.code === 'KeyS') {
-        shuffleCards();
+    const names = { 'all': 'All Cards', 'definition': 'Definitions', 'axiom': 'Axioms', 'theorem': 'Theorems', 'strategy': 'Strategies' };
+    categoryName.textContent = names[category];
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.category === category);
+    });
+
+    saveProgress();
+}
+
+function saveProgress() {
+    localStorage.setItem('proofsFlashcardsProgress', JSON.stringify({ currentIndex, currentCategory }));
+}
+
+function loadProgress() {
+    const saved = localStorage.getItem('proofsFlashcardsProgress');
+    if (saved) {
+        const data = JSON.parse(saved);
+        currentCategory = data.currentCategory || 'all';
+        filterCards(currentCategory);
+        currentIndex = Math.min(data.currentIndex || 0, cards.length - 1);
+        updateCard();
+    }
+}
+
+// Event listeners
+flashcard.addEventListener('click', flipCard);
+
+prevBtn.addEventListener('click', prevCard);
+nextBtn.addEventListener('click', nextCard);
+shuffleBtn.addEventListener('click', shuffleCards);
+
+document.getElementById('categoryTabs').addEventListener('click', e => {
+    if (e.target.classList.contains('tab-btn')) {
+        filterCards(e.target.dataset.category);
     }
 });
 
-// Touch/swipe support
+// Keyboard
+document.addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); flipCard(); }
+    else if (e.code === 'ArrowRight') nextCard();
+    else if (e.code === 'ArrowLeft') prevCard();
+});
+
+// Touch/swipe
 let touchStartX = 0;
 let touchStartY = 0;
-let touchEndX = 0;
-let touchEndY = 0;
-let isSwiping = false;
 
-const flashcardContainer = document.getElementById('flashcardContainer');
-const flashcard = document.getElementById('flashcard');
-
-flashcardContainer.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-    isSwiping = false;
+flashcard.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
 }, { passive: true });
 
-flashcardContainer.addEventListener('touchmove', e => {
-    const diffX = Math.abs(e.changedTouches[0].screenX - touchStartX);
-    const diffY = Math.abs(e.changedTouches[0].screenY - touchStartY);
-    if (diffX > diffY && diffX > 10) {
-        isSwiping = true;
-    }
-}, { passive: true });
-
-flashcardContainer.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-
+flashcard.addEventListener('touchend', e => {
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
     const diffX = touchStartX - touchEndX;
     const diffY = Math.abs(touchStartY - touchEndY);
 
     if (Math.abs(diffX) > 50 && diffY < 100) {
-        // Horizontal swipe
-        if (diffX > 0) {
-            nextCard();
-        } else {
-            prevCard();
-        }
-    } else if (!isSwiping && Math.abs(diffX) < 10) {
-        // Tap
+        if (diffX > 0) nextCard();
+        else prevCard();
+    } else if (Math.abs(diffX) < 20 && diffY < 20) {
         flipCard();
     }
 }, { passive: true });
 
-// Install banner for iOS
-function showInstallBanner() {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const isStandalone = window.navigator.standalone === true;
-    const dismissed = localStorage.getItem('installBannerDismissed');
-
-    if (isIOS && !isStandalone && !dismissed) {
-        document.getElementById('installBanner').classList.add('show');
-    }
-}
-
-function dismissInstall() {
+// Install banner
+document.getElementById('closeBanner').addEventListener('click', () => {
     document.getElementById('installBanner').classList.remove('show');
     localStorage.setItem('installBannerDismissed', 'true');
+});
+
+if (/iPhone|iPad|iPod/.test(navigator.userAgent) && !window.navigator.standalone && !localStorage.getItem('installBannerDismissed')) {
+    setTimeout(() => document.getElementById('installBanner').classList.add('show'), 2000);
 }
 
-// Offline detection
-window.addEventListener('online', () => {
-    document.getElementById('offlineIndicator').classList.remove('show');
-});
+// Offline
+window.addEventListener('online', () => document.getElementById('offlineIndicator').classList.remove('show'));
+window.addEventListener('offline', () => document.getElementById('offlineIndicator').classList.add('show'));
 
-window.addEventListener('offline', () => {
-    document.getElementById('offlineIndicator').classList.add('show');
-});
-
-// Register service worker
+// Service worker
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('proofs-sw.js').catch(() => {
-        // Service worker registration failed, app still works
-    });
+    navigator.serviceWorker.register('proofs-sw.js').catch(() => {});
 }
 
 // Initialize
 loadProgress();
 updateCard();
-setTimeout(showInstallBanner, 2000);
 </script>
 
 </body>

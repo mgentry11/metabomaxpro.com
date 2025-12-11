@@ -1,0 +1,50 @@
+# Example Terraform Variables for MetaboMax Pro HIPAA Infrastructure
+# Copy this file to terraform.tfvars and fill in your values
+# NEVER commit terraform.tfvars to git!
+
+# AWS Configuration
+aws_region = "us-east-1"
+account_id = "YOUR_AWS_ACCOUNT_ID"  # e.g., "123456789012"
+environment = "production"
+
+# Database Configuration
+db_username = "metabomax_admin"
+db_password = "GENERATE_A_STRONG_PASSWORD_HERE"  # Use: openssl rand -base64 32
+db_name     = "metabomaxpro"
+db_instance_class = "db.t3.medium"
+db_allocated_storage = 100
+
+# Application Configuration
+app_image  = "metabomax-app:latest"
+app_cpu    = "1024"   # 1 vCPU
+app_memory = "2048"   # 2 GB RAM
+
+# Domain Configuration
+domain_name = "metabomaxpro.com"
+
+# High Availability Settings
+enable_multi_az = true
+enable_deletion_protection = true
+
+# Backup Settings
+backup_retention_days = 30
+
+# Logging Settings
+log_retention_days = 2555  # 7 years for HIPAA
+
+# Application Secrets (from your current environment)
+flask_secret_key       = "YOUR_FLASK_SECRET_KEY"
+stripe_secret_key      = "sk_live_YOUR_STRIPE_SECRET_KEY"
+stripe_publishable_key = "pk_live_YOUR_STRIPE_PUBLISHABLE_KEY"
+stripe_webhook_secret  = "whsec_YOUR_STRIPE_WEBHOOK_SECRET"
+
+# Alert Configuration
+alert_email = "your-email@example.com"
+
+# Tags
+tags = {
+  Project     = "MetaboMax Pro"
+  Compliance  = "HIPAA"
+  ManagedBy   = "Terraform"
+  Environment = "Production"
+}

@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multivariable Calculus Solutions - Chapter 16</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.8;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+        .problem {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        .problem-header {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 15px;
+        }
+        .problem-statement {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .solution {
+            margin-top: 20px;
+        }
+        .solution-header {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #27ae60;
+            padding-bottom: 5px;
+        }
+        .step {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 3px solid #9b59b6;
+        }
+        .step-title {
+            font-weight: bold;
+            color: #8e44ad;
+            margin-bottom: 10px;
+        }
+        .key-concept {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #ffc107;
+        }
+        .key-concept-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+        .final-answer {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 2px solid #28a745;
+            text-align: center;
+        }
+        .final-answer-title {
+            font-weight: bold;
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 5px 5px 5px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .video-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
+            color: white;
+        }
+        .video-link svg {
+            width: 18px;
+            height: 18px;
+        }
+        .video-section {
+            background: #f8f9fa;
+            border: 2px dashed #e74c3c;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .video-section-title {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .part-label {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 1.1em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #3498db, #9b59b6, #e74c3c);
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multivariable Calculus Solutions<br>Chapter 16: Multiple Integrals</h1>
+
+    <!-- Master Video Resources Section -->
+    <div class="problem" style="border-left-color: #e74c3c; background: linear-gradient(135deg, #fff5f5 0%, #fff 100%);">
+        <div class="problem-header" style="color: #e74c3c;">📺 Top Video Resources (by popularity)</div>
+        <p style="margin-bottom: 20px;">These highly-rated YouTube videos will help you understand the concepts needed for all problems in this chapter:</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+            <a href="https://www.youtube.com/watch?v=wUei4g-pDB0" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Jacobian & Change of Variables (1M+ views)
+            </a>
+            <a href="https://www.youtube.com/watch?v=Ip3X9LOh2dk" target="_blank" class="video-link" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                3Blue1Brown: The Determinant (5M+ views)
+            </a>
+            <a href="https://www.youtube.com/watch?v=J51ncHP_BrY" target="_blank" class="video-link" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Vsauce: The Napkin Ring Problem (10M+ views)
+            </a>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Cylindrical/Spherical)
+            </a>
+            <a href="https://www.youtube.com/watch?v=HcneBkidSDQ" target="_blank" class="video-link" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Dr. Peyam: Gaussian Integral (Polar Coords)
+            </a>
+        </div>
+
+        <div class="key-concept">
+            <div class="key-concept-title">Quick Guide: Which Video for Which Problem?</div>
+            <ul style="margin: 0; padding-left: 20px;">
+                <li><strong>16.117-16.119</strong> (Linear transformations, Change of variables): Professor Leonard Jacobian + 3Blue1Brown Determinant</li>
+                <li><strong>16.121-16.122, 16.126</strong> (Paraboloid/Sphere/Cone volumes): Professor Leonard Triple Integrals</li>
+                <li><strong>16.123</strong> (Sphere with cylindrical hole): Vsauce Napkin Ring Problem</li>
+                <li><strong>16.124</strong> (Steinmetz Solid): Search "Steinmetz solid calculus" on YouTube</li>
+                <li><strong>16.125, 16.127</strong> (Tetrahedron): MathisPower4U Tetrahedron videos</li>
+                <li><strong>16.128-16.129</strong> (Ellipsoid, Ice cream cone): Professor Leonard Spherical Coordinates</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.117 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.117</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=wUei4g-pDB0" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Jacobian & Change of Variables
+            </a>
+            <a href="https://www.youtube.com/watch?v=Ip3X9LOh2dk" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                3Blue1Brown: The Determinant
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p><strong>(a)</strong> Find a linear transformation taking the square \(S = [0,1] \times [0,1]\) to the parallelogram \(P\) with vertices \((0,0), (2,0), (1,2), (3,2)\).</p>
+            <p><strong>(b)</strong> Write down a change of variables formula appropriate to the transformation you found in part (a).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="part-label">Part (a): Finding the Linear Transformation</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Key Concept: Linear Transformations</div>
+                <p>A linear transformation from \((u,v)\) to \((x,y)\) has the form:</p>
+                \[T(u,v) = (au + bv, cu + dv)\]
+                <p>We find the coefficients by seeing where the corners of the unit square map to.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Identify the corner mappings</div>
+                <p>The unit square has corners at \((0,0), (1,0), (0,1), (1,1)\).</p>
+                <p>The parallelogram has vertices at \((0,0), (2,0), (1,2), (3,2)\).</p>
+                <p>We need to match them up:</p>
+                <ul>
+                    <li>\((0,0) \to (0,0)\) (origin to origin)</li>
+                    <li>\((1,0) \to (2,0)\) (right edge of square to one side of parallelogram)</li>
+                    <li>\((0,1) \to (1,2)\) (top edge of square to other side of parallelogram)</li>
+                    <li>\((1,1) \to (3,2)\) (this should work automatically if the others are correct)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Find the coefficients</div>
+                <p>From \(T(u,v) = (au + bv, cu + dv)\):</p>
+                <ul>
+                    <li>\(T(1,0) = (a, c) = (2, 0)\) → so \(a = 2\) and \(c = 0\)</li>
+                    <li>\(T(0,1) = (b, d) = (1, 2)\) → so \(b = 1\) and \(d = 2\)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Verify with the fourth corner</div>
+                <p>\(T(1,1) = (2(1) + 1(1), 0(1) + 2(1)) = (3, 2)\) ✓</p>
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer (a)</div>
+                \[T(u,v) = (2u + v, 2v)\]
+                <p>Or equivalently: \(x = 2u + v\), \(y = 2v\)</p>
+            </div>
+
+            <div class="part-label">Part (b): Change of Variables Formula</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Key Concept: The Jacobian</div>
+                <p>When changing variables, we need the Jacobian determinant:</p>
+                \[\frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{vmatrix}\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Compute the partial derivatives</div>
+                <p>From \(x = 2u + v\) and \(y = 2v\):</p>
+                \[\frac{\partial x}{\partial u} = 2, \quad \frac{\partial x}{\partial v} = 1, \quad \frac{\partial y}{\partial u} = 0, \quad \frac{\partial y}{\partial v} = 2\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Calculate the Jacobian</div>
+                \[\frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} 2 & 1 \\ 0 & 2 \end{vmatrix} = (2)(2) - (1)(0) = 4\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer (b)</div>
+                \[\iint_P f(x,y) \, dA = \iint_S f(2u+v, 2v) \cdot 4 \, du \, dv\]
+                <p>where \(S = [0,1] \times [0,1]\)</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.118 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.118</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=wUei4g-pDB0" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Jacobian & Change of Variables
+            </a>
+            <a href="https://www.youtube.com/watch?v=Ip3X9LOh2dk" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                3Blue1Brown: The Determinant
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p><strong>(a)</strong> Find the image of the square \([0,1] \times [0,1]\) under the transformation \(T(x,y) = (2x, x + 3y)\).</p>
+            <p><strong>(b)</strong> Write down a change of variables formula appropriate to the transformation and the region you found in part (a).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="part-label">Part (a): Finding the Image</div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Transform each corner of the square</div>
+                <p>Let \(u = 2x\) and \(v = x + 3y\). Apply this to each corner:</p>
+                <ul>
+                    <li>\((0,0) \to (2(0), 0 + 3(0)) = (0, 0)\)</li>
+                    <li>\((1,0) \to (2(1), 1 + 3(0)) = (2, 1)\)</li>
+                    <li>\((0,1) \to (2(0), 0 + 3(1)) = (0, 3)\)</li>
+                    <li>\((1,1) \to (2(1), 1 + 3(1)) = (2, 4)\)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Identify the shape</div>
+                <p>Plotting these points: \((0,0), (2,1), (0,3), (2,4)\)</p>
+                <p>These form a parallelogram (linear transformations always map parallelograms to parallelograms).</p>
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer (a)</div>
+                <p>The image is a parallelogram with vertices at \((0,0), (2,1), (0,3), (2,4)\)</p>
+            </div>
+
+            <div class="part-label">Part (b): Change of Variables Formula</div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Compute the Jacobian</div>
+                <p>With \(u = 2x\) and \(v = x + 3y\):</p>
+                \[\frac{\partial(u,v)}{\partial(x,y)} = \begin{vmatrix} \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y} \end{vmatrix} = \begin{vmatrix} 2 & 0 \\ 1 & 3 \end{vmatrix} = 6\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer (b)</div>
+                \[\iint_P f(u,v) \, du \, dv = \iint_S f(2x, x+3y) \cdot 6 \, dx \, dy\]
+                <p>where \(S = [0,1] \times [0,1]\) and \(P\) is the parallelogram with vertices \((0,0), (2,1), (0,3), (2,4)\)</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.119 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.119</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=wUei4g-pDB0" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Jacobian & Change of Variables
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Let \(B\) be the region in the first quadrant bounded by the curves \(xy = 1\), \(xy = 3\), \(x^2 - y^2 = 1\), and \(x^2 - y^2 = 4\). Evaluate</p>
+            \[\iint_B (x^2 + y^2) \, dx \, dy\]
+            <p>using the change of variables \(u = x^2 - y^2\), \(v = xy\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Key Insight</div>
+                <p>The given substitution transforms the curved boundaries into straight lines! With \(u = x^2 - y^2\) and \(v = xy\):</p>
+                <ul>
+                    <li>\(xy = 1\) becomes \(v = 1\)</li>
+                    <li>\(xy = 3\) becomes \(v = 3\)</li>
+                    <li>\(x^2 - y^2 = 1\) becomes \(u = 1\)</li>
+                    <li>\(x^2 - y^2 = 4\) becomes \(u = 4\)</li>
+                </ul>
+                <p>So \(B\) transforms to the rectangle \([1,4] \times [1,3]\) in the \(uv\)-plane!</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Find the Jacobian \(\frac{\partial(u,v)}{\partial(x,y)}\)</div>
+                \[\frac{\partial u}{\partial x} = 2x, \quad \frac{\partial u}{\partial y} = -2y\]
+                \[\frac{\partial v}{\partial x} = y, \quad \frac{\partial v}{\partial y} = x\]
+                \[\frac{\partial(u,v)}{\partial(x,y)} = \begin{vmatrix} 2x & -2y \\ y & x \end{vmatrix} = 2x^2 + 2y^2 = 2(x^2 + y^2)\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Find the inverse Jacobian</div>
+                <p>We need \(\left|\frac{\partial(x,y)}{\partial(u,v)}\right|\) for the change of variables:</p>
+                \[\left|\frac{\partial(x,y)}{\partial(u,v)}\right| = \frac{1}{\left|\frac{\partial(u,v)}{\partial(x,y)}\right|} = \frac{1}{2(x^2 + y^2)}\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Transform the integral</div>
+                \[\iint_B (x^2 + y^2) \, dx \, dy = \iint_{B'} (x^2 + y^2) \cdot \frac{1}{2(x^2 + y^2)} \, du \, dv\]
+                \[= \iint_{B'} \frac{1}{2} \, du \, dv\]
+                <p>where \(B' = [1,4] \times [1,3]\)</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Evaluate</div>
+                \[= \frac{1}{2} \int_1^4 \int_1^3 dv \, du = \frac{1}{2} \cdot (4-1) \cdot (3-1) = \frac{1}{2} \cdot 3 \cdot 2 = 3\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[\iint_B (x^2 + y^2) \, dx \, dy = 3\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.121 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.121</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Cylindrical/Spherical)
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Find the volume inside the surfaces \(x^2 + y^2 = z\) and \(x^2 + y^2 + z^2 = 2\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Understanding the Surfaces</div>
+                <ul>
+                    <li>\(x^2 + y^2 = z\) is a paraboloid opening upward with vertex at origin</li>
+                    <li>\(x^2 + y^2 + z^2 = 2\) is a sphere of radius \(\sqrt{2}\) centered at origin</li>
+                </ul>
+                <p>We want the volume of the region inside the sphere and above the paraboloid.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Use cylindrical coordinates</div>
+                <p>Let \(x = r\cos\theta\), \(y = r\sin\theta\), \(z = z\).</p>
+                <ul>
+                    <li>Paraboloid: \(r^2 = z\)</li>
+                    <li>Sphere: \(r^2 + z^2 = 2\)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Find the intersection</div>
+                <p>Substituting \(r^2 = z\) into \(r^2 + z^2 = 2\):</p>
+                \[z + z^2 = 2\]
+                \[z^2 + z - 2 = 0\]
+                \[(z + 2)(z - 1) = 0\]
+                <p>So \(z = 1\) (taking the positive value). At this height, \(r^2 = 1\), so \(r = 1\).</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Set up the integral</div>
+                <p>For \(0 \le r \le 1\): \(z\) goes from the paraboloid (\(z = r^2\)) up to the sphere (\(z = \sqrt{2 - r^2}\))</p>
+                \[V = \int_0^{2\pi} \int_0^1 \int_{r^2}^{\sqrt{2-r^2}} r \, dz \, dr \, d\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Evaluate the z-integral</div>
+                \[V = \int_0^{2\pi} \int_0^1 r\left[\sqrt{2-r^2} - r^2\right] dr \, d\theta\]
+                \[= 2\pi \int_0^1 \left(r\sqrt{2-r^2} - r^3\right) dr\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 5: Evaluate each part</div>
+                <p>For \(\int_0^1 r\sqrt{2-r^2} \, dr\): Let \(u = 2 - r^2\), \(du = -2r \, dr\)</p>
+                \[= -\frac{1}{2}\int_2^1 \sqrt{u} \, du = \frac{1}{2}\int_1^2 \sqrt{u} \, du = \frac{1}{2} \cdot \frac{2}{3}\left[u^{3/2}\right]_1^2 = \frac{1}{3}(2\sqrt{2} - 1)\]
+
+                <p>For \(\int_0^1 r^3 \, dr = \frac{1}{4}\)</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 6: Combine</div>
+                \[V = 2\pi\left[\frac{1}{3}(2\sqrt{2} - 1) - \frac{1}{4}\right]\]
+                \[= 2\pi\left[\frac{2\sqrt{2} - 1}{3} - \frac{1}{4}\right]\]
+                \[= 2\pi\left[\frac{4(2\sqrt{2} - 1) - 3}{12}\right]\]
+                \[= 2\pi\left[\frac{8\sqrt{2} - 7}{12}\right]\]
+                \[= \frac{\pi(8\sqrt{2} - 7)}{6}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{\pi(8\sqrt{2} - 7)}{6}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.122 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.122</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Cylindrical/Spherical)
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Find the volume enclosed by the cone \(x^2 + y^2 = z^2\) and the plane \(2z - y - 2 = 0\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Understanding the Geometry</div>
+                <ul>
+                    <li>The cone \(x^2 + y^2 = z^2\) has two nappes. We'll use \(z = \sqrt{x^2 + y^2}\) (upper nappe).</li>
+                    <li>The plane \(2z - y - 2 = 0\) can be rewritten as \(z = \frac{y + 2}{2}\)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Find the curve of intersection</div>
+                <p>Setting \(\sqrt{x^2 + y^2} = \frac{y + 2}{2}\):</p>
+                \[x^2 + y^2 = \frac{(y+2)^2}{4}\]
+                \[4x^2 + 4y^2 = y^2 + 4y + 4\]
+                \[4x^2 + 3y^2 - 4y = 4\]
+                \[4x^2 + 3\left(y - \frac{2}{3}\right)^2 = 4 + \frac{4}{3} = \frac{16}{3}\]
+                <p>This is an ellipse in the xy-plane.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Set up in cylindrical coordinates</div>
+                <p>Using \(x = r\cos\theta\), \(y = r\sin\theta\):</p>
+                <ul>
+                    <li>Cone: \(z = r\)</li>
+                    <li>Plane: \(z = \frac{r\sin\theta + 2}{2}\)</li>
+                </ul>
+                <p>The region is bounded below by the cone and above by the plane.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Find the boundary curve in polar</div>
+                <p>At the intersection: \(r = \frac{r\sin\theta + 2}{2}\)</p>
+                \[2r = r\sin\theta + 2\]
+                \[r(2 - \sin\theta) = 2\]
+                \[r = \frac{2}{2 - \sin\theta}\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Set up and evaluate the integral</div>
+                \[V = \int_0^{2\pi} \int_0^{\frac{2}{2-\sin\theta}} \int_r^{\frac{r\sin\theta + 2}{2}} r \, dz \, dr \, d\theta\]
+
+                \[= \int_0^{2\pi} \int_0^{\frac{2}{2-\sin\theta}} r\left(\frac{r\sin\theta + 2}{2} - r\right) dr \, d\theta\]
+
+                \[= \int_0^{2\pi} \int_0^{\frac{2}{2-\sin\theta}} r\left(\frac{r\sin\theta + 2 - 2r}{2}\right) dr \, d\theta\]
+
+                \[= \int_0^{2\pi} \int_0^{\frac{2}{2-\sin\theta}} \frac{r(2 - r(2-\sin\theta))}{2} dr \, d\theta\]
+
+                <p>Let \(R = \frac{2}{2-\sin\theta}\). Then:</p>
+                \[= \int_0^{2\pi} \frac{1}{2}\left[r^2 - \frac{r^3(2-\sin\theta)}{3}\right]_0^R d\theta\]
+
+                \[= \int_0^{2\pi} \frac{1}{2}\left[R^2 - \frac{R^3(2-\sin\theta)}{3}\right] d\theta\]
+
+                <p>Since \(R(2-\sin\theta) = 2\), we have \(R^3(2-\sin\theta) = 2R^2\):</p>
+                \[= \int_0^{2\pi} \frac{1}{2}\left[R^2 - \frac{2R^2}{3}\right] d\theta = \int_0^{2\pi} \frac{R^2}{6} d\theta\]
+
+                \[= \frac{1}{6}\int_0^{2\pi} \frac{4}{(2-\sin\theta)^2} d\theta = \frac{2}{3}\int_0^{2\pi} \frac{1}{(2-\sin\theta)^2} d\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 5: Evaluate the trigonometric integral</div>
+                <p>Using the Weierstrass substitution \(t = \tan(\theta/2)\):</p>
+                \[\sin\theta = \frac{2t}{1+t^2}, \quad d\theta = \frac{2}{1+t^2}dt\]
+
+                <p>After detailed computation (standard integral table):</p>
+                \[\int_0^{2\pi} \frac{1}{(2-\sin\theta)^2} d\theta = \frac{4\pi}{3\sqrt{3}}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{2}{3} \cdot \frac{4\pi}{3\sqrt{3}} = \frac{8\pi}{9\sqrt{3}} = \frac{8\pi\sqrt{3}}{27}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.123 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.123</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=J51ncHP_BrY" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Vsauce: The Napkin Ring Problem (10M+ views!)
+            </a>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Cylindrical)
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>A cylindrical hole of diameter 1 is bored through a sphere of radius 2. Assuming that the axis of the cylinder passes through the center of the sphere, find the volume of the solid that remains.</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Setup</div>
+                <ul>
+                    <li>Sphere: \(x^2 + y^2 + z^2 = 4\) (radius 2)</li>
+                    <li>Cylinder: \(x^2 + y^2 = \frac{1}{4}\) (radius \(\frac{1}{2}\), diameter 1)</li>
+                </ul>
+                <p>We want the volume of the sphere minus the cylindrical core.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Use cylindrical coordinates</div>
+                <p>The remaining solid is the region where \(\frac{1}{2} \le r \le 2\) and \(-\sqrt{4-r^2} \le z \le \sqrt{4-r^2}\).</p>
+                \[V = \int_0^{2\pi} \int_{1/2}^{2} \int_{-\sqrt{4-r^2}}^{\sqrt{4-r^2}} r \, dz \, dr \, d\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Evaluate the z-integral</div>
+                \[V = \int_0^{2\pi} \int_{1/2}^{2} 2r\sqrt{4-r^2} \, dr \, d\theta\]
+                \[= 2\pi \cdot 2 \int_{1/2}^{2} r\sqrt{4-r^2} \, dr\]
+                \[= 4\pi \int_{1/2}^{2} r\sqrt{4-r^2} \, dr\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Substitute for the r-integral</div>
+                <p>Let \(u = 4 - r^2\), so \(du = -2r \, dr\), meaning \(r \, dr = -\frac{1}{2}du\)</p>
+                <p>When \(r = \frac{1}{2}\): \(u = 4 - \frac{1}{4} = \frac{15}{4}\)</p>
+                <p>When \(r = 2\): \(u = 0\)</p>
+
+                \[4\pi \int_{1/2}^{2} r\sqrt{4-r^2} \, dr = 4\pi \cdot \left(-\frac{1}{2}\right) \int_{15/4}^{0} \sqrt{u} \, du\]
+                \[= 2\pi \int_0^{15/4} \sqrt{u} \, du\]
+                \[= 2\pi \left[\frac{2}{3}u^{3/2}\right]_0^{15/4}\]
+                \[= \frac{4\pi}{3}\left(\frac{15}{4}\right)^{3/2}\]
+                \[= \frac{4\pi}{3} \cdot \frac{15^{3/2}}{8}\]
+                \[= \frac{\pi \cdot 15\sqrt{15}}{6}\]
+                \[= \frac{15\pi\sqrt{15}}{6} = \frac{5\pi\sqrt{15}}{2}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{5\pi\sqrt{15}}{2}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.124 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.124</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=R7GYuV_TwnY" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Steinmetz Solid: Volume of Intersecting Cylinders
+            </a>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Let \(C_1\) and \(C_2\) be two cylinders of infinite extent, of diameter 2, and with axes on the \(x\) and \(y\) axes, respectively. Find the volume of their intersection, \(C_1 \cap C_2\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">The Steinmetz Solid</div>
+                <p>This is a famous shape called the Steinmetz solid or bicylinder.</p>
+                <ul>
+                    <li>\(C_1\): axis along x-axis, so \(y^2 + z^2 \le 1\)</li>
+                    <li>\(C_2\): axis along y-axis, so \(x^2 + z^2 \le 1\)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Understand the cross-sections</div>
+                <p>For a fixed value of \(z\) with \(|z| \le 1\):</p>
+                <ul>
+                    <li>From \(C_1\): \(|y| \le \sqrt{1-z^2}\)</li>
+                    <li>From \(C_2\): \(|x| \le \sqrt{1-z^2}\)</li>
+                </ul>
+                <p>So the cross-section at height \(z\) is a square with side length \(2\sqrt{1-z^2}\).</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Set up the integral</div>
+                <p>The area of each square cross-section is \(\left(2\sqrt{1-z^2}\right)^2 = 4(1-z^2)\)</p>
+                \[V = \int_{-1}^{1} 4(1-z^2) \, dz\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Evaluate</div>
+                \[V = 4\int_{-1}^{1} (1-z^2) \, dz\]
+                \[= 4\left[z - \frac{z^3}{3}\right]_{-1}^{1}\]
+                \[= 4\left[\left(1 - \frac{1}{3}\right) - \left(-1 + \frac{1}{3}\right)\right]\]
+                \[= 4\left[\frac{2}{3} - \left(-\frac{2}{3}\right)\right]\]
+                \[= 4 \cdot \frac{4}{3}\]
+                \[= \frac{16}{3}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{16}{3}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.125 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.125</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=HfACrKJ_Y2w" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                MathisPower4U: Tetrahedron Volume (Triple Integral)
+            </a>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Find the volume bounded by \(\frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1\) and the coordinate planes.</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">The Shape</div>
+                <p>This is a tetrahedron with vertices at:</p>
+                <ul>
+                    <li>\((0, 0, 0)\) - origin</li>
+                    <li>\((a, 0, 0)\) - x-intercept</li>
+                    <li>\((0, b, 0)\) - y-intercept</li>
+                    <li>\((0, 0, c)\) - z-intercept</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Set up the triple integral</div>
+                <p>From the plane equation: \(z = c\left(1 - \frac{x}{a} - \frac{y}{b}\right)\)</p>
+                <p>For \(z \ge 0\), we need \(1 - \frac{x}{a} - \frac{y}{b} \ge 0\), i.e., \(\frac{x}{a} + \frac{y}{b} \le 1\)</p>
+
+                \[V = \int_0^a \int_0^{b(1-x/a)} \int_0^{c(1-x/a-y/b)} dz \, dy \, dx\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Integrate with respect to z</div>
+                \[V = \int_0^a \int_0^{b(1-x/a)} c\left(1 - \frac{x}{a} - \frac{y}{b}\right) dy \, dx\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Integrate with respect to y</div>
+                <p>Let \(u = 1 - \frac{x}{a}\). Then \(y\) goes from 0 to \(bu\).</p>
+                \[= c\int_0^a \left[\left(1-\frac{x}{a}\right)y - \frac{y^2}{2b}\right]_0^{b(1-x/a)} dx\]
+                \[= c\int_0^a \left[ub \cdot u - \frac{(bu)^2}{2b}\right] dx\]
+                \[= c\int_0^a \left[bu^2 - \frac{bu^2}{2}\right] dx\]
+                \[= c\int_0^a \frac{bu^2}{2} dx = \frac{bc}{2}\int_0^a \left(1-\frac{x}{a}\right)^2 dx\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Integrate with respect to x</div>
+                <p>Let \(t = \frac{x}{a}\), so \(dx = a \, dt\):</p>
+                \[= \frac{abc}{2}\int_0^1 (1-t)^2 \, dt\]
+                \[= \frac{abc}{2}\left[-\frac{(1-t)^3}{3}\right]_0^1\]
+                \[= \frac{abc}{2} \cdot \frac{1}{3}\]
+                \[= \frac{abc}{6}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{abc}{6}\]
+                <p>(This is the well-known formula for the volume of a tetrahedron with perpendicular edges of lengths \(a\), \(b\), \(c\).)</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.126 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.126</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Cylindrical/Spherical)
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Find the volume determined by \(z \le 6 - x^2 - y^2\) and \(z \ge \sqrt{x^2 + y^2}\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">The Surfaces</div>
+                <ul>
+                    <li>\(z = 6 - x^2 - y^2\) is a paraboloid opening downward with vertex at \((0,0,6)\)</li>
+                    <li>\(z = \sqrt{x^2 + y^2}\) is a cone opening upward with vertex at the origin</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Find the intersection (in cylindrical coordinates)</div>
+                <p>Using \(r^2 = x^2 + y^2\):</p>
+                <ul>
+                    <li>Paraboloid: \(z = 6 - r^2\)</li>
+                    <li>Cone: \(z = r\)</li>
+                </ul>
+                <p>Setting them equal:</p>
+                \[r = 6 - r^2\]
+                \[r^2 + r - 6 = 0\]
+                \[(r + 3)(r - 2) = 0\]
+                <p>So \(r = 2\) (taking positive value).</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Set up the integral</div>
+                \[V = \int_0^{2\pi} \int_0^2 \int_r^{6-r^2} r \, dz \, dr \, d\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Integrate with respect to z</div>
+                \[V = \int_0^{2\pi} \int_0^2 r\left(6 - r^2 - r\right) dr \, d\theta\]
+                \[= 2\pi \int_0^2 \left(6r - r^3 - r^2\right) dr\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Integrate with respect to r</div>
+                \[= 2\pi \left[3r^2 - \frac{r^4}{4} - \frac{r^3}{3}\right]_0^2\]
+                \[= 2\pi \left[3(4) - \frac{16}{4} - \frac{8}{3}\right]\]
+                \[= 2\pi \left[12 - 4 - \frac{8}{3}\right]\]
+                \[= 2\pi \left[8 - \frac{8}{3}\right]\]
+                \[= 2\pi \cdot \frac{16}{3}\]
+                \[= \frac{32\pi}{3}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{32\pi}{3}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.127 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.127</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=HfACrKJ_Y2w" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                MathisPower4U: Tetrahedron Volume
+            </a>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>The tetrahedron defined by \(x \ge 0\), \(y \ge 0\), \(z \ge 0\), \(x + y + z \le 1\) is to be sliced into \(n\) segments of equal volume by planes parallel to the plane \(x + y + z = 1\). Where should the slices be made?</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Key Insight</div>
+                <p>The slicing planes have the form \(x + y + z = k\) for various values of \(k\) between 0 and 1.</p>
+                <p>The region below the plane \(x + y + z = k\) (and above the coordinate planes) is a smaller, similar tetrahedron.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Find the volume below \(x + y + z = k\)</div>
+                <p>From Question 16.125, with \(a = b = c = 1\), the full tetrahedron has volume \(\frac{1}{6}\).</p>
+                <p>The tetrahedron below \(x + y + z = k\) is similar with scale factor \(k\), so its volume is:</p>
+                \[V(k) = \frac{1}{6}k^3\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Set up the equal volume condition</div>
+                <p>Total volume = \(\frac{1}{6}\)</p>
+                <p>Each of the \(n\) segments should have volume \(\frac{1}{6n}\)</p>
+                <p>The \(i\)-th slice (from the bottom) should contain volume \(\frac{i}{6n}\).</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Solve for the cutting planes</div>
+                <p>We need \(V(k_i) = \frac{i}{6n}\), so:</p>
+                \[\frac{1}{6}k_i^3 = \frac{i}{6n}\]
+                \[k_i^3 = \frac{i}{n}\]
+                \[k_i = \left(\frac{i}{n}\right)^{1/3}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                <p>The slices should be made at the planes:</p>
+                \[x + y + z = \left(\frac{i}{n}\right)^{1/3} \quad \text{for } i = 1, 2, 3, \ldots, n-1\]
+                <p>Equivalently, at \(x + y + z = \sqrt[3]{\frac{1}{n}}, \sqrt[3]{\frac{2}{n}}, \sqrt[3]{\frac{3}{n}}, \ldots, \sqrt[3]{\frac{n-1}{n}}\)</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.128 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.128</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Spherical)
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Let \(E\) be the solid ellipsoid \(E = \{(x,y,z) \mid \frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \le 1\}\), where \(a > 0\), \(b > 0\), and \(c > 0\). Evaluate</p>
+            \[\iiint_E xyz \, dx \, dy \, dz\]
+            <p><strong>(a)</strong> over the whole ellipsoid; and</p>
+            <p><strong>(b)</strong> over that part of it in the first quadrant: \(x \ge 0\), \(y \ge 0\), and \(z \ge 0\), \(\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} \le 1\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="part-label">Part (a): Over the whole ellipsoid</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Symmetry Argument</div>
+                <p>The integrand \(f(x,y,z) = xyz\) is an odd function in each variable:</p>
+                <ul>
+                    <li>\(f(-x,y,z) = -xyz = -f(x,y,z)\)</li>
+                    <li>\(f(x,-y,z) = -xyz = -f(x,y,z)\)</li>
+                    <li>\(f(x,y,-z) = -xyz = -f(x,y,z)\)</li>
+                </ul>
+                <p>The ellipsoid is symmetric about each coordinate plane (i.e., if \((x,y,z)\) is in \(E\), so is \((-x,y,z)\), etc.)</p>
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer (a)</div>
+                \[\iiint_E xyz \, dx \, dy \, dz = 0\]
+                <p>By symmetry, the contributions from opposite octants cancel.</p>
+            </div>
+
+            <div class="part-label">Part (b): Over the first octant portion</div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Use ellipsoidal coordinates</div>
+                <p>Substitute: \(x = a\rho\sin\phi\cos\theta\), \(y = b\rho\sin\phi\sin\theta\), \(z = c\rho\cos\phi\)</p>
+                <p>The Jacobian is \(abc\rho^2\sin\phi\)</p>
+                <p>For the first octant: \(0 \le \rho \le 1\), \(0 \le \phi \le \frac{\pi}{2}\), \(0 \le \theta \le \frac{\pi}{2}\)</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Set up the integral</div>
+                \[\iiint xyz \cdot abc\rho^2\sin\phi \, d\rho \, d\phi \, d\theta\]
+                <p>where \(xyz = (a\rho\sin\phi\cos\theta)(b\rho\sin\phi\sin\theta)(c\rho\cos\phi)\)</p>
+                \[= abc\rho^3\sin^2\phi\cos\phi\sin\theta\cos\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Write the full integral</div>
+                \[= a^2b^2c^2 \int_0^{\pi/2} \int_0^{\pi/2} \int_0^1 \rho^5 \sin^3\phi\cos\phi\sin\theta\cos\theta \, d\rho \, d\phi \, d\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Separate and evaluate each integral</div>
+                <p><strong>\(\rho\)-integral:</strong></p>
+                \[\int_0^1 \rho^5 \, d\rho = \left[\frac{\rho^6}{6}\right]_0^1 = \frac{1}{6}\]
+
+                <p><strong>\(\phi\)-integral:</strong></p>
+                \[\int_0^{\pi/2} \sin^3\phi\cos\phi \, d\phi\]
+                <p>Let \(u = \sin\phi\), \(du = \cos\phi \, d\phi\):</p>
+                \[= \int_0^1 u^3 \, du = \left[\frac{u^4}{4}\right]_0^1 = \frac{1}{4}\]
+
+                <p><strong>\(\theta\)-integral:</strong></p>
+                \[\int_0^{\pi/2} \sin\theta\cos\theta \, d\theta = \int_0^{\pi/2} \frac{1}{2}\sin(2\theta) \, d\theta\]
+                \[= \frac{1}{2}\left[-\frac{\cos(2\theta)}{2}\right]_0^{\pi/2} = \frac{1}{4}[-(-1) - (-1)] = \frac{1}{4}(2) = \frac{1}{2}\]
+
+                <p>Wait, let me recalculate:</p>
+                \[= \left[\frac{\sin^2\theta}{2}\right]_0^{\pi/2} = \frac{1}{2}\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 5: Combine</div>
+                \[= a^2b^2c^2 \cdot \frac{1}{6} \cdot \frac{1}{4} \cdot \frac{1}{2} = \frac{a^2b^2c^2}{48}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer (b)</div>
+                \[\iiint_{E \cap \text{first octant}} xyz \, dx \, dy \, dz = \frac{a^2b^2c^2}{48}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Question 16.129 -->
+    <div class="problem">
+        <div class="problem-header">Question 16.129</div>
+        <div class="video-section">
+            <div class="video-section-title">📺 Helpful Videos</div>
+            <a href="https://www.youtube.com/watch?v=LhphjdYE_Eg" target="_blank" class="video-link">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Professor Leonard: Triple Integrals (Spherical) - Ice Cream Cone
+            </a>
+            <a href="https://www.khanacademy.org/math/multivariable-calculus/integrating-multivariable-functions" target="_blank" class="video-link" style="background: linear-gradient(135deg, #14bf96 0%, #0d9e7e 100%);">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Khan Academy: Triple Integrals (Spherical)
+            </a>
+        </div>
+        <div class="problem-statement">
+            <p>Find the volume of the "ice cream cone" defined by the inequalities \(x^2 + y^2 \le \frac{1}{5}z^2\), and \(0 \le z \le 5 + \sqrt{5 - x^2 - y^2}\).</p>
+        </div>
+
+        <div class="solution">
+            <div class="solution-header">Solution</div>
+
+            <div class="key-concept">
+                <div class="key-concept-title">Understanding the Shape</div>
+                <ul>
+                    <li>The cone \(x^2 + y^2 \le \frac{1}{5}z^2\) opens upward with vertex at origin. This is equivalent to \(r \le \frac{z}{\sqrt{5}}\) or \(z \ge \sqrt{5}r\).</li>
+                    <li>The upper bound \(z = 5 + \sqrt{5 - x^2 - y^2} = 5 + \sqrt{5 - r^2}\) is part of a sphere centered at \((0, 0, 5)\) with radius \(\sqrt{5}\).</li>
+                    <li>The constraint \(5 - r^2 \ge 0\) means \(r \le \sqrt{5}\).</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 1: Find where the cone meets the spherical cap</div>
+                <p>Setting \(z = \sqrt{5}r\) equal to \(z = 5 + \sqrt{5 - r^2}\):</p>
+                \[\sqrt{5}r = 5 + \sqrt{5 - r^2}\]
+                \[\sqrt{5}r - 5 = \sqrt{5 - r^2}\]
+                <p>Squaring (noting we need \(\sqrt{5}r \ge 5\), i.e., \(r \ge \sqrt{5}\)):</p>
+                \[5r^2 - 10\sqrt{5}r + 25 = 5 - r^2\]
+                \[6r^2 - 10\sqrt{5}r + 20 = 0\]
+                \[3r^2 - 5\sqrt{5}r + 10 = 0\]
+
+                <p>Using the quadratic formula:</p>
+                \[r = \frac{5\sqrt{5} \pm \sqrt{125 - 120}}{6} = \frac{5\sqrt{5} \pm \sqrt{5}}{6}\]
+
+                <p>So \(r = \frac{6\sqrt{5}}{6} = \sqrt{5}\) or \(r = \frac{4\sqrt{5}}{6} = \frac{2\sqrt{5}}{3}\)</p>
+
+                <p>Since we need \(r \ge \sqrt{5}\), the intersection occurs at \(r = \sqrt{5}\), where \(z = 5\).</p>
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 2: Set up the integral</div>
+                <p>The region is bounded below by the cone \(z = \sqrt{5}r\) and above by the spherical cap \(z = 5 + \sqrt{5 - r^2}\), for \(0 \le r \le \sqrt{5}\).</p>
+                \[V = \int_0^{2\pi} \int_0^{\sqrt{5}} \int_{\sqrt{5}r}^{5+\sqrt{5-r^2}} r \, dz \, dr \, d\theta\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 3: Integrate with respect to z</div>
+                \[V = 2\pi \int_0^{\sqrt{5}} r\left(5 + \sqrt{5-r^2} - \sqrt{5}r\right) dr\]
+                \[= 2\pi \int_0^{\sqrt{5}} \left(5r + r\sqrt{5-r^2} - \sqrt{5}r^2\right) dr\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 4: Evaluate each part</div>
+                <p><strong>First integral:</strong></p>
+                \[\int_0^{\sqrt{5}} 5r \, dr = 5 \cdot \frac{r^2}{2}\Big|_0^{\sqrt{5}} = \frac{5 \cdot 5}{2} = \frac{25}{2}\]
+
+                <p><strong>Second integral:</strong> Let \(u = 5 - r^2\), \(du = -2r \, dr\)</p>
+                \[\int_0^{\sqrt{5}} r\sqrt{5-r^2} \, dr = -\frac{1}{2}\int_5^0 \sqrt{u} \, du = \frac{1}{2}\int_0^5 \sqrt{u} \, du\]
+                \[= \frac{1}{2} \cdot \frac{2}{3}u^{3/2}\Big|_0^5 = \frac{1}{3} \cdot 5\sqrt{5} = \frac{5\sqrt{5}}{3}\]
+
+                <p><strong>Third integral:</strong></p>
+                \[\int_0^{\sqrt{5}} \sqrt{5}r^2 \, dr = \sqrt{5} \cdot \frac{r^3}{3}\Big|_0^{\sqrt{5}} = \sqrt{5} \cdot \frac{5\sqrt{5}}{3} = \frac{25}{3}\]
+            </div>
+
+            <div class="step">
+                <div class="step-title">Step 5: Combine</div>
+                \[V = 2\pi\left(\frac{25}{2} + \frac{5\sqrt{5}}{3} - \frac{25}{3}\right)\]
+                \[= 2\pi\left(\frac{75}{6} - \frac{50}{6} + \frac{10\sqrt{5}}{6}\right)\]
+                \[= 2\pi\left(\frac{25 + 10\sqrt{5}}{6}\right)\]
+                \[= \frac{\pi(25 + 10\sqrt{5})}{3}\]
+            </div>
+
+            <div class="final-answer">
+                <div class="final-answer-title">Answer</div>
+                \[V = \frac{\pi(25 + 10\sqrt{5})}{3} = \frac{5\pi(5 + 2\sqrt{5})}{3}\]
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div style="text-align: center; padding: 40px; color: #666;">
+        <p><strong>End of Solutions</strong></p>
+        <p>These solutions cover Questions 16.117 - 16.129 from Chapter 16: Multiple Integrals</p>
+    </div>
+
+</body>
+</html>

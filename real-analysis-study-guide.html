@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Analysis Study Guide - Based on Baby Rudin</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --primary: #7c3aed;
+  --accent: #9333ea;
+  --dark-bg: #1a1a2e;
+  --light-bg: #f8f9fa;
+  --white-bg: #ffffff;
+  --text: #1f2937;
+  --text-light: #6b7280;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--white-bg);
+}
+
+header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-top: 0.5rem;
+}
+
+nav {
+  background: var(--dark-bg);
+  padding: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.3s;
+  font-size: 0.9rem;
+}
+
+nav a:hover {
+  background: var(--primary);
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.intro {
+  background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.intro h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+section.chapter {
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+  border-top: 3px solid var(--primary);
+}
+
+.chapter-header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.chapter-number {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+.chapter-header h2 {
+  font-size: 1.8rem;
+  margin-top: 0.5rem;
+}
+
+.definition {
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.definition-title {
+  font-weight: bold;
+  color: #1d4ed8;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.theorem {
+  background: #f0fdf4;
+  border-left: 4px solid var(--success);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.theorem-title {
+  font-weight: bold;
+  color: #166534;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.proof {
+  background: #fefce8;
+  border-left: 4px solid var(--warning);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.proof-title {
+  font-weight: bold;
+  color: #a16207;
+  margin-bottom: 0.5rem;
+}
+
+.example {
+  background: #fdf4ff;
+  border-left: 4px solid var(--accent);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.example-title {
+  font-weight: bold;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.remark {
+  background: #f1f5f9;
+  border-left: 4px solid #64748b;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.remark-title {
+  font-weight: bold;
+  color: #475569;
+  margin-bottom: 0.5rem;
+}
+
+.warning-box {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.warning-title {
+  font-weight: bold;
+  color: #dc2626;
+  margin-bottom: 0.5rem;
+}
+
+.intuition {
+  background: #fff7ed;
+  border-left: 4px solid #f97316;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.intuition-title {
+  font-weight: bold;
+  color: #ea580c;
+  margin-bottom: 0.5rem;
+}
+
+.problem {
+  background: var(--white-bg);
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.problem-header {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.problem-number {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.problem-title {
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
+.problem-statement {
+  padding: 1.5rem;
+  background: #faf5ff;
+  border-bottom: 1px solid #e9d5ff;
+}
+
+.solution {
+  padding: 1.5rem;
+}
+
+.solution-header {
+  font-weight: bold;
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.step {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid #e9d5ff;
+}
+
+.step-title {
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.math {
+  margin: 1rem 0;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+.answer {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  padding: 1rem 1.5rem;
+  border-top: 2px solid var(--success);
+}
+
+.answer-label {
+  font-size: 0.8rem;
+  color: var(--success);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.answer-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #166534;
+  margin-top: 0.25rem;
+}
+
+.formula-box {
+  background: linear-gradient(135deg, #1a1a2e, #2d2d44);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.formula-name {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #a78bfa;
+  margin-bottom: 0.5rem;
+}
+
+.formula {
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.tip {
+  background: #ecfdf5;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+  color: #065f46;
+}
+
+h3 {
+  color: var(--primary);
+  margin: 2rem 0 1rem 0;
+  font-size: 1.4rem;
+}
+
+h4 {
+  color: var(--text);
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0.75rem 0;
+}
+
+ul, ol {
+  margin: 0.75rem 0 0.75rem 1.5rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+.back-top {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.back-top a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+footer {
+  background: var(--dark-bg);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  .problem-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+<h1>Real Analysis Study Guide</h1>
+<p>A Comprehensive Guide Based on Rudin's "Principles of Mathematical Analysis"</p>
+<p class="subtitle">With detailed proofs, examples, and practice problems</p>
+</header>
+
+<nav>
+<ul>
+<li><a href="#chapter1">Real Numbers</a></li>
+<li><a href="#chapter2">Sequences</a></li>
+<li><a href="#chapter3">Series</a></li>
+<li><a href="#chapter4">Continuity</a></li>
+<li><a href="#chapter5">Differentiation</a></li>
+<li><a href="#chapter6">Integration</a></li>
+<li><a href="#chapter7">Sequences of Functions</a></li>
+</ul>
+</nav>
+
+<main>
+
+<div class="intro">
+<h2>About This Guide</h2>
+<p>This study guide covers the essential topics from undergraduate real analysis, following the structure of Walter Rudin's classic text "Principles of Mathematical Analysis" (Baby Rudin). Each section includes:</p>
+<ul>
+<li><strong>Intuition:</strong> Why the concept matters and how to think about it</li>
+<li><strong>Formal Definitions:</strong> Precise mathematical statements</li>
+<li><strong>Key Theorems:</strong> With complete, annotated proofs</li>
+<li><strong>Examples:</strong> Worked problems and counterexamples</li>
+<li><strong>Practice Problems:</strong> To test your understanding</li>
+</ul>
+</div>
+
+<!-- ================================================ -->
+<!-- CHAPTER 1: THE REAL NUMBER SYSTEM -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter1">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 1</span>
+<h2>The Real Number System</h2>
+</div>
+
+<div class="intuition">
+<div class="intuition-title">Why This Matters</div>
+<p>The real numbers $\mathbb{R}$ are the foundation of analysis. What makes $\mathbb{R}$ special? It's <em>complete</em>: there are no "holes" like in $\mathbb{Q}$. This completeness is what allows us to take limits, define continuity, and do calculus. Without it, even basic facts like "a continuous function on $[a,b]$ attains its maximum" would fail.</p>
+</div>
+
+<h3>1.1 Ordered Fields</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 1.1: Ordered Field</div>
+<p>A <strong>field</strong> $F$ is an <strong>ordered field</strong> if there exists a subset $P \subset F$ (called the positive elements) such that:</p>
+<ol>
+<li>If $x, y \in P$, then $x + y \in P$ and $xy \in P$ (closure under addition and multiplication)</li>
+<li>For every $x \in F$, exactly one holds: $x \in P$, $x = 0$, or $-x \in P$ (trichotomy)</li>
+</ol>
+<p>We write $x > 0$ if $x \in P$, and $x > y$ if $x - y > 0$.</p>
+</div>
+
+<div class="example">
+<div class="example-title">Example: $\mathbb{Q}$ is an Ordered Field</div>
+<p>The rational numbers $\mathbb{Q}$ form an ordered field with $P = \{q \in \mathbb{Q} : q > 0\}$. However, $\mathbb{Q}$ is <em>not</em> complete, as we'll see.</p>
+</div>
+
+<h3>1.2 The Completeness Axiom</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 1.2: Upper Bound and Supremum</div>
+<p>Let $S \subset \mathbb{R}$ be nonempty.</p>
+<ul>
+<li>$M$ is an <strong>upper bound</strong> for $S$ if $x \leq M$ for all $x \in S$</li>
+<li>$S$ is <strong>bounded above</strong> if it has an upper bound</li>
+<li>$\sup S$ (the <strong>supremum</strong> or <strong>least upper bound</strong>) is the smallest upper bound of $S$</li>
+</ul>
+<p><strong>Formally:</strong> $\alpha = \sup S$ means:</p>
+<ol>
+<li>$\alpha$ is an upper bound: $x \leq \alpha$ for all $x \in S$</li>
+<li>$\alpha$ is the <em>least</em> upper bound: if $\gamma < \alpha$, then $\gamma$ is not an upper bound (i.e., $\exists x \in S$ with $x > \gamma$)</li>
+</ol>
+</div>
+
+<div class="remark">
+<div class="remark-title">Characterization of Supremum</div>
+<p>An equivalent and often more useful characterization: $\alpha = \sup S$ if and only if:</p>
+<ol>
+<li>$x \leq \alpha$ for all $x \in S$</li>
+<li>For every $\varepsilon > 0$, there exists $x \in S$ such that $x > \alpha - \varepsilon$</li>
+</ol>
+<p>This "$\varepsilon$-characterization" is essential for proofs!</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Axiom 1.3: Completeness Axiom (Least Upper Bound Property)</div>
+<p>Every nonempty subset of $\mathbb{R}$ that is bounded above has a supremum in $\mathbb{R}$.</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">Why $\mathbb{Q}$ Fails Completeness</div>
+<p>Consider $S = \{q \in \mathbb{Q} : q^2 < 2\}$. This set is bounded above (by 2, for instance), but it has no supremum <em>in $\mathbb{Q}$</em>. The "would-be" supremum is $\sqrt{2}$, which is irrational. This is the "hole" in $\mathbb{Q}$ that the completeness axiom fills.</p>
+</div>
+
+<h3>1.3 Consequences of Completeness</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 1.4: Archimedean Property</div>
+<p>For any $x, y \in \mathbb{R}$ with $x > 0$, there exists $n \in \mathbb{N}$ such that $nx > y$.</p>
+<p><strong>Equivalently:</strong> $\mathbb{N}$ is unbounded in $\mathbb{R}$, i.e., for any $y \in \mathbb{R}$, there exists $n \in \mathbb{N}$ with $n > y$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p><strong>Strategy:</strong> Assume the contrary and derive a contradiction using completeness.</p>
+<p>Suppose the Archimedean property fails. Then there exist $x > 0$ and $y$ such that $nx \leq y$ for all $n \in \mathbb{N}$.</p>
+<p>This means the set $A = \{nx : n \in \mathbb{N}\}$ is bounded above by $y$.</p>
+<p>By completeness, $\alpha = \sup A$ exists.</p>
+<p>Since $x > 0$, we have $\alpha - x < \alpha$, so $\alpha - x$ is not an upper bound for $A$.</p>
+<p>Thus there exists $m \in \mathbb{N}$ with $mx > \alpha - x$.</p>
+<p>But then $(m+1)x > \alpha$, contradicting that $\alpha$ is an upper bound for $A$. $\square$</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 1.5: Density of $\mathbb{Q}$ in $\mathbb{R}$</div>
+<p>Between any two distinct real numbers, there exists a rational number.</p>
+<p><strong>Formally:</strong> If $x, y \in \mathbb{R}$ with $x < y$, then there exists $q \in \mathbb{Q}$ with $x < q < y$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p><strong>Goal:</strong> Find integers $m, n$ with $n > 0$ such that $x < \frac{m}{n} < y$.</p>
+<p><strong>Step 1:</strong> Since $y - x > 0$, by the Archimedean property, there exists $n \in \mathbb{N}$ with $n(y-x) > 1$, i.e., $ny - nx > 1$.</p>
+<p><strong>Step 2:</strong> By Archimedean property again, there exist integers $m_1, m_2$ with $m_1 > nx$ and $m_2 > -nx$ (i.e., $-m_2 < nx$).</p>
+<p>So there exists an integer $m$ with $nx < m < ny$ (take the smallest integer greater than $nx$; the gap $ny - nx > 1$ ensures this $m$ satisfies $m < ny$).</p>
+<p><strong>Step 3:</strong> Dividing by $n > 0$: $x < \frac{m}{n} < y$. $\square$</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 1.6: Existence of $n$-th Roots</div>
+<p>For every $x > 0$ and every $n \in \mathbb{N}$, there exists a unique $y > 0$ such that $y^n = x$.</p>
+<p>We write $y = x^{1/n}$ or $y = \sqrt[n]{x}$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof Sketch (for $n = 2$)</div>
+<p>Let $S = \{t \in \mathbb{R} : t \geq 0 \text{ and } t^2 < x\}$.</p>
+<p><strong>Step 1:</strong> $S$ is nonempty ($0 \in S$) and bounded above (by $\max(x, 1)$).</p>
+<p><strong>Step 2:</strong> Let $y = \sup S$. We show $y^2 = x$.</p>
+<p><strong>Step 3:</strong> If $y^2 < x$, we can find $\varepsilon > 0$ small enough that $(y + \varepsilon)^2 < x$, contradicting that $y$ is an upper bound.</p>
+<p><strong>Step 4:</strong> If $y^2 > x$, we can find $\varepsilon > 0$ such that $(y - \varepsilon)^2 > x$, meaning $y - \varepsilon$ is still an upper bound, contradicting that $y$ is the <em>least</em> upper bound.</p>
+<p>Therefore $y^2 = x$. $\square$</p>
+</div>
+
+<!-- Problem 1 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 1</span>
+<span class="problem-title">Supremum Computation</span>
+</div>
+<div class="problem-statement">
+<p>Find $\sup S$ and $\inf S$ for $S = \left\{\frac{n}{n+1} : n \in \mathbb{N}\right\}$. Prove your answers.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Identify the pattern</div>
+<p>The elements of $S$ are $\frac{1}{2}, \frac{2}{3}, \frac{3}{4}, \frac{4}{5}, \ldots$</p>
+<p>As $n \to \infty$, $\frac{n}{n+1} = \frac{1}{1 + 1/n} \to 1$.</p>
+<p><strong>Claim:</strong> $\sup S = 1$ and $\inf S = \frac{1}{2}$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Prove $\sup S = 1$</div>
+<p><strong>Upper bound:</strong> For all $n \in \mathbb{N}$, $\frac{n}{n+1} < \frac{n+1}{n+1} = 1$. So $1$ is an upper bound.</p>
+<p><strong>Least upper bound:</strong> Let $\varepsilon > 0$. We need to find $n$ with $\frac{n}{n+1} > 1 - \varepsilon$.</p>
+<div class="math">$$\frac{n}{n+1} > 1 - \varepsilon \iff n > (1-\varepsilon)(n+1) \iff n > n + 1 - \varepsilon n - \varepsilon \iff \varepsilon n > 1 - \varepsilon \iff n > \frac{1-\varepsilon}{\varepsilon}$$</div>
+<p>By Archimedean property, such $n$ exists. So $1$ is the least upper bound.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Prove $\inf S = \frac{1}{2}$</div>
+<p><strong>Lower bound:</strong> For all $n \in \mathbb{N}$, $\frac{n}{n+1} \geq \frac{1}{2}$ (achieved at $n = 1$).</p>
+<p><strong>Greatest lower bound:</strong> Since $\frac{1}{2} \in S$, any lower bound $\ell$ must satisfy $\ell \leq \frac{1}{2}$. So $\frac{1}{2}$ is the greatest lower bound.</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">ANSWER</div>
+<div class="answer-value">$\sup S = 1$ (not attained), $\inf S = \frac{1}{2}$ (attained at $n=1$)</div>
+</div>
+</div>
+
+<!-- Problem 2 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 2</span>
+<span class="problem-title">Proving Irrationality of $\sqrt{2}$</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $\sqrt{2}$ is irrational.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="intuition">
+<div class="intuition-title">Proof Strategy</div>
+<p>Classic proof by contradiction. Assume $\sqrt{2} = \frac{p}{q}$ in lowest terms, then show both $p$ and $q$ must be even, contradicting "lowest terms."</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 1: Assume $\sqrt{2}$ is rational</div>
+<p>Suppose $\sqrt{2} = \frac{p}{q}$ where $p, q \in \mathbb{Z}$, $q \neq 0$, and $\gcd(p, q) = 1$ (lowest terms).</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Square both sides</div>
+<div class="math">$$2 = \frac{p^2}{q^2} \implies p^2 = 2q^2$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Conclude $p$ is even</div>
+<p>Since $p^2 = 2q^2$, we have $p^2$ is even. But if $p$ were odd, then $p^2$ would be odd (odd $\times$ odd = odd). So $p$ must be even.</p>
+<p>Write $p = 2k$ for some integer $k$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 4: Conclude $q$ is even</div>
+<p>Substituting: $(2k)^2 = 2q^2 \implies 4k^2 = 2q^2 \implies q^2 = 2k^2$.</p>
+<p>By the same argument, $q^2$ is even, so $q$ is even.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 5: Contradiction</div>
+<p>Both $p$ and $q$ are even, so $\gcd(p, q) \geq 2$. This contradicts our assumption that $\gcd(p, q) = 1$.</p>
+<p>Therefore, $\sqrt{2}$ is irrational. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sqrt{2} \notin \mathbb{Q}$</div>
+</div>
+</div>
+
+<!-- Problem 3 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 3</span>
+<span class="problem-title">Supremum of a Product</span>
+</div>
+<div class="problem-statement">
+<p>Let $A, B \subset \mathbb{R}$ be nonempty and bounded above, with $A, B \subset [0, \infty)$. Prove that $\sup(AB) = (\sup A)(\sup B)$, where $AB = \{ab : a \in A, b \in B\}$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Set up notation</div>
+<p>Let $\alpha = \sup A$ and $\beta = \sup B$. We want to show $\sup(AB) = \alpha\beta$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Show $\alpha\beta$ is an upper bound for $AB$</div>
+<p>For any $a \in A$ and $b \in B$, we have $a \leq \alpha$ and $b \leq \beta$.</p>
+<p>Since $a, b \geq 0$, multiplying preserves inequality: $ab \leq \alpha\beta$.</p>
+<p>Thus $\alpha\beta$ is an upper bound for $AB$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Show $\alpha\beta$ is the least upper bound</div>
+<p>Let $\varepsilon > 0$. We need to find $a \in A$, $b \in B$ with $ab > \alpha\beta - \varepsilon$.</p>
+<p><strong>Case 1:</strong> If $\alpha = 0$ or $\beta = 0$, then $\alpha\beta = 0$. Since $A, B \subset [0,\infty)$ and all elements are $\geq 0$, we have $\sup(AB) = 0 = \alpha\beta$.</p>
+<p><strong>Case 2:</strong> If $\alpha, \beta > 0$:</p>
+<p>Choose $\delta > 0$ small enough that $(\alpha - \delta)(\beta - \delta) > \alpha\beta - \varepsilon$.</p>
+<p>(This works for $\delta < \min\left(\frac{\varepsilon}{2\beta}, \frac{\varepsilon}{2\alpha}, \alpha, \beta\right)$.)</p>
+<p>By definition of supremum, there exist $a \in A$ with $a > \alpha - \delta$ and $b \in B$ with $b > \beta - \delta$.</p>
+<p>Then $ab > (\alpha - \delta)(\beta - \delta) > \alpha\beta - \varepsilon$.</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sup(AB) = (\sup A)(\sup B)$ when $A, B \subset [0, \infty)$</div>
+</div>
+</div>
+
+<!-- Problem 4 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 4</span>
+<span class="problem-title">Infimum and Supremum Relationship</span>
+</div>
+<div class="problem-statement">
+<p>Let $A \subset \mathbb{R}$ be nonempty and bounded. Define $-A = \{-a : a \in A\}$. Prove that $\sup(-A) = -\inf(A)$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Let $\alpha = \inf(A)$</div>
+<p>We will show that $-\alpha = \sup(-A)$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Show $-\alpha$ is an upper bound for $-A$</div>
+<p>Since $\alpha = \inf(A)$, we have $\alpha \leq a$ for all $a \in A$.</p>
+<p>Multiplying by $-1$ reverses the inequality: $-\alpha \geq -a$ for all $a \in A$.</p>
+<p>Thus $-\alpha \geq x$ for all $x \in -A$, so $-\alpha$ is an upper bound for $-A$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Show $-\alpha$ is the least upper bound</div>
+<p>Let $\varepsilon > 0$. Since $\alpha = \inf(A)$, there exists $a \in A$ with $a < \alpha + \varepsilon$.</p>
+<p>Then $-a > -\alpha - \varepsilon$, and $-a \in -A$.</p>
+<p>So there exists an element of $-A$ greater than $-\alpha - \varepsilon$.</p>
+<p>This means $-\alpha$ is the least upper bound. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sup(-A) = -\inf(A)$</div>
+</div>
+</div>
+
+<!-- Problem 5 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 5</span>
+<span class="problem-title">Nested Interval Property</span>
+</div>
+<div class="problem-statement">
+<p>Let $I_n = [a_n, b_n]$ be a sequence of closed bounded intervals with $I_{n+1} \subseteq I_n$ for all $n$. Prove that $\bigcap_{n=1}^{\infty} I_n \neq \emptyset$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="intuition">
+<div class="intuition-title">Key Insight</div>
+<p>This is the Nested Interval Property, which is equivalent to completeness. The proof uses the supremum.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 1: Set up the sequences</div>
+<p>Since $I_{n+1} \subseteq I_n$, we have $a_n \leq a_{n+1} \leq b_{n+1} \leq b_n$.</p>
+<p>So $(a_n)$ is increasing and $(b_n)$ is decreasing.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Show $(a_n)$ is bounded above</div>
+<p>For any $n, m$: if $n \leq m$, then $a_n \leq a_m \leq b_m \leq b_n$.</p>
+<p>If $m \leq n$, then $a_n \leq b_n \leq b_m$.</p>
+<p>In either case, $a_n \leq b_m$ for all $n, m$. So every $b_m$ is an upper bound for $\{a_n\}$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Apply completeness</div>
+<p>Let $x = \sup\{a_n : n \in \mathbb{N}\}$. This exists by completeness.</p>
+<p>Since each $b_m$ is an upper bound for $\{a_n\}$, we have $x \leq b_m$ for all $m$.</p>
+<p>Also $a_n \leq x$ for all $n$ (since $x$ is an upper bound).</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 4: Conclude $x \in \bigcap I_n$</div>
+<p>For each $n$: $a_n \leq x \leq b_n$, so $x \in I_n = [a_n, b_n]$.</p>
+<p>Therefore $x \in \bigcap_{n=1}^{\infty} I_n$, proving the intersection is nonempty. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\bigcap_{n=1}^{\infty} I_n \neq \emptyset$ (contains $\sup\{a_n\}$)</div>
+</div>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+<!-- ================================================ -->
+<!-- CHAPTER 2: SEQUENCES -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter2">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 2</span>
+<h2>Sequences and Convergence</h2>
+</div>
+
+<div class="intuition">
+<div class="intuition-title">Why Sequences Matter</div>
+<p>Sequences are the gateway to limits. Understanding sequence convergence is essential because:</p>
+<ul>
+<li>Limits of functions can be characterized via sequences</li>
+<li>Series are limits of sequences of partial sums</li>
+<li>Completeness of $\mathbb{R}$ is equivalent to "every Cauchy sequence converges"</li>
+<li>Many proofs in analysis proceed by constructing clever sequences</li>
+</ul>
+</div>
+
+<h3>2.1 Convergence of Sequences</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 2.1: Convergence of a Sequence</div>
+<p>A sequence $(a_n)$ <strong>converges</strong> to $L \in \mathbb{R}$ if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists N \in \mathbb{N} \text{ such that } n \geq N \implies |a_n - L| < \varepsilon$$</div>
+<p>We write $\lim_{n \to \infty} a_n = L$ or $a_n \to L$.</p>
+</div>
+
+<div class="remark">
+<div class="remark-title">Unpacking the Definition</div>
+<p>The definition says: no matter how small a tolerance $\varepsilon$ you specify, eventually (for all $n \geq N$) the sequence stays within $\varepsilon$ of $L$.</p>
+<ul>
+<li>$\varepsilon$ is given first (by an "adversary")</li>
+<li>Then you must find $N$ (which typically depends on $\varepsilon$)</li>
+<li>The order matters: $\forall \varepsilon \, \exists N$ is very different from $\exists N \, \forall \varepsilon$!</li>
+</ul>
+</div>
+
+<div class="definition">
+<div class="definition-title">Definition 2.2: Divergence and Boundedness</div>
+<ul>
+<li>A sequence <strong>diverges</strong> if it does not converge to any $L \in \mathbb{R}$</li>
+<li>A sequence is <strong>bounded</strong> if there exists $M > 0$ such that $|a_n| \leq M$ for all $n$</li>
+</ul>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.3: Convergent Sequences are Bounded</div>
+<p>If $(a_n)$ converges, then $(a_n)$ is bounded.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p>Let $a_n \to L$. Taking $\varepsilon = 1$, there exists $N$ such that $n \geq N \implies |a_n - L| < 1$.</p>
+<p>For $n \geq N$: $|a_n| = |a_n - L + L| \leq |a_n - L| + |L| < 1 + |L|$.</p>
+<p>Let $M = \max(|a_1|, |a_2|, \ldots, |a_{N-1}|, 1 + |L|)$.</p>
+<p>Then $|a_n| \leq M$ for all $n$. $\square$</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">The Converse is False!</div>
+<p>A bounded sequence need not converge. Example: $a_n = (-1)^n$ is bounded (by 1) but diverges since it oscillates between $-1$ and $1$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.4: Uniqueness of Limits</div>
+<p>If $a_n \to L$ and $a_n \to M$, then $L = M$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p>Let $\varepsilon > 0$. There exist $N_1, N_2$ such that:</p>
+<ul>
+<li>$n \geq N_1 \implies |a_n - L| < \varepsilon/2$</li>
+<li>$n \geq N_2 \implies |a_n - M| < \varepsilon/2$</li>
+</ul>
+<p>For $n \geq \max(N_1, N_2)$:</p>
+<div class="math">$$|L - M| = |L - a_n + a_n - M| \leq |a_n - L| + |a_n - M| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$$</div>
+<p>Since $|L - M| < \varepsilon$ for all $\varepsilon > 0$, we must have $L = M$. $\square$</p>
+</div>
+
+<h3>2.2 Limit Theorems</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.5: Algebraic Limit Theorem</div>
+<p>Let $a_n \to a$ and $b_n \to b$. Then:</p>
+<ol>
+<li>$a_n + b_n \to a + b$</li>
+<li>$ca_n \to ca$ for any constant $c$</li>
+<li>$a_n b_n \to ab$</li>
+<li>$\frac{a_n}{b_n} \to \frac{a}{b}$ provided $b \neq 0$ and $b_n \neq 0$ for all $n$</li>
+</ol>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof of (3): Product Rule</div>
+<p><strong>Goal:</strong> Show $|a_n b_n - ab| < \varepsilon$ for large $n$.</p>
+<p><strong>Key trick:</strong> Add and subtract $a_n b$:</p>
+<div class="math">$$|a_n b_n - ab| = |a_n b_n - a_n b + a_n b - ab| \leq |a_n||b_n - b| + |b||a_n - a|$$</div>
+<p>Since $(a_n)$ converges, it's bounded: $|a_n| \leq M$ for some $M$.</p>
+<p>Given $\varepsilon > 0$:</p>
+<ul>
+<li>Choose $N_1$ so $n \geq N_1 \implies |a_n - a| < \frac{\varepsilon}{2(|b| + 1)}$</li>
+<li>Choose $N_2$ so $n \geq N_2 \implies |b_n - b| < \frac{\varepsilon}{2M}$</li>
+</ul>
+<p>For $n \geq \max(N_1, N_2)$:</p>
+<div class="math">$$|a_n b_n - ab| \leq M \cdot \frac{\varepsilon}{2M} + |b| \cdot \frac{\varepsilon}{2(|b|+1)} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \quad \square$$</div>
+</div>
+
+<h3>2.3 Monotone Convergence Theorem</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 2.6: Monotone Sequences</div>
+<p>A sequence $(a_n)$ is:</p>
+<ul>
+<li><strong>Increasing</strong> (or monotone increasing) if $a_n \leq a_{n+1}$ for all $n$</li>
+<li><strong>Strictly increasing</strong> if $a_n < a_{n+1}$ for all $n$</li>
+<li><strong>Decreasing</strong> if $a_n \geq a_{n+1}$ for all $n$</li>
+<li><strong>Monotone</strong> if it is either increasing or decreasing</li>
+</ul>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.7: Monotone Convergence Theorem</div>
+<p>A monotone sequence converges if and only if it is bounded.</p>
+<p><strong>More precisely:</strong></p>
+<ul>
+<li>If $(a_n)$ is increasing and bounded above, then $a_n \to \sup\{a_n : n \in \mathbb{N}\}$</li>
+<li>If $(a_n)$ is decreasing and bounded below, then $a_n \to \inf\{a_n : n \in \mathbb{N}\}$</li>
+</ul>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof (increasing case)</div>
+<p>Let $(a_n)$ be increasing and bounded above. Let $\alpha = \sup\{a_n\}$ (exists by completeness).</p>
+<p><strong>Claim:</strong> $a_n \to \alpha$.</p>
+<p>Let $\varepsilon > 0$. Since $\alpha - \varepsilon < \alpha$, and $\alpha$ is the <em>least</em> upper bound, $\alpha - \varepsilon$ is not an upper bound.</p>
+<p>So there exists $N$ with $a_N > \alpha - \varepsilon$.</p>
+<p>Since $(a_n)$ is increasing, for all $n \geq N$:</p>
+<div class="math">$$\alpha - \varepsilon < a_N \leq a_n \leq \alpha$$</div>
+<p>Thus $|a_n - \alpha| < \varepsilon$ for all $n \geq N$. $\square$</p>
+</div>
+
+<div class="example">
+<div class="example-title">Example: $e$ as a Limit</div>
+<p>Consider $a_n = \left(1 + \frac{1}{n}\right)^n$. One can show:</p>
+<ol>
+<li>$(a_n)$ is increasing</li>
+<li>$(a_n)$ is bounded above by 3</li>
+</ol>
+<p>By MCT, $(a_n)$ converges. We define $e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n \approx 2.71828...$</p>
+</div>
+
+<h3>2.4 Subsequences and Bolzano-Weierstrass</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 2.8: Subsequence</div>
+<p>A <strong>subsequence</strong> of $(a_n)$ is a sequence $(a_{n_k})$ where $n_1 < n_2 < n_3 < \cdots$ is a strictly increasing sequence of natural numbers.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.9: Subsequences of Convergent Sequences</div>
+<p>If $a_n \to L$, then every subsequence $(a_{n_k})$ also converges to $L$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.10: Bolzano-Weierstrass Theorem</div>
+<p>Every bounded sequence has a convergent subsequence.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p><strong>Strategy:</strong> Build a monotone subsequence, which converges by MCT.</p>
+<p>Call $a_m$ a <strong>peak</strong> if $a_m \geq a_n$ for all $n > m$ (i.e., it's larger than all later terms).</p>
+<p><strong>Case 1:</strong> Infinitely many peaks $a_{m_1}, a_{m_2}, \ldots$ with $m_1 < m_2 < \cdots$.</p>
+<p>Then $(a_{m_k})$ is a decreasing subsequence. Since $(a_n)$ is bounded, $(a_{m_k})$ is bounded, so it converges by MCT.</p>
+<p><strong>Case 2:</strong> Finitely many peaks.</p>
+<p>Let $M$ be the index of the last peak (or 0 if no peaks). For $n > M$, $a_n$ is not a peak, so there exists $n' > n$ with $a_{n'} > a_n$.</p>
+<p>Starting from $n_1 > M$, inductively choose $n_{k+1} > n_k$ with $a_{n_{k+1}} > a_{n_k}$.</p>
+<p>This gives an increasing subsequence, which converges by MCT. $\square$</p>
+</div>
+
+<h3>2.5 Cauchy Sequences</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 2.11: Cauchy Sequence</div>
+<p>A sequence $(a_n)$ is <strong>Cauchy</strong> if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists N \in \mathbb{N} \text{ such that } m, n \geq N \implies |a_m - a_n| < \varepsilon$$</div>
+</div>
+
+<div class="remark">
+<div class="remark-title">Intuition</div>
+<p>A Cauchy sequence is one where the terms get arbitrarily close to <em>each other</em> (not to some fixed limit). The remarkable fact is that in $\mathbb{R}$, this is equivalent to convergence!</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 2.12: Cauchy Criterion</div>
+<p>A sequence in $\mathbb{R}$ converges if and only if it is Cauchy.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p><strong>($\Rightarrow$)</strong> If $a_n \to L$, given $\varepsilon > 0$, choose $N$ so $n \geq N \implies |a_n - L| < \varepsilon/2$.</p>
+<p>For $m, n \geq N$: $|a_m - a_n| \leq |a_m - L| + |a_n - L| < \varepsilon$.</p>
+
+<p><strong>($\Leftarrow$)</strong> Let $(a_n)$ be Cauchy.</p>
+<p><strong>Step 1:</strong> $(a_n)$ is bounded (take $\varepsilon = 1$ in definition).</p>
+<p><strong>Step 2:</strong> By Bolzano-Weierstrass, there's a convergent subsequence $a_{n_k} \to L$.</p>
+<p><strong>Step 3:</strong> We show $a_n \to L$. Given $\varepsilon > 0$:</p>
+<ul>
+<li>Choose $N_1$ so $m, n \geq N_1 \implies |a_m - a_n| < \varepsilon/2$ (Cauchy)</li>
+<li>Choose $k$ so $n_k \geq N_1$ and $|a_{n_k} - L| < \varepsilon/2$</li>
+</ul>
+<p>For $n \geq N_1$: $|a_n - L| \leq |a_n - a_{n_k}| + |a_{n_k} - L| < \varepsilon$. $\square$</p>
+</div>
+
+<div class="remark">
+<div class="remark-title">Why Cauchy Matters</div>
+<p>The Cauchy criterion lets us prove convergence <em>without knowing the limit</em>. This is crucial when the limit is hard to identify explicitly.</p>
+</div>
+
+<!-- Problem 4 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 4</span>
+<span class="problem-title">Proving Convergence from Definition</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $\lim_{n \to \infty} \frac{n}{n^2 + 1} = 0$ using the $\varepsilon$-$N$ definition.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Scratch work (not part of formal proof)</div>
+<p>We want $\left|\frac{n}{n^2+1} - 0\right| < \varepsilon$, i.e., $\frac{n}{n^2+1} < \varepsilon$.</p>
+<p>Since $n^2 + 1 > n^2$, we have $\frac{n}{n^2+1} < \frac{n}{n^2} = \frac{1}{n}$.</p>
+<p>So it suffices to have $\frac{1}{n} < \varepsilon$, i.e., $n > \frac{1}{\varepsilon}$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Formal proof</div>
+<p>Let $\varepsilon > 0$. Choose $N > \frac{1}{\varepsilon}$ (such $N$ exists by Archimedean property).</p>
+<p>For $n \geq N$:</p>
+<div class="math">$$\left|\frac{n}{n^2+1} - 0\right| = \frac{n}{n^2+1} < \frac{n}{n^2} = \frac{1}{n} \leq \frac{1}{N} < \varepsilon$$</div>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\displaystyle\lim_{n \to \infty} \frac{n}{n^2 + 1} = 0$</div>
+</div>
+</div>
+
+<!-- Problem 5 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 5</span>
+<span class="problem-title">Recursive Sequence</span>
+</div>
+<div class="problem-statement">
+<p>Let $a_1 = 1$ and $a_{n+1} = \frac{1}{2}\left(a_n + \frac{2}{a_n}\right)$. Prove that $(a_n)$ converges and find its limit.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="intuition">
+<div class="intuition-title">What's going on?</div>
+<p>This is Newton's method for finding $\sqrt{2}$! The sequence converges very quickly (quadratic convergence).</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 1: Show $a_n > 0$ for all $n$</div>
+<p>$a_1 = 1 > 0$. If $a_n > 0$, then $a_{n+1} = \frac{1}{2}(a_n + \frac{2}{a_n}) > 0$. By induction, $a_n > 0$ for all $n$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Show $a_n^2 \geq 2$ for $n \geq 2$</div>
+<p>Compute:</p>
+<div class="math">$$a_{n+1}^2 - 2 = \frac{1}{4}\left(a_n + \frac{2}{a_n}\right)^2 - 2 = \frac{1}{4}\left(a_n^2 + 4 + \frac{4}{a_n^2}\right) - 2 = \frac{1}{4}\left(a_n^2 - 4 + \frac{4}{a_n^2}\right) = \frac{1}{4}\left(a_n - \frac{2}{a_n}\right)^2 \geq 0$$</div>
+<p>So $a_{n+1}^2 \geq 2$ for all $n \geq 1$, meaning $a_n \geq \sqrt{2}$ for $n \geq 2$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Show $(a_n)$ is decreasing for $n \geq 2$</div>
+<p>For $n \geq 2$, since $a_n^2 \geq 2$:</p>
+<div class="math">$$a_{n+1} - a_n = \frac{1}{2}\left(a_n + \frac{2}{a_n}\right) - a_n = \frac{1}{2}\left(\frac{2}{a_n} - a_n\right) = \frac{2 - a_n^2}{2a_n} \leq 0$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 4: Apply MCT</div>
+<p>$(a_n)_{n \geq 2}$ is decreasing and bounded below by $\sqrt{2}$. By MCT, $a_n \to L$ for some $L \geq \sqrt{2}$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 5: Find the limit</div>
+<p>Taking limits in the recurrence $a_{n+1} = \frac{1}{2}(a_n + \frac{2}{a_n})$:</p>
+<div class="math">$$L = \frac{1}{2}\left(L + \frac{2}{L}\right) \implies 2L = L + \frac{2}{L} \implies L = \frac{2}{L} \implies L^2 = 2$$</div>
+<p>Since $L > 0$, we have $L = \sqrt{2}$.</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">ANSWER</div>
+<div class="answer-value">$\displaystyle\lim_{n \to \infty} a_n = \sqrt{2}$</div>
+</div>
+</div>
+
+<!-- Problem 6 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 6</span>
+<span class="problem-title">Cauchy Sequence Proof</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $a_n = \sum_{k=1}^{n} \frac{1}{k^2}$ is a Cauchy sequence.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Estimate the tail</div>
+<p>For $m > n$:</p>
+<div class="math">$$|a_m - a_n| = \sum_{k=n+1}^{m} \frac{1}{k^2}$$</div>
+<p>Use the comparison: $\frac{1}{k^2} < \frac{1}{k(k-1)} = \frac{1}{k-1} - \frac{1}{k}$ (telescoping).</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Apply the telescope</div>
+<div class="math">$$\sum_{k=n+1}^{m} \frac{1}{k^2} < \sum_{k=n+1}^{m} \left(\frac{1}{k-1} - \frac{1}{k}\right) = \frac{1}{n} - \frac{1}{m} < \frac{1}{n}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Verify Cauchy criterion</div>
+<p>Given $\varepsilon > 0$, choose $N > \frac{1}{\varepsilon}$. For $m > n \geq N$:</p>
+<div class="math">$$|a_m - a_n| < \frac{1}{n} \leq \frac{1}{N} < \varepsilon$$</div>
+<p>So $(a_n)$ is Cauchy and hence converges. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sum_{k=1}^{\infty} \frac{1}{k^2}$ converges (in fact, to $\frac{\pi^2}{6}$)</div>
+</div>
+</div>
+
+<!-- Problem 7 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 7</span>
+<span class="problem-title">Squeeze Theorem</span>
+</div>
+<div class="problem-statement">
+<p>Prove the Squeeze Theorem: If $a_n \leq b_n \leq c_n$ for all $n$ and $\lim a_n = \lim c_n = L$, then $\lim b_n = L$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Set up the inequalities</div>
+<p>Let $\varepsilon > 0$. Since $a_n \to L$, there exists $N_1$ such that $n \geq N_1 \implies |a_n - L| < \varepsilon$.</p>
+<p>Since $c_n \to L$, there exists $N_2$ such that $n \geq N_2 \implies |c_n - L| < \varepsilon$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Combine the bounds</div>
+<p>Let $N = \max(N_1, N_2)$. For $n \geq N$:</p>
+<div class="math">$$L - \varepsilon < a_n \leq b_n \leq c_n < L + \varepsilon$$</div>
+<p>Therefore $|b_n - L| < \varepsilon$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$b_n \to L$</div>
+</div>
+</div>
+
+<!-- Problem 8 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 8</span>
+<span class="problem-title">Limit of $n^{1/n}$</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $\lim_{n \to \infty} n^{1/n} = 1$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Write $n^{1/n} = 1 + h_n$ where $h_n > 0$</div>
+<p>For $n \geq 2$, we have $n^{1/n} > 1$, so let $n^{1/n} = 1 + h_n$ with $h_n > 0$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Use binomial expansion</div>
+<p>Then $n = (1 + h_n)^n \geq \binom{n}{2} h_n^2 = \frac{n(n-1)}{2} h_n^2$ (by binomial theorem).</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Solve for $h_n$</div>
+<div class="math">$$n \geq \frac{n(n-1)}{2} h_n^2 \implies h_n^2 \leq \frac{2}{n-1} \implies h_n \leq \sqrt{\frac{2}{n-1}}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 4: Conclude</div>
+<p>Since $0 < h_n \leq \sqrt{\frac{2}{n-1}} \to 0$, by Squeeze theorem $h_n \to 0$.</p>
+<p>Therefore $n^{1/n} = 1 + h_n \to 1$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">ANSWER</div>
+<div class="answer-value">$\lim_{n \to \infty} n^{1/n} = 1$</div>
+</div>
+</div>
+
+<!-- Problem 9 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 9</span>
+<span class="problem-title">Cesàro Mean</span>
+</div>
+<div class="problem-statement">
+<p>If $a_n \to L$, prove that $\frac{a_1 + a_2 + \cdots + a_n}{n} \to L$ (Cesàro mean).</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Split the sum</div>
+<p>Let $\sigma_n = \frac{1}{n}\sum_{k=1}^{n} a_k$ and let $\varepsilon > 0$.</p>
+<p>Since $a_n \to L$, choose $N$ so $k \geq N \implies |a_k - L| < \varepsilon/2$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Bound the difference</div>
+<div class="math">$$|\sigma_n - L| = \left|\frac{1}{n}\sum_{k=1}^{n} (a_k - L)\right| \leq \frac{1}{n}\sum_{k=1}^{N-1} |a_k - L| + \frac{1}{n}\sum_{k=N}^{n} |a_k - L|$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Estimate each part</div>
+<p>Let $M = \sum_{k=1}^{N-1} |a_k - L|$ (a fixed finite number).</p>
+<div class="math">$$|\sigma_n - L| \leq \frac{M}{n} + \frac{n - N + 1}{n} \cdot \frac{\varepsilon}{2} < \frac{M}{n} + \frac{\varepsilon}{2}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 4: Choose $n$ large</div>
+<p>For $n > \frac{2M}{\varepsilon}$, we have $\frac{M}{n} < \frac{\varepsilon}{2}$.</p>
+<p>So $|\sigma_n - L| < \varepsilon$ for all $n > \max(N, \frac{2M}{\varepsilon})$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">Cesàro mean converges to same limit</div>
+</div>
+</div>
+
+<!-- Problem 10 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 10</span>
+<span class="problem-title">Subsequence Characterization of Divergence</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $(a_n)$ diverges if and only if it has two subsequences converging to different limits, or a subsequence that diverges to $\pm\infty$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: ($\Leftarrow$) If subsequences have different limits</div>
+<p>Suppose $a_{n_k} \to L$ and $a_{m_k} \to M$ with $L \neq M$.</p>
+<p>If $(a_n)$ converged to some $A$, then every subsequence would converge to $A$.</p>
+<p>So we'd have $L = A = M$, contradiction. Hence $(a_n)$ diverges.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: ($\Rightarrow$) If $(a_n)$ diverges</div>
+<p><strong>Case 1:</strong> $(a_n)$ is unbounded. Then there's a subsequence with $|a_{n_k}| \to \infty$.</p>
+<p><strong>Case 2:</strong> $(a_n)$ is bounded. By Bolzano-Weierstrass, it has a convergent subsequence $a_{n_k} \to L$.</p>
+<p>Since $(a_n)$ doesn't converge to $L$, there exists $\varepsilon_0 > 0$ and infinitely many $m$ with $|a_m - L| \geq \varepsilon_0$.</p>
+<p>This subsequence $(a_{m_j})$ is bounded (subset of bounded sequence), so it has a convergent subsequence $a_{m_{j_i}} \to M$.</p>
+<p>Since $|a_{m_{j_i}} - L| \geq \varepsilon_0$, we have $|M - L| \geq \varepsilon_0$, so $M \neq L$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">Divergence is characterized by subsequential behavior</div>
+</div>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+<!-- ================================================ -->
+<!-- CHAPTER 3: SERIES -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter3">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 3</span>
+<h2>Infinite Series</h2>
+</div>
+
+<div class="intuition">
+<div class="intuition-title">From Sequences to Series</div>
+<p>An infinite series $\sum_{n=1}^{\infty} a_n$ is just the limit of the sequence of partial sums $s_N = \sum_{n=1}^{N} a_n$. All our sequence results apply!</p>
+</div>
+
+<h3>3.1 Convergence of Series</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 3.1: Convergence of a Series</div>
+<p>The series $\sum_{n=1}^{\infty} a_n$ <strong>converges</strong> if the sequence of partial sums $(s_N)$ converges, where $s_N = \sum_{n=1}^{N} a_n$.</p>
+<p>If $s_N \to s$, we write $\sum_{n=1}^{\infty} a_n = s$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.2: Divergence Test (nth Term Test)</div>
+<p>If $\sum a_n$ converges, then $a_n \to 0$.</p>
+<p><strong>Contrapositive:</strong> If $a_n \not\to 0$, then $\sum a_n$ diverges.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p>If $\sum a_n = s$, then $s_n \to s$ and $s_{n-1} \to s$.</p>
+<p>So $a_n = s_n - s_{n-1} \to s - s = 0$. $\square$</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">The Converse is False!</div>
+<p>$a_n \to 0$ does NOT imply $\sum a_n$ converges. The harmonic series $\sum \frac{1}{n}$ diverges even though $\frac{1}{n} \to 0$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.3: Cauchy Criterion for Series</div>
+<p>$\sum a_n$ converges if and only if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists N \text{ such that } m > n \geq N \implies \left|\sum_{k=n+1}^{m} a_k\right| < \varepsilon$$</div>
+</div>
+
+<h3>3.2 Convergence Tests</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.4: Comparison Test</div>
+<p>Let $0 \leq a_n \leq b_n$ for all $n$.</p>
+<ul>
+<li>If $\sum b_n$ converges, then $\sum a_n$ converges</li>
+<li>If $\sum a_n$ diverges, then $\sum b_n$ diverges</li>
+</ul>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.5: Ratio Test</div>
+<p>Let $a_n > 0$ and $L = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}$ (if it exists).</p>
+<ul>
+<li>If $L < 1$, then $\sum a_n$ converges</li>
+<li>If $L > 1$, then $\sum a_n$ diverges</li>
+<li>If $L = 1$, the test is inconclusive</li>
+</ul>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.6: Root Test</div>
+<p>Let $\alpha = \limsup_{n \to \infty} \sqrt[n]{|a_n|}$.</p>
+<ul>
+<li>If $\alpha < 1$, then $\sum a_n$ converges absolutely</li>
+<li>If $\alpha > 1$, then $\sum a_n$ diverges</li>
+<li>If $\alpha = 1$, the test is inconclusive</li>
+</ul>
+</div>
+
+<h3>3.3 Absolute and Conditional Convergence</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 3.7: Absolute and Conditional Convergence</div>
+<ul>
+<li>$\sum a_n$ <strong>converges absolutely</strong> if $\sum |a_n|$ converges</li>
+<li>$\sum a_n$ <strong>converges conditionally</strong> if $\sum a_n$ converges but $\sum |a_n|$ diverges</li>
+</ul>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.8: Absolute Convergence Implies Convergence</div>
+<p>If $\sum |a_n|$ converges, then $\sum a_n$ converges.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p>Use Cauchy criterion. For $m > n$:</p>
+<div class="math">$$\left|\sum_{k=n+1}^{m} a_k\right| \leq \sum_{k=n+1}^{m} |a_k|$$</div>
+<p>Since $\sum |a_n|$ converges, the right side can be made arbitrarily small. $\square$</p>
+</div>
+
+<div class="example">
+<div class="example-title">Example: Alternating Harmonic Series</div>
+<p>$\sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n} = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \cdots$</p>
+<p>This converges (by Alternating Series Test) to $\ln 2$.</p>
+<p>But $\sum \frac{1}{n}$ diverges, so the convergence is conditional.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 3.9: Riemann Rearrangement Theorem</div>
+<p>If $\sum a_n$ converges conditionally, then for any $L \in \mathbb{R} \cup \{\pm\infty\}$, there exists a rearrangement of the series that converges to $L$.</p>
+</div>
+
+<div class="remark">
+<div class="remark-title">Contrast with Absolute Convergence</div>
+<p>If $\sum a_n$ converges absolutely, then every rearrangement converges to the same sum. Absolute convergence is "robust"; conditional convergence is "fragile."</p>
+</div>
+
+<!-- Problem 7 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 7</span>
+<span class="problem-title">Convergence of $p$-Series</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $\sum_{n=1}^{\infty} \frac{1}{n^p}$ converges if $p > 1$ and diverges if $p \leq 1$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Case 1: $p \leq 0$</div>
+<p>Then $\frac{1}{n^p} \geq 1$ for all $n$, so $\frac{1}{n^p} \not\to 0$. By divergence test, the series diverges.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Case 2: $0 < p \leq 1$</div>
+<p>We have $\frac{1}{n^p} \geq \frac{1}{n}$. Since $\sum \frac{1}{n}$ diverges (harmonic series), by comparison, $\sum \frac{1}{n^p}$ diverges.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Case 3: $p > 1$ (Condensation Argument)</div>
+<p>Group the terms:</p>
+<div class="math">$$\sum_{n=1}^{\infty} \frac{1}{n^p} = 1 + \underbrace{\frac{1}{2^p} + \frac{1}{3^p}}_{2 \text{ terms}} + \underbrace{\frac{1}{4^p} + \cdots + \frac{1}{7^p}}_{4 \text{ terms}} + \cdots$$</div>
+<p>The $k$-th group (starting from $k=0$) has $2^k$ terms, each at most $\frac{1}{(2^k)^p}$.</p>
+<p>So the $k$-th group sums to at most $2^k \cdot \frac{1}{2^{kp}} = \frac{1}{2^{k(p-1)}}$.</p>
+<p>Total: $\sum_{k=0}^{\infty} \frac{1}{2^{k(p-1)}}$. This is geometric with ratio $r = \frac{1}{2^{p-1}} < 1$ (since $p > 1$).</p>
+<p>So the series converges.</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sum \frac{1}{n^p}$ converges $\iff p > 1$</div>
+</div>
+</div>
+
+<!-- Problem 11 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 11</span>
+<span class="problem-title">Alternating Series Test</span>
+</div>
+<div class="problem-statement">
+<p>Prove that if $(a_n)$ is decreasing with $a_n \to 0$, then $\sum_{n=1}^{\infty} (-1)^{n+1} a_n$ converges.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Consider partial sums $s_{2n}$</div>
+<p>$s_{2n} = (a_1 - a_2) + (a_3 - a_4) + \cdots + (a_{2n-1} - a_{2n})$</p>
+<p>Each parenthesized term is $\geq 0$ (since $a_k \geq a_{k+1}$), so $(s_{2n})$ is increasing.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Show $(s_{2n})$ is bounded</div>
+<p>$s_{2n} = a_1 - (a_2 - a_3) - (a_4 - a_5) - \cdots - (a_{2n-2} - a_{2n-1}) - a_{2n}$</p>
+<p>Each subtracted term is $\geq 0$, so $s_{2n} \leq a_1$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Apply MCT</div>
+<p>$(s_{2n})$ is increasing and bounded above, so $s_{2n} \to s$ for some $s \leq a_1$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 4: Show $s_{2n+1} \to s$</div>
+<p>$s_{2n+1} = s_{2n} + a_{2n+1} \to s + 0 = s$ (since $a_n \to 0$).</p>
+<p>Both even and odd partial sums converge to $s$, so $s_n \to s$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">Alternating series with decreasing terms $\to 0$ converges</div>
+</div>
+</div>
+
+<!-- Problem 12 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 12</span>
+<span class="problem-title">Ratio Test Application</span>
+</div>
+<div class="problem-statement">
+<p>Determine whether $\sum_{n=1}^{\infty} \frac{n!}{n^n}$ converges or diverges.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Apply ratio test</div>
+<div class="math">$$\frac{a_{n+1}}{a_n} = \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} = \frac{(n+1) \cdot n^n}{(n+1)^{n+1}} = \frac{n^n}{(n+1)^n} = \left(\frac{n}{n+1}\right)^n$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Evaluate the limit</div>
+<div class="math">$$\left(\frac{n}{n+1}\right)^n = \left(1 - \frac{1}{n+1}\right)^n = \frac{\left(1 - \frac{1}{n+1}\right)^{n+1}}{\left(1 - \frac{1}{n+1}\right)} \to \frac{e^{-1}}{1} = \frac{1}{e}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Conclude</div>
+<p>Since $L = \frac{1}{e} < 1$, the series converges by the ratio test. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">ANSWER</div>
+<div class="answer-value">Converges (ratio $= 1/e < 1$)</div>
+</div>
+</div>
+
+<!-- Problem 13 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 13</span>
+<span class="problem-title">Root Test Application</span>
+</div>
+<div class="problem-statement">
+<p>Determine whether $\sum_{n=1}^{\infty} \left(\frac{n}{2n+1}\right)^n$ converges or diverges.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Apply root test</div>
+<div class="math">$$\sqrt[n]{a_n} = \sqrt[n]{\left(\frac{n}{2n+1}\right)^n} = \frac{n}{2n+1}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Find the limit</div>
+<div class="math">$$\lim_{n \to \infty} \frac{n}{2n+1} = \lim_{n \to \infty} \frac{1}{2 + 1/n} = \frac{1}{2}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Conclude</div>
+<p>Since $\alpha = \frac{1}{2} < 1$, the series converges by the root test. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">ANSWER</div>
+<div class="answer-value">Converges (root limit $= 1/2 < 1$)</div>
+</div>
+</div>
+
+<!-- Problem 14 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 14</span>
+<span class="problem-title">Harmonic Series Divergence</span>
+</div>
+<div class="problem-statement">
+<p>Prove that the harmonic series $\sum_{n=1}^{\infty} \frac{1}{n}$ diverges.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Group terms cleverly</div>
+<div class="math">$$\sum_{n=1}^{\infty} \frac{1}{n} = 1 + \frac{1}{2} + \left(\frac{1}{3} + \frac{1}{4}\right) + \left(\frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8}\right) + \cdots$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Bound each group below</div>
+<p>Group $k$ has $2^{k-1}$ terms (for $k \geq 1$), each at least $\frac{1}{2^k}$.</p>
+<div class="math">$$\frac{1}{3} + \frac{1}{4} > \frac{1}{4} + \frac{1}{4} = \frac{1}{2}$$</div>
+<div class="math">$$\frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} > 4 \cdot \frac{1}{8} = \frac{1}{2}$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Conclude divergence</div>
+<p>Each group (after the first) sums to at least $\frac{1}{2}$.</p>
+<p>So $s_{2^n} \geq 1 + \frac{n}{2} \to \infty$.</p>
+<p>Therefore the series diverges. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sum \frac{1}{n} = \infty$ (diverges)</div>
+</div>
+</div>
+
+<!-- Problem 15 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 15</span>
+<span class="problem-title">Limit Comparison Test</span>
+</div>
+<div class="problem-statement">
+<p>Prove the Limit Comparison Test: If $a_n, b_n > 0$ and $\lim \frac{a_n}{b_n} = L$ with $0 < L < \infty$, then $\sum a_n$ and $\sum b_n$ either both converge or both diverge.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Use the limit definition</div>
+<p>Since $\frac{a_n}{b_n} \to L > 0$, for $\varepsilon = L/2 > 0$, there exists $N$ such that:</p>
+<div class="math">$$n \geq N \implies \left|\frac{a_n}{b_n} - L\right| < \frac{L}{2}$$</div>
+<p>This gives $\frac{L}{2} < \frac{a_n}{b_n} < \frac{3L}{2}$ for $n \geq N$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Establish bounds</div>
+<p>For $n \geq N$:</p>
+<div class="math">$$\frac{L}{2} b_n < a_n < \frac{3L}{2} b_n$$</div>
+</div>
+
+<div class="step">
+<div class="step-title">Step 3: Apply comparison test</div>
+<p>If $\sum b_n$ converges, then $\sum \frac{3L}{2} b_n$ converges, so $\sum a_n$ converges by comparison.</p>
+<p>If $\sum b_n$ diverges, then $\sum \frac{L}{2} b_n$ diverges, so $\sum a_n$ diverges by comparison. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$\sum a_n$ and $\sum b_n$ have the same convergence behavior</div>
+</div>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+<!-- ================================================ -->
+<!-- CHAPTER 4: CONTINUITY -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter4">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 4</span>
+<h2>Continuity</h2>
+</div>
+
+<div class="intuition">
+<div class="intuition-title">What is Continuity?</div>
+<p>Intuitively, a function is continuous if "small changes in input produce small changes in output." But what does "small" mean? The $\varepsilon$-$\delta$ definition makes this precise.</p>
+</div>
+
+<h3>4.1 Limits of Functions</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 4.1: Limit of a Function</div>
+<p>Let $f: A \to \mathbb{R}$ and let $c$ be a limit point of $A$. We say $\lim_{x \to c} f(x) = L$ if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists \delta > 0 \text{ such that } 0 < |x - c| < \delta \text{ and } x \in A \implies |f(x) - L| < \varepsilon$$</div>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 4.2: Sequential Characterization of Limits</div>
+<p>$\lim_{x \to c} f(x) = L$ if and only if for every sequence $(x_n)$ in $A \setminus \{c\}$ with $x_n \to c$, we have $f(x_n) \to L$.</p>
+</div>
+
+<h3>4.2 Continuity</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 4.3: Continuity at a Point</div>
+<p>$f$ is <strong>continuous at $c$</strong> if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists \delta > 0 \text{ such that } |x - c| < \delta \implies |f(x) - f(c)| < \varepsilon$$</div>
+<p>Equivalently: $\lim_{x \to c} f(x) = f(c)$.</p>
+</div>
+
+<div class="remark">
+<div class="remark-title">Three Conditions for Continuity</div>
+<p>$f$ is continuous at $c$ requires:</p>
+<ol>
+<li>$f(c)$ is defined</li>
+<li>$\lim_{x \to c} f(x)$ exists</li>
+<li>$\lim_{x \to c} f(x) = f(c)$</li>
+</ol>
+</div>
+
+<div class="definition">
+<div class="definition-title">Definition 4.4: Continuity on a Set</div>
+<p>$f$ is <strong>continuous on $A$</strong> if $f$ is continuous at every point of $A$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 4.5: Algebraic Continuity Theorem</div>
+<p>If $f$ and $g$ are continuous at $c$, then so are:</p>
+<ul>
+<li>$f + g$, $f - g$, $fg$</li>
+<li>$f/g$ (provided $g(c) \neq 0$)</li>
+<li>$g \circ f$ (at appropriate points)</li>
+</ul>
+</div>
+
+<h3>4.3 Uniform Continuity</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 4.6: Uniform Continuity</div>
+<p>$f: A \to \mathbb{R}$ is <strong>uniformly continuous</strong> on $A$ if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists \delta > 0 \text{ such that } |x - y| < \delta \text{ and } x, y \in A \implies |f(x) - f(y)| < \varepsilon$$</div>
+</div>
+
+<div class="remark">
+<div class="remark-title">Key Difference from Continuity</div>
+<p><strong>Continuity:</strong> $\forall c \in A, \forall \varepsilon > 0, \exists \delta > 0$ (may depend on both $c$ and $\varepsilon$)</p>
+<p><strong>Uniform continuity:</strong> $\forall \varepsilon > 0, \exists \delta > 0$ (same $\delta$ works for ALL points)</p>
+<p>Uniform continuity is a global property; continuity is local.</p>
+</div>
+
+<div class="example">
+<div class="example-title">Example: $f(x) = \frac{1}{x}$ on $(0, 1)$</div>
+<p>This function is continuous on $(0, 1)$ but NOT uniformly continuous.</p>
+<p><strong>Why?</strong> Near $x = 0$, the function becomes arbitrarily steep. For any $\delta > 0$, we can find $x, y \in (0, 1)$ with $|x - y| < \delta$ but $|f(x) - f(y)|$ arbitrarily large.</p>
+<p>Specifically: take $x = \frac{1}{n}$, $y = \frac{1}{n+1}$. Then $|x - y| = \frac{1}{n(n+1)} \to 0$, but $|f(x) - f(y)| = 1$ always.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 4.7: Continuity on Compact Sets</div>
+<p>If $f$ is continuous on a compact set $K$, then $f$ is uniformly continuous on $K$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p>Suppose $f$ is continuous on compact $K$ but not uniformly continuous.</p>
+<p>Then $\exists \varepsilon_0 > 0$ such that $\forall \delta > 0$, $\exists x, y \in K$ with $|x - y| < \delta$ but $|f(x) - f(y)| \geq \varepsilon_0$.</p>
+<p>Taking $\delta = \frac{1}{n}$, get sequences $(x_n), (y_n)$ with $|x_n - y_n| < \frac{1}{n}$ but $|f(x_n) - f(y_n)| \geq \varepsilon_0$.</p>
+<p>Since $K$ is compact (sequentially compact in $\mathbb{R}$), $(x_n)$ has a convergent subsequence $x_{n_k} \to c \in K$.</p>
+<p>Since $|x_{n_k} - y_{n_k}| \to 0$, we also have $y_{n_k} \to c$.</p>
+<p>By continuity at $c$: $f(x_{n_k}) \to f(c)$ and $f(y_{n_k}) \to f(c)$.</p>
+<p>So $|f(x_{n_k}) - f(y_{n_k})| \to 0$, contradicting $|f(x_{n_k}) - f(y_{n_k})| \geq \varepsilon_0$. $\square$</p>
+</div>
+
+<h3>4.4 Extreme Value Theorem</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 4.8: Extreme Value Theorem</div>
+<p>If $f$ is continuous on a compact set $K$, then $f$ attains its maximum and minimum on $K$.</p>
+<p>That is, there exist $c, d \in K$ such that $f(c) \leq f(x) \leq f(d)$ for all $x \in K$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof (Maximum)</div>
+<p><strong>Step 1:</strong> Show $f(K)$ is bounded above.</p>
+<p>Suppose not. Then for each $n$, $\exists x_n \in K$ with $f(x_n) > n$.</p>
+<p>Since $K$ is compact, $(x_n)$ has a convergent subsequence $x_{n_k} \to c \in K$.</p>
+<p>By continuity, $f(x_{n_k}) \to f(c)$, a finite number. But $f(x_{n_k}) > n_k \to \infty$. Contradiction.</p>
+
+<p><strong>Step 2:</strong> Let $M = \sup\{f(x) : x \in K\}$. Show $M$ is attained.</p>
+<p>For each $n$, $\exists x_n \in K$ with $f(x_n) > M - \frac{1}{n}$.</p>
+<p>$(x_n)$ has a convergent subsequence $x_{n_k} \to d \in K$.</p>
+<p>Then $f(d) = \lim f(x_{n_k}) \geq M$. But also $f(d) \leq M$ (since $M$ is supremum).</p>
+<p>So $f(d) = M$. $\square$</p>
+</div>
+
+<h3>4.5 Intermediate Value Theorem</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 4.9: Intermediate Value Theorem</div>
+<p>If $f$ is continuous on $[a, b]$ and $f(a) < L < f(b)$ (or $f(b) < L < f(a)$), then there exists $c \in (a, b)$ with $f(c) = L$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p>WLOG assume $f(a) < L < f(b)$.</p>
+<p>Let $S = \{x \in [a, b] : f(x) < L\}$.</p>
+<p>$S \neq \emptyset$ (since $a \in S$) and $S$ is bounded above by $b$.</p>
+<p>Let $c = \sup S$. We show $f(c) = L$.</p>
+
+<p><strong>Claim 1:</strong> $f(c) \geq L$.</p>
+<p>If $f(c) < L$, by continuity there's an interval $(c - \delta, c + \delta)$ where $f(x) < L$.</p>
+<p>But then $c + \delta/2 \in S$, contradicting $c = \sup S$.</p>
+
+<p><strong>Claim 2:</strong> $f(c) \leq L$.</p>
+<p>If $f(c) > L$, by continuity there's $\delta > 0$ with $f(x) > L$ for $x \in (c - \delta, c]$.</p>
+<p>So no element of $(c - \delta, c]$ is in $S$, meaning $c - \delta$ is an upper bound for $S$.</p>
+<p>This contradicts $c = \sup S$. $\square$</p>
+</div>
+
+<!-- Problem 8 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 8</span>
+<span class="problem-title">$\varepsilon$-$\delta$ Proof of Continuity</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $f(x) = x^2$ is continuous at every $c \in \mathbb{R}$ using the $\varepsilon$-$\delta$ definition.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Scratch work</div>
+<p>We need $|x^2 - c^2| < \varepsilon$ when $|x - c| < \delta$.</p>
+<div class="math">$$|x^2 - c^2| = |x - c| \cdot |x + c|$$</div>
+<p>If $|x - c| < 1$, then $|x| < |c| + 1$, so $|x + c| \leq |x| + |c| < 2|c| + 1$.</p>
+<p>So $|x^2 - c^2| < |x - c| \cdot (2|c| + 1)$.</p>
+<p>We want this $< \varepsilon$, so take $|x - c| < \frac{\varepsilon}{2|c| + 1}$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Formal proof</div>
+<p>Let $\varepsilon > 0$. Choose $\delta = \min\left(1, \frac{\varepsilon}{2|c| + 1}\right)$.</p>
+<p>If $|x - c| < \delta$, then:</p>
+<ul>
+<li>$|x - c| < 1 \implies |x + c| < 2|c| + 1$</li>
+<li>$|x^2 - c^2| = |x - c| \cdot |x + c| < \delta \cdot (2|c| + 1) \leq \varepsilon$</li>
+</ul>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$f(x) = x^2$ is continuous on $\mathbb{R}$</div>
+</div>
+</div>
+
+<!-- Problem 9 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 9</span>
+<span class="problem-title">Fixed Point Theorem</span>
+</div>
+<div class="problem-statement">
+<p>Let $f: [0, 1] \to [0, 1]$ be continuous. Prove that $f$ has a fixed point, i.e., there exists $c \in [0, 1]$ with $f(c) = c$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Step 1: Define auxiliary function</div>
+<p>Let $g(x) = f(x) - x$. Then $g$ is continuous on $[0, 1]$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Step 2: Apply IVT</div>
+<p>$g(0) = f(0) - 0 = f(0) \geq 0$ (since $f: [0,1] \to [0,1]$)</p>
+<p>$g(1) = f(1) - 1 \leq 0$ (since $f(1) \leq 1$)</p>
+<p>If $g(0) = 0$, then $f(0) = 0$ and we're done.</p>
+<p>If $g(1) = 0$, then $f(1) = 1$ and we're done.</p>
+<p>Otherwise, $g(0) > 0$ and $g(1) < 0$. By IVT, $\exists c \in (0, 1)$ with $g(c) = 0$.</p>
+<p>So $f(c) = c$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">Every continuous $f: [0,1] \to [0,1]$ has a fixed point</div>
+</div>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+<!-- ================================================ -->
+<!-- CHAPTER 5: DIFFERENTIATION -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter5">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 5</span>
+<h2>Differentiation</h2>
+</div>
+
+<h3>5.1 The Derivative</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 5.1: Derivative</div>
+<p>Let $f: (a, b) \to \mathbb{R}$ and $c \in (a, b)$. The <strong>derivative</strong> of $f$ at $c$ is:</p>
+<div class="math">$$f'(c) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c} = \lim_{h \to 0} \frac{f(c + h) - f(c)}{h}$$</div>
+<p>if this limit exists. We say $f$ is <strong>differentiable at $c$</strong> if $f'(c)$ exists.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 5.2: Differentiability Implies Continuity</div>
+<p>If $f$ is differentiable at $c$, then $f$ is continuous at $c$.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<div class="math">$$\lim_{x \to c} (f(x) - f(c)) = \lim_{x \to c} \frac{f(x) - f(c)}{x - c} \cdot (x - c) = f'(c) \cdot 0 = 0$$</div>
+<p>So $\lim_{x \to c} f(x) = f(c)$. $\square$</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">The Converse is False!</div>
+<p>$f(x) = |x|$ is continuous at $0$ but not differentiable there (left and right derivatives differ).</p>
+</div>
+
+<h3>5.2 Mean Value Theorem</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 5.3: Rolle's Theorem</div>
+<p>If $f$ is continuous on $[a, b]$, differentiable on $(a, b)$, and $f(a) = f(b)$, then there exists $c \in (a, b)$ with $f'(c) = 0$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 5.4: Mean Value Theorem</div>
+<p>If $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then there exists $c \in (a, b)$ with:</p>
+<div class="math">$$f'(c) = \frac{f(b) - f(a)}{b - a}$$</div>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof</div>
+<p><strong>Strategy:</strong> Apply Rolle's theorem to an auxiliary function.</p>
+<p>Let $g(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}(x - a)$.</p>
+<p>Then $g(a) = 0$ and $g(b) = f(b) - f(a) - (f(b) - f(a)) = 0$.</p>
+<p>$g$ is continuous on $[a, b]$ and differentiable on $(a, b)$.</p>
+<p>By Rolle, $\exists c \in (a, b)$ with $g'(c) = 0$.</p>
+<p>$g'(x) = f'(x) - \frac{f(b) - f(a)}{b - a}$, so $f'(c) = \frac{f(b) - f(a)}{b - a}$. $\square$</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 5.5: Consequences of MVT</div>
+<ul>
+<li>If $f'(x) = 0$ for all $x \in (a, b)$, then $f$ is constant on $(a, b)$</li>
+<li>If $f'(x) > 0$ for all $x \in (a, b)$, then $f$ is strictly increasing</li>
+<li>If $f'(x) \geq 0$ for all $x \in (a, b)$, then $f$ is increasing</li>
+</ul>
+</div>
+
+<h3>5.3 Taylor's Theorem</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 5.6: Taylor's Theorem (Lagrange Remainder)</div>
+<p>Let $f$ be $(n+1)$-times differentiable on an open interval containing $a$ and $x$. Then:</p>
+<div class="math">$$f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}$$</div>
+<p>for some $c$ between $a$ and $x$.</p>
+</div>
+
+<!-- Problem 10 -->
+<div class="problem">
+<div class="problem-header">
+<span class="problem-number">Problem 10</span>
+<span class="problem-title">MVT Application</span>
+</div>
+<div class="problem-statement">
+<p>Prove that $|\sin x - \sin y| \leq |x - y|$ for all $x, y \in \mathbb{R}$.</p>
+</div>
+<div class="solution">
+<div class="solution-header">Solution</div>
+
+<div class="step">
+<div class="step-title">Apply MVT</div>
+<p>Let $f(t) = \sin t$. Then $f$ is continuous and differentiable everywhere.</p>
+<p>By MVT, for any $x \neq y$:</p>
+<div class="math">$$\frac{\sin x - \sin y}{x - y} = \cos c$$</div>
+<p>for some $c$ between $x$ and $y$.</p>
+</div>
+
+<div class="step">
+<div class="step-title">Bound the derivative</div>
+<p>Since $|\cos c| \leq 1$:</p>
+<div class="math">$$\left|\frac{\sin x - \sin y}{x - y}\right| = |\cos c| \leq 1$$</div>
+<p>Therefore $|\sin x - \sin y| \leq |x - y|$. $\square$</p>
+</div>
+</div>
+<div class="answer">
+<div class="answer-label">CONCLUSION</div>
+<div class="answer-value">$|\sin x - \sin y| \leq |x - y|$ (sine is Lipschitz continuous with constant 1)</div>
+</div>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+<!-- ================================================ -->
+<!-- CHAPTER 6: RIEMANN INTEGRATION -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter6">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 6</span>
+<h2>The Riemann Integral</h2>
+</div>
+
+<h3>6.1 Definition of the Integral</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 6.1: Partition</div>
+<p>A <strong>partition</strong> $P$ of $[a, b]$ is a finite set $P = \{x_0, x_1, \ldots, x_n\}$ with:</p>
+<div class="math">$$a = x_0 < x_1 < x_2 < \cdots < x_n = b$$</div>
+</div>
+
+<div class="definition">
+<div class="definition-title">Definition 6.2: Upper and Lower Sums</div>
+<p>For a bounded function $f$ on $[a, b]$ and partition $P$:</p>
+<div class="math">$$M_i = \sup\{f(x) : x \in [x_{i-1}, x_i]\}, \quad m_i = \inf\{f(x) : x \in [x_{i-1}, x_i]\}$$</div>
+<div class="math">$$U(f, P) = \sum_{i=1}^{n} M_i (x_i - x_{i-1}) \quad \text{(upper sum)}$$</div>
+<div class="math">$$L(f, P) = \sum_{i=1}^{n} m_i (x_i - x_{i-1}) \quad \text{(lower sum)}$$</div>
+</div>
+
+<div class="definition">
+<div class="definition-title">Definition 6.3: Riemann Integral</div>
+<p>$f$ is <strong>Riemann integrable</strong> on $[a, b]$ if:</p>
+<div class="math">$$\sup_P L(f, P) = \inf_P U(f, P)$$</div>
+<p>In this case, the common value is $\int_a^b f(x) \, dx$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 6.4: Riemann's Criterion</div>
+<p>$f$ is Riemann integrable on $[a, b]$ if and only if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists P \text{ such that } U(f, P) - L(f, P) < \varepsilon$$</div>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 6.5: Continuous Functions are Integrable</div>
+<p>If $f$ is continuous on $[a, b]$, then $f$ is Riemann integrable.</p>
+</div>
+
+<div class="proof">
+<div class="proof-title">Proof Sketch</div>
+<p>$f$ is uniformly continuous on $[a, b]$ (since $[a, b]$ is compact).</p>
+<p>Given $\varepsilon > 0$, choose $\delta$ from uniform continuity for tolerance $\frac{\varepsilon}{b-a}$.</p>
+<p>Choose partition $P$ with mesh $< \delta$. Then on each subinterval, $M_i - m_i < \frac{\varepsilon}{b-a}$.</p>
+<p>So $U(f, P) - L(f, P) = \sum (M_i - m_i)(x_i - x_{i-1}) < \frac{\varepsilon}{b-a} \cdot (b-a) = \varepsilon$. $\square$</p>
+</div>
+
+<h3>6.2 Fundamental Theorem of Calculus</h3>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 6.6: FTC Part I</div>
+<p>Let $f$ be integrable on $[a, b]$ and define $F(x) = \int_a^x f(t) \, dt$ for $x \in [a, b]$.</p>
+<p>Then $F$ is continuous on $[a, b]$. If $f$ is continuous at $c \in (a, b)$, then $F$ is differentiable at $c$ and $F'(c) = f(c)$.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 6.7: FTC Part II</div>
+<p>If $f$ is continuous on $[a, b]$ and $F$ is an antiderivative of $f$ (i.e., $F' = f$), then:</p>
+<div class="math">$$\int_a^b f(x) \, dx = F(b) - F(a)$$</div>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+<!-- ================================================ -->
+<!-- CHAPTER 7: SEQUENCES OF FUNCTIONS -->
+<!-- ================================================ -->
+<section class="chapter" id="chapter7">
+<div class="chapter-header">
+<span class="chapter-number">Chapter 7</span>
+<h2>Sequences and Series of Functions</h2>
+</div>
+
+<h3>7.1 Pointwise vs Uniform Convergence</h3>
+
+<div class="definition">
+<div class="definition-title">Definition 7.1: Pointwise Convergence</div>
+<p>$(f_n)$ <strong>converges pointwise</strong> to $f$ on $A$ if for each $x \in A$:</p>
+<div class="math">$$\lim_{n \to \infty} f_n(x) = f(x)$$</div>
+<p>i.e., $\forall x \in A, \forall \varepsilon > 0, \exists N(x, \varepsilon)$ such that $n \geq N \implies |f_n(x) - f(x)| < \varepsilon$.</p>
+</div>
+
+<div class="definition">
+<div class="definition-title">Definition 7.2: Uniform Convergence</div>
+<p>$(f_n)$ <strong>converges uniformly</strong> to $f$ on $A$ if:</p>
+<div class="math">$$\forall \varepsilon > 0, \exists N \text{ such that } n \geq N \implies |f_n(x) - f(x)| < \varepsilon \text{ for ALL } x \in A$$</div>
+<p>Equivalently: $\|f_n - f\|_\infty = \sup_{x \in A} |f_n(x) - f(x)| \to 0$.</p>
+</div>
+
+<div class="warning-box">
+<div class="warning-title">Why Uniform Convergence Matters</div>
+<p>Pointwise convergence does NOT preserve:</p>
+<ul>
+<li>Continuity: $f_n$ continuous $\not\Rightarrow$ $f$ continuous</li>
+<li>Integrability: $\lim \int f_n$ may differ from $\int \lim f_n$</li>
+<li>Differentiability</li>
+</ul>
+<p>Uniform convergence fixes these issues!</p>
+</div>
+
+<div class="example">
+<div class="example-title">Classic Counterexample</div>
+<p>Let $f_n(x) = x^n$ on $[0, 1]$.</p>
+<p>Pointwise limit: $f(x) = \begin{cases} 0 & x \in [0, 1) \\ 1 & x = 1 \end{cases}$</p>
+<p>Each $f_n$ is continuous, but $f$ is discontinuous!</p>
+<p>The convergence is NOT uniform (check: $\sup |f_n(x) - f(x)| = 1$ for all $n$).</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 7.3: Uniform Limit of Continuous Functions</div>
+<p>If $(f_n)$ converges uniformly to $f$ on $A$, and each $f_n$ is continuous, then $f$ is continuous.</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem 7.4: Weierstrass M-Test</div>
+<p>Let $(f_n)$ be functions on $A$ and suppose $|f_n(x)| \leq M_n$ for all $x \in A$, where $\sum M_n$ converges.</p>
+<p>Then $\sum f_n$ converges uniformly (and absolutely) on $A$.</p>
+</div>
+
+<div class="back-top"><a href="#top">Back to Contents</a></div>
+</section>
+
+</main>
+
+<footer>
+<p>Real Analysis Study Guide - Based on Rudin's "Principles of Mathematical Analysis"</p>
+<p style="font-size: 0.9rem; margin-top: 0.5rem;">Complete coverage with rigorous proofs and practice problems</p>
+</footer>
+
+</body>
+</html>

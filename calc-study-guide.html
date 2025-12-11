@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Calculus III Study Guide - From Fundamentals to Mastery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --emerald: #10b981;
+            --neon-green: #22c55e;
+            --dark-bg: #0a0a0a;
+            --gray-bg: #1a1a1a;
+            --light-gray: #2a2a2a;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --blue: #3b82f6;
+            --purple: #8b5cf6;
+            --orange: #f59e0b;
+            --red: #ef4444;
+            --cyan: #06b6d4;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: var(--dark-bg);
+            color: var(--text-white);
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(34, 197, 94, 0.05));
+            border-bottom: 2px solid var(--emerald);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--emerald), var(--neon-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-gray);
+            font-size: 1.3rem;
+            font-style: italic;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--gray-bg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 12px;
+            border: 1px solid var(--light-gray);
+        }
+
+        nav h2 {
+            color: var(--emerald);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .nav-section {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-section h3 {
+            color: var(--orange);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-section a {
+            display: block;
+            color: var(--text-gray);
+            text-decoration: none;
+            padding: 0.3rem 0;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-section a:hover {
+            color: var(--emerald);
+        }
+
+        /* Main Content Sections */
+        .part {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: var(--gray-bg);
+            border-radius: 16px;
+            border-left: 5px solid var(--emerald);
+        }
+
+        .part-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .part-number {
+            display: inline-block;
+            background: var(--emerald);
+            color: #000;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--text-white);
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--emerald);
+            margin: 2.5rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            color: var(--orange);
+            margin: 2rem 0 1rem;
+        }
+
+        h5 {
+            font-size: 1.1rem;
+            color: var(--cyan);
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* Concept Boxes */
+        .concept-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .concept-box h4 {
+            color: var(--blue);
+            margin-top: 0;
+        }
+
+        /* Definition Boxes */
+        .definition {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-left: 4px solid var(--purple);
+            border-radius: 0 12px 12px 0;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .definition h4 {
+            color: var(--purple);
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Formula Boxes */
+        .formula-box {
+            background: var(--dark-bg);
+            border: 2px solid var(--emerald);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .formula-box .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            color: var(--neon-green);
+            margin: 1rem 0;
+            line-height: 2;
+        }
+
+        .formula-box .formula-name {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Problem Boxes */
+        .problem {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-left: 4px solid var(--orange);
+        }
+
+        .problem-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-number {
+            background: var(--orange);
+            color: #000;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .problem-title {
+            color: var(--text-white);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .problem-statement {
+            background: var(--dark-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--light-gray);
+        }
+
+        /* Solution Steps */
+        .solution {
+            margin-top: 2rem;
+        }
+
+        .solution-header {
+            background: var(--emerald);
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .solution-content {
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 0 12px 12px 12px;
+            padding: 2rem;
+        }
+
+        .step {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--cyan);
+            color: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .step-title {
+            color: var(--cyan);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Math Display */
+        .math {
+            font-family: 'Courier New', monospace;
+            background: var(--dark-bg);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            border: 1px solid var(--light-gray);
+            color: var(--neon-green);
+        }
+
+        .math-inline {
+            font-family: 'Courier New', monospace;
+            color: var(--cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* Answer Box */
+        .answer {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(34, 197, 94, 0.1));
+            border: 2px solid var(--emerald);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .answer-label {
+            color: var(--emerald);
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .answer-value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            color: var(--neon-green);
+        }
+
+        /* Why This Works Box */
+        .why-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .why-box h5 {
+            color: var(--orange);
+            margin-top: 0;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        li {
+            margin: 0.75rem 0;
+        }
+
+        /* Tips */
+        .tip {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .tip::before {
+            content: "TIP: ";
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        /* Warning */
+        .warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning::before {
+            content: "CAUTION: ";
+            color: var(--red);
+            font-weight: bold;
+        }
+
+        /* Video Link */
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--purple);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            transition: opacity 0.2s;
+        }
+
+        .video-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Back to Top */
+        .back-top {
+            display: block;
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .back-top a {
+            color: var(--text-gray);
+            text-decoration: none;
+        }
+
+        .back-top a:hover {
+            color: var(--emerald);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-gray);
+            border-top: 1px solid var(--light-gray);
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .part {
+                padding: 1.5rem;
+            }
+
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .part {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Complete Calculus III Study Guide</h1>
+            <p class="subtitle">Multivariable Calculus: From Fundamentals to Mastery</p>
+            <p style="margin-top: 1.5rem; color: var(--text-gray);">
+                A comprehensive guide that teaches every concept from scratch,<br>
+                with detailed step-by-step solutions to all problems.
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- TABLE OF CONTENTS -->
+        <nav id="top">
+            <h2>Table of Contents</h2>
+            <div class="nav-grid">
+                <div class="nav-section">
+                    <h3>Part I: Foundations</h3>
+                    <a href="#what-is-calculus">What is Calculus?</a>
+                    <a href="#integrals-basics">Understanding Integrals</a>
+                    <a href="#coordinate-systems">Coordinate Systems</a>
+                </div>
+                <div class="nav-section">
+                    <h3>Part II: Double Integrals</h3>
+                    <a href="#double-integrals">Double Integral Concepts</a>
+                    <a href="#polar-coords">Polar Coordinates</a>
+                    <a href="#double-problems">Solved Problems</a>
+                </div>
+                <div class="nav-section">
+                    <h3>Part III: Triple Integrals</h3>
+                    <a href="#triple-integrals">Triple Integral Concepts</a>
+                    <a href="#cylindrical">Cylindrical Coordinates</a>
+                    <a href="#spherical">Spherical Coordinates</a>
+                </div>
+                <div class="nav-section">
+                    <h3>Part IV: Change of Variables</h3>
+                    <a href="#jacobians">The Jacobian</a>
+                    <a href="#transformations">Linear Transformations</a>
+                    <a href="#jacobian-problems">Solved Problems</a>
+                </div>
+                <div class="nav-section">
+                    <h3>Part V: Line Integrals</h3>
+                    <a href="#line-integrals">Line Integral Concepts</a>
+                    <a href="#parameterization">Parameterization</a>
+                    <a href="#line-problems">Solved Problems</a>
+                </div>
+                <div class="nav-section">
+                    <h3>Part VI: Vector Calculus</h3>
+                    <a href="#greens-theorem">Green's Theorem</a>
+                    <a href="#surface-integrals">Surface Integrals</a>
+                    <a href="#conservative">Conservative Fields</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ============================================== -->
+        <!-- PART I: FOUNDATIONS -->
+        <!-- ============================================== -->
+        <section class="part" id="what-is-calculus">
+            <div class="part-header">
+                <span class="part-number">PART I</span>
+                <h2>Foundations of Calculus</h2>
+                <p style="color: var(--text-gray);">Understanding the building blocks before we solve problems</p>
+            </div>
+
+            <h3>What is Calculus?</h3>
+
+            <p>
+                Imagine you want to measure something that's constantly changing. How fast is a car going at exactly 3:00 PM?
+                What's the exact area under a curved line? These questions seem impossible to answer directly because we're
+                dealing with things that don't stay still long enough to measure. <strong>Calculus is the mathematical
+                language invented to handle continuous change.</strong>
+            </p>
+
+            <p>
+                Calculus has two main branches:
+            </p>
+
+            <ul>
+                <li><strong>Differential Calculus</strong> - Deals with rates of change (slopes, velocities, accelerations). This answers "how fast is it changing?"</li>
+                <li><strong>Integral Calculus</strong> - Deals with accumulation (areas, volumes, totals). This answers "how much has accumulated?"</li>
+            </ul>
+
+            <p>
+                In <strong>Calculus III (Multivariable Calculus)</strong>, we extend these ideas from functions of one variable
+                to functions of two or three variables. Instead of finding the area under a curve, we find the volume under a
+                surface. Instead of moving along a line, we move through three-dimensional space.
+            </p>
+
+            <div class="concept-box">
+                <h4>The Big Picture: What Are We Calculating?</h4>
+                <p>In this course, you'll learn to calculate:</p>
+                <ul>
+                    <li><strong>Double Integrals</strong> - Total "stuff" over a 2D region (like finding the mass of a flat plate with varying density)</li>
+                    <li><strong>Triple Integrals</strong> - Total "stuff" in a 3D region (like finding the mass of a solid object)</li>
+                    <li><strong>Line Integrals</strong> - Total "stuff" along a curve (like finding work done moving along a path)</li>
+                    <li><strong>Surface Integrals</strong> - Total "stuff" flowing through a surface (like fluid flow through a membrane)</li>
+                </ul>
+            </div>
+
+            <h3 id="integrals-basics">Understanding Integrals: The Core Idea</h3>
+
+            <p>
+                The integral is fundamentally about <strong>adding up infinitely many infinitely small pieces</strong>.
+                Let's build this intuition step by step.
+            </p>
+
+            <h4>Single Integrals (Review)</h4>
+
+            <p>
+                When you write <span class="math-inline">∫[a to b] f(x) dx</span>, you're asking:
+                "What is the total area between the function f(x) and the x-axis, from x=a to x=b?"
+            </p>
+
+            <p>
+                Think of it this way: You're slicing the region into infinitely thin vertical strips. Each strip has:
+            </p>
+            <ul>
+                <li>Width: <span class="math-inline">dx</span> (an infinitesimally small piece of x)</li>
+                <li>Height: <span class="math-inline">f(x)</span> (the value of the function at that x)</li>
+                <li>Area of strip: <span class="math-inline">f(x) · dx</span></li>
+            </ul>
+
+            <p>The integral symbol ∫ means "sum up all these strips."</p>
+
+            <div class="formula-box">
+                <div class="formula-name">Single Integral (Area Under Curve)</div>
+                <div class="formula">∫[a to b] f(x) dx = Total area from x=a to x=b</div>
+            </div>
+
+            <h4>Double Integrals (Adding a Dimension)</h4>
+
+            <p>
+                Now imagine you have a function of TWO variables: <span class="math-inline">f(x, y)</span>.
+                This function creates a <strong>surface</strong> in 3D space (like a mountain landscape where the
+                height depends on your x and y position).
+            </p>
+
+            <p>
+                A <strong>double integral</strong> <span class="math-inline">∬ f(x,y) dA</span> asks:
+                "What is the total volume between this surface and the xy-plane?"
+            </p>
+
+            <p>
+                Now instead of strips, we use tiny rectangles (or "patches") on the xy-plane:
+            </p>
+            <ul>
+                <li>Area of patch: <span class="math-inline">dA = dx · dy</span></li>
+                <li>Height above patch: <span class="math-inline">f(x, y)</span></li>
+                <li>Volume of tiny box: <span class="math-inline">f(x, y) · dA</span></li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="formula-name">Double Integral (Volume Under Surface)</div>
+                <div class="formula">∬[R] f(x, y) dA = Total volume over region R</div>
+            </div>
+
+            <h4>Triple Integrals (The Full 3D Experience)</h4>
+
+            <p>
+                A <strong>triple integral</strong> <span class="math-inline">∭ f(x,y,z) dV</span> adds up values
+                throughout a 3D region. Instead of finding volume under a surface, you're integrating a function
+                that varies throughout space.
+            </p>
+
+            <p>
+                Common uses:
+            </p>
+            <ul>
+                <li>If f(x,y,z) = 1, you get the <strong>volume</strong> of the region</li>
+                <li>If f(x,y,z) = density, you get the <strong>mass</strong></li>
+                <li>You can find centers of mass, moments of inertia, and more</li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="formula-name">Triple Integral (Sum Over 3D Region)</div>
+                <div class="formula">∭[E] f(x, y, z) dV = Total of f throughout region E</div>
+            </div>
+
+            <h3 id="coordinate-systems">Coordinate Systems: Choosing the Right Tool</h3>
+
+            <p>
+                One of the most important skills in multivariable calculus is <strong>choosing the right coordinate
+                system</strong>. The wrong choice can turn a simple problem into a nightmare. The right choice can
+                make a complex problem trivial.
+            </p>
+
+            <div class="concept-box">
+                <h4>The Principle: Match Your Coordinates to Your Geometry</h4>
+                <p>
+                    If your region has circles or circular symmetry → use <strong>polar/cylindrical</strong><br>
+                    If your region has spheres → use <strong>spherical</strong><br>
+                    If your region has straight edges parallel to axes → use <strong>Cartesian</strong>
+                </p>
+            </div>
+
+            <h4>Cartesian Coordinates (x, y, z)</h4>
+
+            <p>
+                The familiar rectangular grid. Every point is located by its x, y, and z distances from the origin.
+            </p>
+
+            <div class="math">
+In 2D: dA = dx dy
+In 3D: dV = dx dy dz
+            </div>
+
+            <p><strong>Best for:</strong> Rectangular regions, regions bounded by planes or straight lines.</p>
+
+            <h4>Polar Coordinates (r, θ) - For 2D</h4>
+
+            <p>
+                Instead of (x, y), we describe a point by its <strong>distance from the origin (r)</strong> and
+                <strong>angle from the positive x-axis (θ)</strong>.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Polar Coordinate Conversions</div>
+                <div class="formula">
+x = r cos(θ)     y = r sin(θ)<br><br>
+r = √(x² + y²)   θ = arctan(y/x)<br><br>
+<strong>CRITICAL:</strong> dA = r dr dθ  (NOT just dr dθ!)
+                </div>
+            </div>
+
+            <div class="warning">
+                The factor of <span class="math-inline">r</span> in <span class="math-inline">dA = r dr dθ</span>
+                is essential! Forgetting it is one of the most common errors. It accounts for the fact that a small
+                change in θ covers more distance when you're far from the origin.
+            </div>
+
+            <h4>Cylindrical Coordinates (r, θ, z) - For 3D</h4>
+
+            <p>
+                This is just polar coordinates with a z-coordinate added. Think of it as "polar in the xy-plane,
+                then go up or down."
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Cylindrical Coordinate Conversions</div>
+                <div class="formula">
+x = r cos(θ)     y = r sin(θ)     z = z<br><br>
+r = √(x² + y²)   θ = arctan(y/x)   z = z<br><br>
+<strong>CRITICAL:</strong> dV = r dz dr dθ
+                </div>
+            </div>
+
+            <p><strong>Best for:</strong> Cylinders, cones, anything with circular cross-sections parallel to the xy-plane.</p>
+
+            <h4>Spherical Coordinates (ρ, φ, θ) - For 3D</h4>
+
+            <p>
+                Every point is described by:
+            </p>
+            <ul>
+                <li><strong>ρ (rho)</strong> - distance from origin to the point</li>
+                <li><strong>φ (phi)</strong> - angle down from the positive z-axis (0 ≤ φ ≤ π)</li>
+                <li><strong>θ (theta)</strong> - angle in the xy-plane from the positive x-axis (0 ≤ θ ≤ 2π)</li>
+            </ul>
+
+            <div class="formula-box">
+                <div class="formula-name">Spherical Coordinate Conversions</div>
+                <div class="formula">
+x = ρ sin(φ) cos(θ)<br>
+y = ρ sin(φ) sin(θ)<br>
+z = ρ cos(φ)<br><br>
+ρ = √(x² + y² + z²)<br><br>
+<strong>CRITICAL:</strong> dV = ρ² sin(φ) dρ dφ dθ
+                </div>
+            </div>
+
+            <p><strong>Best for:</strong> Spheres, cones from the origin, anything with spherical symmetry.</p>
+
+            <div class="tip">
+                The volume element in spherical coordinates, <span class="math-inline">ρ² sin(φ)</span>,
+                comes from the Jacobian of the transformation. We'll explain Jacobians in detail later, but for now,
+                just remember this formula!
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PART II: DOUBLE INTEGRALS -->
+        <!-- ============================================== -->
+        <section class="part" id="double-integrals">
+            <div class="part-header">
+                <span class="part-number">PART II</span>
+                <h2>Double Integrals</h2>
+                <p style="color: var(--text-gray);">Integrating over two-dimensional regions</p>
+            </div>
+
+            <h3>How Double Integrals Work</h3>
+
+            <p>
+                A double integral is computed as two single integrals performed one after another. This is called
+                an <strong>iterated integral</strong>. You integrate with respect to one variable first (treating
+                the other as a constant), then integrate the result with respect to the second variable.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Iterated Integral</div>
+                <div class="formula">
+∬[R] f(x, y) dA = ∫[a to b] ∫[g₁(x) to g₂(x)] f(x, y) dy dx
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">
+                    First integrate with respect to y (from bottom curve to top curve), then integrate with respect to x.
+                </p>
+            </div>
+
+            <h4>Setting Up the Limits: The Key Challenge</h4>
+
+            <p>
+                The hardest part of double integrals is setting up the correct limits of integration. Here's the strategy:
+            </p>
+
+            <ol>
+                <li><strong>Sketch the region R</strong> - Always draw a picture!</li>
+                <li><strong>Choose the order of integration</strong> - Either dy dx or dx dy</li>
+                <li><strong>For the inner integral:</strong> The limits are functions (or constants) that describe how far you integrate for a fixed value of the outer variable</li>
+                <li><strong>For the outer integral:</strong> The limits are constants that give the overall range</li>
+            </ol>
+
+            <div class="concept-box">
+                <h4>Fubini's Theorem</h4>
+                <p>
+                    If f(x, y) is continuous on the region R, then you can evaluate the double integral as an
+                    iterated integral in either order:
+                </p>
+                <div class="math">
+∬[R] f(x, y) dA = ∫∫ f(x,y) dy dx = ∫∫ f(x,y) dx dy
+                </div>
+                <p>
+                    <strong>Important:</strong> This only works when f is continuous! If f has discontinuities,
+                    Fubini's theorem may not apply.
+                </p>
+            </div>
+
+            <h3 id="polar-coords">Double Integrals in Polar Coordinates</h3>
+
+            <p>
+                When your region involves circles or has radial symmetry, polar coordinates make life much easier.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Double Integral in Polar Coordinates</div>
+                <div class="formula">
+∬[R] f(x, y) dA = ∫[α to β] ∫[r₁(θ) to r₂(θ)] f(r cos θ, r sin θ) · r dr dθ
+                </div>
+            </div>
+
+            <p>The process:</p>
+            <ol>
+                <li>Convert all x's and y's to r and θ using x = r cos θ, y = r sin θ</li>
+                <li>Convert x² + y² to r²</li>
+                <li>Replace dA with r dr dθ (don't forget the r!)</li>
+                <li>Set up limits based on the region in polar coordinates</li>
+            </ol>
+
+            <!-- PROBLEM 1: Double Integral with Answer 182/3 -->
+            <h3 id="double-problems">Solved Problems: Double Integrals</h3>
+
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 1</span>
+                    <span class="problem-title">Double Integral Over an Annular Region</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Calculate the double integral of f(x, y) = x over the region D shown, where the region
+                    is bounded by two curves with a = 5 and b = 6 (an annular/ring-shaped region).</p>
+                    <p><strong>Given Answer: 182/3</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We need to integrate f(x, y) = x over an annular (ring-shaped) region. The region
+                            is bounded by inner radius a = 5 and outer radius b = 6. This is a perfect candidate
+                            for polar coordinates because of the circular symmetry.
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Convert to Polar Coordinates</div>
+                            <p>In polar coordinates:</p>
+                            <ul>
+                                <li>x = r cos(θ)</li>
+                                <li>dA = r dr dθ</li>
+                                <li>The region is: 5 ≤ r ≤ 6, 0 ≤ θ ≤ 2π</li>
+                            </ul>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Set Up the Integral</div>
+                            <div class="math">
+∬[D] x dA = ∫[0 to 2π] ∫[5 to 6] (r cos θ) · r dr dθ
+
+         = ∫[0 to 2π] ∫[5 to 6] r² cos θ dr dθ
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Evaluate the Inner Integral (with respect to r)</div>
+                            <div class="math">
+∫[5 to 6] r² dr = [r³/3]₅⁶ = 6³/3 - 5³/3 = 216/3 - 125/3 = 91/3
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Evaluate the Outer Integral (with respect to θ)</div>
+                            <div class="math">
+∫[0 to 2π] (91/3) cos θ dθ = (91/3)[sin θ]₀^{2π} = (91/3)(sin 2π - sin 0) = (91/3)(0 - 0) = 0
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Wait - Why Zero?</h5>
+                            <p>
+                                The integral of x over a complete circle centered at the origin is zero! This is because
+                                x is positive on the right half and negative on the left half, and by symmetry they
+                                cancel out.
+                            </p>
+                            <p>
+                                The given answer of 182/3 suggests the region might be a semicircle or the problem
+                                involves different bounds. If we integrate over just the right half (0 ≤ θ ≤ π) or
+                                the region is not a complete annulus, we would get a nonzero answer.
+                            </p>
+                        </div>
+
+                        <p><strong>For a semicircular region (0 ≤ θ ≤ π):</strong></p>
+                        <div class="math">
+∫[0 to π] (91/3) cos θ dθ = (91/3)[sin θ]₀^π = (91/3)(0 - 0) = 0
+                        </div>
+
+                        <p><strong>For the first quadrant (0 ≤ θ ≤ π/2):</strong></p>
+                        <div class="math">
+∫[0 to π/2] (91/3) cos θ dθ = (91/3)[sin θ]₀^{π/2} = (91/3)(1 - 0) = 91/3
+                        </div>
+
+                        <p>The answer 182/3 = 2 × 91/3 suggests the region covers where x ≥ 0 (the right half-plane,
+                        from θ = -π/2 to θ = π/2).</p>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">182/3</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 2: Iterated Integral = 0 -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 2</span>
+                    <span class="problem-title">Iterated Integral of Cosine</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Evaluate the iterated integral:</p>
+                    <div class="math">∫_{-π}^{0} ∫_{π/4}^{π/2} cos(2x + y) dy dx</div>
+                    <p><strong>Given Answer: 0</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            This is an iterated integral where we first integrate with respect to y (from π/4 to π/2),
+                            then with respect to x (from -π to 0). The integrand is cos(2x + y).
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Evaluate the Inner Integral (with respect to y)</div>
+                            <p>Treat x as a constant and integrate cos(2x + y) with respect to y:</p>
+                            <div class="math">
+∫_{π/4}^{π/2} cos(2x + y) dy
+
+Let u = 2x + y, then du = dy
+
+= [sin(2x + y)]_{y=π/4}^{y=π/2}
+
+= sin(2x + π/2) - sin(2x + π/4)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Simplify Using Trig Identities</div>
+                            <p>Recall that sin(θ + π/2) = cos(θ):</p>
+                            <div class="math">
+sin(2x + π/2) = cos(2x)
+
+So the inner integral = cos(2x) - sin(2x + π/4)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Evaluate the Outer Integral</div>
+                            <div class="math">
+∫_{-π}^{0} [cos(2x) - sin(2x + π/4)] dx
+
+= [sin(2x)/2]_{-π}^{0} - [-cos(2x + π/4)/2]_{-π}^{0}
+
+= [sin(2x)/2]_{-π}^{0} + [cos(2x + π/4)/2]_{-π}^{0}
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Calculate Each Part</div>
+                            <p><strong>First part:</strong></p>
+                            <div class="math">
+[sin(2x)/2]_{-π}^{0} = sin(0)/2 - sin(-2π)/2 = 0 - 0 = 0
+                            </div>
+
+                            <p><strong>Second part:</strong></p>
+                            <div class="math">
+[cos(2x + π/4)/2]_{-π}^{0} = cos(π/4)/2 - cos(-2π + π/4)/2
+                           = cos(π/4)/2 - cos(π/4)/2 = 0
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Why Does This Equal Zero?</h5>
+                            <p>
+                                The result is zero because we're integrating periodic functions over intervals that
+                                span complete periods. Both sin(2x) and cos(2x + π/4) complete full cycles over the
+                                interval [-π, 0], so their integrals cancel out.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">0</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 3: Double integral with e^(-x²-y²) -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 3</span>
+                    <span class="problem-title">Question 16.138 - Gaussian Integral Over Semicircle</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Evaluate ∬[B] e^(-x²-y²) dx dy, where B consists of those (x, y) satisfying x² + y² ≤ 1 and y ≤ 0.</p>
+                    <p><em>This is the lower half of the unit disk.</em></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            The region B is the lower half of a circle with radius 1 centered at the origin.
+                            The integrand e^(-x²-y²) is a <strong>Gaussian function</strong>, which appears frequently
+                            in probability and statistics.
+                        </p>
+                        <p>
+                            The key insight: x² + y² appears in both the region definition AND the function!
+                            This screams "use polar coordinates!"
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Convert to Polar Coordinates</div>
+                            <p>In polar:</p>
+                            <ul>
+                                <li>x² + y² = r²</li>
+                                <li>e^(-x²-y²) = e^(-r²)</li>
+                                <li>dA = r dr dθ</li>
+                                <li>Region: 0 ≤ r ≤ 1 (unit circle), π ≤ θ ≤ 2π (lower half, where y ≤ 0)</li>
+                            </ul>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Set Up the Integral</div>
+                            <div class="math">
+∬[B] e^{-x²-y²} dA = ∫_{π}^{2π} ∫_{0}^{1} e^{-r²} · r dr dθ
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Evaluate the Inner Integral (with respect to r)</div>
+                            <p>Use substitution: let u = -r², then du = -2r dr, so r dr = -du/2</p>
+                            <div class="math">
+∫_{0}^{1} e^{-r²} · r dr = ∫_{0}^{-1} e^u · (-du/2) = (1/2) ∫_{-1}^{0} e^u du
+
+= (1/2)[e^u]_{-1}^{0} = (1/2)(e^0 - e^{-1}) = (1/2)(1 - 1/e)
+
+= (1 - e^{-1})/2 = (e - 1)/(2e)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Evaluate the Outer Integral</div>
+                            <p>The inner integral gave us a constant, so:</p>
+                            <div class="math">
+∫_{π}^{2π} (1 - e^{-1})/2 dθ = (1 - e^{-1})/2 · [θ]_{π}^{2π}
+
+= (1 - e^{-1})/2 · (2π - π) = (1 - e^{-1})/2 · π
+
+= π(1 - e^{-1})/2 = π(e - 1)/(2e)
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Why This Works So Well</h5>
+                            <p>
+                                The combination of r dr appearing in polar coordinates and the e^(-r²) function is
+                                perfect because the derivative of -r² is -2r. This makes the integral tractable,
+                                whereas in Cartesian coordinates, ∫e^(-x²)dx has no elementary antiderivative!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">π(1 - e⁻¹)/2 = π(e-1)/(2e)</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM 4: Question 16.147b -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 4</span>
+                    <span class="problem-title">Question 16.147b - Fourth Power Integral</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Evaluate ∬[B] (x⁴ + 2x²y² + y⁴) dx dy, where B is the portion of the disk of radius 2
+                    centered at (0,0) in the first quadrant.</p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            The region is a quarter-disk in the first quadrant with radius 2. The integrand
+                            looks complicated, but there's a beautiful simplification hiding here.
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Recognize the Pattern</div>
+                            <p>Notice that:</p>
+                            <div class="math">
+x⁴ + 2x²y² + y⁴ = (x² + y²)²
+                            </div>
+                            <p>This is a perfect square! And x² + y² = r² in polar coordinates.</p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Convert to Polar Coordinates</div>
+                            <ul>
+                                <li>(x² + y²)² = r⁴</li>
+                                <li>dA = r dr dθ</li>
+                                <li>Region: 0 ≤ r ≤ 2, 0 ≤ θ ≤ π/2 (first quadrant)</li>
+                            </ul>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Set Up and Evaluate</div>
+                            <div class="math">
+∬[B] (x² + y²)² dA = ∫_{0}^{π/2} ∫_{0}^{2} r⁴ · r dr dθ
+
+= ∫_{0}^{π/2} ∫_{0}^{2} r⁵ dr dθ
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Evaluate Inner Integral</div>
+                            <div class="math">
+∫_{0}^{2} r⁵ dr = [r⁶/6]_{0}^{2} = 2⁶/6 - 0 = 64/6 = 32/3
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Evaluate Outer Integral</div>
+                            <div class="math">
+∫_{0}^{π/2} (32/3) dθ = (32/3)[θ]_{0}^{π/2} = (32/3)(π/2) = 16π/3
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">16π/3</div>
+                </div>
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PART III: TRIPLE INTEGRALS -->
+        <!-- ============================================== -->
+        <section class="part" id="triple-integrals">
+            <div class="part-header">
+                <span class="part-number">PART III</span>
+                <h2>Triple Integrals</h2>
+                <p style="color: var(--text-gray);">Integrating over three-dimensional regions</p>
+            </div>
+
+            <h3>The Concept of Triple Integrals</h3>
+
+            <p>
+                Triple integrals extend the idea of double integrals to three dimensions. Instead of integrating
+                over a 2D region, we integrate throughout a 3D solid.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Triple Integral in Cartesian Coordinates</div>
+                <div class="formula">
+∭[E] f(x, y, z) dV = ∫∫∫ f(x, y, z) dx dy dz
+                </div>
+            </div>
+
+            <h4>Common Applications</h4>
+            <ul>
+                <li><strong>Volume:</strong> ∭[E] 1 dV = Volume of region E</li>
+                <li><strong>Mass:</strong> ∭[E] ρ(x,y,z) dV = Total mass (ρ = density)</li>
+                <li><strong>Center of Mass:</strong> x̄ = (1/M)∭[E] x·ρ dV</li>
+                <li><strong>Average Value:</strong> f_avg = (1/Volume)∭[E] f dV</li>
+            </ul>
+
+            <h3 id="cylindrical">Cylindrical Coordinates</h3>
+
+            <p>
+                Cylindrical coordinates are perfect when your region has circular symmetry about the z-axis
+                (cylinders, cones pointing along z-axis, paraboloids opening along z-axis).
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Triple Integral in Cylindrical Coordinates</div>
+                <div class="formula">
+x = r cos θ,  y = r sin θ,  z = z<br><br>
+dV = r dz dr dθ<br><br>
+∭[E] f dV = ∫∫∫ f(r cos θ, r sin θ, z) · r dz dr dθ
+                </div>
+            </div>
+
+            <!-- PROBLEM: Triple integral = 0 by symmetry -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 5</span>
+                    <span class="problem-title">Triple Integral Using Symmetry</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Evaluate ∭[W] 9x dV for the region W: x² + y² ≤ z ≤ 81.</p>
+                    <p><strong>Given Answer: 0</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            The region W is bounded below by the paraboloid z = x² + y² and above by the plane z = 81.
+                            This creates a bowl-like region.
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Identify the Symmetry</div>
+                            <p>
+                                The region W is symmetric about the z-axis. If you flip the region across the
+                                yz-plane (replacing x with -x), the region looks exactly the same.
+                            </p>
+                            <p>
+                                The function f(x, y, z) = 9x is an <strong>odd function in x</strong>:
+                                f(-x, y, z) = -9x = -f(x, y, z).
+                            </p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Apply the Symmetry Principle</div>
+                            <p>
+                                When you integrate an odd function over a symmetric region, the integral is zero.
+                                For every point (x, y, z) with a positive contribution 9x, there's a corresponding
+                                point (-x, y, z) with contribution -9x. They cancel perfectly.
+                            </p>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>The Symmetry Shortcut</h5>
+                            <p>
+                                <strong>Rule:</strong> If the region is symmetric about a plane, and the integrand
+                                is odd with respect to reflection across that plane, the integral is zero.
+                            </p>
+                            <p>
+                                This can save you enormous amounts of calculation! Always check for symmetry before
+                                computing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">0</div>
+                </div>
+            </div>
+
+            <h3 id="spherical">Spherical Coordinates</h3>
+
+            <p>
+                Spherical coordinates are ideal when your region is a sphere or part of a sphere, or when the
+                integrand involves x² + y² + z² (the distance from the origin squared).
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Triple Integral in Spherical Coordinates</div>
+                <div class="formula">
+x = ρ sin φ cos θ,  y = ρ sin φ sin θ,  z = ρ cos φ<br><br>
+ρ = distance from origin (ρ ≥ 0)<br>
+φ = angle from positive z-axis (0 ≤ φ ≤ π)<br>
+θ = angle in xy-plane from positive x-axis (0 ≤ θ ≤ 2π)<br><br>
+<strong>dV = ρ² sin φ dρ dφ dθ</strong>
+                </div>
+            </div>
+
+            <div class="warning">
+                Memorize dV = ρ² sin φ dρ dφ dθ. The ρ² sin φ factor is the Jacobian and is easily forgotten!
+            </div>
+
+            <!-- PROBLEM: Improper integral with spherical coords -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 6</span>
+                    <span class="problem-title">Improper Triple Integral - Region Outside Sphere</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Let D be the unbounded region defined as the set of (x, y, z) with x² + y² + z² ≥ 9.
+                    Evaluate the improper integral:</p>
+                    <div class="math">∭[D] 7/(x² + y² + z²)² dx dy dz</div>
+                    <p><strong>Given Answer: 28π/3</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            The region D is everything OUTSIDE the sphere of radius 3 centered at the origin.
+                            The integrand involves (x² + y² + z²)², which in spherical coordinates is just ρ⁴.
+                            This is a perfect setup for spherical coordinates!
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Convert to Spherical Coordinates</div>
+                            <ul>
+                                <li>x² + y² + z² = ρ²</li>
+                                <li>(x² + y² + z²)² = ρ⁴</li>
+                                <li>7/(x² + y² + z²)² = 7/ρ⁴</li>
+                                <li>dV = ρ² sin φ dρ dφ dθ</li>
+                                <li>Region: ρ ≥ 3 (outside sphere of radius 3), 0 ≤ φ ≤ π, 0 ≤ θ ≤ 2π</li>
+                            </ul>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Set Up the Integral</div>
+                            <div class="math">
+∭[D] 7/ρ⁴ · ρ² sin φ dρ dφ dθ = ∫_{0}^{2π} ∫_{0}^{π} ∫_{3}^{∞} 7ρ⁻² sin φ dρ dφ dθ
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Evaluate the ρ Integral (Improper)</div>
+                            <div class="math">
+∫_{3}^{∞} 7ρ⁻² dρ = 7[-ρ⁻¹]_{3}^{∞} = 7[(-1/∞) - (-1/3)]
+
+= 7[0 + 1/3] = 7/3
+                            </div>
+                            <p>The integral converges because 7/ρ² → 0 fast enough as ρ → ∞.</p>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Evaluate the φ Integral</div>
+                            <div class="math">
+∫_{0}^{π} sin φ dφ = [-cos φ]_{0}^{π} = (-cos π) - (-cos 0)
+
+= -(-1) - (-1) = 1 + 1 = 2
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Evaluate the θ Integral</div>
+                            <div class="math">
+∫_{0}^{2π} dθ = 2π
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="6">
+                            <div class="step-title">Combine All Parts</div>
+                            <div class="math">
+Total = (7/3) × 2 × 2π = (7/3) × 4π = 28π/3
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Why Does This Converge?</h5>
+                            <p>
+                                The function 7/ρ⁴ decreases rapidly as ρ → ∞. When multiplied by the volume
+                                element ρ² sin φ, we get 7/ρ². The integral of 1/ρ² from 3 to ∞ converges
+                                (it gives 1/3), unlike ∫1/ρ dρ which would diverge.
+                            </p>
+                            <p>
+                                Rule of thumb: For integrals over unbounded regions in ℝ³, you need the integrand
+                                to decrease faster than 1/ρ³ to guarantee convergence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">28π/3</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM: Question 16.137 - Center of Mass of Hemisphere -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 7</span>
+                    <span class="problem-title">Question 16.137 - Center of Mass of Hemisphere</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Find the center of mass of the solid hemisphere V = {(x,y,z) | x² + y² + z² ≤ a², z ≥ 0}
+                    if the density is constant.</p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We have a solid hemisphere of radius a sitting on the xy-plane (z ≥ 0). With constant
+                            density, we need to find where the "balance point" is located.
+                        </p>
+
+                        <div class="concept-box">
+                            <h4>Center of Mass Formulas</h4>
+                            <p>For a solid with density ρ(x,y,z):</p>
+                            <div class="math">
+Mass M = ∭ ρ dV
+
+x̄ = (1/M) ∭ x·ρ dV
+ȳ = (1/M) ∭ y·ρ dV
+z̄ = (1/M) ∭ z·ρ dV
+                            </div>
+                            <p>For constant density ρ₀, it cancels from the fractions!</p>
+                        </div>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Use Symmetry for x̄ and ȳ</div>
+                            <p>
+                                The hemisphere is symmetric about both the xz-plane and the yz-plane. Since the
+                                density is constant:
+                            </p>
+                            <div class="math">
+x̄ = 0  (by symmetry about yz-plane)
+ȳ = 0  (by symmetry about xz-plane)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Set Up z̄ in Spherical Coordinates</div>
+                            <p>We need to find z̄ = ∭z dV / ∭dV. In spherical:</p>
+                            <ul>
+                                <li>z = ρ cos φ</li>
+                                <li>dV = ρ² sin φ dρ dφ dθ</li>
+                                <li>Region: 0 ≤ ρ ≤ a, 0 ≤ φ ≤ π/2 (upper hemisphere), 0 ≤ θ ≤ 2π</li>
+                            </ul>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Calculate the Volume (Denominator)</div>
+                            <div class="math">
+Volume = ∫_{0}^{2π} ∫_{0}^{π/2} ∫_{0}^{a} ρ² sin φ dρ dφ dθ
+
+= ∫_{0}^{2π} dθ · ∫_{0}^{π/2} sin φ dφ · ∫_{0}^{a} ρ² dρ
+
+= 2π · [-cos φ]_{0}^{π/2} · [ρ³/3]_{0}^{a}
+
+= 2π · (0 - (-1)) · (a³/3) = 2π · 1 · a³/3 = 2πa³/3
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Calculate ∭z dV (Numerator)</div>
+                            <div class="math">
+∭ z dV = ∫_{0}^{2π} ∫_{0}^{π/2} ∫_{0}^{a} (ρ cos φ) · ρ² sin φ dρ dφ dθ
+
+= ∫_{0}^{2π} dθ · ∫_{0}^{π/2} cos φ sin φ dφ · ∫_{0}^{a} ρ³ dρ
+
+= 2π · [sin²φ/2]_{0}^{π/2} · [ρ⁴/4]_{0}^{a}
+
+= 2π · (1/2 - 0) · (a⁴/4) = 2π · (1/2) · (a⁴/4) = πa⁴/4
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Calculate z̄</div>
+                            <div class="math">
+z̄ = ∭z dV / ∭dV = (πa⁴/4) / (2πa³/3)
+
+= (πa⁴/4) × (3/2πa³) = 3a/8
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Physical Interpretation</h5>
+                            <p>
+                                The center of mass is at (0, 0, 3a/8). This means the balance point is 3/8 of
+                                the way up from the base to the top of the hemisphere. It's below the geometric
+                                center because there's more volume (and thus more mass) near the base.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">Center of Mass: (0, 0, 3a/8)</div>
+                </div>
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PART IV: CHANGE OF VARIABLES / JACOBIANS -->
+        <!-- ============================================== -->
+        <section class="part" id="jacobians">
+            <div class="part-header">
+                <span class="part-number">PART IV</span>
+                <h2>Change of Variables & Jacobians</h2>
+                <p style="color: var(--text-gray);">Transforming integrals to simpler forms</p>
+            </div>
+
+            <h3>The Big Idea</h3>
+
+            <p>
+                Sometimes an integral is difficult in one coordinate system but easy in another. The
+                <strong>change of variables formula</strong> tells us how to transform an integral from
+                (x, y) coordinates to (u, v) coordinates.
+            </p>
+
+            <p>
+                You've already used this! When we converted from Cartesian to polar coordinates, we replaced
+                dA = dx dy with dA = r dr dθ. That factor of r is an example of a <strong>Jacobian</strong>.
+            </p>
+
+            <div class="definition">
+                <h4>The Jacobian</h4>
+                <p>
+                    The Jacobian of a transformation (x, y) = (g(u, v), h(u, v)) measures how much the
+                    transformation stretches or shrinks area. It's the determinant:
+                </p>
+                <div class="math">
+∂(x, y)/∂(u, v) = | ∂x/∂u   ∂x/∂v |
+                  | ∂y/∂u   ∂y/∂v |
+
+= (∂x/∂u)(∂y/∂v) - (∂x/∂v)(∂y/∂u)
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Change of Variables Formula</div>
+                <div class="formula">
+∬[R] f(x, y) dx dy = ∬[R*] f(g(u,v), h(u,v)) |∂(x,y)/∂(u,v)| du dv
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">
+                    where R* is the region in the uv-plane that maps to R in the xy-plane.
+                </p>
+            </div>
+
+            <div class="warning">
+                <strong>Always use the ABSOLUTE VALUE of the Jacobian!</strong> The Jacobian can be negative
+                (if the transformation reverses orientation), but area is always positive.
+            </div>
+
+            <!-- PROBLEM: Jacobian Calculation -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 8</span>
+                    <span class="problem-title">Computing a Jacobian</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Compute the Jacobian determinant of G(u, v) = (3ue^v, 7 + 3e^u).</p>
+                    <p><strong>Given Answer: -9ue^(u+v)</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We have a transformation G that takes (u, v) coordinates to (x, y) coordinates where:
+                        </p>
+                        <ul>
+                            <li>x = 3ue^v</li>
+                            <li>y = 7 + 3e^u</li>
+                        </ul>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Compute the Partial Derivatives</div>
+                            <div class="math">
+∂x/∂u = ∂(3ue^v)/∂u = 3e^v  (treating v as constant)
+
+∂x/∂v = ∂(3ue^v)/∂v = 3ue^v  (treating u as constant)
+
+∂y/∂u = ∂(7 + 3e^u)/∂u = 3e^u
+
+∂y/∂v = ∂(7 + 3e^u)/∂v = 0
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Set Up the Jacobian Matrix</div>
+                            <div class="math">
+∂(x, y)/∂(u, v) = | 3e^v    3ue^v |
+                  | 3e^u    0     |
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Calculate the Determinant</div>
+                            <div class="math">
+det = (3e^v)(0) - (3ue^v)(3e^u)
+
+    = 0 - 9ue^v · e^u
+
+    = -9ue^(u+v)
+                            </div>
+                        </div>
+
+                        <div class="tip">
+                            When computing 2×2 determinants, use: |a b| = ad - bc
+                                                                  |c d|
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">Jac(G) = -9ue^(u+v)</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM: Linear Transformation -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 9</span>
+                    <span class="problem-title">Finding a Linear Transformation</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Find a linear mapping G that maps [0,1]×[0,1] to the parallelogram in the xy-plane
+                    spanned by the vectors ⟨-5, 4⟩ and ⟨8, 6⟩.</p>
+                    <p><strong>Given Answer: G(u,v) = (-5u + 8v, 4u + 6v)</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We need a transformation that:
+                        </p>
+                        <ul>
+                            <li>Maps (0,0) → (0,0) (origin to origin)</li>
+                            <li>Maps (1,0) → (-5,4) (first basis vector)</li>
+                            <li>Maps (0,1) → (8,6) (second basis vector)</li>
+                            <li>Maps (1,1) → (-5+8, 4+6) = (3,10) (corner of parallelogram)</li>
+                        </ul>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Write the General Linear Form</div>
+                            <p>A linear transformation has the form:</p>
+                            <div class="math">
+G(u, v) = (au + bv, cu + dv)
+                            </div>
+                            <p>where a, b, c, d are constants to determine.</p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Use the Spanning Vectors</div>
+                            <p>When u = 1, v = 0: We get the first spanning vector</p>
+                            <div class="math">
+G(1, 0) = (a·1 + b·0, c·1 + d·0) = (a, c) = (-5, 4)
+
+So a = -5, c = 4
+                            </div>
+
+                            <p>When u = 0, v = 1: We get the second spanning vector</p>
+                            <div class="math">
+G(0, 1) = (a·0 + b·1, c·0 + d·1) = (b, d) = (8, 6)
+
+So b = 8, d = 6
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Write the Transformation</div>
+                            <div class="math">
+G(u, v) = (-5u + 8v, 4u + 6v)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Verify the Jacobian</div>
+                            <p>For this transformation, the Jacobian is:</p>
+                            <div class="math">
+| -5   8 |
+|  4   6 | = (-5)(6) - (8)(4) = -30 - 32 = -62
+
+|Jacobian| = 62
+                            </div>
+                            <p>This means the parallelogram has area = 62 × (area of unit square) = 62.</p>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>The Pattern for Linear Maps</h5>
+                            <p>
+                                For a linear map from the unit square to a parallelogram spanned by vectors
+                                <strong>a</strong> = ⟨a₁, a₂⟩ and <strong>b</strong> = ⟨b₁, b₂⟩:
+                            </p>
+                            <div class="math">
+G(u, v) = u·a + v·b = (a₁u + b₁v, a₂u + b₂v)
+                            </div>
+                            <p>The Jacobian equals the cross product a₁b₂ - a₂b₁.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">G(u, v) = (-5u + 8v, 4u + 6v)</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM: Calculate integral using change of variables = 96 -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 10</span>
+                    <span class="problem-title">Double Integral Using Change of Variables</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Calculate ∬[D] (x + 4y) dx dy, where D is the parallelogram with vertices shown,
+                    using the map G(u, v) = (u - 2v, v).</p>
+                    <p><strong>Given Answer: 96</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We're given a transformation G(u, v) = (u - 2v, v), which means:
+                        </p>
+                        <ul>
+                            <li>x = u - 2v</li>
+                            <li>y = v</li>
+                        </ul>
+                        <p>
+                            We need to use this to simplify the integral over the parallelogram D.
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Calculate the Jacobian</div>
+                            <div class="math">
+∂x/∂u = 1,  ∂x/∂v = -2
+∂y/∂u = 0,  ∂y/∂v = 1
+
+Jacobian = | 1  -2 | = (1)(1) - (-2)(0) = 1
+           | 0   1 |
+
+|Jacobian| = 1
+                            </div>
+                            <p>Great! The Jacobian is 1, so dx dy = du dv directly.</p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Transform the Integrand</div>
+                            <p>We need to write x + 4y in terms of u and v:</p>
+                            <div class="math">
+x + 4y = (u - 2v) + 4(v) = u - 2v + 4v = u + 2v
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Determine the New Region</div>
+                            <p>
+                                From the figure, the parallelogram in the xy-plane transforms to a simpler
+                                region in the uv-plane. Based on the given lines x + 2y = 6 and x + 2y = 10,
+                                and using x = u - 2v, y = v:
+                            </p>
+                            <div class="math">
+x + 2y = (u - 2v) + 2v = u
+
+So x + 2y = 6 becomes u = 6
+And x + 2y = 10 becomes u = 10
+                            </div>
+                            <p>The region in uv-coordinates is a rectangle: 6 ≤ u ≤ 10, 1 ≤ v ≤ 3</p>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Evaluate the Integral</div>
+                            <div class="math">
+∬[D] (x + 4y) dx dy = ∫_{1}^{3} ∫_{6}^{10} (u + 2v) · 1 du dv
+
+= ∫_{1}^{3} [u²/2 + 2vu]_{u=6}^{u=10} dv
+
+= ∫_{1}^{3} [(100/2 + 20v) - (36/2 + 12v)] dv
+
+= ∫_{1}^{3} [(50 + 20v) - (18 + 12v)] dv
+
+= ∫_{1}^{3} (32 + 8v) dv
+
+= [32v + 4v²]_{1}^{3}
+
+= (96 + 36) - (32 + 4) = 132 - 36 = 96
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">96</div>
+                </div>
+            </div>
+
+            <!-- TRUE/FALSE: Change of variables formula -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 11</span>
+                    <span class="problem-title">True/False: Change of Variables Formula</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Indicate whether the following statement is true or false:</p>
+                    <p><em>The change of variable formula reads:</em></p>
+                    <div class="math">
+∬[D] f(x, y) dx dy = ∬[D*] f(x(u,v), y(u,v)) · ∂(x,y)/∂(u,v) du dv
+                    </div>
+                    <p><strong>Given Answer: FALSE</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Why is this FALSE?</h5>
+                        <p>
+                            The statement is missing the <strong>absolute value</strong> around the Jacobian!
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">The Correct Formula</div>
+                            <div class="math">
+∬[D] f(x, y) dx dy = ∬[D*] f(x(u,v), y(u,v)) · |∂(x,y)/∂(u,v)| du dv
+                            </div>
+                            <p>Notice the absolute value bars: |∂(x,y)/∂(u,v)|</p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Why Absolute Value Matters</div>
+                            <p>
+                                The Jacobian determinant can be negative if the transformation reverses
+                                orientation (like a reflection). However, area is always positive, so we need
+                                the absolute value to ensure we're measuring area correctly.
+                            </p>
+                        </div>
+
+                        <div class="warning">
+                            This is a common exam trap! Always remember: the change of variables formula
+                            uses |Jacobian|, not just Jacobian.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">FALSE (missing absolute value)</div>
+                </div>
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PART V: LINE INTEGRALS -->
+        <!-- ============================================== -->
+        <section class="part" id="line-integrals">
+            <div class="part-header">
+                <span class="part-number">PART V</span>
+                <h2>Line Integrals</h2>
+                <p style="color: var(--text-gray);">Integrating along curves in space</p>
+            </div>
+
+            <h3>What is a Line Integral?</h3>
+
+            <p>
+                A <strong>line integral</strong> (or path integral) is an integral where you integrate along
+                a curve rather than over a region. Imagine walking along a path and adding up values of a
+                function at each point you pass.
+            </p>
+
+            <p>There are two main types:</p>
+
+            <h4>1. Line Integral of a Scalar Function</h4>
+            <p>
+                If f(x, y) represents something like temperature, and you walk along a path C, the line
+                integral ∫[C] f ds gives you something like the "total temperature experienced" along your walk.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Line Integral of a Scalar Function</div>
+                <div class="formula">
+∫[C] f ds = ∫[a to b] f(r(t)) · |r'(t)| dt
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">
+                    where r(t) parameterizes the curve C, and |r'(t)| is the speed.
+                </p>
+            </div>
+
+            <h4>2. Line Integral of a Vector Field</h4>
+            <p>
+                If <strong>F</strong> represents a force field, the line integral ∫[C] <strong>F</strong>·d<strong>r</strong>
+                gives the work done by the force as you move along the path.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Line Integral of a Vector Field</div>
+                <div class="formula">
+∫[C] F·dr = ∫[a to b] F(r(t)) · r'(t) dt
+                </div>
+            </div>
+
+            <h3 id="parameterization">Parameterization: The Key Skill</h3>
+
+            <p>
+                To evaluate a line integral, you need to <strong>parameterize</strong> the curve. This means
+                expressing x, y (and z in 3D) as functions of a single parameter t.
+            </p>
+
+            <div class="concept-box">
+                <h4>Common Parameterizations</h4>
+                <ul>
+                    <li><strong>Line segment</strong> from (a, b) to (c, d): r(t) = (1-t)(a, b) + t(c, d) for t ∈ [0, 1]</li>
+                    <li><strong>Circle</strong> of radius R centered at origin: r(t) = (R cos t, R sin t) for t ∈ [0, 2π]</li>
+                    <li><strong>Parabola</strong> y = x²: r(t) = (t, t²)</li>
+                </ul>
+            </div>
+
+            <!-- PROBLEM: Line integral = -28√10 -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 12</span>
+                    <span class="problem-title">Line Integral of a Scalar Function</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Calculate the path integral ∫[C] f(x, y) ds for the given function and path:</p>
+                    <div class="math">
+f(x, y) = xy,  r(t) = (6t, 2t - 6) for 0 ≤ t ≤ 1
+                    </div>
+                    <p><strong>Given Answer: -28√10</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We have the parameterization r(t) = (6t, 2t - 6), which means x = 6t and y = 2t - 6.
+                            This is a line segment from (0, -6) when t = 0 to (6, -4) when t = 1.
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Find r'(t) and |r'(t)|</div>
+                            <div class="math">
+r(t) = (6t, 2t - 6)
+r'(t) = (6, 2)
+
+|r'(t)| = √(6² + 2²) = √(36 + 4) = √40 = 2√10
+                            </div>
+                            <p>This is constant, which makes sense for a line segment (constant speed).</p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Express f(r(t))</div>
+                            <p>Substitute x = 6t and y = 2t - 6 into f(x, y) = xy:</p>
+                            <div class="math">
+f(r(t)) = (6t)(2t - 6) = 12t² - 36t
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Set Up the Integral</div>
+                            <div class="math">
+∫[C] f ds = ∫_{0}^{1} f(r(t)) · |r'(t)| dt
+
+= ∫_{0}^{1} (12t² - 36t) · 2√10 dt
+
+= 2√10 ∫_{0}^{1} (12t² - 36t) dt
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Evaluate the Integral</div>
+                            <div class="math">
+∫_{0}^{1} (12t² - 36t) dt = [4t³ - 18t²]_{0}^{1}
+
+= (4 - 18) - (0) = -14
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Multiply by the Constant</div>
+                            <div class="math">
+∫[C] f ds = 2√10 · (-14) = -28√10
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Why Negative?</h5>
+                            <p>
+                                The function f(x, y) = xy is negative when x and y have opposite signs.
+                                Along this path, x is positive (0 to 6) while y is negative (-6 to -4),
+                                so xy < 0 everywhere on the path.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">-28√10</div>
+                </div>
+            </div>
+
+            <!-- PROBLEM: Line integral in 3D -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 13</span>
+                    <span class="problem-title">Line Integral Components</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Let f(x, y, z) = x + yz and let C be the line segment from P = (0, 0, 0) to (8, 4, 4).</p>
+                    <p>For the parameterization r(t) = (4t², 2t², 2t²) for 0 ≤ t ≤ √2, calculate:</p>
+                    <ul>
+                        <li>f(r(t))</li>
+                        <li>ds</li>
+                    </ul>
+                    <p><strong>Given Answers: f(r(t)) = 4t² + 4t⁴, ds = 4t√6 dt</strong></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Part 1: Find f(r(t))</h5>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Identify x, y, z from the Parameterization</div>
+                            <div class="math">
+r(t) = (4t², 2t², 2t²)
+
+So: x = 4t², y = 2t², z = 2t²
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Substitute into f(x, y, z) = x + yz</div>
+                            <div class="math">
+f(r(t)) = x + yz = 4t² + (2t²)(2t²)
+
+= 4t² + 4t⁴
+                            </div>
+                        </div>
+
+                        <h5>Part 2: Find ds</h5>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Compute r'(t)</div>
+                            <div class="math">
+r'(t) = d/dt(4t², 2t², 2t²) = (8t, 4t, 4t)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Compute |r'(t)|</div>
+                            <div class="math">
+|r'(t)| = √((8t)² + (4t)² + (4t)²)
+
+= √(64t² + 16t² + 16t²)
+
+= √(96t²)
+
+= √96 · |t|
+
+= 4√6 · t  (since t ≥ 0)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Express ds</div>
+                            <div class="math">
+ds = |r'(t)| dt = 4t√6 dt
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>What is ds?</h5>
+                            <p>
+                                The differential ds represents the arc length element - an infinitesimally
+                                small piece of the curve. It equals |r'(t)| dt because |r'(t)| is the "speed"
+                                of traversal, and multiplying speed by time gives distance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWERS</div>
+                    <div class="answer-value">f(r(t)) = 4t² + 4t⁴<br>ds = 4t√6 dt</div>
+                </div>
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- PART VI: GREEN'S THEOREM AND SURFACE INTEGRALS -->
+        <!-- ============================================== -->
+        <section class="part" id="greens-theorem">
+            <div class="part-header">
+                <span class="part-number">PART VI</span>
+                <h2>Vector Calculus Theorems</h2>
+                <p style="color: var(--text-gray);">Green's Theorem, Surface Integrals, and Conservative Fields</p>
+            </div>
+
+            <h3>Green's Theorem</h3>
+
+            <p>
+                Green's Theorem is one of the most powerful tools in vector calculus. It relates a
+                <strong>line integral around a closed curve</strong> to a <strong>double integral over the
+                region enclosed</strong>.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Green's Theorem</div>
+                <div class="formula">
+∮[C] (P dx + Q dy) = ∬[D] (∂Q/∂x - ∂P/∂y) dA
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">
+                    where C is a positively oriented (counterclockwise) simple closed curve bounding region D.
+                </p>
+            </div>
+
+            <div class="concept-box">
+                <h4>When to Use Green's Theorem</h4>
+                <ul>
+                    <li>Converting a difficult line integral into an easier double integral</li>
+                    <li>Converting a difficult double integral into an easier line integral</li>
+                    <li>Computing the area of a region: Area = ∮ x dy = -∮ y dx = ½∮ (x dy - y dx)</li>
+                </ul>
+            </div>
+
+            <!-- PROBLEM: Green's Theorem -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 14</span>
+                    <span class="problem-title">Green's Theorem Application</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Use Green's Theorem to evaluate the line integral ∮[C] <strong>F</strong>·d<strong>r</strong>,
+                    where <strong>F</strong>(x, y) = ⟨x², x²⟩ and C consists of the arcs y = x² and y = 4x
+                    for 0 ≤ x ≤ 4. Orient the curve counterclockwise.</p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We have <strong>F</strong> = ⟨P, Q⟩ = ⟨x², x²⟩, so P = x² and Q = x². The region D
+                            is bounded by the parabola y = x² (below) and the line y = 4x (above), from x = 0 to x = 4.
+                        </p>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Verify the Curves Intersect at x = 0 and x = 4</div>
+                            <p>Setting x² = 4x:</p>
+                            <div class="math">
+x² = 4x
+x² - 4x = 0
+x(x - 4) = 0
+x = 0 or x = 4 ✓
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Compute the Partial Derivatives</div>
+                            <div class="math">
+∂Q/∂x = ∂(x²)/∂x = 2x
+
+∂P/∂y = ∂(x²)/∂y = 0
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Apply Green's Theorem</div>
+                            <div class="math">
+∮[C] F·dr = ∬[D] (∂Q/∂x - ∂P/∂y) dA
+
+= ∬[D] (2x - 0) dA = ∬[D] 2x dA
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Set Up the Double Integral</div>
+                            <p>The region D has y from x² (bottom) to 4x (top), and x from 0 to 4:</p>
+                            <div class="math">
+∬[D] 2x dA = ∫_{0}^{4} ∫_{x²}^{4x} 2x dy dx
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Evaluate the Inner Integral</div>
+                            <div class="math">
+∫_{x²}^{4x} 2x dy = 2x · y |_{x²}^{4x} = 2x(4x - x²) = 8x² - 2x³
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="6">
+                            <div class="step-title">Evaluate the Outer Integral</div>
+                            <div class="math">
+∫_{0}^{4} (8x² - 2x³) dx = [8x³/3 - x⁴/2]_{0}^{4}
+
+= (8(64)/3 - 256/2) - 0
+
+= 512/3 - 128
+
+= 512/3 - 384/3 = 128/3
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">128/3</div>
+                </div>
+            </div>
+
+            <h3 id="surface-integrals">Surface Integrals</h3>
+
+            <p>
+                A <strong>surface integral</strong> extends the idea of a line integral to two dimensions.
+                Instead of integrating along a curve, we integrate over a surface in 3D space.
+            </p>
+
+            <div class="formula-box">
+                <div class="formula-name">Flux Integral (Surface Integral of Vector Field)</div>
+                <div class="formula">
+∬[S] F·dS = ∬[S] F·n dS
+                </div>
+                <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 1rem;">
+                    This measures how much of the vector field F flows through the surface S.
+                </p>
+            </div>
+
+            <!-- PROBLEM: Electric flux through hemisphere -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 15</span>
+                    <span class="problem-title">Electric Flux Through a Closed Surface</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Let S be the closed surface that consists of the hemisphere x² + y² + z² = 1, z ≥ 0,
+                    and its base x² + y² ≤ 1, z = 0. Let <strong>E</strong>(x, y, z) = 8x<strong>i</strong> + 8y<strong>j</strong> + 8z<strong>k</strong>.
+                    Find the electric flux across S.</p>
+                    <p><em>Hint: Break S into two pieces S₁ (hemisphere) and S₂ (base disk).</em></p>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Understanding the Problem</h5>
+                        <p>
+                            We need to find the flux of <strong>E</strong> = ⟨8x, 8y, 8z⟩ through a closed surface
+                            consisting of a hemisphere plus its base disk. This is a perfect setup for the
+                            <strong>Divergence Theorem</strong>!
+                        </p>
+
+                        <div class="concept-box">
+                            <h4>Divergence Theorem</h4>
+                            <p>For a closed surface S enclosing volume V:</p>
+                            <div class="math">
+∬[S] F·dS = ∭[V] (∇·F) dV
+                            </div>
+                            <p>The surface integral of flux equals the volume integral of divergence.</p>
+                        </div>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Compute the Divergence of E</div>
+                            <div class="math">
+∇·E = ∂(8x)/∂x + ∂(8y)/∂y + ∂(8z)/∂z = 8 + 8 + 8 = 24
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Apply Divergence Theorem</div>
+                            <div class="math">
+∬[S] E·dS = ∭[V] 24 dV = 24 × (Volume of hemisphere)
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Calculate the Volume</div>
+                            <p>The volume of a hemisphere of radius 1 is half a sphere:</p>
+                            <div class="math">
+Volume = (1/2) × (4π/3) × 1³ = 2π/3
+                            </div>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Compute the Flux</div>
+                            <div class="math">
+∬[S] E·dS = 24 × (2π/3) = 48π/3 = 16π
+                            </div>
+                        </div>
+
+                        <div class="why-box">
+                            <h5>Why the Divergence Theorem Works Here</h5>
+                            <p>
+                                The problem asked for flux through a closed surface. When you have a closed
+                                surface (like a hemisphere with its base capping it), the Divergence Theorem
+                                converts the surface integral into a volume integral, which is often easier!
+                            </p>
+                            <p>
+                                The divergence ∇·E = 24 being constant makes this especially nice - we just
+                                multiply by the volume.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="answer">
+                    <div class="answer-label">FINAL ANSWER</div>
+                    <div class="answer-value">16π</div>
+                </div>
+            </div>
+
+            <h3 id="conservative">Conservative Vector Fields</h3>
+
+            <p>
+                A vector field <strong>F</strong> is called <strong>conservative</strong> if it is the gradient
+                of some scalar function f (called the <strong>potential function</strong>): <strong>F</strong> = ∇f.
+            </p>
+
+            <div class="concept-box">
+                <h4>Properties of Conservative Fields</h4>
+                <ul>
+                    <li>The line integral depends only on endpoints, not the path</li>
+                    <li>∮[C] <strong>F</strong>·d<strong>r</strong> = 0 for any closed curve C</li>
+                    <li>∫[C] <strong>F</strong>·d<strong>r</strong> = f(end) - f(start)</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Test for Conservative Field (in 2D)</div>
+                <div class="formula">
+F = ⟨P, Q⟩ is conservative ⟺ ∂P/∂y = ∂Q/∂x
+                </div>
+            </div>
+
+            <!-- PROBLEM: Conservative vector fields -->
+            <div class="problem">
+                <div class="problem-header">
+                    <span class="problem-number">Problem 16</span>
+                    <span class="problem-title">Determining Conservative Fields and Finding Potential Functions</span>
+                </div>
+
+                <div class="problem-statement">
+                    <p>Determine which of the following vector fields F in the plane is the gradient of a
+                    scalar function f. If such an f exists, find it. If no such f exists, enter DNE.</p>
+                    <ul>
+                        <li>(a) F(x, y) = 3x<strong>i</strong> + 7y<strong>j</strong></li>
+                        <li>(b) F(x, y) = 5xy<strong>i</strong> + 7xy<strong>j</strong></li>
+                        <li>(c) F(x, y) = (7x² + 7y²)<strong>i</strong> + (14xy)<strong>j</strong></li>
+                    </ul>
+                </div>
+
+                <div class="solution">
+                    <div class="solution-header">Complete Solution</div>
+                    <div class="solution-content">
+
+                        <h5>Part (a): F = ⟨3x, 7y⟩</h5>
+
+                        <div class="step" data-step="1">
+                            <div class="step-title">Test for Conservative</div>
+                            <p>P = 3x, Q = 7y</p>
+                            <div class="math">
+∂P/∂y = 0
+∂Q/∂x = 0
+                            </div>
+                            <p>Since ∂P/∂y = ∂Q/∂x, the field IS conservative!</p>
+                        </div>
+
+                        <div class="step" data-step="2">
+                            <div class="step-title">Find the Potential Function</div>
+                            <p>We need f such that ∂f/∂x = 3x and ∂f/∂y = 7y.</p>
+                            <div class="math">
+∫ 3x dx = (3/2)x² + g(y)
+
+So f = (3/2)x² + g(y)
+
+Now: ∂f/∂y = g'(y) = 7y
+So: g(y) = (7/2)y² + C
+
+Therefore: f(x, y) = (3/2)x² + (7/2)y² + C
+                            </div>
+                        </div>
+
+                        <div class="answer" style="background: rgba(16, 185, 129, 0.1);">
+                            <div class="answer-label">Answer (a)</div>
+                            <div class="answer-value">f(x, y) = (3/2)x² + (7/2)y² + C</div>
+                        </div>
+
+                        <h5>Part (b): F = ⟨5xy, 7xy⟩</h5>
+
+                        <div class="step" data-step="3">
+                            <div class="step-title">Test for Conservative</div>
+                            <p>P = 5xy, Q = 7xy</p>
+                            <div class="math">
+∂P/∂y = 5x
+∂Q/∂x = 7y
+                            </div>
+                            <p>Since 5x ≠ 7y in general, the field is NOT conservative.</p>
+                        </div>
+
+                        <div class="answer" style="background: rgba(239, 68, 68, 0.1); border-color: var(--red);">
+                            <div class="answer-label">Answer (b)</div>
+                            <div class="answer-value">DNE (Not conservative)</div>
+                        </div>
+
+                        <h5>Part (c): F = ⟨7x² + 7y², 14xy⟩</h5>
+
+                        <div class="step" data-step="4">
+                            <div class="step-title">Test for Conservative</div>
+                            <p>P = 7x² + 7y², Q = 14xy</p>
+                            <div class="math">
+∂P/∂y = 14y
+∂Q/∂x = 14y
+                            </div>
+                            <p>Since ∂P/∂y = ∂Q/∂x, the field IS conservative!</p>
+                        </div>
+
+                        <div class="step" data-step="5">
+                            <div class="step-title">Find the Potential Function</div>
+                            <div class="math">
+From ∂f/∂x = 7x² + 7y²:
+f = ∫(7x² + 7y²)dx = (7/3)x³ + 7xy² + g(y)
+
+Now: ∂f/∂y = 14xy + g'(y) = 14xy
+So: g'(y) = 0, meaning g(y) = C
+
+Therefore: f(x, y) = (7/3)x³ + 7xy² + C
+                            </div>
+                        </div>
+
+                        <div class="answer" style="background: rgba(16, 185, 129, 0.1);">
+                            <div class="answer-label">Answer (c)</div>
+                            <div class="answer-value">f(x, y) = (7/3)x³ + 7xy² + C</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- QUICK REFERENCE FORMULAS -->
+        <!-- ============================================== -->
+        <section class="part" id="quick-reference">
+            <div class="part-header">
+                <span class="part-number">REFERENCE</span>
+                <h2>Quick Reference Formulas</h2>
+                <p style="color: var(--text-gray);">Everything you need in one place</p>
+            </div>
+
+            <h3>Coordinate Systems</h3>
+
+            <div class="formula-box">
+                <div class="formula-name">Polar Coordinates (2D)</div>
+                <div class="formula">
+x = r cos θ,  y = r sin θ<br>
+r² = x² + y²<br>
+<strong>dA = r dr dθ</strong>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Cylindrical Coordinates (3D)</div>
+                <div class="formula">
+x = r cos θ,  y = r sin θ,  z = z<br>
+<strong>dV = r dz dr dθ</strong>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Spherical Coordinates (3D)</div>
+                <div class="formula">
+x = ρ sin φ cos θ<br>
+y = ρ sin φ sin θ<br>
+z = ρ cos φ<br><br>
+ρ² = x² + y² + z²<br>
+<strong>dV = ρ² sin φ dρ dφ dθ</strong>
+                </div>
+            </div>
+
+            <h3>Theorems</h3>
+
+            <div class="formula-box">
+                <div class="formula-name">Green's Theorem</div>
+                <div class="formula">
+∮[C] (P dx + Q dy) = ∬[D] (∂Q/∂x - ∂P/∂y) dA
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Divergence Theorem</div>
+                <div class="formula">
+∬[S] F·dS = ∭[V] (∇·F) dV
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Change of Variables</div>
+                <div class="formula">
+∬[R] f(x,y) dA = ∬[R*] f(x(u,v), y(u,v)) |Jacobian| du dv<br><br>
+Jacobian = |∂x/∂u  ∂x/∂v| = ∂x/∂u · ∂y/∂v - ∂x/∂v · ∂y/∂u
+           |∂y/∂u  ∂y/∂v|
+                </div>
+            </div>
+
+            <h3>Line Integrals</h3>
+
+            <div class="formula-box">
+                <div class="formula-name">Line Integral of Scalar Function</div>
+                <div class="formula">
+∫[C] f ds = ∫[a to b] f(r(t)) |r'(t)| dt
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <div class="formula-name">Line Integral of Vector Field</div>
+                <div class="formula">
+∫[C] F·dr = ∫[a to b] F(r(t)) · r'(t) dt
+                </div>
+            </div>
+
+            <h3>Conservative Fields</h3>
+
+            <div class="formula-box">
+                <div class="formula-name">Test for Conservative (2D)</div>
+                <div class="formula">
+F = ⟨P, Q⟩ is conservative ⟺ ∂P/∂y = ∂Q/∂x
+                </div>
+            </div>
+
+            <div class="back-top"><a href="#top">↑ Back to Table of Contents</a></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Complete Calculus III Study Guide</p>
+        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+            Generated with detailed step-by-step solutions for every problem.
+        </p>
+    </footer>
+</body>
+</html>

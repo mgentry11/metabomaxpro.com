@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Study Guide: Surface Integrals, Flux & Line Integrals</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 17px;
+            line-height: 1.9;
+            color: #1a365d;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            background: white;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .main-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .main-header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 40px 0 25px 0;
+        }
+
+        .section-header h2 {
+            font-size: 1.6em;
+            margin: 0;
+        }
+
+        /* Blue Concept Boxes */
+        .concept-box {
+            background: linear-gradient(135deg, #ebf8ff 0%, #e6f3ff 100%);
+            border-left: 6px solid #3182ce;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+
+        .concept-box h3 {
+            color: #2c5282;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .concept-box p, .concept-box ul {
+            color: #2c5282;
+        }
+
+        /* Green Step-by-Step Sections */
+        .solution-steps {
+            border: 3px solid #38a169;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            background: linear-gradient(135deg, #f0fff4 0%, #e6ffed 100%);
+        }
+
+        .solution-steps h3 {
+            color: #276749;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #48bb78;
+            padding-bottom: 10px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 0.95em;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 5px;
+        }
+
+        /* Yellow Why Boxes */
+        .why-box {
+            background: linear-gradient(135deg, #fefcbf 0%, #fef3c7 100%);
+            border-left: 6px solid #d69e2e;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .why-box h4 {
+            color: #975a16;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .why-box p {
+            color: #744210;
+        }
+
+        /* Pink/Red Formula Boxes */
+        .formula-box {
+            background: linear-gradient(135deg, #fed7e2 0%, #fbb6ce 100%);
+            border: 3px solid #d53f8c;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .formula-box h4 {
+            color: #97266d;
+            margin-bottom: 15px;
+            font-size: 1.15em;
+        }
+
+        .formula-box .formula {
+            font-size: 1.2em;
+            color: #702459;
+        }
+
+        /* Problem Cards */
+        .problem-card {
+            background: white;
+            border-left: 6px solid #3182ce;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .problem-card h3 {
+            color: #2c5282;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .problem-statement {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .problem-statement h4 {
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        /* Final Answer Box */
+        .final-answer {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            border: 3px solid #38a169;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .final-answer h4 {
+            color: #276749;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .final-answer .answer {
+            font-size: 1.4em;
+            color: #22543d;
+            font-weight: bold;
+        }
+
+        /* Prerequisite Box */
+        .prereq-box {
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            border-left: 6px solid #805ad5;
+            padding: 20px 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .prereq-box h4 {
+            color: #553c9a;
+            margin-bottom: 10px;
+        }
+
+        .prereq-box ul {
+            color: #44337a;
+            margin-left: 20px;
+        }
+
+        .prereq-box li {
+            margin-bottom: 5px;
+        }
+
+        /* Practice Tips Box */
+        .tips-box {
+            background: linear-gradient(135deg, #feebc8 0%, #fbd38d 100%);
+            border: 2px dashed #dd6b20;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .tips-box h4 {
+            color: #c05621;
+            margin-bottom: 10px;
+        }
+
+        .tips-box ul {
+            color: #7b341e;
+            margin-left: 20px;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin: 30px 0;
+        }
+
+        .toc h3 {
+            color: #2c5282;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .toc li:last-child {
+            border-bottom: none;
+        }
+
+        .toc a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .toc a:hover {
+            color: #805ad5;
+            text-decoration: underline;
+        }
+
+        /* Dividers */
+        hr {
+            border: none;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+            margin: 50px 0;
+            border-radius: 2px;
+        }
+
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .summary-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .summary-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .summary-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px 10px;
+            }
+
+            .main-header h1 {
+                font-size: 1.8em;
+            }
+
+            .problem-card {
+                padding: 20px 15px;
+            }
+
+            .step {
+                flex-direction: column;
+            }
+
+            .step-number {
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Math display adjustments */
+        mjx-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            max-width: 100%;
+        }
+
+        .math-block {
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        /* Introduction box */
+        .intro-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .intro-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .intro-box ul {
+            margin-left: 20px;
+        }
+
+        .intro-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Video Resource Styles */
+        .video-resources {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%);
+            border: 2px solid #e53e3e;
+            border-radius: 12px;
+            padding: 20px 25px;
+            margin: 25px 0;
+        }
+
+        .video-resources h3 {
+            color: #c53030;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 8px 8px 8px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .video-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.4);
+        }
+
+        .video-link svg {
+            margin-right: 10px;
+        }
+
+        .video-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #fff;
+            border-radius: 8px;
+            border-left: 4px solid #e53e3e;
+        }
+
+        .video-section h4 {
+            color: #c53030;
+            margin-bottom: 10px;
+        }
+
+        .video-section p {
+            color: #718096;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation Link */
+        .nav-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 10px 5px;
+            transition: transform 0.2s;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <h1>Calculus Study Guide: Part 2</h1>
+            <p>Surface Integrals, Flux, Surface Area & Advanced Line Integrals</p>
+        </header>
+
+        <!-- Navigation -->
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="calc3.html" class="nav-link">View Calc 3 Guide (Part 1)</a>
+            <a href="calculus.html" class="nav-link">View Chapter 16 Guide</a>
+        </div>
+
+        <!-- Introduction -->
+        <div class="intro-box">
+            <h3>How to Use This Study Guide</h3>
+            <ul>
+                <li><strong>Read Prerequisites First:</strong> Each problem lists the concepts you should understand before attempting it.</li>
+                <li><strong>Follow Step-by-Step:</strong> Work through each step carefully, understanding the reasoning before moving on.</li>
+                <li><strong>Study the "Why" Boxes:</strong> These explain the intuition behind key steps.</li>
+                <li><strong>Memorize Key Formulas:</strong> The pink formula boxes contain essential formulas you'll use repeatedly.</li>
+                <li><strong>Practice Actively:</strong> After studying each solution, try similar problems without looking at the guide.</li>
+            </ul>
+        </div>
+
+        <!-- Top Video Resources -->
+        <div class="video-resources">
+            <h3>Top Video Resources (by popularity)</h3>
+            <div class="video-section">
+                <h4>Surface Integrals & Flux (Problems 1 & 2)</h4>
+                <p>Professor Leonard's comprehensive 3+ hour lecture on surface integrals, flux, and the Divergence Theorem</p>
+                <a href="https://www.youtube.com/watch?v=1aYwEFhPhvU" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Professor Leonard: Surface & Flux Integrals
+                </a>
+            </div>
+            <div class="video-section">
+                <h4>Parametric Surfaces & Surface Area</h4>
+                <p>Khan Academy video on parametric surface representations and area calculations</p>
+                <a href="https://www.khanacademy.org/math/multivariable-calculus/integrating-multivariable-functions/surface-integrals/v/surface-integrals-introduction" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Khan Academy: Surface Integrals Introduction
+                </a>
+            </div>
+            <div class="video-section">
+                <h4>Line Integrals in Differential Form (Problems 3 & 4)</h4>
+                <p>Paul's Online Math Notes companion lecture on line integrals with dx, dy, dz</p>
+                <a href="https://www.khanacademy.org/math/multivariable-calculus/integrating-multivariable-functions/line-integrals/v/introduction-to-the-line-integral" target="_blank" class="video-link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    Khan Academy: Line Integrals
+                </a>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#key-concepts">Key Concepts Review</a></li>
+                <li><a href="#problem1">Problem 1: Surface Flux Integral (Cylinder)</a></li>
+                <li><a href="#problem2">Problem 2: Surface Area of a Cone</a></li>
+                <li><a href="#problem3">Problem 3: Line Integral (Differential Form)</a></li>
+                <li><a href="#problem4">Problem 4: Line Integral (Vector Field on Circle)</a></li>
+                <li><a href="#summary">Summary of Key Techniques</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <!-- Key Concepts Section -->
+        <section id="key-concepts">
+            <div class="section-header">
+                <h2>Key Concepts Review</h2>
+            </div>
+
+            <div class="concept-box">
+                <h3>Surface Integrals (Flux)</h3>
+                <p>A <strong>flux integral</strong> measures the flow of a vector field through a surface. We parametrize the surface, compute the normal vector via cross product, then integrate the dot product of the field with the normal.</p>
+            </div>
+
+            <div class="formula-box">
+                <h4>Flux Integral Formula</h4>
+                <div class="formula">
+                    $$\iint_S \mathbf{F} \cdot d\mathbf{S} = \iint_D \mathbf{F}(\mathbf{r}(u,v)) \cdot (\mathbf{r}_u \times \mathbf{r}_v)\, dA$$
+                </div>
+            </div>
+
+            <div class="concept-box">
+                <h3>Surface Area</h3>
+                <p>For a parametric surface $\mathbf{r}(u,v)$, the surface area is found by integrating the magnitude of the cross product of partial derivatives over the parameter domain.</p>
+            </div>
+
+            <div class="formula-box">
+                <h4>Surface Area Formula</h4>
+                <div class="formula">
+                    $$S = \iint_D |\mathbf{r}_u \times \mathbf{r}_v|\, dA$$
+                </div>
+            </div>
+
+            <div class="concept-box">
+                <h3>Line Integrals in Differential Form</h3>
+                <p>A line integral $\int_C P\,dx + Q\,dy + R\,dz$ is evaluated using a parametrization by converting each differential to its derivative times $dt$.</p>
+            </div>
+
+            <div class="formula-box">
+                <h4>Differential Form Line Integral</h4>
+                <div class="formula">
+                    $$\int_C P\,dx + Q\,dy + R\,dz = \int_a^b \left(P\frac{dx}{dt} + Q\frac{dy}{dt} + R\frac{dz}{dt}\right) dt$$
+                </div>
+            </div>
+
+            <div class="why-box">
+                <h4>When Can't We Use Green's Theorem?</h4>
+                <p>Green's Theorem requires the vector field to be defined and have continuous partial derivatives on the <em>entire</em> region enclosed by the curve. If there's a singularity inside the curve (like at the origin for inverse-square fields), we must compute the line integral directly using parametrization.</p>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 1 -->
+        <section id="problem1">
+            <div class="section-header">
+                <h2>Problem 1: Surface Flux Integral (Cylinder)</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Let $\mathbf{F}(x,y,z) = 2x\mathbf{i} - 2y\mathbf{j} + z^2\mathbf{k}$. Evaluate</p>
+                    $$\iint_S \mathbf{F} \cdot d\mathbf{S}$$
+                    <p>where $S$ is the cylinder $x^2 + y^2 = 4$ with $z \in [0,1]$.</p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Parametrization of cylindrical surfaces</li>
+                        <li>Computing normal vectors via cross products</li>
+                        <li>Surface integrals of vector fields</li>
+                        <li>Trigonometric identities (double angle formulas)</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Parametrize the cylindrical surface</strong>
+                            <p>The cylinder $x^2 + y^2 = 4$ has radius $r = 2$.</p>
+                            $$\mathbf{r}(\theta, z) = \langle 2\cos\theta, 2\sin\theta, z \rangle$$
+                            <p>with $\theta \in [0, 2\pi]$ and $z \in [0, 1]$.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Compute partial derivatives</strong>
+                            $$\mathbf{r}_\theta = \langle -2\sin\theta, 2\cos\theta, 0 \rangle$$
+                            $$\mathbf{r}_z = \langle 0, 0, 1 \rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Compute the normal vector (cross product)</strong>
+                            $$\mathbf{r}_\theta \times \mathbf{r}_z = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ -2\sin\theta & 2\cos\theta & 0 \\ 0 & 0 & 1 \end{vmatrix} = \langle 2\cos\theta, 2\sin\theta, 0 \rangle$$
+                            <p>This points <strong>outward</strong> from the cylinder (radially).</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Evaluate $\mathbf{F}$ on the surface</strong>
+                            <p>Substituting $x = 2\cos\theta$, $y = 2\sin\theta$:</p>
+                            $$\mathbf{F}(\mathbf{r}(\theta, z)) = \langle 4\cos\theta, -4\sin\theta, z^2 \rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Compute the dot product</strong>
+                            $$\mathbf{F} \cdot (\mathbf{r}_\theta \times \mathbf{r}_z) = (4\cos\theta)(2\cos\theta) + (-4\sin\theta)(2\sin\theta) + (z^2)(0)$$
+                            $$= 8\cos^2\theta - 8\sin^2\theta = 8(\cos^2\theta - \sin^2\theta) = 8\cos(2\theta)$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <strong>Evaluate the integral</strong>
+                            $$\iint_S \mathbf{F} \cdot d\mathbf{S} = \int_0^1 \int_0^{2\pi} 8\cos(2\theta)\, d\theta\, dz$$
+                            <p>Inner integral:</p>
+                            $$\int_0^{2\pi} 8\cos(2\theta)\, d\theta = 4\sin(2\theta)\Big|_0^{2\pi} = 4[\sin(4\pi) - \sin(0)] = 0$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="why-box">
+                    <h4>Why is the Flux Zero?</h4>
+                    <p>The vector field has perfect symmetry relative to the cylinder. The flux entering on one side exactly cancels the flux exiting on the opposite side. This is a consequence of the $\cos(2\theta)$ term integrating to zero over a full period.</p>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{0}$$</div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>For cylinders, use $\mathbf{r}(\theta, z) = \langle r\cos\theta, r\sin\theta, z \rangle$</li>
+                        <li>The outward normal for a cylinder is always radial: $\langle \cos\theta, \sin\theta, 0 \rangle$ (scaled)</li>
+                        <li>Look for trigonometric identities to simplify before integrating</li>
+                        <li>$\int_0^{2\pi} \cos(n\theta)\, d\theta = 0$ for any integer $n \neq 0$</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 2 -->
+        <section id="problem2">
+            <div class="section-header">
+                <h2>Problem 2: Surface Area of a Cone</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Find the surface area of the part of the cone $x^2 + y^2 = z^2$ between the planes $z = 3$ and $z = 8$.</p>
+                    <p><em>(Express numbers in exact form. Use symbolic notation and fractions where needed.)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Parametrization of cones</li>
+                        <li>Computing cross products and their magnitudes</li>
+                        <li>Surface area integrals</li>
+                        <li>Understanding cone geometry</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Understand the cone equation</strong>
+                            <p>The equation $x^2 + y^2 = z^2$ describes a double cone. Since $z \in [3, 8]$ (positive), we're on the <strong>upper cone</strong> where $z = \sqrt{x^2 + y^2} = r$ in cylindrical coordinates.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Parametrize the cone surface</strong>
+                            <p>Using the constraint $z = r$:</p>
+                            $$\mathbf{r}(r, \theta) = \langle r\cos\theta, r\sin\theta, r \rangle$$
+                            <p>with $r \in [3, 8]$ and $\theta \in [0, 2\pi]$.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Compute partial derivatives</strong>
+                            $$\mathbf{r}_r = \langle \cos\theta, \sin\theta, 1 \rangle$$
+                            $$\mathbf{r}_\theta = \langle -r\sin\theta, r\cos\theta, 0 \rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Compute the cross product</strong>
+                            $$\mathbf{r}_r \times \mathbf{r}_\theta = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ \cos\theta & \sin\theta & 1 \\ -r\sin\theta & r\cos\theta & 0 \end{vmatrix}$$
+                            $$= \langle -r\cos\theta, -r\sin\theta, r \rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Find the magnitude</strong>
+                            $$|\mathbf{r}_r \times \mathbf{r}_\theta| = \sqrt{r^2\cos^2\theta + r^2\sin^2\theta + r^2} = \sqrt{r^2 + r^2} = r\sqrt{2}$$
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why the Factor of $\sqrt{2}$?</h4>
+                        <p>The cone $z = r$ has a 45-degree slope. The slant height is always $\sqrt{2}$ times the vertical height (or radial distance). This geometric factor appears naturally in the surface area calculation.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <strong>Set up and evaluate the integral</strong>
+                            $$S = \int_0^{2\pi} \int_3^8 r\sqrt{2}\, dr\, d\theta = \sqrt{2} \int_0^{2\pi} d\theta \int_3^8 r\, dr$$
+                            $$= \sqrt{2} \cdot 2\pi \cdot \left[\frac{r^2}{2}\right]_3^8 = \sqrt{2} \cdot 2\pi \cdot \frac{64 - 9}{2}$$
+                            $$= \sqrt{2} \cdot 2\pi \cdot \frac{55}{2} = 55\pi\sqrt{2}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{55\pi\sqrt{2}}$$</div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>For cones $z = r$, use $\mathbf{r}(r, \theta) = \langle r\cos\theta, r\sin\theta, r \rangle$</li>
+                        <li>The magnitude $|\mathbf{r}_r \times \mathbf{r}_\theta| = r\sqrt{2}$ for 45-degree cones</li>
+                        <li>Verify using frustum formula: $S = \pi(R_1 + R_2) \cdot s$ where $s$ is slant height</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 3 -->
+        <section id="problem3">
+            <div class="section-header">
+                <h2>Problem 3: Line Integral (Differential Form)</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Evaluate the line integral</p>
+                    $$\int_C 9y\, dx + 8z\, dy + x\, dz$$
+                    <p>where $\mathbf{r}(t) = \left(2 + t^{-1}, t^3, t^2\right)$ for $0 \leq t \leq 1$.</p>
+                    <p><em>(Give an exact answer. Use symbolic notation and fractions where needed.)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Line integrals in differential form</li>
+                        <li>Parametric curve derivatives</li>
+                        <li>Improper integrals and convergence</li>
+                        <li>Polynomial integration</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Extract components from parametrization</strong>
+                            <p>From $\mathbf{r}(t) = (2 + t^{-1}, t^3, t^2)$:</p>
+                            <ul>
+                                <li>$x(t) = 2 + \frac{1}{t}$</li>
+                                <li>$y(t) = t^3$</li>
+                                <li>$z(t) = t^2$</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Compute derivatives</strong>
+                            $$\frac{dx}{dt} = -\frac{1}{t^2}, \quad \frac{dy}{dt} = 3t^2, \quad \frac{dz}{dt} = 2t$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Substitute into the integral</strong>
+                            <p>The integral becomes:</p>
+                            $$\int_0^1 \left(9y \cdot \frac{dx}{dt} + 8z \cdot \frac{dy}{dt} + x \cdot \frac{dz}{dt}\right) dt$$
+
+                            <p><strong>First term:</strong> $9y \cdot \frac{dx}{dt} = 9t^3 \cdot \left(-\frac{1}{t^2}\right) = -9t$</p>
+                            <p><strong>Second term:</strong> $8z \cdot \frac{dy}{dt} = 8t^2 \cdot 3t^2 = 24t^4$</p>
+                            <p><strong>Third term:</strong> $x \cdot \frac{dz}{dt} = \left(2 + \frac{1}{t}\right) \cdot 2t = 4t + 2$</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Combine the integrand</strong>
+                            $$-9t + 24t^4 + 4t + 2 = 24t^4 - 5t + 2$$
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why Does This Integral Converge?</h4>
+                        <p>Although $t^{-1}$ is undefined at $t = 0$, the final integrand $24t^4 - 5t + 2$ is perfectly continuous on $[0, 1]$. The $t^{-1}$ term in $x(t)$ combined with $\frac{dx}{dt} = -t^{-2}$ produces $-9t$, which is well-behaved. The integral converges!</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Evaluate the integral</strong>
+                            $$\int_0^1 (24t^4 - 5t + 2)\, dt = \left[\frac{24t^5}{5} - \frac{5t^2}{2} + 2t\right]_0^1$$
+                            $$= \frac{24}{5} - \frac{5}{2} + 2 = \frac{48}{10} - \frac{25}{10} + \frac{20}{10} = \frac{43}{10}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{\frac{43}{10}}$$</div>
+                    <p style="margin-top: 10px; color: #276749;">Numerically: 4.3</p>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Convert $P\,dx + Q\,dy + R\,dz$ to $\left(P\frac{dx}{dt} + Q\frac{dy}{dt} + R\frac{dz}{dt}\right)dt$</li>
+                        <li>Simplify the integrand before integrating</li>
+                        <li>Check for improper integrals when parametrization has singularities</li>
+                        <li>Often, apparent singularities cancel out in the final integrand</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Problem 4 -->
+        <section id="problem4">
+            <div class="section-header">
+                <h2>Problem 4: Line Integral (Vector Field on Circle)</h2>
+            </div>
+
+            <div class="problem-card">
+                <h3>Problem Statement</h3>
+                <div class="problem-statement">
+                    <p>Compute $\displaystyle\int_C \mathbf{F} \cdot d\mathbf{r}$, where</p>
+                    $$\mathbf{F}(x,y) = \left\langle \frac{-6y}{(x^2+y^2)^2}, \frac{6x}{(x^2+y^2)^2} \right\rangle$$
+                    <p>and $C$ is a circle of radius 12 with center at the origin oriented counterclockwise.</p>
+                    <p><em>(Use symbolic notation and fractions where needed.)</em></p>
+                </div>
+
+                <div class="prereq-box">
+                    <h4>Prerequisite Knowledge</h4>
+                    <ul>
+                        <li>Parametrization of circles</li>
+                        <li>Line integrals of vector fields</li>
+                        <li>Recognizing singularities (why Green's Theorem doesn't apply)</li>
+                        <li>Trigonometric simplification</li>
+                    </ul>
+                </div>
+
+                <div class="solution-steps">
+                    <h3>Step-by-Step Solution</h3>
+
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Identify the singularity</strong>
+                            <p>The vector field $\mathbf{F}$ has a singularity at the origin where $(x^2 + y^2)^2 = 0$. Since the origin lies inside the circle, <strong>Green's Theorem does not apply</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Parametrize the circle</strong>
+                            $$\mathbf{r}(t) = \langle 12\cos t, 12\sin t \rangle, \quad t \in [0, 2\pi]$$
+                            $$\mathbf{r}'(t) = \langle -12\sin t, 12\cos t \rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Compute $x^2 + y^2$ on the curve</strong>
+                            <p>On the circle: $x^2 + y^2 = 144$, so $(x^2 + y^2)^2 = 20736$</p>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <strong>Evaluate $\mathbf{F}$ on the curve</strong>
+                            $$\mathbf{F}(\mathbf{r}(t)) = \left\langle \frac{-6(12\sin t)}{20736}, \frac{6(12\cos t)}{20736} \right\rangle = \left\langle \frac{-\sin t}{288}, \frac{\cos t}{288} \right\rangle$$
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <strong>Compute the dot product</strong>
+                            $$\mathbf{F} \cdot \mathbf{r}'(t) = \frac{-\sin t}{288} \cdot (-12\sin t) + \frac{\cos t}{288} \cdot (12\cos t)$$
+                            $$= \frac{12\sin^2 t}{288} + \frac{12\cos^2 t}{288} = \frac{12(\sin^2 t + \cos^2 t)}{288} = \frac{12}{288} = \frac{1}{24}$$
+                        </div>
+                    </div>
+
+                    <div class="why-box">
+                        <h4>Why is the Dot Product Constant?</h4>
+                        <p>This is a remarkable property of inverse-square type fields! On circles centered at the singularity, the tangential component has constant magnitude. The answer is <strong>independent of the radius</strong> - any circle around the origin gives the same result.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <strong>Evaluate the integral</strong>
+                            $$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_0^{2\pi} \frac{1}{24}\, dt = \frac{1}{24} \cdot 2\pi = \frac{\pi}{12}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="final-answer">
+                    <h4>Final Answer</h4>
+                    <div class="answer">$$\boxed{\frac{\pi}{12}}$$</div>
+                </div>
+
+                <div class="tips-box">
+                    <h4>Practice Tips</h4>
+                    <ul>
+                        <li>Always check for singularities inside your curve before using Green's Theorem</li>
+                        <li>On circles centered at origin: $x^2 + y^2 = r^2$ (constant!)</li>
+                        <li>When $\mathbf{F} \cdot \mathbf{r}'(t)$ is constant, the integral is trivial</li>
+                        <li>Non-zero line integral around closed curve $\Rightarrow$ field is NOT conservative</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <!-- Summary Section -->
+        <section id="summary">
+            <div class="section-header">
+                <h2>Summary of Key Techniques</h2>
+            </div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Problem Type</th>
+                        <th>Key Technique</th>
+                        <th>Critical Formula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Flux Integral (Cylinder)</strong></td>
+                        <td>Parametrize surface, compute $\mathbf{r}_u \times \mathbf{r}_v$</td>
+                        <td>$\iint_S \mathbf{F} \cdot d\mathbf{S} = \iint_D \mathbf{F} \cdot (\mathbf{r}_u \times \mathbf{r}_v)\, dA$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Surface Area</strong></td>
+                        <td>Parametrize surface, find $|\mathbf{r}_u \times \mathbf{r}_v|$</td>
+                        <td>$S = \iint_D |\mathbf{r}_u \times \mathbf{r}_v|\, dA$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Line Integral (Differential)</strong></td>
+                        <td>Substitute parametrization and derivatives</td>
+                        <td>$\int_C P\,dx + Q\,dy + R\,dz = \int (P\frac{dx}{dt} + Q\frac{dy}{dt} + R\frac{dz}{dt})\, dt$</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Line Integral (Vector Field)</strong></td>
+                        <td>Parametrize, compute $\mathbf{F} \cdot \mathbf{r}'(t)$</td>
+                        <td>$\int_C \mathbf{F} \cdot d\mathbf{r} = \int_a^b \mathbf{F}(\mathbf{r}(t)) \cdot \mathbf{r}'(t)\, dt$</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="concept-box">
+                <h3>Common Surface Parametrizations</h3>
+                <ul>
+                    <li><strong>Cylinder $x^2 + y^2 = r^2$:</strong> $\mathbf{r}(\theta, z) = \langle r\cos\theta, r\sin\theta, z \rangle$</li>
+                    <li><strong>Cone $z = \sqrt{x^2 + y^2}$:</strong> $\mathbf{r}(r, \theta) = \langle r\cos\theta, r\sin\theta, r \rangle$</li>
+                    <li><strong>Sphere $x^2 + y^2 + z^2 = R^2$:</strong> $\mathbf{r}(\phi, \theta) = \langle R\sin\phi\cos\theta, R\sin\phi\sin\theta, R\cos\phi \rangle$</li>
+                    <li><strong>Paraboloid $z = x^2 + y^2$:</strong> $\mathbf{r}(r, \theta) = \langle r\cos\theta, r\sin\theta, r^2 \rangle$</li>
+                </ul>
+            </div>
+
+            <div class="formula-box">
+                <h4>When to Use What Theorem</h4>
+                <div class="formula" style="text-align: left; padding: 10px;">
+                    <p><strong>Green's Theorem:</strong> Line integral $\leftrightarrow$ Double integral (2D, no singularities inside)</p>
+                    <p><strong>Stokes' Theorem:</strong> Line integral $\leftrightarrow$ Surface integral (3D)</p>
+                    <p><strong>Divergence Theorem:</strong> Surface integral $\leftrightarrow$ Triple integral (closed surfaces)</p>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <footer style="text-align: center; padding: 30px; color: #718096; font-size: 0.95em;">
+            <p><strong>Study Guide created for Calculus III / Multivariable Calculus</strong></p>
+            <p>Topics: Surface Integrals, Flux, Surface Area, Line Integrals, Parametric Surfaces</p>
+            <p style="margin-top: 15px;">&copy; 2024 MetaboMax Pro | Calculus Study Resources</p>
+            <div style="margin-top: 20px;">
+                <a href="calc3.html" class="nav-link">View Part 1 (Calc 3)</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

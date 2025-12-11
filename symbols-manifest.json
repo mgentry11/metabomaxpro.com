@@ -1,0 +1,19 @@
+{
+  "name": "Math Symbols Flashcards",
+  "short_name": "Symbols",
+  "description": "Learn mathematical symbols with interactive flashcards",
+  "start_url": "/symbols-flashcards.html",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#8e44ad",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%238e44ad' width='512' height='512' rx='100'/><text x='256' y='340' font-size='280' text-anchor='middle' fill='white'>∑</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "mathematics"]
+}

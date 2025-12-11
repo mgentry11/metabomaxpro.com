@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Exam Study Guide: Complete</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #2980b9;
+            --bg-color: #f4f6f7;
+            --text-color: #333;
+            --card-bg: #fff;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { margin: 0; font-size: 2.5rem; font-weight: 700; letter-spacing: -1px; }
+        h2 { color: var(--primary-color); border-bottom: 3px solid var(--accent-color); padding-bottom: 0.5rem; margin-top: 2.5rem; }
+        h3 { color: var(--secondary-color); margin-top: 1.5rem; font-weight: 600; }
+        h4 { color: #555; font-style: italic; margin-bottom: 0.5rem; }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Definitions & Axioms */
+        .definition-list dt {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 1.2rem;
+            font-size: 1.05rem;
+        }
+        .definition-list dd {
+            margin-left: 0;
+            padding-left: 1rem;
+            border-left: 3px solid #eee;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Theorems */
+        .theorem {
+            border: 1px solid #dcdcdc;
+            border-radius: var(--border-radius);
+            background-color: #fff;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .theorem-header {
+            background-color: #fdf2e9; /* Light orange tint */
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #fae5d3;
+        }
+
+        .theorem-title {
+            font-weight: bold;
+            color: #d35400;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .theorem-body {
+            padding: 1.5rem;
+        }
+
+        .proof-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #95a5a6;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .proof-label {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Strategies */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .strategy-item {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transition: transform 0.2s;
+        }
+
+        .strategy-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-color: var(--accent-color);
+        }
+
+        /* Lists */
+        ul.simple-list li { margin-bottom: 0.5rem; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Final Exam Study Guide</h1>
+    <p>Comprehensive Review: Definitions, Theorems, Proofs & Strategies</p>
+</header>
+
+<div class="container">
+
+    <!-- Definitions -->
+    <section id="definitions" class="card">
+        <h2>Definitions</h2>
+        <dl class="definition-list">
+            <dt>Set Equality</dt>
+            <dd>\(A = B \iff A \subseteq B \text{ and } B \subseteq A\).</dd>
+
+            <dt>Partition</dt>
+            <dd>A collection of disjoint, non-empty subsets of \(S\) whose union is \(S\).</dd>
+
+            <dt>Equivalence Relation</dt>
+            <dd>Reflexive, Symmetric, and Transitive.</dd>
+
+            <dt>Partial Order</dt>
+            <dd>Reflexive, Antisymmetric, and Transitive.</dd>
+
+            <dt>Quotient Set (\(S/\sim\))</dt>
+            <dd>The set of all equivalence classes formed by relation \(\sim\) on \(S\).</dd>
+
+            <dt>Continuity</dt>
+            <dd>Function \(f\) is continuous at \(c\) if \(\lim_{x \to c} f(x) = f(c)\). (Epsilon-delta def required).</dd>
+
+            <dt>Isomorphism</dt>
+            <dd>A structure-preserving bijection between two algebraic structures.</dd>
+
+            <dt>Injective / Surjective / Bijective</dt>
+            <dd>One-to-one / Onto / Both.</dd>
+        </dl>
+    </section>
+
+    <!-- Axioms -->
+    <section id="axioms" class="card">
+        <h2>Axioms & Principles</h2>
+        <ul class="simple-list">
+            <li><strong>Induction Principle:</strong> Basis for proving statements for all natural numbers.</li>
+            <li><strong>Zorn's Lemma:</strong> Useful for finding maximal elements in partially ordered sets (implies Axiom of Choice).</li>
+            <li><strong>Axiom of Choice:</strong> You can select one element from each set in a collection.</li>
+            <li><strong>Axiom of Excluded Middle:</strong> \(P \lor \neg P\) is always true.</li>
+        </ul>
+    </section>
+
+    <!-- Theorems with Proofs -->
+    <section id="theorems" class="card">
+        <h2>Theorems (Statements & Proofs)</h2>
+
+        <!-- Cantor's Theorem -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Cantor's Theorem</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> For any set \(A\), \(|A| < |\mathcal{P}(A)|\). (The cardinality of the power set is strictly greater).</p>
+                <div class="proof-box">
+                    <span class="proof-label">Proof (Diagonalization)</span>
+                    <p>Assume for contradiction there exists a surjection \(f: A \to \mathcal{P}(A)\).</p>
+                    <p>Consider the set \(D = \{ x \in A \mid x \notin f(x) \}\). Since \(D \subseteq A\), \(D \in \mathcal{P}(A)\).</p>
+                    <p>Because \(f\) is surjective, there must exist some \(d \in A\) such that \(f(d) = D\).</p>
+                    <p>Ask: Is \(d \in D\)?</p>
+                    <ul>
+                        <li>If \(d \in D\), then by definition of \(D\), \(d \notin f(d)\). Since \(f(d) = D\), this means \(d \notin D\). Contradiction.</li>
+                        <li>If \(d \notin D\), then by definition of \(D\), \(d \in f(d)\). Since \(f(d) = D\), this means \(d \in D\). Contradiction.</li>
+                    </ul>
+                    <p>Thus, no such function \(f\) can exist.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schröder-Bernstein -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Schröder-Bernstein Theorem</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> If \(|A| \le |B|\) and \(|B| \le |A|\), then \(|A| = |B|\).<br>
+                (i.e., if there exist injections \(f: A \to B\) and \(g: B \to A\), there exists a bijection \(h: A \to B\)).</p>
+                <p><em>(Proof not required per list)</em></p>
+            </div>
+        </div>
+
+        <!-- Fermat's Theorem -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Fermat's Little Theorem</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> If \(p\) is prime and \(a\) is an integer, then \(a^p \equiv a \pmod p\).</p>
+                <div class="proof-box">
+                    <span class="proof-label">Proof (Induction on \(a \ge 0\))</span>
+                    <p><strong>Base Case:</strong> If \(a=0\), \(0^p = 0 \equiv 0 \pmod p\). True.</p>
+                    <p><strong>Inductive Step:</strong> Assume \(k^p \equiv k \pmod p\). We show \((k+1)^p \equiv k+1 \pmod p\).</p>
+                    <p>By the Binomial Theorem: \((k+1)^p = k^p + \binom{p}{1}k^{p-1} + \dots + \binom{p}{p-1}k + 1\).</p>
+                    <p>Since \(p\) is prime, \(p\) divides \(\binom{p}{i}\) for all \(1 \le i \le p-1\). Thus all middle terms are \(\equiv 0 \pmod p\).</p>
+                    <p>\((k+1)^p \equiv k^p + 1 \pmod p\). By hypothesis \(k^p \equiv k\), so \((k+1)^p \equiv k + 1 \pmod p\).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Russell's Paradox -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Russell's Paradox</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> There is no set of all sets.</p>
+                <div class="proof-box">
+                    <span class="proof-label">Proof</span>
+                    <p>Suppose \(U\) is the set of all sets. Define \(R = \{ A \in U \mid A \notin A \}\).</p>
+                    <p>Ask: Is \(R \in R\)?</p>
+                    <ul>
+                        <li>If \(R \in R\), then by definition of \(R\), \(R \notin R\). Contradiction.</li>
+                        <li>If \(R \notin R\), then by definition of \(R\), \(R \in R\). Contradiction.</li>
+                    </ul>
+                    <p>Thus, the definition of such a set \(U\) leads to a logical inconsistency.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Well-Ordering -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Well-Ordering Principle</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> Every non-empty subset of \(\mathbb{N}\) has a least element.</p>
+                <div class="proof-box">
+                    <span class="proof-label">Proof (Using Strong Induction)</span>
+                    <p>Let \(S \subseteq \mathbb{N}\). We prove the contrapositive: If \(S\) has no least element, then \(S\) is empty.</p>
+                    <p>Let \(P(n)\) be the statement "\(1, 2, \dots, n \notin S\)".</p>
+                    <p><strong>Base Case:</strong> \(1 \notin S\) (otherwise 1 would be the least element). Thus \(P(1)\) is true.</p>
+                    <p><strong>Inductive Step:</strong> Assume \(P(k)\) is true (i.e., \(1, \dots, k \notin S\)). Consider \(k+1\). If \(k+1 \in S\), since no smaller integer is in \(S\), \(k+1\) would be the least element. Since \(S\) has no least element, \(k+1 \notin S\). Thus \(P(k+1)\) is true.</p>
+                    <p>By induction, \(\forall n \in \mathbb{N}, n \notin S\). Therefore \(S = \emptyset\).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infinitude of Primes -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Infinitude of Primes</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> There are infinitely many prime numbers.</p>
+                <div class="proof-box">
+                    <span class="proof-label">Proof (Euclid)</span>
+                    <p>Assume there are finitely many primes: \(p_1, p_2, \dots, p_n\).</p>
+                    <p>Consider the integer \(Q = p_1 p_2 \dots p_n + 1\).</p>
+                    <p>For any \(p_i\), \(Q \equiv 1 \pmod{p_i}\), so no \(p_i\) divides \(Q\).</p>
+                    <p>Since \(Q > 1\), by the Fundamental Theorem of Arithmetic, \(Q\) must have a prime factor. But this factor cannot be any of our list \(p_1, \dots, p_n\). This contradicts the assumption that the list contained <em>all</em> primes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Triangle Inequality -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Triangle Inequality</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> \(|x + y| \le |x| + |y|\) for any \(x, y \in \mathbb{R}\).</p>
+            </div>
+        </div>
+
+        <!-- Isomorphism for Vector Spaces -->
+        <div class="theorem">
+            <div class="theorem-header">
+                <span class="theorem-title">Isomorphism for Finite Dim. Vector Spaces</span>
+            </div>
+            <div class="theorem-body">
+                <p><strong>Statement:</strong> Two finite-dimensional vector spaces \(V\) and \(W\) over the same field \(F\) are isomorphic if and only if \(\dim(V) = \dim(W)\).</p>
+                <div class="proof-box">
+                    <span class="proof-label">Proof Sketch</span>
+                    <p>\((\implies)\) If \(V \cong W\), an isomorphism maps a basis of \(V\) to a basis of \(W\), preserving the size (dimension).</p>
+                    <p>\((\impliedby)\) Let \(\dim(V) = \dim(W) = n\). Let \(B_V = \{v_1, \dots, v_n\}\) be a basis for \(V\) and \(B_W = \{w_1, \dots, w_n\}\) be a basis for \(W\).</p>
+                    <p>Define a linear transformation \(T: V \to W\) by \(T(v_i) = w_i\) and extending linearly. Since \(T\) maps a basis to a basis bijectively, \(T\) is an isomorphism.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Proof Strategies -->
+    <section id="strategies" class="card">
+        <h2>Proof Strategies</h2>
+        <div class="strategy-grid">
+            <div class="strategy-item">Direct Proof</div>
+            <div class="strategy-item">Proof by Cases</div>
+            <div class="strategy-item">Proof by Definition</div>
+            <div class="strategy-item">Mathematical Induction</div>
+            <div class="strategy-item">Strong Induction</div>
+            <div class="strategy-item">Proof by Contradiction</div>
+            <div class="strategy-item">Contrapositive</div>
+        </div>
+    </section>
+
+    <!-- Problems -->
+    <section id="problems" class="card">
+        <h2>Review Materials</h2>
+        <ul>
+            <li><strong>Homework Problems:</strong> Focus especially on graded problems.</li>
+            <li><strong>In-class Worksheets:</strong> Review all completed worksheets.</li>
+            <li><strong>Section Worksheets:</strong> Practice these for variations on core concepts.</li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    Generated by Gemini CLI | Good luck on the exam!
+</footer>
+
+</body>
+</html>

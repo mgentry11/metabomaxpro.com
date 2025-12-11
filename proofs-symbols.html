@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Symbols Reference</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #2980b9;
+            --bg-color: #f4f6f7;
+            --card-bg: #fff;
+            --border-radius: 8px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--bg-color);
+        }
+
+        header {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        header p { opacity: 0.9; }
+
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .nav-btn {
+            background: var(--bg-color);
+            border: 2px solid #e0e0e0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: #8e44ad;
+            color: white;
+            border-color: #8e44ad;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #8e44ad;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid #8e44ad;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .symbol-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .symbol-table th {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .symbol-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .symbol-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .symbol-table .symbol {
+            font-size: 1.4rem;
+            color: #8e44ad;
+            font-weight: bold;
+            white-space: nowrap;
+            min-width: 80px;
+        }
+
+        .symbol-table .name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .symbol-table .meaning {
+            color: #555;
+        }
+
+        .symbol-table .example {
+            background: #f0e6f6;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #6c3483;
+        }
+
+        .category-intro {
+            background: #f8f4fc;
+            border-left: 4px solid #8e44ad;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: #8e44ad;
+        }
+
+        .quick-ref {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-ref-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-ref-item:hover {
+            border-color: #8e44ad;
+            box-shadow: 0 4px 12px rgba(142, 68, 173, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .quick-ref-item .sym {
+            font-size: 1.8rem;
+            color: #8e44ad;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-ref-item .label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .symbol-table th, .symbol-table td {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+            }
+            .symbol-table .symbol { font-size: 1.2rem; }
+            .quick-ref { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mathematical Symbols Reference</h1>
+    <p>Complete guide to notation used in proofs and definitions</p>
+</header>
+
+<nav class="nav-bar">
+    <a href="#sets" class="nav-btn">Sets</a>
+    <a href="#logic" class="nav-btn">Logic</a>
+    <a href="#relations" class="nav-btn">Relations</a>
+    <a href="#functions" class="nav-btn">Functions</a>
+    <a href="#numbers" class="nav-btn">Numbers</a>
+    <a href="#operations" class="nav-btn">Operations</a>
+    <a href="#proofs" class="nav-btn">Proofs</a>
+    <a href="#greek" class="nav-btn">Greek</a>
+</nav>
+
+<div class="container">
+
+<a href="proofs_study_guide.html" class="back-link">← Back to Study Guide</a>
+
+<!-- Quick Reference Grid -->
+<div class="card">
+    <h2>Quick Reference</h2>
+    <p style="margin-bottom: 1rem; color: #666;">Click any symbol to jump to its definition</p>
+    <div class="quick-ref">
+        <div class="quick-ref-item" onclick="location.href='#sets'"><span class="sym">∈</span><span class="label">element of</span></div>
+        <div class="quick-ref-item" onclick="location.href='#sets'"><span class="sym">⊆</span><span class="label">subset</span></div>
+        <div class="quick-ref-item" onclick="location.href='#sets'"><span class="sym">∪</span><span class="label">union</span></div>
+        <div class="quick-ref-item" onclick="location.href='#sets'"><span class="sym">∩</span><span class="label">intersection</span></div>
+        <div class="quick-ref-item" onclick="location.href='#sets'"><span class="sym">∅</span><span class="label">empty set</span></div>
+        <div class="quick-ref-item" onclick="location.href='#logic'"><span class="sym">∀</span><span class="label">for all</span></div>
+        <div class="quick-ref-item" onclick="location.href='#logic'"><span class="sym">∃</span><span class="label">exists</span></div>
+        <div class="quick-ref-item" onclick="location.href='#logic'"><span class="sym">⇒</span><span class="label">implies</span></div>
+        <div class="quick-ref-item" onclick="location.href='#logic'"><span class="sym">⇔</span><span class="label">iff</span></div>
+        <div class="quick-ref-item" onclick="location.href='#logic'"><span class="sym">¬</span><span class="label">not</span></div>
+        <div class="quick-ref-item" onclick="location.href='#relations'"><span class="sym">∼</span><span class="label">equivalent</span></div>
+        <div class="quick-ref-item" onclick="location.href='#relations'"><span class="sym">≡</span><span class="label">congruent</span></div>
+    </div>
+</div>
+
+<!-- Search -->
+<input type="text" class="search-box" id="searchBox" placeholder="Search for a symbol or term..." onkeyup="searchSymbols()">
+
+<!-- SETS -->
+<section id="sets" class="card">
+    <h2>Set Theory Symbols</h2>
+    <div class="category-intro">
+        Sets are collections of objects. These symbols describe membership, relationships between sets, and operations on sets.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(\in\)</td>
+                <td class="name">Element of</td>
+                <td class="meaning">\(x \in A\) means "\(x\) is an element of set \(A\)"</td>
+                <td class="example">\(3 \in \{1,2,3\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\notin\)</td>
+                <td class="name">Not element of</td>
+                <td class="meaning">\(x \notin A\) means "\(x\) is not in set \(A\)"</td>
+                <td class="example">\(4 \notin \{1,2,3\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\subseteq\)</td>
+                <td class="name">Subset</td>
+                <td class="meaning">\(A \subseteq B\) means "every element of \(A\) is in \(B\)"</td>
+                <td class="example">\(\{1,2\} \subseteq \{1,2,3\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\subset\)</td>
+                <td class="name">Proper subset</td>
+                <td class="meaning">\(A \subset B\) means "\(A \subseteq B\) and \(A \neq B\)"</td>
+                <td class="example">\(\{1,2\} \subset \{1,2,3\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\supseteq\)</td>
+                <td class="name">Superset</td>
+                <td class="meaning">\(A \supseteq B\) means "\(B\) is a subset of \(A\)"</td>
+                <td class="example">\(\{1,2,3\} \supseteq \{1,2\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\cup\)</td>
+                <td class="name">Union</td>
+                <td class="meaning">\(A \cup B\) = elements in \(A\) OR \(B\) (or both)</td>
+                <td class="example">\(\{1,2\} \cup \{2,3\} = \{1,2,3\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\cap\)</td>
+                <td class="name">Intersection</td>
+                <td class="meaning">\(A \cap B\) = elements in BOTH \(A\) AND \(B\)</td>
+                <td class="example">\(\{1,2\} \cap \{2,3\} = \{2\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\setminus\) or \(-\)</td>
+                <td class="name">Set difference</td>
+                <td class="meaning">\(A \setminus B\) = elements in \(A\) but NOT in \(B\)</td>
+                <td class="example">\(\{1,2,3\} \setminus \{2\} = \{1,3\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\emptyset\) or \(\{\}\)</td>
+                <td class="name">Empty set</td>
+                <td class="meaning">The set with no elements</td>
+                <td class="example">\(\{x : x \neq x\} = \emptyset\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathcal{P}(A)\)</td>
+                <td class="name">Power set</td>
+                <td class="meaning">Set of all subsets of \(A\)</td>
+                <td class="example">\(\mathcal{P}(\{1,2\}) = \{\emptyset, \{1\}, \{2\}, \{1,2\}\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(|A|\)</td>
+                <td class="name">Cardinality</td>
+                <td class="meaning">Number of elements in \(A\)</td>
+                <td class="example">\(|\{a,b,c\}| = 3\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(A \times B\)</td>
+                <td class="name">Cartesian product</td>
+                <td class="meaning">Set of all ordered pairs \((a,b)\)</td>
+                <td class="example">\(\{1,2\} \times \{a,b\} = \{(1,a),(1,b),(2,a),(2,b)\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\bigcup\)</td>
+                <td class="name">Big union</td>
+                <td class="meaning">Union of many sets</td>
+                <td class="example">\(\bigcup_{i=1}^{3} A_i = A_1 \cup A_2 \cup A_3\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\bigcap\)</td>
+                <td class="name">Big intersection</td>
+                <td class="meaning">Intersection of many sets</td>
+                <td class="example">\(\bigcap_{i=1}^{3} A_i = A_1 \cap A_2 \cap A_3\)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- LOGIC -->
+<section id="logic" class="card">
+    <h2>Logic Symbols</h2>
+    <div class="category-intro">
+        These symbols express logical statements, quantifiers, and connectives essential for writing precise mathematical statements.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(\forall\)</td>
+                <td class="name">For all (Universal)</td>
+                <td class="meaning">"For every" or "for all"</td>
+                <td class="example">\(\forall x \in \mathbb{R}, x^2 \geq 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\exists\)</td>
+                <td class="name">There exists (Existential)</td>
+                <td class="meaning">"There exists at least one"</td>
+                <td class="example">\(\exists x \in \mathbb{R}: x^2 = 2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\exists!\)</td>
+                <td class="name">Unique existence</td>
+                <td class="meaning">"There exists exactly one"</td>
+                <td class="example">\(\exists! x \in \mathbb{R}: x + 3 = 5\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\nexists\)</td>
+                <td class="name">Does not exist</td>
+                <td class="meaning">"There does not exist"</td>
+                <td class="example">\(\nexists x \in \mathbb{R}: x^2 < 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\Rightarrow\)</td>
+                <td class="name">Implies</td>
+                <td class="meaning">\(P \Rightarrow Q\): "if \(P\), then \(Q\)"</td>
+                <td class="example">\(x > 2 \Rightarrow x > 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\Leftarrow\)</td>
+                <td class="name">Is implied by</td>
+                <td class="meaning">\(P \Leftarrow Q\): "\(P\) if \(Q\)"</td>
+                <td class="example">\(x > 0 \Leftarrow x > 2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\Leftrightarrow\) or \(\iff\)</td>
+                <td class="name">If and only if (iff)</td>
+                <td class="meaning">\(P\) is true exactly when \(Q\) is true</td>
+                <td class="example">\(x^2 = 4 \iff x = \pm 2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\neg\) or \(\sim\)</td>
+                <td class="name">Not (Negation)</td>
+                <td class="meaning">Opposite of the statement</td>
+                <td class="example">\(\neg(x > 0)\) means \(x \leq 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\land\)</td>
+                <td class="name">And (Conjunction)</td>
+                <td class="meaning">Both statements are true</td>
+                <td class="example">\(x > 0 \land x < 5\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\lor\)</td>
+                <td class="name">Or (Disjunction)</td>
+                <td class="meaning">At least one statement is true</td>
+                <td class="example">\(x < 0 \lor x > 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\therefore\)</td>
+                <td class="name">Therefore</td>
+                <td class="meaning">Conclusion follows</td>
+                <td class="example">\(x = 2, \therefore x^2 = 4\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\because\)</td>
+                <td class="name">Because</td>
+                <td class="meaning">Reason for conclusion</td>
+                <td class="example">\(x^2 = 4 \because x = 2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(:\) or \(\mid\) or s.t.</td>
+                <td class="name">Such that</td>
+                <td class="meaning">Condition that follows</td>
+                <td class="example">\(\{x \in \mathbb{R} : x > 0\}\)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- RELATIONS -->
+<section id="relations" class="card">
+    <h2>Relations & Equivalence</h2>
+    <div class="category-intro">
+        These symbols describe relationships between elements, including equivalence relations, orders, and congruence.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(=\)</td>
+                <td class="name">Equals</td>
+                <td class="meaning">Identical in value</td>
+                <td class="example">\(2 + 2 = 4\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\neq\)</td>
+                <td class="name">Not equal</td>
+                <td class="meaning">Different values</td>
+                <td class="example">\(3 \neq 5\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\sim\)</td>
+                <td class="name">Equivalent to</td>
+                <td class="meaning">Related by equivalence relation</td>
+                <td class="example">\(a \sim b\) means \(a\) equivalent to \(b\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\equiv\)</td>
+                <td class="name">Congruent / Identical</td>
+                <td class="meaning">Congruent modulo \(n\), or identically equal</td>
+                <td class="example">\(7 \equiv 1 \pmod{3}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\([a]\)</td>
+                <td class="name">Equivalence class</td>
+                <td class="meaning">Set of all elements equivalent to \(a\)</td>
+                <td class="example">\([0] = \{\ldots,-3,0,3,6,\ldots\}\) in \(\mathbb{Z}_3\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(S/\!\sim\)</td>
+                <td class="name">Quotient set</td>
+                <td class="meaning">Set of all equivalence classes</td>
+                <td class="example">\(\mathbb{Z}/\!\equiv_3 = \{[0],[1],[2]\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\leq\)</td>
+                <td class="name">Less than or equal</td>
+                <td class="meaning">Partial or total order</td>
+                <td class="example">\(3 \leq 5\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\geq\)</td>
+                <td class="name">Greater than or equal</td>
+                <td class="meaning">At least as large</td>
+                <td class="example">\(5 \geq 3\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(<\)</td>
+                <td class="name">Less than</td>
+                <td class="meaning">Strictly smaller</td>
+                <td class="example">\(2 < 4\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(>\)</td>
+                <td class="name">Greater than</td>
+                <td class="meaning">Strictly larger</td>
+                <td class="example">\(4 > 2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\cong\)</td>
+                <td class="name">Isomorphic</td>
+                <td class="meaning">Same structure (bijection preserving operations)</td>
+                <td class="example">\((\mathbb{Z}_2, +) \cong (\{0,1\}, \oplus)\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\approx\)</td>
+                <td class="name">Approximately equal</td>
+                <td class="meaning">Close in value</td>
+                <td class="example">\(\pi \approx 3.14159\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\propto\)</td>
+                <td class="name">Proportional to</td>
+                <td class="meaning">Constant ratio</td>
+                <td class="example">\(y \propto x\) means \(y = kx\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(a \mid b\)</td>
+                <td class="name">Divides</td>
+                <td class="meaning">\(a\) divides \(b\) evenly (no remainder)</td>
+                <td class="example">\(3 \mid 12\) (12 = 3×4)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(a \nmid b\)</td>
+                <td class="name">Does not divide</td>
+                <td class="meaning">\(a\) does not divide \(b\) evenly</td>
+                <td class="example">\(3 \nmid 10\)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- FUNCTIONS -->
+<section id="functions" class="card">
+    <h2>Function Symbols</h2>
+    <div class="category-intro">
+        Functions map elements from one set to another. These symbols describe function properties and notation.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(f: A \to B\)</td>
+                <td class="name">Function mapping</td>
+                <td class="meaning">\(f\) is a function from set \(A\) to set \(B\)</td>
+                <td class="example">\(f: \mathbb{R} \to \mathbb{R}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(f(x)\)</td>
+                <td class="name">Function value</td>
+                <td class="meaning">Output of \(f\) when input is \(x\)</td>
+                <td class="example">\(f(2) = 4\) if \(f(x) = x^2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(x \mapsto f(x)\)</td>
+                <td class="name">Maps to</td>
+                <td class="meaning">\(x\) is sent to \(f(x)\)</td>
+                <td class="example">\(x \mapsto x^2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(f^{-1}\)</td>
+                <td class="name">Inverse function</td>
+                <td class="meaning">Function that "undoes" \(f\)</td>
+                <td class="example">If \(f(x) = 2x\), then \(f^{-1}(x) = x/2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(f \circ g\)</td>
+                <td class="name">Composition</td>
+                <td class="meaning">\((f \circ g)(x) = f(g(x))\)</td>
+                <td class="example">\((f \circ g)(x)\) means apply \(g\) first, then \(f\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\text{dom}(f)\)</td>
+                <td class="name">Domain</td>
+                <td class="meaning">Set of valid inputs</td>
+                <td class="example">\(\text{dom}(\sqrt{x}) = [0, \infty)\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\text{range}(f)\) or \(\text{im}(f)\)</td>
+                <td class="name">Range / Image</td>
+                <td class="meaning">Set of actual outputs</td>
+                <td class="example">\(\text{range}(x^2) = [0, \infty)\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(f^{-1}(B)\)</td>
+                <td class="name">Preimage</td>
+                <td class="meaning">Set of inputs that map into \(B\)</td>
+                <td class="example">\(f^{-1}(\{4\}) = \{-2, 2\}\) for \(f(x)=x^2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">1-1 or injective</td>
+                <td class="name">One-to-one</td>
+                <td class="meaning">\(f(a) = f(b) \Rightarrow a = b\)</td>
+                <td class="example">\(f(x) = 2x\) is injective</td>
+            </tr>
+            <tr>
+                <td class="symbol">onto or surjective</td>
+                <td class="name">Onto</td>
+                <td class="meaning">Every element in codomain is hit</td>
+                <td class="example">\(f: \mathbb{R} \to \mathbb{R}\), \(f(x) = x^3\) is onto</td>
+            </tr>
+            <tr>
+                <td class="symbol">bijective</td>
+                <td class="name">Bijection</td>
+                <td class="meaning">Both injective and surjective</td>
+                <td class="example">\(f(x) = x^3\) on \(\mathbb{R}\) is bijective</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers" class="card">
+    <h2>Number Sets</h2>
+    <div class="category-intro">
+        Standard notation for common sets of numbers.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Elements</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(\mathbb{N}\)</td>
+                <td class="name">Natural numbers</td>
+                <td class="meaning">Counting numbers (positive integers)</td>
+                <td class="example">\(\{1, 2, 3, 4, \ldots\}\) or \(\{0,1,2,\ldots\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{Z}\)</td>
+                <td class="name">Integers</td>
+                <td class="meaning">Whole numbers (positive, negative, zero)</td>
+                <td class="example">\(\{\ldots, -2, -1, 0, 1, 2, \ldots\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{Z}^+\)</td>
+                <td class="name">Positive integers</td>
+                <td class="meaning">Integers greater than zero</td>
+                <td class="example">\(\{1, 2, 3, \ldots\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{Z}_n\)</td>
+                <td class="name">Integers mod n</td>
+                <td class="meaning">Equivalence classes of integers modulo \(n\)</td>
+                <td class="example">\(\mathbb{Z}_3 = \{0, 1, 2\}\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{Q}\)</td>
+                <td class="name">Rational numbers</td>
+                <td class="meaning">Fractions \(p/q\) where \(p, q \in \mathbb{Z}\), \(q \neq 0\)</td>
+                <td class="example">\(\frac{1}{2}, -\frac{3}{4}, 5\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{R}\)</td>
+                <td class="name">Real numbers</td>
+                <td class="meaning">All points on the number line</td>
+                <td class="example">\(\pi, \sqrt{2}, -3.5, 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{R}^+\)</td>
+                <td class="name">Positive reals</td>
+                <td class="meaning">Real numbers greater than zero</td>
+                <td class="example">\((0, \infty)\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{C}\)</td>
+                <td class="name">Complex numbers</td>
+                <td class="meaning">Numbers \(a + bi\) where \(i^2 = -1\)</td>
+                <td class="example">\(3 + 2i, -i, 5\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mathbb{R}^n\)</td>
+                <td class="name">n-dimensional space</td>
+                <td class="meaning">\(n\)-tuples of real numbers</td>
+                <td class="example">\(\mathbb{R}^2\) = plane, \(\mathbb{R}^3\) = 3D space</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- OPERATIONS -->
+<section id="operations" class="card">
+    <h2>Operations & Other Symbols</h2>
+    <div class="category-intro">
+        Common mathematical operations, summation notation, and other useful symbols.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(\sum\)</td>
+                <td class="name">Summation</td>
+                <td class="meaning">Sum over a range</td>
+                <td class="example">\(\sum_{i=1}^{n} i = 1 + 2 + \cdots + n\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\prod\)</td>
+                <td class="name">Product</td>
+                <td class="meaning">Product over a range</td>
+                <td class="example">\(\prod_{i=1}^{n} i = n!\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(n!\)</td>
+                <td class="name">Factorial</td>
+                <td class="meaning">\(n \cdot (n-1) \cdot \ldots \cdot 2 \cdot 1\)</td>
+                <td class="example">\(5! = 120\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\binom{n}{k}\)</td>
+                <td class="name">Binomial coefficient</td>
+                <td class="meaning">"n choose k" = \(\frac{n!}{k!(n-k)!}\)</td>
+                <td class="example">\(\binom{5}{2} = 10\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(|x|\)</td>
+                <td class="name">Absolute value</td>
+                <td class="meaning">Distance from zero</td>
+                <td class="example">\(|-3| = 3\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\lfloor x \rfloor\)</td>
+                <td class="name">Floor</td>
+                <td class="meaning">Greatest integer \(\leq x\)</td>
+                <td class="example">\(\lfloor 3.7 \rfloor = 3\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\lceil x \rceil\)</td>
+                <td class="name">Ceiling</td>
+                <td class="meaning">Least integer \(\geq x\)</td>
+                <td class="example">\(\lceil 3.2 \rceil = 4\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\gcd(a,b)\)</td>
+                <td class="name">GCD</td>
+                <td class="meaning">Greatest common divisor</td>
+                <td class="example">\(\gcd(12, 18) = 6\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\text{lcm}(a,b)\)</td>
+                <td class="name">LCM</td>
+                <td class="meaning">Least common multiple</td>
+                <td class="example">\(\text{lcm}(4, 6) = 12\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\infty\)</td>
+                <td class="name">Infinity</td>
+                <td class="meaning">Unbounded quantity</td>
+                <td class="example">\(\lim_{x \to \infty} 1/x = 0\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\lim\)</td>
+                <td class="name">Limit</td>
+                <td class="meaning">Value approached</td>
+                <td class="example">\(\lim_{x \to 2} x^2 = 4\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\min, \max\)</td>
+                <td class="name">Minimum, Maximum</td>
+                <td class="meaning">Smallest/largest value</td>
+                <td class="example">\(\min(3, 5) = 3\)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- PROOFS -->
+<section id="proofs" class="card">
+    <h2>Proof Notation</h2>
+    <div class="category-intro">
+        Special notation commonly used in mathematical proofs.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Meaning</th>
+                <th>Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(\square\) or QED</td>
+                <td class="name">End of proof</td>
+                <td class="meaning">Proof is complete</td>
+                <td class="example">Write at end of proof</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\Rightarrow\!\Leftarrow\) or ⊥</td>
+                <td class="name">Contradiction</td>
+                <td class="meaning">Logical contradiction reached</td>
+                <td class="example">Used in proof by contradiction</td>
+            </tr>
+            <tr>
+                <td class="symbol">WTS</td>
+                <td class="name">Want to show</td>
+                <td class="meaning">Statement we need to prove</td>
+                <td class="example">WTS: \(n^2\) is even</td>
+            </tr>
+            <tr>
+                <td class="symbol">WLOG</td>
+                <td class="name">Without loss of generality</td>
+                <td class="meaning">Assume special case that covers all cases</td>
+                <td class="example">WLOG, assume \(a \leq b\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">IH</td>
+                <td class="name">Inductive hypothesis</td>
+                <td class="meaning">Assumption in induction proof</td>
+                <td class="example">By IH, \(P(k)\) is true</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(:=\) or \(\triangleq\)</td>
+                <td class="name">Defined as</td>
+                <td class="meaning">Left side is defined to equal right</td>
+                <td class="example">\(f(x) := x^2 + 1\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">iff</td>
+                <td class="name">If and only if</td>
+                <td class="meaning">Same as \(\Leftrightarrow\)</td>
+                <td class="example">\(A = B\) iff \(A \subseteq B\) and \(B \subseteq A\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">s.t.</td>
+                <td class="name">Such that</td>
+                <td class="meaning">Condition follows</td>
+                <td class="example">\(\exists x\) s.t. \(x^2 = 2\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">w.r.t.</td>
+                <td class="name">With respect to</td>
+                <td class="meaning">In relation to</td>
+                <td class="example">Continuous w.r.t. \(x\)</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- GREEK -->
+<section id="greek" class="card">
+    <h2>Greek Letters</h2>
+    <div class="category-intro">
+        Greek letters are commonly used for variables, constants, and special values in mathematics.
+    </div>
+    <table class="symbol-table">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Common Uses</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="symbol">\(\alpha, \beta, \gamma\)</td>
+                <td class="name">alpha, beta, gamma</td>
+                <td class="meaning">Angles, coefficients, parameters</td>
+                <td class="example">Triangle angles</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\delta, \Delta\)</td>
+                <td class="name">delta</td>
+                <td class="meaning">Small change, difference</td>
+                <td class="example">\(\delta\) in ε-δ proofs</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\varepsilon, \epsilon\)</td>
+                <td class="name">epsilon</td>
+                <td class="meaning">Small positive number</td>
+                <td class="example">\(\varepsilon > 0\) in limits</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\theta, \Theta\)</td>
+                <td class="name">theta</td>
+                <td class="meaning">Angles in trigonometry</td>
+                <td class="example">\(\sin\theta\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\lambda\)</td>
+                <td class="name">lambda</td>
+                <td class="meaning">Eigenvalue, parameter</td>
+                <td class="example">\(Av = \lambda v\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\mu\)</td>
+                <td class="name">mu</td>
+                <td class="meaning">Mean, measure</td>
+                <td class="example">Population mean \(\mu\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\pi\)</td>
+                <td class="name">pi</td>
+                <td class="meaning">Ratio of circumference to diameter</td>
+                <td class="example">\(\pi \approx 3.14159\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\sigma, \Sigma\)</td>
+                <td class="name">sigma</td>
+                <td class="meaning">Sum (Σ), std deviation (σ)</td>
+                <td class="example">\(\Sigma_{i=1}^n x_i\)</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\phi, \varphi\)</td>
+                <td class="name">phi</td>
+                <td class="meaning">Golden ratio, function</td>
+                <td class="example">Euler's \(\varphi\) function</td>
+            </tr>
+            <tr>
+                <td class="symbol">\(\omega, \Omega\)</td>
+                <td class="name">omega</td>
+                <td class="meaning">Angular frequency, sample space</td>
+                <td class="example">Big-\(\Omega\) notation</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+<footer>
+    <a href="proofs_study_guide.html" style="color: #8e44ad;">← Back to Study Guide</a>
+    <p style="margin-top: 1rem;">Mathematical Symbols Reference</p>
+</footer>
+
+<script>
+// Smooth scroll
+document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// Search functionality
+function searchSymbols() {
+    const query = document.getElementById('searchBox').value.toLowerCase();
+    const rows = document.querySelectorAll('.symbol-table tbody tr');
+
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(query) ? '' : 'none';
+    });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Exam Study Guide: Complete</title>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #2980b9;
+            --bg-color: #f4f6f7;
+            --text-color: #333;
+            --card-bg: #fff;
+            --border-radius: 8px;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
+        header p { margin: 0.5rem 0 0; opacity: 0.9; }
+        h2 { color: var(--primary-color); border-bottom: 3px solid var(--accent-color); padding-bottom: 0.5rem; margin-top: 2.5rem; font-size: 1.8rem; }
+        h3 { color: var(--secondary-color); margin-top: 1.5rem; font-weight: 600; font-size: 1.3rem; }
+
+        .nav-bar {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-btn {
+            background: var(--bg-color);
+            border: 2px solid #e0e0e0;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        /* Definition blocks */
+        .definition-block {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .definition-header {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .definition-body { padding: 1.5rem; }
+
+        .definition-formal {
+            background: #f8f9fa;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .concept-section {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            padding: 1.2rem;
+            margin: 1rem 0;
+        }
+
+        .concept-section h4 {
+            color: var(--accent-color);
+            margin: 0 0 0.8rem 0;
+            font-style: normal;
+            font-size: 1rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Examples */
+        .example-box {
+            background: #e8f6e8;
+            border-left: 4px solid var(--success-color);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .example-box h5 {
+            color: var(--success-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .non-example {
+            background: #fdf2e9;
+            border-left: 4px solid var(--warning-color);
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .non-example h5 {
+            color: #e67e22;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Diagrams */
+        .diagram-box {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .diagram-box pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .diagram-box .caption {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Practice Problems */
+        .practice-section {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border: 2px solid #667eea40;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .practice-section h4 {
+            color: #667eea;
+            margin: 0 0 1rem 0;
+            font-style: normal;
+        }
+
+        .problem {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+
+        .problem-number {
+            background: #667eea;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .solution {
+            background: #f0fdf4;
+            border-left: 3px solid var(--success-color);
+            padding: 1rem;
+            margin-top: 0.8rem;
+            display: none;
+        }
+
+        .solution.show { display: block; }
+
+        .show-solution-btn {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .show-solution-btn:hover {
+            background: #219a52;
+        }
+
+        /* Axiom blocks */
+        .axiom-block {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .axiom-header {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .axiom-body { padding: 1.5rem; }
+
+        /* Theorem blocks */
+        .theorem {
+            border: 1px solid #dcdcdc;
+            border-radius: var(--border-radius);
+            background-color: #fff;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .theorem-header {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            padding: 1rem 1.5rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .theorem-body { padding: 1.5rem; }
+
+        .theorem-statement {
+            background: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .theorem-intuition {
+            background: #e8f4fc;
+            border-left: 4px solid #3498db;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .proof-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #95a5a6;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .proof-label {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Strategy blocks */
+        .strategy-block {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .strategy-header {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .strategy-body { padding: 1.5rem; }
+
+        .strategy-template {
+            background: #f0f9f7;
+            border: 2px dashed #1abc9c;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: var(--border-radius);
+        }
+
+        .strategy-when {
+            background: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+        }
+
+        /* Strategy Grid */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .strategy-item {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            color: var(--secondary-color);
+            transition: transform 0.2s;
+            cursor: default;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .strategy-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            opacity: 0;
+            pointer-events: none;
+            text-decoration: none;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--success-color);
+            z-index: 101;
+            transition: width 0.1s;
+        }
+
+        /* Check list */
+        ul.check-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.check-list li {
+            padding-left: 1.8rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        ul.check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar { padding: 0.8rem 1rem; }
+            .nav-btn { padding: 0.5rem 0.8rem; font-size: 0.8rem; }
+            h1 { font-size: 1.6rem; }
+            .card { padding: 1.5rem; }
+            .diagram-box pre { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header>
+    <h1>Final Exam Study Guide</h1>
+    <p>Complete Review with Examples, Diagrams & Practice Problems</p>
+</header>
+
+<nav class="nav-bar">
+    <a href="#logic" class="nav-btn">Logic</a>
+    <a href="#definitions" class="nav-btn">Definitions</a>
+    <a href="#axioms" class="nav-btn">Axioms</a>
+    <a href="#theorems" class="nav-btn">Theorems</a>
+    <a href="#strategies" class="nav-btn">Strategies</a>
+    <a href="#problems" class="nav-btn">Review</a>
+</nav>
+
+<a href="#" class="back-to-top" id="backToTop">↑</a>
+
+<div class="container">
+
+<!-- ===================== LOGIC & QUANTIFIERS ===================== -->
+<section id="logic" class="card">
+    <h2>1. Logic & Quantifiers</h2>
+    <p>Understanding the language of mathematics is the first step.</p>
+
+    <div class="definition-block">
+        <div class="definition-header">Basic Logical Connectives</div>
+        <div class="definition-body">
+            <dl class="definition-list">
+                <dt>Implication (\(P \implies Q\))</dt>
+                <dd>False <em>only</em> when \(P\) is True and \(Q\) is False. Equivalent to \(\neg P \lor Q\).</dd>
+
+                <dt>Biconditional (\(P \iff Q\))</dt>
+                <dd>True when \(P\) and \(Q\) have the <em>same</em> truth value. Means \((P \implies Q) \land (Q \implies P)\).</dd>
+            </dl>
+            
+            <div class="diagram-box">
+                <pre>
+    TRUTH TABLES
+
+    P  |  Q  | P => Q | P <=> Q | P AND Q | P OR Q
+    ---|-----|--------|---------|---------|-------
+    T  |  T  |   T    |    T    |    T    |   T
+    T  |  F  |   F    |    F    |    F    |   T
+    F  |  T  |   T    |    F    |    F    |   T
+    F  |  F  |   T    |    T    |    F    |   F
+
+    Note: F => T is True (Vacuously True)!
+                </pre>
+                <div class="caption">Truth values for common logical connectives</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="definition-block">
+        <div class="definition-header">Quantifiers</div>
+        <div class="definition-body">
+            <dl class="definition-list">
+                <dt>Universal Quantifier (\(\forall x \in S, P(x)\))</dt>
+                <dd>"For all \(x\) in \(S\), \(P(x)\) is true." <br><em>Disproved by finding a single counterexample.</em></dd>
+
+                <dt>Existential Quantifier (\(\exists x \in S, P(x)\))</dt>
+                <dd>"There exists at least one \(x\) in \(S\) such that \(P(x)\) is true." <br><em>Proved by finding a single example.</em></dd>
+            </dl>
+            <div class="concept-section">
+                <h4>De Morgan's Laws for Logic</h4>
+                <p>Negating quantifiers flips them:</p>
+                <ul>
+                    <li>\(\neg (\forall x, P(x)) \iff \exists x, \neg P(x)\)</li>
+                    <li>\(\neg (\exists x, P(x)) \iff \forall x, \neg P(x)\)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== DEFINITIONS ===================== -->
+<section id="definitions" class="card">
+    <h2>2. Definitions</h2>
+    <p>Master these definitions—they are the foundation of every proof.</p>
+
+    <!-- ===== SET EQUALITY ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Set Equality</div>
+        <div class="definition-body">
+            <div class="definition-formal">
+                <strong>Definition:</strong> \(A = B \iff A \subseteq B \text{ and } B \subseteq A\)
+            </div>
+
+            <div class="concept-section">
+                <h4>What This Really Means</h4>
+                <p>Two sets are equal if and only if they contain <em>exactly</em> the same elements—no more, no less. The order doesn't matter, and duplicates don't count.</p>
+                <p><strong>Key insight:</strong> To prove \(A = B\), you must prove TWO things:</p>
+                <ol>
+                    <li><strong>(\(A \subseteq B\)):</strong> Take any element \(x \in A\) and show \(x \in B\)</li>
+                    <li><strong>(\(B \subseteq A\)):</strong> Take any element \(y \in B\) and show \(y \in A\)</li>
+                </ol>
+            </div>
+
+            <div class="diagram-box">
+                <pre>
+    When A = B:                    When A ≠ B:
+
+    ┌─────────────┐               ┌─────────┐
+    │             │               │    A    │
+    │   A = B     │               │  ┌──────┼──┐
+    │  {1,2,3}    │               │  │  ∩   │  │ B
+    │             │               └──┼──────┘  │
+    └─────────────┘                  └─────────┘
+
+    Same elements                  Different elements
+                </pre>
+                <div class="caption">Sets are equal when they overlap completely</div>
+            </div>
+
+            <div class="example-box">
+                <h5>Example 1: Prove \((\{x \in \mathbb{Z} : x^2 = 1\}) = \(\{-1, 1\}\)</h5>
+                <p><strong>Proof:</strong></p>
+                <p><em>(\( \subseteq \)):</em> Let \(x\) be in the left set. Then \(x \in \mathbb{Z}\) and \(x^2 = 1\).<br>
+                Solving: \(x^2 - 1 = 0 \Rightarrow (x-1)(x+1) = 0 \Rightarrow x = 1\) or \(x = -1\).<br>
+                So \(x \in \{-1, 1\}\). ✓</p>
+                <p><em>(\( \supseteq \)):</em> Check: \(1^2 = 1\) ✓ and \((-1)^2 = 1\) ✓.<br>
+                So both elements of \(\{-1, 1\}\) satisfy the condition. ✓</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PARTITION ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Partition</div>
+        <div class="definition-body">
+            <div class="definition-formal">
+                <strong>Definition:</strong> A <strong>partition</strong> of set \(S\) is a collection \(\{A_i\}_{i \in I}\) such that:
+                <ol>
+                    <li>\(A_i \neq \emptyset\) for all \(i\) (each part is non-empty)</li>
+                    <li>\(A_i \cap A_j = \emptyset\) for \(i \neq j\) (parts are pairwise disjoint)</li>
+                    <li>\(\bigcup_{i \in I} A_i = S\) (parts cover all of \(S\))</li>
+                </ol>
+            </div>
+
+            <div class="concept-section">
+                <h4>What This Really Means</h4>
+                <p>A partition "cuts up" a set into non-overlapping pieces that together form the whole set. Think of:</p>
+                <ul>
+                    <li><strong>Pizza slices:</strong> Each slice is non-empty, slices don't overlap, all slices together = whole pizza</li>
+                </ul>
+            </div>
+
+            <div class="diagram-box">
+                <pre>
+    Partition of S = {1,2,3,4,5,6}:
+
+    ┌─────────────────────────────────┐
+    │           S                     │
+    │  ┌─────┐  ┌─────┐  ┌─────┐     │
+    │  │ 1,2 │  │ 3,4 │  │ 5,6 │     │
+    │  │ A₁  │  │ A₂  │  │ A₃  │     │
+    │  └─────┘  └─────┘  └─────┘     │
+    └─────────────────────────────────┘
+
+    ✓ Each Aᵢ ≠ ∅
+    ✓ A₁ ∩ A₂ = A₁ ∩ A₃ = A₂ ∩ A₃ = ∅
+    ✓ A₁ ∪ A₂ ∪ A₃ = S
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== EQUIVALENCE RELATION ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Equivalence Relation</div>
+        <div class="definition-body">
+            <div class="definition-formal">
+                <strong>Definition:</strong> A relation \(\sim\) on set \(S\) is an <strong>equivalence relation</strong> if:
+                <ol>
+                    <li><strong>Reflexive:</strong> \(a \sim a\) for all \(a \in S\)</li>
+                    <li><strong>Symmetric:</strong> \(a \sim b \Rightarrow b \sim a\)</li>
+                    <li><strong>Transitive:</strong> \(a \sim b\) and \(b \sim c \Rightarrow a \sim c\)</li>
+                </ol>
+            </div>
+            <div class="concept-section">
+                <h4>What This Really Means</h4>
+                <p>An equivalence relation groups elements that are "the same" in some way. Think of it as a generalized notion of equality.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PARTIAL ORDER ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Partial Order</div>
+        <div class="definition-body">
+            <div class="definition-formal">
+                <strong>Definition:</strong> A relation \(\leq\) on set \(S\) is a <strong>partial order</strong> if:
+                <ol>
+                    <li><strong>Reflexive:</strong> \(a \leq a\)</li>
+                    <li><strong>Antisymmetric:</strong> \(a \leq b\) and \(b \leq a \Rightarrow a = b\)</li>
+                    <li><strong>Transitive:</strong> \(a \leq b\) and \(b \leq c \Rightarrow a \leq c\)</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEW: CARTESIAN PRODUCT & POWER SET ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Cartesian Product & Power Set</div>
+        <div class="definition-body">
+            <div class="definition-formal">
+                <strong>Cartesian Product (\(A \times B\)):</strong> \(A \times B = \{ (a, b) \mid a \in A, b \in B \}\).
+            </div>
+            <div class="definition-formal">
+                <strong>Power Set (\(\mathcal{P}(A)\)):</strong> The set of all subsets of \(A\). <br>If \(|A| = n\), then \(|P(A)| = 2^n\).
+            </div>
+            
+            <div class="diagram-box">
+                <pre>
+    Cartesian Product A x B:       Power Set P({1,2}):
+    A={1,2}, B={x,y}
+
+      y | (1,y)  (2,y)             {1,2}
+        |                            |
+      x | (1,x)  (2,x)           {1}   {2}
+        └─────────────               |
+           1      2                 { }
+                </pre>
+                <div class="caption">Visualizing Products and Power Sets</div>
+            </div>
+
+            <div class="example-box">
+                <h5>Example</h5>
+                <p>Let \(A = \{1, 2\}\). Then \(\mathcal{P}(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}\). Size is \(2^2 = 4\).</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CONTINUITY ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Continuity (ε-δ Definition)</div>
+        <div class="definition-body">
+            <div class="definition-formal">
+                <strong>Definition:</strong> Function \(f\) is <strong>continuous at \(c\)</strong> if:
+                <p style="text-align: center; font-size: 1.1rem;">For every \(\varepsilon > 0\), there exists \(\delta > 0\) such that:<br>
+                \(|x - c| < \delta \Rightarrow |f(x) - f(c)| < \varepsilon\)</p>
+            </div>
+            <div class="diagram-box">
+                <pre>
+         y
+         │     ┌─────────────────┐ f(c)+ε
+         │     │    ___....──────┤
+         │     │ ──'             │
+    f(c) │─────┼────●────────────┤ f(c)
+         │     │                 │
+         │     │                 │
+         │     └─────────────────┘ f(c)-ε
+         │           │     │
+         └───────────┼──●──┼─────────── x
+                   c-δ  c  c+δ
+                </pre>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== AXIOMS ===================== -->
+<section id="axioms" class="card">
+    <h2>3. Axioms & Principles</h2>
+    <p>These fundamental truths are accepted without proof and form the basis for all mathematical reasoning.</p>
+
+    <!-- INDUCTION -->
+    <div class="axiom-block">
+        <div class="axiom-header">Principle of Mathematical Induction</div>
+        <div class="axiom-body">
+            <div class="definition-formal">
+                Let \(P(n)\) be a statement. If:
+                <ol>
+                    <li><strong>Base:</strong> \(P(1)\) is true</li>
+                    <li><strong>Step:</strong> \(P(k) \Rightarrow P(k+1)\) for all \(k \geq 1\)</li>
+                </ol>
+                Then \(P(n)\) is true for all \(n \in \mathbb{N}\).
+            </div>
+            <div class="diagram-box">
+                <pre>
+    Domino Effect:
+
+    P(1) → P(2) → P(3) → P(4) → P(5) → ...
+      ↓      ↓      ↓      ↓      ↓
+    TRUE   TRUE   TRUE   TRUE   TRUE   ...
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="axiom-block">
+        <div class="axiom-header">Well-Ordering Principle</div>
+        <div class="axiom-body">
+            <div class="definition-formal">
+                Every non-empty subset of \(\mathbb{N}\) has a least element.
+            </div>
+        </div>
+    </div>
+
+    <div class="axiom-block">
+        <div class="axiom-header">Axiom of Choice & Zorn's Lemma</div>
+        <div class="axiom-body">
+            <div class="definition-formal">
+                <strong>Axiom of Choice:</strong> Given any collection of non-empty sets, there exists a choice function that selects one element from each set.
+            </div>
+            <div class="definition-formal" style="margin-top:1rem;">
+                <strong>Zorn's Lemma:</strong> If every chain in a partially ordered set \(P\) has an upper bound in \(P\), then \(P\) contains at least one maximal element.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== THEOREMS ===================== -->
+<section id="theorems" class="card">
+    <h2>4. Key Theorems</h2>
+    <p>Master these proofs—they demonstrate important techniques.</p>
+
+    <!-- Fundamental Theorem (NEW) -->
+    <div class="theorem">
+        <div class="theorem-header">Fundamental Theorem of Arithmetic</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                Every integer \(n > 1\) can be represented uniquely as a product of prime numbers, up to the order of the factors.
+            </div>
+            <p><em>Proof Strategy:</em> Existence via Strong Induction; Uniqueness via Euclid's Lemma.</p>
+        </div>
+    </div>
+
+    <!-- Strong Induction (MOVED FROM AXIOMS) -->
+    <div class="theorem">
+        <div class="theorem-header">Strong Induction</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                If \(P(1)\) is true, and for any \(k \ge 1\), \((P(1) \land P(2) \land \cdots \land P(k)) \implies P(k+1)\) is true, then \(P(n)\) is true for all \(n \in \mathbb{N}\).
+            </div>
+            <div class="theorem-intuition">
+                <strong>Intuition:</strong> Similar to weak induction, but allows you to assume the truth of *all* previous cases, not just the immediately preceding one. It is logically equivalent to the Principle of Mathematical Induction and the Well-Ordering Principle.
+            </div>
+            <div class="example-box">
+                <h5>Example: Every integer \(n \geq 2\) has a prime factorization.</h5>
+                <p><strong>Base:</strong> 2 is prime, so its factorization is just "2". ✓</p>
+                <p><strong>Step:</strong> Assume all integers from 2 to \(k\) have prime factorizations.</p>
+                <p>For \(k+1\): If prime, done. If composite, \(k+1 = ab\) where \(2 \leq a, b \leq k\).</p>
+                <p>By hypothesis, \(a\) and \(b\) have factorizations. Multiply them. ✓ ∎</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cantor -->
+    <div class="theorem">
+        <div class="theorem-header">Cantor's Theorem</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                For any set \(A\): \(|A| < |\u0002P(A)|\)
+            </div>
+            <div class="proof-box">
+                <span class="proof-label">Proof (Diagonalization)</span>
+                <p>Assume surjective \(f: A \to \mathcal{P}(A)\). Define \(D = \{x \in A : x \notin f(x)\}).</p>
+                <p>Since \(f\) surjective, \(\exists d: f(d) = D\). Then \(d \in D \iff d \notin D\). Contradiction! ∎</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Infinitude of Primes -->
+    <div class="theorem">
+        <div class="theorem-header">Infinitude of Primes (Euclid)</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                There are infinitely many prime numbers.
+            </div>
+            <div class="proof-box">
+                <span class="proof-label">Proof</span>
+                <p>Suppose finite list \(p_1, \dots, p_n\). Let \(Q = p_1 \dots p_n + 1\). Then \(Q\) is not divisible by any \(p_i\). Contradiction. ∎</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bezout's Identity (NEW) -->
+    <div class="theorem">
+        <div class="theorem-header">Bézout's Identity</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                Let \(a, b \in \mathbb{Z}\) not both zero. Then \(\exists x, y \in \mathbb{Z}\) such that \(ax + by = \gcd(a, b)\).
+            </div>
+        </div>
+    </div>
+
+    <!-- Pigeonhole (NEW) -->
+    <div class="theorem">
+        <div class="theorem-header">Pigeonhole Principle</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                If \(n+1\) items are put into \(n\) containers, at least one container has \(\ge 2\) items.
+            </div>
+            <div class="diagram-box">
+                <pre>
+    Pigeons:  ● ● ● ● (4)
+    Holes:    [ ] [ ] [ ] (3)
+
+    Must stack:
+    [●] [●] [●●]  <- One hole has 2!
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- De Morgan (NEW) -->
+    <div class="theorem">
+        <div class="theorem-header">De Morgan's Laws (Sets)</div>
+        <div class="theorem-body">
+            <div class="theorem-statement">
+                \((A \cup B)^c = A^c \cap B^c\) and \((A \cap B)^c = A^c \cup B^c\).
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== STRATEGIES ===================== -->
+<section id="strategies" class="card">
+    <h2>5. Proof Strategies</h2>
+
+    <div class="strategy-grid">
+        <div class="strategy-item">Direct Proof</div>
+        <div class="strategy-item">Contrapositive</div>
+        <div class="strategy-item">Contradiction</div>
+        <div class="strategy-item">Cases</div>
+        <div class="strategy-item">Biconditional</div>
+        <div class="strategy-item">Induction</div>
+        <div class="strategy-item">Existence/Uniqueness</div>
+    </div>
+
+    <div class="strategy-block">
+        <div class="strategy-header">Direct Proof</div>
+        <div class="strategy-body">
+            <div class="strategy-template">
+                <strong>To prove \(P \Rightarrow Q\):</strong> Assume \(P\). Use definitions/logic. Conclude \(Q\).
+            </div>
+            <div class="example-box">
+                <h5>Example: If \(n\) is even, then \(n^2\) is even.</h5>
+                <p>Assume \(n=2k\). Then \(n^2 = 4k^2 = 2(2k^2)\). ∎</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="strategy-block">
+        <div class="strategy-header">Proof by Contradiction</div>
+        <div class="strategy-body">
+            <div class="strategy-template">
+                <strong>To prove \(P\):</strong> Assume \(\neg P\). Derive contradiction.
+            </div>
+            <div class="example-box">
+                <h5>Example: \(\sqrt{2}\) is irrational.</h5>
+                <p>Assume \(\sqrt{2}=a/b\) (lowest terms). Then \(2b^2=a^2 \implies a\) even \(\implies b\) even. Contradiction. ∎</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="strategy-block">
+        <div class="strategy-header">Proof by Contrapositive</div>
+        <div class="strategy-body">
+            <div class="strategy-template">
+                <strong>To prove \(P \Rightarrow Q\):</strong> Prove \(\neg Q \Rightarrow \neg P\).
+            </div>
+            <div class="example-box">
+                <h5>Example: If \(n^2\) is even, then \(n\) is even.</h5>
+                <p>Contrapositive: If \(n\) is odd, \(n^2\) is odd. (True). ∎</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW STRATEGIES -->
+    <div class="strategy-block">
+        <div class="strategy-header">Proof by Cases</div>
+        <div class="strategy-body">
+            <div class="strategy-template">
+                Divide domain into exhaustive cases. Prove true for each.
+            </div>
+            <div class="example-box">
+                <h5>Example: \(|x| \ge 0\) for all \(x \in \mathbb{R}\).</h5>
+                <p>Case 1: \(x \ge 0 \implies |x|=x \ge 0\). <br>Case 2: \(x < 0 \implies |x|=-x > 0\). ∎</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== REVIEW ===================== -->
+<section id="problems" class="card">
+    <h2>Final Review</h2>
+    <ul class="check-list">
+        <li>Can you state each definition precisely?</li>
+        <li>Can you give examples AND non-examples?</li>
+        <li>Can you reproduce each proof from memory?</li>
+        <li>Do you know when to use each proof strategy?</li>
+    </ul>
+</section>
+
+</div>
+
+<footer>
+    Generated by Gemini CLI | Good luck on the exam!
+</footer>
+
+<script>
+function toggleSolution(btn) {
+    const solution = btn.nextElementSibling;
+    solution.classList.toggle('show');
+    btn.textContent = solution.classList.contains('show') ? 'Hide Solution' : 'Show Solution';
+}
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 300);
+});
+backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+const progressBar = document.getElementById('progressBar');
+window.addEventListener('scroll', () => {
+    const progress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    progressBar.style.width = progress + '%';
+});
+</script>
+
+</body>
+</html>

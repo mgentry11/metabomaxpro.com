@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Exam Study Guide: Complete</title>
+    <title>Final Exam Study Guide: Zero to Hero</title>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
@@ -135,6 +135,85 @@
             padding-bottom: 0.5rem;
         }
 
+        /* Blueprint box (dark) */
+        .blueprint-box {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .blueprint-box h5 {
+            color: #3498db;
+            margin: 0 0 1rem 0;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .blueprint-box ol, .blueprint-box ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .blueprint-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Intuition box (yellow) */
+        .intuition-box {
+            background: #fef9e7;
+            border-left: 4px solid #f1c40f;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .intuition-box h5 {
+            color: #d4ac0d;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Walkthrough box */
+        .walkthrough-box {
+            background: #e8f8f5;
+            border-left: 4px solid #1abc9c;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .walkthrough-box h5 {
+            color: #16a085;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .walkthrough-box .step {
+            background: white;
+            border: 1px solid #d5dbdb;
+            border-radius: 5px;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+        }
+
+        .walkthrough-box .step-number {
+            background: #1abc9c;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
         /* Examples */
         .example-box {
             background: #e8f6e8;
@@ -162,6 +241,20 @@
             color: #e67e22;
             margin: 0 0 0.5rem 0;
             font-size: 0.95rem;
+        }
+
+        /* Mind-blowing box */
+        .mindblown-box {
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border: 2px solid #667eea;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .mindblown-box h5 {
+            color: #667eea;
+            margin: 0 0 0.5rem 0;
         }
 
         /* Diagrams */
@@ -360,7 +453,7 @@
             gap: 1rem;
             margin-bottom: 2rem;
         }
-        
+
         .strategy-item {
             background: #fff;
             border: 1px solid #eee;
@@ -373,7 +466,7 @@
             cursor: default;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        
+
         .strategy-item:hover {
             transform: translateY(-3px);
             border-color: var(--accent-color);
@@ -465,8 +558,8 @@
 <div class="progress-bar" id="progressBar"></div>
 
 <header>
-    <h1>Final Exam Study Guide</h1>
-    <p>Complete Review with Examples, Diagrams & Practice Problems</p>
+    <h1>Final Exam Study Guide: Zero to Hero</h1>
+    <p>Complete Review with Venn Diagrams, Truth Tables, Intuition & Practice Problems</p>
 </header>
 
 <nav class="nav-bar">
@@ -497,21 +590,62 @@
                 <dt>Biconditional (\(P \iff Q\))</dt>
                 <dd>True when \(P\) and \(Q\) have the <em>same</em> truth value. Means \((P \implies Q) \land (Q \implies P)\).</dd>
             </dl>
-            
+
             <div class="diagram-box">
                 <pre>
-    TRUTH TABLES
+╔══════════════════════════════════════════════════════════════════════╗
+║                     COMPLETE TRUTH TABLES                            ║
+╠════╤════╤════════╤═════════╤═════════╤════════╤═══════════╤═════════╣
+║ P  │ Q  │ ¬P     │ P ∧ Q   │ P ∨ Q   │ P ⇒ Q  │ P ⇔ Q     │ P ⊕ Q   ║
+╠════╪════╪════════╪═════════╪═════════╪════════╪═══════════╪═════════╣
+║ T  │ T  │ F      │ T       │ T       │ T      │ T         │ F       ║
+║ T  │ F  │ F      │ F       │ T       │ F      │ F         │ T       ║
+║ F  │ T  │ T      │ F       │ T       │ T      │ F         │ T       ║
+║ F  │ F  │ T      │ F       │ F       │ T      │ T         │ F       ║
+╚════╧════╧════════╧═════════╧═════════╧════════╧═══════════╧═════════╝
 
-    P  |  Q  | P => Q | P <=> Q | P AND Q | P OR Q
-    ---|-----|--------|---------|---------|-------
-    T  |  T  |   T    |    T    |    T    |   T
-    T  |  F  |   F    |    F    |    F    |   T
-    F  |  T  |   T    |    F    |    F    |   T
-    F  |  F  |   T    |    T    |    F    |   F
-
-    Note: F => T is True (Vacuously True)!
+Key:
+¬P     = NOT P (negation)
+P ∧ Q  = P AND Q (conjunction) - true only when BOTH true
+P ∨ Q  = P OR Q (disjunction) - true when AT LEAST ONE true
+P ⇒ Q  = P IMPLIES Q - false ONLY when P true and Q false
+P ⇔ Q  = P IFF Q (biconditional) - true when SAME truth value
+P ⊕ Q  = P XOR Q (exclusive or) - true when EXACTLY ONE true
                 </pre>
-                <div class="caption">Truth values for common logical connectives</div>
+                <div class="caption">Master these - they appear in every proof!</div>
+            </div>
+
+            <div class="intuition-box">
+                <h5>💡 Intuition: Why is F ⇒ T True?</h5>
+                <p>Think of a promise: "If it rains, I'll bring an umbrella."</p>
+                <ul>
+                    <li>Rain + Umbrella = Promise kept ✓ (T⇒T = T)</li>
+                    <li>Rain + No Umbrella = Promise broken ✗ (T⇒F = F)</li>
+                    <li>No Rain + Umbrella = I didn't need to, but I did anyway ✓ (F⇒T = T)</li>
+                    <li>No Rain + No Umbrella = Promise not tested, still valid ✓ (F⇒F = T)</li>
+                </ul>
+                <p>A promise can only be broken when the condition is met but the result isn't!</p>
+            </div>
+
+            <div class="diagram-box">
+                <pre>
+              IMPLICATION TRUTH TABLE VISUALIZED
+
+     Q=T              Q=F
+   ┌─────────────┬─────────────┐
+   │             │             │
+   │   P⇒Q = T   │   P⇒Q = F   │  P=T
+   │   (T⇒T)     │   (T⇒F)     │
+   │             │   ← ONLY    │
+   │             │     FALSE!  │
+   ├─────────────┼─────────────┤
+   │             │             │
+   │   P⇒Q = T   │   P⇒Q = T   │  P=F
+   │   (F⇒T)     │   (F⇒F)     │
+   │  "Vacuously │  "Vacuously │
+   │    True"    │    True"    │
+   └─────────────┴─────────────┘
+                </pre>
             </div>
         </div>
     </div>
@@ -526,6 +660,27 @@
                 <dt>Existential Quantifier (\(\exists x \in S, P(x)\))</dt>
                 <dd>"There exists at least one \(x\) in \(S\) such that \(P(x)\) is true." <br><em>Proved by finding a single example.</em></dd>
             </dl>
+
+            <div class="diagram-box">
+                <pre>
+    QUANTIFIER TRUTH TABLE
+
+    Let S = {1, 2, 3} and consider P(x): "x is even"
+
+    ┌─────────────────────────────────────────────────────────┐
+    │  x=1: P(1) = F     (1 is not even)                      │
+    │  x=2: P(2) = T     (2 is even)                          │
+    │  x=3: P(3) = F     (3 is not even)                      │
+    ├─────────────────────────────────────────────────────────┤
+    │  ∀x∈S, P(x) = F ∧ T ∧ F = FALSE                        │
+    │  (Not ALL elements satisfy P)                           │
+    │                                                         │
+    │  ∃x∈S, P(x) = F ∨ T ∨ F = TRUE                         │
+    │  (AT LEAST ONE element satisfies P)                     │
+    └─────────────────────────────────────────────────────────┘
+                </pre>
+            </div>
+
             <div class="concept-section">
                 <h4>De Morgan's Laws for Logic</h4>
                 <p>Negating quantifiers flips them:</p>
@@ -533,6 +688,26 @@
                     <li>\(\neg (\forall x, P(x)) \iff \exists x, \neg P(x)\)</li>
                     <li>\(\neg (\exists x, P(x)) \iff \forall x, \neg P(x)\)</li>
                 </ul>
+
+                <div class="diagram-box">
+                    <pre>
+    DE MORGAN'S LAWS TRUTH TABLE
+
+    ┌────────┬────────┬───────────┬───────────┬───────────┬───────────┐
+    │   A    │   B    │  ¬(A∧B)   │  ¬A ∨ ¬B  │  ¬(A∨B)   │  ¬A ∧ ¬B  │
+    ├────────┼────────┼───────────┼───────────┼───────────┼───────────┤
+    │   T    │   T    │     F     │     F     │     F     │     F     │
+    │   T    │   F    │     T     │     T     │     F     │     F     │
+    │   F    │   T    │     T     │     T     │     F     │     F     │
+    │   F    │   F    │     T     │     T     │     T     │     T     │
+    └────────┴────────┴───────────┴───────────┴───────────┴───────────┘
+                           ↑ SAME ↑               ↑ SAME ↑
+
+    De Morgan's Laws:
+    ¬(A ∧ B) ≡ ¬A ∨ ¬B    "NOT both" = "NOT one OR NOT other"
+    ¬(A ∨ B) ≡ ¬A ∧ ¬B    "NOT either" = "NOT one AND NOT other"
+                    </pre>
+                </div>
             </div>
         </div>
     </div>
@@ -542,6 +717,60 @@
 <section id="definitions" class="card">
     <h2>2. Definitions</h2>
     <p>Master these definitions—they are the foundation of every proof.</p>
+
+    <!-- ===== SET OPERATIONS WITH VENN DIAGRAMS ===== -->
+    <div class="definition-block">
+        <div class="definition-header">Set Operations & Venn Diagrams</div>
+        <div class="definition-body">
+            <div class="diagram-box">
+                <pre>
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                        SET OPERATIONS VENN DIAGRAMS                       ║
+╠═══════════════════════════════════════════════════════════════════════════╣
+║                                                                           ║
+║   A ∪ B (Union)              A ∩ B (Intersection)      A \ B (Difference) ║
+║   "A OR B"                   "A AND B"                 "A but NOT B"      ║
+║                                                                           ║
+║   ┌───────────────┐         ┌───────────────┐         ┌───────────────┐  ║
+║   │ ▓▓▓▓▓▓▓▓▓▓▓▓▓ │         │               │         │ ▓▓▓▓▓▓        │  ║
+║   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│         │   ┌───────┐   │         │▓▓▓▓▓▓▓▓──┐   │  ║
+║   │▓▓┌────▓▓▓────┐▓│         │ A │▓▓▓▓▓▓▓│ B │         │▓▓┌────│  │   │  ║
+║   │▓▓│ A ▓▓▓▓ B │▓│         │   │▓▓▓▓▓▓▓│   │         │▓▓│ A  │  │ B │  ║
+║   │▓▓│   ▓▓▓▓   │▓│         │   │▓▓▓▓▓▓▓│   │         │▓▓│    │  │   │  ║
+║   │▓▓└────▓▓▓────┘▓│         │   └───────┘   │         │▓▓└────│  │   │  ║
+║   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│         │               │         │▓▓▓▓▓▓▓▓──┘   │  ║
+║   │ ▓▓▓▓▓▓▓▓▓▓▓▓▓ │         │               │         │               │  ║
+║   └───────────────┘         └───────────────┘         └───────────────┘  ║
+║                                                                           ║
+║   A' (Complement)            A ⊆ B (Subset)            A = B (Equality)  ║
+║   "NOT A"                    "A inside B"              "Same elements"   ║
+║                                                                           ║
+║   ┌───────────────┐         ┌───────────────┐         ┌───────────────┐  ║
+║   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   U     │               │         │               │  ║
+║   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│         │    ┌───────┐  │         │   ┌───────┐   │  ║
+║   │▓▓▓┌─────┐▓▓▓▓▓│         │    │ ┌───┐ │  │         │   │       │   │  ║
+║   │▓▓▓│  A  │▓▓▓▓▓│         │    │ │ A │ │B │         │   │ A = B │   │  ║
+║   │▓▓▓│     │▓▓▓▓▓│         │    │ └───┘ │  │         │   │       │   │  ║
+║   │▓▓▓└─────┘▓▓▓▓▓│         │    └───────┘  │         │   └───────┘   │  ║
+║   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│         │               │         │               │  ║
+║   └───────────────┘         └───────────────┘         └───────────────┘  ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+                </pre>
+                <div class="caption">Shaded regions show the result of each operation</div>
+            </div>
+
+            <div class="definition-formal">
+                <strong>Formal Definitions:</strong>
+                <ul>
+                    <li>\(A \cup B = \{x : x \in A \text{ or } x \in B\}\)</li>
+                    <li>\(A \cap B = \{x : x \in A \text{ and } x \in B\}\)</li>
+                    <li>\(A \setminus B = \{x : x \in A \text{ and } x \notin B\}\)</li>
+                    <li>\(A' = \{x \in U : x \notin A\}\)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- ===== SET EQUALITY ===== -->
     <div class="definition-block">
@@ -553,7 +782,7 @@
 
             <div class="concept-section">
                 <h4>What This Really Means</h4>
-                <p>Two sets are equal if and only if they contain <em>exactly</em> the same elements—no more, no less. The order doesn't matter, and duplicates don't count.</p>
+                <p>Two sets are equal if and only if they contain <em>exactly</em> the same elements—no more, no less.</p>
                 <p><strong>Key insight:</strong> To prove \(A = B\), you must prove TWO things:</p>
                 <ol>
                     <li><strong>(\(A \subseteq B\)):</strong> Take any element \(x \in A\) and show \(x \in B\)</li>
@@ -563,28 +792,21 @@
 
             <div class="diagram-box">
                 <pre>
-    When A = B:                    When A ≠ B:
+    SET EQUALITY VENN DIAGRAM
 
-    ┌─────────────┐               ┌─────────┐
-    │             │               │    A    │
-    │   A = B     │               │  ┌──────┼──┐
-    │  {1,2,3}    │               │  │  ∩   │  │ B
-    │             │               └──┼──────┘  │
-    └─────────────┘                  └─────────┘
+    When A = B:                          When A ≠ B:
+    (Complete overlap)                   (Some elements differ)
 
-    Same elements                  Different elements
+         ┌─────────────┐                ┌─────────┐
+         │             │                │    A    │
+         │   A = B     │                │  ┌──────┼──┐
+         │  {1,2,3}    │                │  │  ∩   │  │ B
+         │             │                └──┼──────┘  │
+         └─────────────┘                   │   only  │
+                                           │   in B  │
+         Every element of A                └─────────┘
+         is in B and vice versa
                 </pre>
-                <div class="caption">Sets are equal when they overlap completely</div>
-            </div>
-
-            <div class="example-box">
-                <h5>Example 1: Prove \((\{x \in \mathbb{Z} : x^2 = 1\}) = \(\{-1, 1\}\)</h5>
-                <p><strong>Proof:</strong></p>
-                <p><em>(\( \subseteq \)):</em> Let \(x\) be in the left set. Then \(x \in \mathbb{Z}\) and \(x^2 = 1\).<br>
-                Solving: \(x^2 - 1 = 0 \Rightarrow (x-1)(x+1) = 0 \Rightarrow x = 1\) or \(x = -1\).<br>
-                So \(x \in \{-1, 1\}\). ✓</p>
-                <p><em>(\( \supseteq \)):</em> Check: \(1^2 = 1\) ✓ and \((-1)^2 = 1\) ✓.<br>
-                So both elements of \(\{-1, 1\}\) satisfy the condition. ✓</p>
             </div>
         </div>
     </div>
@@ -602,30 +824,47 @@
                 </ol>
             </div>
 
-            <div class="concept-section">
-                <h4>What This Really Means</h4>
-                <p>A partition "cuts up" a set into non-overlapping pieces that together form the whole set. Think of:</p>
-                <ul>
-                    <li><strong>Pizza slices:</strong> Each slice is non-empty, slices don't overlap, all slices together = whole pizza</li>
-                </ul>
-            </div>
-
             <div class="diagram-box">
                 <pre>
-    Partition of S = {1,2,3,4,5,6}:
+    PARTITION VENN DIAGRAM
 
-    ┌─────────────────────────────────┐
-    │           S                     │
-    │  ┌─────┐  ┌─────┐  ┌─────┐     │
-    │  │ 1,2 │  │ 3,4 │  │ 5,6 │     │
-    │  │ A₁  │  │ A₂  │  │ A₃  │     │
-    │  └─────┘  └─────┘  └─────┘     │
-    └─────────────────────────────────┘
+    Valid Partition of S:               Invalid - Parts Overlap:
 
-    ✓ Each Aᵢ ≠ ∅
-    ✓ A₁ ∩ A₂ = A₁ ∩ A₃ = A₂ ∩ A₃ = ∅
-    ✓ A₁ ∪ A₂ ∪ A₃ = S
+    ┌─────────────────────────┐        ┌─────────────────────────┐
+    │           S             │        │           S             │
+    │  ┌─────┬─────┬─────┐   │        │  ┌─────────────┐        │
+    │  │     │     │     │   │        │  │  A₁  ┌──────┼──┐     │
+    │  │ A₁  │ A₂  │ A₃  │   │        │  │     │  ∩   │  │ A₂  │
+    │  │     │     │     │   │        │  │     │      │  │     │
+    │  └─────┴─────┴─────┘   │        │  └─────┼──────┘  │     │
+    └─────────────────────────┘        │        └─────────┘     │
+                                       └─────────────────────────┘
+    ✓ Non-empty parts                  ✗ A₁ ∩ A₂ ≠ ∅
+    ✓ No overlaps
+    ✓ Cover all of S
+
+    Invalid - Missing element:         Invalid - Empty part:
+
+    ┌─────────────────────────┐        ┌─────────────────────────┐
+    │           S             │        │           S             │
+    │  ┌─────┐ ┌─────┐  •    │        │  ┌─────┬─────┬─────┐   │
+    │  │ A₁  │ │ A₂  │  x    │        │  │     │     │     │   │
+    │  │     │ │     │       │        │  │ A₁  │  ∅  │ A₃  │   │
+    │  └─────┘ └─────┘       │        │  │     │     │     │   │
+    └─────────────────────────┘        │  └─────┴─────┴─────┘   │
+                                       └─────────────────────────┘
+    ✗ x not covered                    ✗ A₂ = ∅
                 </pre>
+            </div>
+
+            <div class="example-box">
+                <h5>Example: Partition of ℤ</h5>
+                <p>The sets \(\{..., -4, -2, 0, 2, 4, ...\}\) (evens) and \(\{..., -3, -1, 1, 3, ...\}\) (odds) form a partition of \(\mathbb{Z}\):</p>
+                <ul>
+                    <li>Both non-empty ✓</li>
+                    <li>No integer is both even and odd ✓</li>
+                    <li>Every integer is either even or odd ✓</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -642,29 +881,91 @@
                     <li><strong>Transitive:</strong> \(a \sim b\) and \(b \sim c \Rightarrow a \sim c\)</li>
                 </ol>
             </div>
-            <div class="concept-section">
-                <h4>What This Really Means</h4>
-                <p>An equivalence relation groups elements that are "the same" in some way. Think of it as a generalized notion of equality.</p>
+
+            <div class="diagram-box">
+                <pre>
+    EQUIVALENCE RELATION PROPERTIES
+
+    Reflexive:              Symmetric:              Transitive:
+    (Self-loops)            (Two-way arrows)        (Chain implies direct)
+
+        ┌───┐                   a ──── b                a ─── b
+        │   │                      ↕                        \
+        ▼   │                                                 \
+        a ──┘                                                  c
+                                                              /
+    Every element           If a~b then b~a         If a~b and b~c
+    relates to itself                               then a~c
+
+
+    EQUIVALENCE CLASSES PARTITION THE SET:
+
+    ┌─────────────────────────────────────────┐
+    │                 S                        │
+    │   ┌─────┐    ┌─────┐    ┌─────┐        │
+    │   │ [a] │    │ [b] │    │ [c] │        │
+    │   │ a,d │    │ b,e │    │ c,f │        │
+    │   └─────┘    └─────┘    └─────┘        │
+    │                                         │
+    │   Elements in same class are equivalent │
+    │   Classes don't overlap                 │
+    │   Classes cover all of S                │
+    └─────────────────────────────────────────┘
+                </pre>
+            </div>
+
+            <div class="intuition-box">
+                <h5>💡 Intuition</h5>
+                <p>An equivalence relation groups elements that are "the same" in some way. Think of sorting socks by color - all red socks are "equivalent" to each other, forming an equivalence class.</p>
             </div>
         </div>
     </div>
 
-    <!-- ===== PARTIAL ORDER ===== -->
+    <!-- ===== DE MORGAN'S LAWS FOR SETS ===== -->
     <div class="definition-block">
-        <div class="definition-header">Partial Order</div>
+        <div class="definition-header">De Morgan's Laws for Sets</div>
         <div class="definition-body">
             <div class="definition-formal">
-                <strong>Definition:</strong> A relation \(\leq\) on set \(S\) is a <strong>partial order</strong> if:
-                <ol>
-                    <li><strong>Reflexive:</strong> \(a \leq a\)</li>
-                    <li><strong>Antisymmetric:</strong> \(a \leq b\) and \(b \leq a \Rightarrow a = b\)</li>
-                    <li><strong>Transitive:</strong> \(a \leq b\) and \(b \leq c \Rightarrow a \leq c\)</li>
-                </ol>
+                <strong>Laws:</strong>
+                <ul>
+                    <li>\((A \cup B)^c = A^c \cap B^c\)</li>
+                    <li>\((A \cap B)^c = A^c \cup B^c\)</li>
+                </ul>
+            </div>
+
+            <div class="diagram-box">
+                <pre>
+    DE MORGAN'S LAWS - VENN DIAGRAM PROOF
+
+    Law 1: (A ∪ B)' = A' ∩ B'
+
+    Step 1: A ∪ B             Step 2: (A ∪ B)'
+    ┌───────────────────┐     ┌───────────────────┐
+    │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│     │                   │  U
+    │▓▓▓┌─────▓▓▓─────┐▓│     │   ┌─────────────┐ │
+    │▓▓▓│  A  ▓▓▓  B  │▓│     │   │▒▒▒▒▒▒▒▒▒▒▒▒▒│ │
+    │▓▓▓└─────▓▓▓─────┘▓│     │   │▒▒▒▒▒▒▒▒▒▒▒▒▒│ │
+    │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│     │   └─────────────┘ │
+    └───────────────────┘     │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│
+                              └───────────────────┘
+    Shaded = A ∪ B            Shaded = outside A ∪ B
+
+    Step 3: A'                Step 4: B'              Step 5: A' ∩ B'
+    ┌───────────────────┐     ┌───────────────────┐   ┌───────────────────┐
+    │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│     │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   │                   │
+    │▓▓▓┌─────────┐▓▓▓▓▓│     │▓▓▓▓▓┌─────────┐▓▓▓│   │   ┌─────────────┐ │
+    │▓▓▓│    A    │▓▓▓▓▓│     │▓▓▓▓▓│    B    │▓▓▓│   │   │             │ │
+    │▓▓▓└─────────┘▓▓▓▓▓│     │▓▓▓▓▓└─────────┘▓▓▓│   │   └─────────────┘ │
+    │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│     │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│   │▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓│
+    └───────────────────┘     └───────────────────┘   └───────────────────┘
+    Shaded = outside A        Shaded = outside B      Shaded = both outside
+                                                      = (A ∪ B)'  ✓
+                </pre>
             </div>
         </div>
     </div>
 
-    <!-- ===== NEW: CARTESIAN PRODUCT & POWER SET ===== -->
+    <!-- ===== CARTESIAN PRODUCT & POWER SET ===== -->
     <div class="definition-block">
         <div class="definition-header">Cartesian Product & Power Set</div>
         <div class="definition-body">
@@ -672,26 +973,25 @@
                 <strong>Cartesian Product (\(A \times B\)):</strong> \(A \times B = \{ (a, b) \mid a \in A, b \in B \}\).
             </div>
             <div class="definition-formal">
-                <strong>Power Set (\(\mathcal{P}(A)\)):</strong> The set of all subsets of \(A\). <br>If \(|A| = n\), then \(|P(A)| = 2^n\).
+                <strong>Power Set (\(\mathcal{P}(A)\)):</strong> The set of all subsets of \(A\). If \(|A| = n\), then \(|\mathcal{P}(A)| = 2^n\).
             </div>
-            
+
             <div class="diagram-box">
                 <pre>
-    Cartesian Product A x B:       Power Set P({1,2}):
-    A={1,2}, B={x,y}
-
-      y | (1,y)  (2,y)             {1,2}
-        |                            |
-      x | (1,x)  (2,x)           {1}   {2}
-        └─────────────               |
-           1      2                 { }
+    CARTESIAN PRODUCT A × B              POWER SET P({1,2})
+    A = {1, 2}, B = {x, y}
+                                         Number of elements: 2
+        │                                Number of subsets: 2² = 4
+      y │  (1,y)    (2,y)
+        │    ●        ●                         {1,2}
+        │                                        / \
+      x │  (1,x)    (2,x)                     {1}   {2}
+        │    ●        ●                        \   /
+        └──────────────────                     { }
+             1        2
+                                         Lattice diagram shows
+    |A × B| = |A| · |B| = 4              subset relationships
                 </pre>
-                <div class="caption">Visualizing Products and Power Sets</div>
-            </div>
-
-            <div class="example-box">
-                <h5>Example</h5>
-                <p>Let \(A = \{1, 2\}\). Then \(\mathcal{P}(A) = \{\emptyset, \{1\}, \{2\}, \{1, 2\}\}\). Size is \(2^2 = 4\).</p>
             </div>
         </div>
     </div>
@@ -718,7 +1018,21 @@
          │           │     │
          └───────────┼──●──┼─────────── x
                    c-δ  c  c+δ
+
+    "For ANY ε-band around f(c), I can find a δ-band around c
+     such that ALL x in the δ-band maps INTO the ε-band"
                 </pre>
+            </div>
+
+            <div class="intuition-box">
+                <h5>💡 Intuition: The Challenge Game</h5>
+                <p>Think of it as a game:</p>
+                <ol>
+                    <li>Your opponent picks ANY tolerance ε > 0 (how close outputs must be)</li>
+                    <li>You must find a δ > 0 (how close inputs must be)</li>
+                    <li>You WIN if all inputs within δ of c give outputs within ε of f(c)</li>
+                </ol>
+                <p>f is continuous at c if you can ALWAYS win, no matter how small ε is!</p>
             </div>
         </div>
     </div>
@@ -728,6 +1042,46 @@
 <section id="axioms" class="card">
     <h2>3. Axioms & Principles</h2>
     <p>These fundamental truths are accepted without proof and form the basis for all mathematical reasoning.</p>
+
+    <!-- PEANO AXIOMS -->
+    <div class="axiom-block">
+        <div class="axiom-header">Peano Axioms</div>
+        <div class="axiom-body">
+            <div class="definition-formal">
+                The natural numbers \(\mathbb{N}\) satisfy:
+                <ol>
+                    <li>\(1 \in \mathbb{N}\) (1 is a natural number)</li>
+                    <li>If \(n \in \mathbb{N}\), then \(S(n) \in \mathbb{N}\) (successor exists)</li>
+                    <li>\(S(n) \neq 1\) for all \(n\) (1 is not a successor)</li>
+                    <li>\(S(n) = S(m) \Rightarrow n = m\) (successor is injective)</li>
+                    <li>If \(K \subseteq \mathbb{N}\), \(1 \in K\), and \(n \in K \Rightarrow S(n) \in K\), then \(K = \mathbb{N}\) (induction)</li>
+                </ol>
+            </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition: Building Numbers from 1</h5>
+                <p>Think of the Peano axioms as rules for building numbers:</p>
+                <ul>
+                    <li><strong>Start:</strong> You have a "1" block</li>
+                    <li><strong>Successor:</strong> You can always add "+1" to get the next number</li>
+                    <li><strong>No going back:</strong> You can never get back to 1 by adding</li>
+                    <li><strong>No collisions:</strong> Different numbers have different successors</li>
+                    <li><strong>That's all:</strong> Every natural number comes from starting at 1 and adding</li>
+                </ul>
+            </div>
+            <div class="diagram-box">
+                <pre>
+    BUILDING NATURAL NUMBERS
+
+    1 ─→ S(1)=2 ─→ S(2)=3 ─→ S(3)=4 ─→ S(4)=5 ─→ ...
+    ↑
+    Start here
+    (nothing maps to 1)
+
+    Each arrow is the successor function S(n) = n + 1
+                </pre>
+            </div>
+        </div>
+    </div>
 
     <!-- INDUCTION -->
     <div class="axiom-block">
@@ -743,33 +1097,83 @@
             </div>
             <div class="diagram-box">
                 <pre>
-    Domino Effect:
+    THE DOMINO EFFECT
 
-    P(1) → P(2) → P(3) → P(4) → P(5) → ...
-      ↓      ↓      ↓      ↓      ↓
-    TRUE   TRUE   TRUE   TRUE   TRUE   ...
+    ┌───┐   ┌───┐   ┌───┐   ┌───┐   ┌───┐
+    │ 1 │ → │ 2 │ → │ 3 │ → │ 4 │ → │ 5 │ → ...
+    └───┘   └───┘   └───┘   └───┘   └───┘
+      ↓       ↓       ↓       ↓       ↓
+     P(1)   P(2)   P(3)   P(4)   P(5)
+    TRUE    TRUE   TRUE   TRUE   TRUE
+
+    1. Knock over the first domino (Base Case)
+    2. Show each domino knocks over the next (Inductive Step)
+    3. ALL dominoes fall!
                 </pre>
+            </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition: Climbing an Infinite Ladder</h5>
+                <p>To prove you can climb any rung:</p>
+                <ul>
+                    <li><strong>Base:</strong> Show you can reach the first rung</li>
+                    <li><strong>Step:</strong> Show that if you're on ANY rung, you can reach the next one</li>
+                </ul>
+                <p>Together, these guarantee you can reach ANY rung!</p>
             </div>
         </div>
     </div>
 
+    <!-- WELL-ORDERING -->
     <div class="axiom-block">
         <div class="axiom-header">Well-Ordering Principle</div>
         <div class="axiom-body">
             <div class="definition-formal">
                 Every non-empty subset of \(\mathbb{N}\) has a least element.
             </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition: Picking from a Bag</h5>
+                <p>Imagine you have a bag containing some positive integers (at least one). No matter which integers are in the bag, you can ALWAYS find the smallest one.</p>
+                <p>This seems obvious but it's actually equivalent to induction! It's used in proofs by contradiction: "Assume there's a counterexample. Then there's a smallest counterexample. Show this leads to contradiction."</p>
+            </div>
+            <div class="diagram-box">
+                <pre>
+    WELL-ORDERING EXAMPLE
+
+    Bag S = {7, 3, 15, 3, 9, 21}
+
+           21
+          /
+    15   9
+      \ /
+    7  3 ← LEAST ELEMENT (always exists!)
+                </pre>
+            </div>
         </div>
     </div>
 
+    <!-- AXIOM OF CHOICE -->
     <div class="axiom-block">
         <div class="axiom-header">Axiom of Choice & Zorn's Lemma</div>
         <div class="axiom-body">
             <div class="definition-formal">
                 <strong>Axiom of Choice:</strong> Given any collection of non-empty sets, there exists a choice function that selects one element from each set.
             </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition: The Sock Drawer Problem</h5>
+                <p>Imagine infinitely many pairs of socks, and you want to pick one sock from each pair.</p>
+                <ul>
+                    <li>For shoes, easy: "pick the left one" (there's a rule)</li>
+                    <li>For identical socks, there's no rule to distinguish them</li>
+                    <li>The Axiom of Choice says: "We can still make a selection, even without a rule"</li>
+                </ul>
+                <p>This is controversial because it asserts existence without construction!</p>
+            </div>
             <div class="definition-formal" style="margin-top:1rem;">
                 <strong>Zorn's Lemma:</strong> If every chain in a partially ordered set \(P\) has an upper bound in \(P\), then \(P\) contains at least one maximal element.
+            </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition for Zorn's Lemma</h5>
+                <p>If you can always "keep going" (every chain has an upper bound), then eventually you reach something maximal (can't go further).</p>
             </div>
         </div>
     </div>
@@ -780,18 +1184,32 @@
     <h2>4. Key Theorems</h2>
     <p>Master these proofs—they demonstrate important techniques.</p>
 
-    <!-- Fundamental Theorem (NEW) -->
+    <!-- Fundamental Theorem -->
     <div class="theorem">
         <div class="theorem-header">Fundamental Theorem of Arithmetic</div>
         <div class="theorem-body">
             <div class="theorem-statement">
                 Every integer \(n > 1\) can be represented uniquely as a product of prime numbers, up to the order of the factors.
             </div>
-            <p><em>Proof Strategy:</em> Existence via Strong Induction; Uniqueness via Euclid's Lemma.</p>
+            <div class="intuition-box">
+                <h5>💡 Intuition: The DNA of Numbers</h5>
+                <p>Just as every living thing has unique DNA, every integer has a unique "prime DNA":</p>
+                <ul>
+                    <li>\(12 = 2^2 \cdot 3\) (DNA: two 2s, one 3)</li>
+                    <li>\(100 = 2^2 \cdot 5^2\) (DNA: two 2s, two 5s)</li>
+                    <li>\(17 = 17\) (DNA: one 17 - it's prime!)</li>
+                </ul>
+                <p>No two different numbers share the same prime factorization!</p>
+            </div>
+            <div class="walkthrough-box">
+                <h5>📝 Proof Strategy</h5>
+                <div class="step"><span class="step-number">1</span><strong>Existence (Strong Induction):</strong> Every n > 1 HAS a factorization</div>
+                <div class="step"><span class="step-number">2</span><strong>Uniqueness (Euclid's Lemma):</strong> If p|ab and p is prime, then p|a or p|b</div>
+            </div>
         </div>
     </div>
 
-    <!-- Strong Induction (MOVED FROM AXIOMS) -->
+    <!-- Strong Induction -->
     <div class="theorem">
         <div class="theorem-header">Strong Induction</div>
         <div class="theorem-body">
@@ -799,14 +1217,18 @@
                 If \(P(1)\) is true, and for any \(k \ge 1\), \((P(1) \land P(2) \land \cdots \land P(k)) \implies P(k+1)\) is true, then \(P(n)\) is true for all \(n \in \mathbb{N}\).
             </div>
             <div class="theorem-intuition">
-                <strong>Intuition:</strong> Similar to weak induction, but allows you to assume the truth of *all* previous cases, not just the immediately preceding one. It is logically equivalent to the Principle of Mathematical Induction and the Well-Ordering Principle.
+                <strong>Intuition:</strong> Unlike weak induction (which only uses P(k) to prove P(k+1)), strong induction lets you use ALL previous cases. It's like having more tools available!
             </div>
-            <div class="example-box">
-                <h5>Example: Every integer \(n \geq 2\) has a prime factorization.</h5>
-                <p><strong>Base:</strong> 2 is prime, so its factorization is just "2". ✓</p>
-                <p><strong>Step:</strong> Assume all integers from 2 to \(k\) have prime factorizations.</p>
-                <p>For \(k+1\): If prime, done. If composite, \(k+1 = ab\) where \(2 \leq a, b \leq k\).</p>
-                <p>By hypothesis, \(a\) and \(b\) have factorizations. Multiply them. ✓ ∎</p>
+            <div class="diagram-box">
+                <pre>
+    WEAK vs STRONG INDUCTION
+
+    Weak:    P(k) ────────→ P(k+1)
+             Only use ONE previous case
+
+    Strong:  P(1), P(2), ..., P(k) ──→ P(k+1)
+             Can use ALL previous cases!
+                </pre>
             </div>
         </div>
     </div>
@@ -816,12 +1238,40 @@
         <div class="theorem-header">Cantor's Theorem</div>
         <div class="theorem-body">
             <div class="theorem-statement">
-                For any set \(A\): \(|A| < |\u0002P(A)|\)
+                For any set \(A\): \(|A| < |\mathcal{P}(A)|\)
             </div>
             <div class="proof-box">
                 <span class="proof-label">Proof (Diagonalization)</span>
-                <p>Assume surjective \(f: A \to \mathcal{P}(A)\). Define \(D = \{x \in A : x \notin f(x)\}).</p>
+                <p>Assume surjective \(f: A \to \mathcal{P}(A)\). Define \(D = \{x \in A : x \notin f(x)\}\).</p>
                 <p>Since \(f\) surjective, \(\exists d: f(d) = D\). Then \(d \in D \iff d \notin D\). Contradiction! ∎</p>
+            </div>
+            <div class="mindblown-box">
+                <h5>🤯 Mind-Blowing Consequence</h5>
+                <p><strong>There are different sizes of infinity!</strong></p>
+                <ul>
+                    <li>\(|\mathbb{N}| < |\mathcal{P}(\mathbb{N})| < |\mathcal{P}(\mathcal{P}(\mathbb{N}))| < ...\)</li>
+                    <li>The real numbers \(\mathbb{R}\) are "bigger" than natural numbers \(\mathbb{N}\)</li>
+                    <li>You can keep finding bigger and bigger infinities forever!</li>
+                </ul>
+            </div>
+            <div class="diagram-box">
+                <pre>
+    CANTOR'S DIAGONALIZATION
+
+    Suppose f: A → P(A) is surjective where A = {a, b, c}
+
+    f(a) = {a, b}     a ∈ f(a)? YES
+    f(b) = {c}        b ∈ f(b)? NO   ← Pick these
+    f(c) = {a, b, c}  c ∈ f(c)? YES
+
+    D = {x : x ∉ f(x)} = {b}
+
+    D differs from f(a) at position a
+    D differs from f(b) at position b
+    D differs from f(c) at position c
+
+    So D ≠ f(anything)! Contradiction with surjectivity.
+                </pre>
             </div>
         </div>
     </div>
@@ -833,24 +1283,28 @@
             <div class="theorem-statement">
                 There are infinitely many prime numbers.
             </div>
-            <div class="proof-box">
-                <span class="proof-label">Proof</span>
-                <p>Suppose finite list \(p_1, \dots, p_n\). Let \(Q = p_1 \dots p_n + 1\). Then \(Q\) is not divisible by any \(p_i\). Contradiction. ∎</p>
+            <div class="walkthrough-box">
+                <h5>📝 Step-by-Step Proof</h5>
+                <div class="step"><span class="step-number">1</span><strong>Assume for contradiction:</strong> There are only finitely many primes: \(p_1, p_2, ..., p_n\)</div>
+                <div class="step"><span class="step-number">2</span><strong>Construct Q:</strong> Let \(Q = p_1 \cdot p_2 \cdot ... \cdot p_n + 1\)</div>
+                <div class="step"><span class="step-number">3</span><strong>Analyze Q:</strong> Q is either prime or composite</div>
+                <div class="step"><span class="step-number">4</span><strong>If Q is prime:</strong> Q is a new prime not in our list (Q > all \(p_i\)). Contradiction!</div>
+                <div class="step"><span class="step-number">5</span><strong>If Q is composite:</strong> Q has a prime factor p. But Q ≡ 1 (mod \(p_i\)) for all i, so p divides neither! Contradiction!</div>
+                <div class="step"><span class="step-number">6</span><strong>Conclusion:</strong> Our assumption was wrong. There are infinitely many primes. ∎</div>
+            </div>
+            <div class="example-box">
+                <h5>Concrete Example</h5>
+                <p>Suppose primes are just {2, 3, 5}:</p>
+                <p>Q = 2 × 3 × 5 + 1 = 31</p>
+                <p>31 ÷ 2 = 15.5 (not divisible)</p>
+                <p>31 ÷ 3 = 10.33... (not divisible)</p>
+                <p>31 ÷ 5 = 6.2 (not divisible)</p>
+                <p>31 is prime! We found a new one!</p>
             </div>
         </div>
     </div>
 
-    <!-- Bezout's Identity (NEW) -->
-    <div class="theorem">
-        <div class="theorem-header">Bézout's Identity</div>
-        <div class="theorem-body">
-            <div class="theorem-statement">
-                Let \(a, b \in \mathbb{Z}\) not both zero. Then \(\exists x, y \in \mathbb{Z}\) such that \(ax + by = \gcd(a, b)\).
-            </div>
-        </div>
-    </div>
-
-    <!-- Pigeonhole (NEW) -->
+    <!-- Pigeonhole -->
     <div class="theorem">
         <div class="theorem-header">Pigeonhole Principle</div>
         <div class="theorem-body">
@@ -859,22 +1313,36 @@
             </div>
             <div class="diagram-box">
                 <pre>
-    Pigeons:  ● ● ● ● (4)
-    Holes:    [ ] [ ] [ ] (3)
+    PIGEONHOLE PRINCIPLE
 
-    Must stack:
-    [●] [●] [●●]  <- One hole has 2!
+    4 pigeons, 3 holes:
+
+    🐦 🐦 🐦 🐦
+
+    [ ] [ ] [ ]
+
+    No matter how you arrange them:
+    [🐦] [🐦] [🐦🐦]  ← At least one hole has 2!
+
+    GENERALIZED: n items in k containers
+    → at least one has ⌈n/k⌉ items
                 </pre>
             </div>
         </div>
     </div>
 
-    <!-- De Morgan (NEW) -->
+    <!-- Bezout's Identity -->
     <div class="theorem">
-        <div class="theorem-header">De Morgan's Laws (Sets)</div>
+        <div class="theorem-header">Bézout's Identity</div>
         <div class="theorem-body">
             <div class="theorem-statement">
-                \((A \cup B)^c = A^c \cap B^c\) and \((A \cap B)^c = A^c \cup B^c\).
+                Let \(a, b \in \mathbb{Z}\) not both zero. Then \(\exists x, y \in \mathbb{Z}\) such that \(ax + by = \gcd(a, b)\).
+            </div>
+            <div class="example-box">
+                <h5>Example: gcd(12, 8) = 4</h5>
+                <p>Find x, y: 12x + 8y = 4</p>
+                <p>Solution: 12(1) + 8(-1) = 12 - 8 = 4 ✓</p>
+                <p>Also: 12(-1) + 8(2) = -12 + 16 = 4 ✓ (not unique!)</p>
             </div>
         </div>
     </div>
@@ -889,60 +1357,407 @@
         <div class="strategy-item">Contrapositive</div>
         <div class="strategy-item">Contradiction</div>
         <div class="strategy-item">Cases</div>
-        <div class="strategy-item">Biconditional</div>
         <div class="strategy-item">Induction</div>
-        <div class="strategy-item">Existence/Uniqueness</div>
+        <div class="strategy-item">Existence</div>
     </div>
 
+    <!-- DIRECT PROOF -->
     <div class="strategy-block">
         <div class="strategy-header">Direct Proof</div>
         <div class="strategy-body">
-            <div class="strategy-template">
-                <strong>To prove \(P \Rightarrow Q\):</strong> Assume \(P\). Use definitions/logic. Conclude \(Q\).
+            <div class="blueprint-box">
+                <h5>Blueprint</h5>
+                <ol>
+                    <li>State what you want to prove: P ⇒ Q</li>
+                    <li>Write "Assume P" (start with hypothesis)</li>
+                    <li>Use definitions, algebra, known theorems</li>
+                    <li>Arrive at Q</li>
+                    <li>Write "Therefore P ⇒ Q. ∎"</li>
+                </ol>
             </div>
-            <div class="example-box">
-                <h5>Example: If \(n\) is even, then \(n^2\) is even.</h5>
-                <p>Assume \(n=2k\). Then \(n^2 = 4k^2 = 2(2k^2)\). ∎</p>
+            <div class="walkthrough-box">
+                <h5>📝 Walkthrough: "If n is even, then n² is even"</h5>
+                <div class="step"><span class="step-number">1</span>Assume n is even</div>
+                <div class="step"><span class="step-number">2</span>By definition, n = 2k for some integer k</div>
+                <div class="step"><span class="step-number">3</span>Then n² = (2k)² = 4k² = 2(2k²)</div>
+                <div class="step"><span class="step-number">4</span>Since 2k² is an integer, n² = 2(integer)</div>
+                <div class="step"><span class="step-number">5</span>By definition, n² is even. ∎</div>
+            </div>
+            <div class="practice-section">
+                <h4>Practice Problems</h4>
+                <div class="problem">
+                    <span class="problem-number">1</span>Prove: If \(n\) is odd, then \(n^2\) is odd.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Assume n is odd. Then n = 2k + 1 for some integer k.</p>
+                        <p>n² = (2k+1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1</p>
+                        <p>Since 2k² + 2k is an integer, n² has form 2m + 1, so n² is odd. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">2</span>Prove: The sum of two even numbers is even.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Let a, b be even. Then a = 2m, b = 2n for integers m, n.</p>
+                        <p>a + b = 2m + 2n = 2(m + n)</p>
+                        <p>Since m + n is an integer, a + b is even. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">3</span>Prove: If \(a | b\) and \(b | c\), then \(a | c\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Assume a|b and b|c.</p>
+                        <p>Then b = ak for some integer k, and c = bj for some integer j.</p>
+                        <p>c = bj = (ak)j = a(kj)</p>
+                        <p>Since kj is an integer, a|c. ∎</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="strategy-block">
-        <div class="strategy-header">Proof by Contradiction</div>
-        <div class="strategy-body">
-            <div class="strategy-template">
-                <strong>To prove \(P\):</strong> Assume \(\neg P\). Derive contradiction.
-            </div>
-            <div class="example-box">
-                <h5>Example: \(\sqrt{2}\) is irrational.</h5>
-                <p>Assume \(\sqrt{2}=a/b\) (lowest terms). Then \(2b^2=a^2 \implies a\) even \(\implies b\) even. Contradiction. ∎</p>
-            </div>
-        </div>
-    </div>
-
+    <!-- CONTRAPOSITIVE -->
     <div class="strategy-block">
         <div class="strategy-header">Proof by Contrapositive</div>
         <div class="strategy-body">
-            <div class="strategy-template">
-                <strong>To prove \(P \Rightarrow Q\):</strong> Prove \(\neg Q \Rightarrow \neg P\).
+            <div class="blueprint-box">
+                <h5>Blueprint</h5>
+                <ol>
+                    <li>State: "We prove the contrapositive: ¬Q ⇒ ¬P"</li>
+                    <li>Assume ¬Q</li>
+                    <li>Use definitions and logic</li>
+                    <li>Derive ¬P</li>
+                    <li>Conclude: "Since ¬Q ⇒ ¬P, we have P ⇒ Q. ∎"</li>
+                </ol>
             </div>
-            <div class="example-box">
-                <h5>Example: If \(n^2\) is even, then \(n\) is even.</h5>
-                <p>Contrapositive: If \(n\) is odd, \(n^2\) is odd. (True). ∎</p>
+            <div class="diagram-box">
+                <pre>
+    CONTRAPOSITIVE EQUIVALENCE
+
+    P ⇒ Q  ≡  ¬Q ⇒ ¬P
+
+    ┌─────────────────────────────────────┐
+    │   Original: P ⇒ Q                   │
+    │   "If it's raining, ground is wet"  │
+    ├─────────────────────────────────────┤
+    │   Contrapositive: ¬Q ⇒ ¬P           │
+    │   "If ground not wet, not raining"  │
+    └─────────────────────────────────────┘
+
+    TRUTH TABLE PROOF:
+    ┌───┬───┬───────┬────┬────┬─────────┐
+    │ P │ Q │ P⇒Q   │ ¬Q │ ¬P │ ¬Q⇒¬P   │
+    ├───┼───┼───────┼────┼────┼─────────┤
+    │ T │ T │   T   │ F  │ F  │    T    │
+    │ T │ F │   F   │ T  │ F  │    F    │
+    │ F │ T │   T   │ F  │ T  │    T    │
+    │ F │ F │   T   │ T  │ T  │    T    │
+    └───┴───┴───────┴────┴────┴─────────┘
+                     ↑ SAME COLUMN ↑
+                </pre>
+            </div>
+            <div class="intuition-box">
+                <h5>💡 When to Use Contrapositive</h5>
+                <p>Use when ¬Q gives you something concrete to work with, but P is hard to use directly.</p>
+                <p><strong>Classic example:</strong> "If n² is even, then n is even"</p>
+                <ul>
+                    <li>Direct: Hard to extract n from n² = 2k</li>
+                    <li>Contrapositive: "If n is odd, then n² is odd" - easy!</li>
+                </ul>
+            </div>
+            <div class="practice-section">
+                <h4>Practice Problems</h4>
+                <div class="problem">
+                    <span class="problem-number">1</span>Prove by contrapositive: If \(n^2\) is even, then \(n\) is even.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Contrapositive: If n is odd, then n² is odd.</p>
+                        <p>Assume n is odd. Then n = 2k + 1.</p>
+                        <p>n² = 4k² + 4k + 1 = 2(2k² + 2k) + 1, which is odd. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">2</span>Prove: If \(ab\) is odd, then both \(a\) and \(b\) are odd.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Contrapositive: If a is even OR b is even, then ab is even.</p>
+                        <p>Case 1: a is even. Then a = 2k, so ab = 2kb, which is even.</p>
+                        <p>Case 2: b is even. Then b = 2j, so ab = 2aj, which is even. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">3</span>Prove: If \(x^2 \neq y^2\), then \(x \neq y\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Contrapositive: If x = y, then x² = y².</p>
+                        <p>Assume x = y. Then x² = x · x = y · y = y². ∎</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- NEW STRATEGIES -->
+    <!-- CONTRADICTION -->
+    <div class="strategy-block">
+        <div class="strategy-header">Proof by Contradiction</div>
+        <div class="strategy-body">
+            <div class="blueprint-box">
+                <h5>Blueprint</h5>
+                <ol>
+                    <li>State: "Suppose for contradiction that P is false" (or "¬P is true")</li>
+                    <li>Use logical reasoning with this assumption</li>
+                    <li>Derive something impossible (A ∧ ¬A, or violate known fact)</li>
+                    <li>State: "Contradiction! Therefore P must be true. ∎"</li>
+                </ol>
+            </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition: The Sherlock Holmes Method</h5>
+                <p>"When you have eliminated the impossible, whatever remains, however improbable, must be the truth."</p>
+                <p>We assume the opposite, show it leads to nonsense, so our original statement must be true!</p>
+            </div>
+            <div class="walkthrough-box">
+                <h5>📝 Walkthrough: √2 is irrational</h5>
+                <div class="step"><span class="step-number">1</span>Assume √2 is rational. Then √2 = a/b in lowest terms (gcd(a,b) = 1)</div>
+                <div class="step"><span class="step-number">2</span>Square both sides: 2 = a²/b², so a² = 2b²</div>
+                <div class="step"><span class="step-number">3</span>a² is even, so a is even. Write a = 2k</div>
+                <div class="step"><span class="step-number">4</span>Then (2k)² = 2b², so 4k² = 2b², so b² = 2k²</div>
+                <div class="step"><span class="step-number">5</span>b² is even, so b is even</div>
+                <div class="step"><span class="step-number">6</span>Both a and b are even → gcd(a,b) ≥ 2. Contradiction with "lowest terms"!</div>
+                <div class="step"><span class="step-number">7</span>Therefore √2 is irrational. ∎</div>
+            </div>
+            <div class="practice-section">
+                <h4>Practice Problems</h4>
+                <div class="problem">
+                    <span class="problem-number">1</span>Prove: There is no largest integer.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Suppose for contradiction there is a largest integer N.</p>
+                        <p>Consider N + 1. This is also an integer, and N + 1 > N.</p>
+                        <p>Contradiction! N is not the largest. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">2</span>Prove: If \(a^2\) is divisible by 2, then \(a\) is divisible by 2.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Suppose a is NOT divisible by 2 (a is odd).</p>
+                        <p>Then a = 2k + 1, so a² = 4k² + 4k + 1 = 2(2k² + 2k) + 1.</p>
+                        <p>This is odd, contradicting that a² is divisible by 2. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">3</span>Prove: √3 is irrational.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Suppose √3 = a/b in lowest terms.</p>
+                        <p>Then 3b² = a², so a² is divisible by 3, so a is divisible by 3.</p>
+                        <p>Let a = 3k. Then 3b² = 9k², so b² = 3k².</p>
+                        <p>So b² is divisible by 3, so b is divisible by 3.</p>
+                        <p>Both a, b divisible by 3 contradicts "lowest terms". ∎</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CASES -->
     <div class="strategy-block">
         <div class="strategy-header">Proof by Cases</div>
         <div class="strategy-body">
-            <div class="strategy-template">
-                Divide domain into exhaustive cases. Prove true for each.
+            <div class="blueprint-box">
+                <h5>Blueprint</h5>
+                <ol>
+                    <li>Identify exhaustive cases that cover all possibilities</li>
+                    <li>State: "We proceed by cases"</li>
+                    <li>For each case: "Case i: [condition]. Then..."</li>
+                    <li>Prove statement holds in each case</li>
+                    <li>Conclude: "In all cases, P holds. ∎"</li>
+                </ol>
+            </div>
+            <div class="intuition-box">
+                <h5>💡 Intuition: Divide and Conquer</h5>
+                <p>Sometimes a direct proof is hard because different situations require different arguments. Split into cases and handle each separately!</p>
+                <p><strong>Common splits:</strong></p>
+                <ul>
+                    <li>n even vs n odd</li>
+                    <li>x ≥ 0 vs x < 0</li>
+                    <li>n = 0 vs n > 0 vs n < 0</li>
+                </ul>
+            </div>
+            <div class="walkthrough-box">
+                <h5>📝 Walkthrough: |x| ≥ 0 for all x ∈ ℝ</h5>
+                <div class="step"><span class="step-number">1</span><strong>Case 1:</strong> x ≥ 0. Then |x| = x ≥ 0. ✓</div>
+                <div class="step"><span class="step-number">2</span><strong>Case 2:</strong> x < 0. Then |x| = -x. Since x < 0, we have -x > 0. ✓</div>
+                <div class="step"><span class="step-number">3</span>In both cases, |x| ≥ 0. ∎</div>
+            </div>
+            <div class="practice-section">
+                <h4>Practice Problems</h4>
+                <div class="problem">
+                    <span class="problem-number">1</span>Prove: \(n^2 + n\) is even for all integers \(n\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p><strong>Case 1:</strong> n is even. n = 2k. Then n² + n = 4k² + 2k = 2(2k² + k), even. ✓</p>
+                        <p><strong>Case 2:</strong> n is odd. n = 2k + 1. Then n² + n = 4k² + 4k + 1 + 2k + 1 = 4k² + 6k + 2 = 2(2k² + 3k + 1), even. ✓</p>
+                        <p>In both cases, n² + n is even. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">2</span>Prove: \(\max(a,b) + \min(a,b) = a + b\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p><strong>Case 1:</strong> a ≥ b. Then max = a, min = b. max + min = a + b. ✓</p>
+                        <p><strong>Case 2:</strong> a < b. Then max = b, min = a. max + min = b + a = a + b. ✓</p>
+                        <p>In both cases, max + min = a + b. ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">3</span>Prove: \(|xy| = |x| \cdot |y|\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p><strong>Case 1:</strong> Both x ≥ 0 and y ≥ 0. |xy| = xy = |x||y|. ✓</p>
+                        <p><strong>Case 2:</strong> x ≥ 0, y < 0. |xy| = -xy = x(-y) = |x||y|. ✓</p>
+                        <p><strong>Case 3:</strong> x < 0, y ≥ 0. |xy| = -xy = (-x)y = |x||y|. ✓</p>
+                        <p><strong>Case 4:</strong> Both x < 0 and y < 0. |xy| = xy = (-x)(-y) = |x||y|. ✓ ∎</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INDUCTION -->
+    <div class="strategy-block">
+        <div class="strategy-header">Mathematical Induction</div>
+        <div class="strategy-body">
+            <div class="blueprint-box">
+                <h5>Blueprint</h5>
+                <ol>
+                    <li>State: "We prove by induction on n"</li>
+                    <li><strong>Base Case:</strong> Verify P(1) (or P(0), P(n₀))</li>
+                    <li><strong>Inductive Hypothesis:</strong> "Assume P(k) holds for some k ≥ 1"</li>
+                    <li><strong>Inductive Step:</strong> Prove P(k+1) using the hypothesis</li>
+                    <li>Conclude: "By induction, P(n) holds for all n ≥ 1. ∎"</li>
+                </ol>
+            </div>
+            <div class="diagram-box">
+                <pre>
+    INDUCTION = DOMINOES
+
+    Base Case:         Inductive Step:
+    Knock over #1      Show k → k+1
+
+         ┌─┐               ┌─┐ pushes ┌─┐
+         │1│ ←──PUSH!      │k│───────→│k+1│
+         └─┘               └─┘        └─┘
+
+    Result: ALL fall!
+    1 → 2 → 3 → 4 → 5 → 6 → ...
+                </pre>
+            </div>
+            <div class="walkthrough-box">
+                <h5>📝 Walkthrough: \(\sum_{i=1}^{n} i = \frac{n(n+1)}{2}\)</h5>
+                <div class="step"><span class="step-number">1</span><strong>Base:</strong> n = 1. LHS = 1. RHS = 1(2)/2 = 1. ✓</div>
+                <div class="step"><span class="step-number">2</span><strong>IH:</strong> Assume \(\sum_{i=1}^{k} i = \frac{k(k+1)}{2}\)</div>
+                <div class="step"><span class="step-number">3</span><strong>Show P(k+1):</strong> \(\sum_{i=1}^{k+1} i = \sum_{i=1}^{k} i + (k+1)\)</div>
+                <div class="step"><span class="step-number">4</span>By IH: \(= \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}\) ✓</div>
+            </div>
+            <div class="practice-section">
+                <h4>Practice Problems</h4>
+                <div class="problem">
+                    <span class="problem-number">1</span>Prove: \(\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}\)
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p><strong>Base:</strong> n = 1. LHS = 1. RHS = 1·2·3/6 = 1. ✓</p>
+                        <p><strong>IH:</strong> Assume true for k.</p>
+                        <p><strong>Step:</strong> Sum to k+1 = k(k+1)(2k+1)/6 + (k+1)²</p>
+                        <p>= (k+1)[k(2k+1) + 6(k+1)]/6 = (k+1)(2k² + 7k + 6)/6</p>
+                        <p>= (k+1)(k+2)(2k+3)/6 = (k+1)((k+1)+1)(2(k+1)+1)/6. ✓ ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">2</span>Prove: \(2^n > n\) for all \(n \geq 1\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p><strong>Base:</strong> n = 1. 2¹ = 2 > 1. ✓</p>
+                        <p><strong>IH:</strong> Assume 2^k > k for some k ≥ 1.</p>
+                        <p><strong>Step:</strong> 2^(k+1) = 2 · 2^k > 2k (by IH)</p>
+                        <p>= k + k ≥ k + 1 (since k ≥ 1). ✓ ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">3</span>Prove: \(n! > 2^n\) for all \(n \geq 4\).
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p><strong>Base:</strong> n = 4. 4! = 24 > 16 = 2⁴. ✓</p>
+                        <p><strong>IH:</strong> Assume k! > 2^k for some k ≥ 4.</p>
+                        <p><strong>Step:</strong> (k+1)! = (k+1) · k! > (k+1) · 2^k (by IH)</p>
+                        <p>> 2 · 2^k = 2^(k+1) (since k+1 ≥ 5 > 2). ✓ ∎</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXISTENCE PROOFS -->
+    <div class="strategy-block">
+        <div class="strategy-header">Existence Proofs</div>
+        <div class="strategy-body">
+            <div class="blueprint-box">
+                <h5>Blueprint: Constructive</h5>
+                <ol>
+                    <li>Explicitly construct/find the object</li>
+                    <li>Verify it satisfies all required properties</li>
+                </ol>
+            </div>
+            <div class="blueprint-box">
+                <h5>Blueprint: Non-Constructive</h5>
+                <ol>
+                    <li>Assume no such object exists</li>
+                    <li>Derive a contradiction</li>
+                    <li>Conclude the object must exist (but we don't know what it is!)</li>
+                </ol>
             </div>
             <div class="example-box">
-                <h5>Example: \(|x| \ge 0\) for all \(x \in \mathbb{R}\).</h5>
-                <p>Case 1: \(x \ge 0 \implies |x|=x \ge 0\). <br>Case 2: \(x < 0 \implies |x|=-x > 0\). ∎</p>
+                <h5>Constructive Example</h5>
+                <p><strong>Claim:</strong> There exists an irrational number x such that x² is rational.</p>
+                <p><strong>Proof:</strong> Let x = √2. We showed √2 is irrational.</p>
+                <p>x² = (√2)² = 2, which is rational. ∎</p>
+            </div>
+            <div class="example-box">
+                <h5>Non-Constructive Example</h5>
+                <p><strong>Claim:</strong> There exist irrational numbers a, b such that a^b is rational.</p>
+                <p><strong>Proof:</strong> Consider √2^√2. Either:</p>
+                <ul>
+                    <li>It's rational → Done! (a = b = √2)</li>
+                    <li>It's irrational → Let a = √2^√2, b = √2. Then a^b = (√2^√2)^√2 = √2² = 2, rational!</li>
+                </ul>
+                <p>Either way, such a, b exist. (But we don't know which case!) ∎</p>
+            </div>
+            <div class="practice-section">
+                <h4>Practice Problems</h4>
+                <div class="problem">
+                    <span class="problem-number">1</span>(Constructive) Prove: There exists a prime greater than 100.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>101 is prime (check: not divisible by 2, 3, 5, 7). ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">2</span>(Constructive) Prove: ∃x ∈ ℝ such that x² = x.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Let x = 0. Then 0² = 0 = x. ✓</p>
+                        <p>Or let x = 1. Then 1² = 1 = x. ✓ ∎</p>
+                    </div>
+                </div>
+                <div class="problem">
+                    <span class="problem-number">3</span>Prove: There exist integers m, n such that m² + n² = 50.
+                    <button class="show-solution-btn" onclick="toggleSolution(this)">Show Solution</button>
+                    <div class="solution">
+                        <p>Let m = 1, n = 7. Then 1² + 7² = 1 + 49 = 50. ✓</p>
+                        <p>Or m = 5, n = 5. Then 25 + 25 = 50. ✓ ∎</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -950,19 +1765,23 @@
 
 <!-- ===================== REVIEW ===================== -->
 <section id="problems" class="card">
-    <h2>Final Review</h2>
+    <h2>Final Review Checklist</h2>
     <ul class="check-list">
         <li>Can you state each definition precisely?</li>
         <li>Can you give examples AND non-examples?</li>
+        <li>Can you draw the Venn diagram for each set operation?</li>
+        <li>Can you write truth tables for logical connectives?</li>
         <li>Can you reproduce each proof from memory?</li>
         <li>Do you know when to use each proof strategy?</li>
+        <li>Can you apply De Morgan's Laws for both logic and sets?</li>
+        <li>Do you understand the intuition behind each axiom?</li>
     </ul>
 </section>
 
 </div>
 
 <footer>
-    Generated by Gemini CLI | Good luck on the exam!
+    Zero to Hero Study Guide | Master the fundamentals!
 </footer>
 
 <script>
